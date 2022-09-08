@@ -11,7 +11,7 @@ import eatyourbeets.effects.stance.StanceParticleVertical;
 import eatyourbeets.interfaces.subscribers.OnAttackSubscriber;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.PowerHelper;
-import eatyourbeets.powers.affinity.ForcePower;
+import eatyourbeets.powers.affinity.animatorClassic.ForcePower;
 import eatyourbeets.powers.common.DelayedDamagePower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;

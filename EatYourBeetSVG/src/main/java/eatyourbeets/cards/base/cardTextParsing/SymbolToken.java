@@ -16,29 +16,57 @@ public class SymbolToken extends CTToken
 {
     protected EYBCardTooltip tooltip;
 
-    static final Map<String, SymbolToken> tokenCache = new HashMap<>();
+    protected static class Container
+    {
+        protected AbstractPlayer.PlayerClass playerClass;
+        protected Map<String, SymbolToken> map = new HashMap<>();
+
+        protected Container(AbstractPlayer.PlayerClass playerClass)
+        {
+            this.playerClass = playerClass;
+        }
+    }
+
+    static final Map<AbstractPlayer.PlayerClass, Container> tokenCache = new HashMap<>();
     static
     {
-//        tokenCache.put("R", new SymbolToken("[R]"));
-//        tokenCache.put("G", new SymbolToken("[G]"));
-//        tokenCache.put("W", new SymbolToken(null, "[W]"));
-        tokenCache.put("E", new SymbolToken(null, "[E]")); // Energy
-        tokenCache.put("F", new SymbolToken(GR.AnimatorClassic.PlayerClass, "[F]")); // Force
-        tokenCache.put("A", new SymbolToken(GR.AnimatorClassic.PlayerClass, "[A]")); // Agility
-        tokenCache.put("I", new SymbolToken(GR.AnimatorClassic.PlayerClass, "[I]")); // Intellect
-        tokenCache.put("B", new SymbolToken(GR.AnimatorClassic.PlayerClass, "[B]")); // Blessing
-        tokenCache.put("C", new SymbolToken(GR.AnimatorClassic.PlayerClass, "[C]")); // Corruption
+        final Container animator = new Container(GR.Animator.PlayerClass);
+        animator.map.put("R", new SymbolToken(animator.playerClass, "[R]"));
+        animator.map.put("G", new SymbolToken(animator.playerClass, "[G]"));
+        animator.map.put("B", new SymbolToken(animator.playerClass, "[B]"));
+        animator.map.put("L", new SymbolToken(animator.playerClass, "[L]"));
+        animator.map.put("D", new SymbolToken(animator.playerClass, "[D]"));
+        animator.map.put("M", new SymbolToken(animator.playerClass, "[M]"));
+        animator.map.put("W", new SymbolToken(animator.playerClass, "[W]"));
+        animator.map.put("S", new SymbolToken(animator.playerClass, "[S]"));
+        final Container animatorClassic = new Container(GR.AnimatorClassic.PlayerClass);
+        animatorClassic.map.put("F", new SymbolToken(animatorClassic.playerClass, "[F]"));
+        animatorClassic.map.put("A", new SymbolToken(animatorClassic.playerClass, "[A]"));
+        animatorClassic.map.put("I", new SymbolToken(animatorClassic.playerClass, "[I]"));
+        animatorClassic.map.put("B", new SymbolToken(animatorClassic.playerClass, "[B]"));
+        animatorClassic.map.put("C", new SymbolToken(animatorClassic.playerClass, "[C]"));
+        final Container unnamed = new Container(GR.Unnamed.PlayerClass);
+        final SymbolToken energyToken = new SymbolToken(null, "[E]");
+        animator.map.put("E", energyToken);
+        animatorClassic.map.put("E", energyToken);
+        unnamed.map.put("E", energyToken);
+
+        tokenCache.put(animator.playerClass, animator);
+        tokenCache.put(animatorClassic.playerClass, animatorClassic);
+        tokenCache.put(unnamed.playerClass, unnamed);
     }
 
     private SymbolToken(AbstractPlayer.PlayerClass playerClass, String text)
     {
         super(CTTokenType.Symbol, text);
+
         this.tooltip = CardTooltips.FindByName(playerClass, text);
     }
 
     private SymbolToken(EYBCardTooltip tooltip)
     {
         super(CTTokenType.Symbol, tooltip.title);
+
         this.tooltip = tooltip;
     }
 
@@ -65,14 +93,15 @@ public class SymbolToken extends CTToken
                 else if (next == ']')
                 {
                     final String key = builder.toString();
-                    SymbolToken token = tokenCache.get(key);
+                    final Container container = tokenCache.get(parser.resources.PlayerClass);
+                    SymbolToken token = container.map.get(key);
                     if (token == null)
                     {
-                        final EYBCardTooltip tooltip = CardTooltips.FindByID(parser.resources.PlayerClass, key);
+                        final EYBCardTooltip tooltip = CardTooltips.FindByID(container.playerClass, key);
                         if (tooltip != null)
                         {
                             token = new SymbolToken(tooltip);
-                            //tokenCache.put(key, token);
+                            container.map.put(key, token);
                         }
                         else
                         {

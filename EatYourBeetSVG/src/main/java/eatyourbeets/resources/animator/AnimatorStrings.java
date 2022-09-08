@@ -495,9 +495,9 @@ public class AnimatorStrings
         private final String Toggle = Strings.TEXT[4];
         private final String Threshold = Strings.TEXT[5];
 
-        public String AffinityStatus(int current, int max)
+        public String AffinityStatus(int upgradeCost, String power)
         {
-            return JUtils.Format(AffinityStatus_F2, current, max);
+            return JUtils.Format(AffinityStatus_F2, upgradeCost, power);
         }
 
         public String SealedUses(int availableUses)
@@ -510,9 +510,9 @@ public class AnimatorStrings
             return LockMessage + (hold ? Hold : Toggle);
         }
 
-        public String Threshold(int cost, Object payment, Object threshold)
+        public String UpgradeAffinityPower(int cost, String affinity, String power)
         {
-            return JUtils.Format(Threshold, cost, payment, threshold);
+            return JUtils.Format(Threshold, cost, affinity, power);
         }
     }
 

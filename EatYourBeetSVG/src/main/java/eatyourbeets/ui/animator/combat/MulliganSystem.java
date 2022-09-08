@@ -32,7 +32,7 @@ public class MulliganSystem extends GUIElement implements OnStartOfTurnPostDrawS
 
         tooltip = new EYBCardTooltip(GR.Animator.Strings.Misc.MulliganHeader, GR.Animator.Strings.Misc.MulliganDescription);
         button = new GUI_Button(GR.Common.Images.Panel_Rounded_Half_H.Texture(), new AdvancedHitbox(0, 0, Scale(120), Scale(66)))
-        .SetBorder(GR.Common.Images.Panel_Rounded_Half_H_Border.Texture(), Color.DARK_GRAY)
+        .SetForeground(GR.Common.Images.Panel_Rounded_Half_H_Border.Texture(), Color.DARK_GRAY)
         .SetOnClick(() -> AbstractDungeon.player.useJumpAnimation())
         .SetColor(new Color(0.35f, 0.3f, 0.3f, 1f))
         .SetFont(EYBFontHelper.CardDescriptionFont_Normal, 1.3f)

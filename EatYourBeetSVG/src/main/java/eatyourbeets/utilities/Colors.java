@@ -8,17 +8,18 @@ public class Colors
 {
     private static final Color BLACK = Color.BLACK.cpy();
     private static final Color WHITE = Color.WHITE.cpy();
+    private static final Color GREEN = Settings.GREEN_TEXT_COLOR.cpy();
     private static final Color CREAM = Settings.CREAM_COLOR.cpy();
     private static final Color PURPLE = Settings.PURPLE_COLOR.cpy();
-    private static final Color GREEN = Settings.GREEN_TEXT_COLOR.cpy();
     private static final Color DARK_GRAY = Color.DARK_GRAY.cpy();
-    private static final Color LIGHT_GREEN = Colors.Lerp(GREEN, WHITE, 0.3f);
-    private static final Color LIGHT_YELLOW = Settings.LIGHT_YELLOW_COLOR.cpy();
     private static final Color BLUE = Settings.BLUE_TEXT_COLOR.cpy();
     private static final Color GOLD = Settings.GOLD_COLOR.cpy();
     private static final Color RED = Settings.RED_TEXT_COLOR.cpy();
     private static final Color VIOLET = Color.VIOLET.cpy();
-    private static final Color ORANGE = Colors.Lerp(RED, LIGHT_YELLOW, 0.3f);
+    private static final Color ORANGE = new Color(0.85f, 0.45f, 0.25f, 1f);
+    private static final Color LIGHT_GREEN = Colors.Lerp(GREEN, WHITE, 0.3f);
+    private static final Color LIGHT_YELLOW = Settings.LIGHT_YELLOW_COLOR.cpy();
+    private static final Color LIGHT_ORANGE = new Color(0.9f, 0.65f, 0.3f, 1f);
 
     public static Color Copy(Color color, float a)
     {
@@ -101,6 +102,12 @@ public class Colors
     {
         LIGHT_GREEN.a = a;
         return LIGHT_GREEN;
+    }
+
+    public static Color LightOrange(float a)
+    {
+        LIGHT_ORANGE.a = a;
+        return LIGHT_ORANGE;
     }
 
     public static Color LightYellow(float a)

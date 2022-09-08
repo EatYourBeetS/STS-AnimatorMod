@@ -239,7 +239,7 @@
 	{
 		"TEXT":
 		[
-			"Current: #b{0}. Base: #b{1}.",
+			"Spend this [A_Gen] to activate certain card effects, or you can pay #b{0} [A_Gen] to gain #b1 {1}.",
 			"You may #pRight-Click a card to #ySeal it and reshuffle it. Gain #b1 use each turn. Store up to #b3 uses.",
 			"While Locked, your #yAffinity points will not be spent to activate certain cards effect. NL NL Besides pressing this button, you can also alternate between #yLOCK and #yUSE with #pSHIFT. NL NL #pRight-Click to change #pSHIFT mode. Current Mode: #y",
 			"HOLD",

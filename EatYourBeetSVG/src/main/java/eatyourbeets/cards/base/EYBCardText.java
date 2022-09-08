@@ -218,7 +218,7 @@ public class EYBCardText
             {
                 if (showActualScaling)
                 {
-                    final int amount = (int)CombatStats.Affinities.ApplyScaling(affinity, card, 0);
+                    final int amount = Mathf.CeilToInt(CombatStats.Affinities.ApplyScaling(affinity, card, 0));
                     cs.SetColor(amount > 0 ? Colors.Green(1) : Colors.Cream(0.75f));
                     cs.text = "+" + amount;
                 }
@@ -228,7 +228,7 @@ public class EYBCardText
                     cs.text = "x" + scaling;
                 }
 
-                offset_y += RenderScaling(sb, affinity.GetPowerIcon(card.GetPlayerClass() == GR.AnimatorClassic.PlayerClass), cs, offset_y, Color.BLACK);//affinity.GetAlternateColor());
+                offset_y += RenderScaling(sb, affinity.GetPowerIcon(false), cs, offset_y, Color.BLACK);//affinity.GetAlternateColor());
             }
         }
     }

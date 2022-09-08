@@ -7,14 +7,15 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.localization.StanceStrings;
 import com.megacrit.cardcrawl.stances.AbstractStance;
-import com.megacrit.cardcrawl.stances.NeutralStance;
 import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
 import eatyourbeets.cards.base.EYBCardTooltip;
 import eatyourbeets.effects.SFX;
 import eatyourbeets.interfaces.delegates.FuncT0;
 import eatyourbeets.powers.CombatStats;
+import eatyourbeets.resources.CardTooltips;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameEffects;
+import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
 
 import java.util.HashMap;
@@ -37,31 +38,23 @@ public abstract class EYBStance extends AbstractStance
         stances.put(AgilityStance.STANCE_ID, AgilityStance::new);
         stances.put(CorruptionStance.STANCE_ID, CorruptionStance::new);
 
-        tooltips.clear();
-        tooltips.put(ForceStance.STANCE_ID, GR.Tooltips.ForceStance);
-        tooltips.put(AgilityStance.STANCE_ID, GR.Tooltips.AgilityStance);
-        tooltips.put(IntellectStance.STANCE_ID, GR.Tooltips.IntellectStance);
-        tooltips.put(CorruptionStance.STANCE_ID, GR.Tooltips.CorruptionStance);
-
-        affinityTooltips.clear();
-        affinityTooltips.put(ForceStance.STANCE_ID, GR.Tooltips.RedStance);
-        affinityTooltips.put(AgilityStance.STANCE_ID, GR.Tooltips.GreenStance);
-        affinityTooltips.put(IntellectStance.STANCE_ID, GR.Tooltips.BlueStance);
-        affinityTooltips.put(CorruptionStance.STANCE_ID, GR.Tooltips.DarkStance);
-
-        // TODO have a way to map tooltips/stances to their associated affinity to make the replacement more dynamic
-        for (String key : tooltips.keySet())
-        {
-            String baseDesc = tooltips.get(key).description = stances.get(key).Invoke().description;
-            affinityTooltips.get(key).description = baseDesc.replace("[F]","[A_Red]").replace("[A]","[A_Green]").replace("[I]","[A_Blue]");
-        }
-
-        tooltips.put(NeutralStance.STANCE_ID, GR.Tooltips.NeutralStance);
+//        tooltips.clear();
+//        tooltips.put(ForceStance.STANCE_ID, GR.Tooltips.ForceStance);
+//        tooltips.put(AgilityStance.STANCE_ID, GR.Tooltips.AgilityStance);
+//        tooltips.put(IntellectStance.STANCE_ID, GR.Tooltips.IntellectStance);
+//        tooltips.put(CorruptionStance.STANCE_ID, GR.Tooltips.CorruptionStance);
+//
+//        for (String key : tooltips.keySet())
+//        {
+//            tooltips.get(key).description = stances.get(key).Invoke().description;
+//        }
+//
+//        tooltips.put(NeutralStance.STANCE_ID, GR.Tooltips.NeutralStance);
     }
 
     public static EYBCardTooltip GetStanceTooltip(String stance)
     {
-        return tooltips.getOrDefault(stance, null);
+        return CardTooltips.FindByID(GameUtilities.GetPlayerClass(), stance);
     }
 
     public static AbstractStance GetStanceFromName(String name)

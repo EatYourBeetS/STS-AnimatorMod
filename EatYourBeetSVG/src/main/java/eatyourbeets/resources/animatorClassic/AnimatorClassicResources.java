@@ -15,7 +15,7 @@ import eatyourbeets.cards.base.EYBCardMetadata;
 import eatyourbeets.characters.AnimatorClassicCharacter;
 import eatyourbeets.potions.FalseLifePotion;
 import eatyourbeets.potions.GrowthPotion;
-import eatyourbeets.powers.affinity.*;
+import eatyourbeets.powers.affinity.animatorClassic.*;
 import eatyourbeets.resources.AbstractResources;
 import eatyourbeets.resources.CardTooltips;
 import eatyourbeets.resources.GR;

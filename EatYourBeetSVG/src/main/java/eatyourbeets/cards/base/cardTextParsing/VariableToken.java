@@ -100,7 +100,7 @@ public class VariableToken extends CTToken
                 }
                 else if (next instanceof SymbolToken)
                 {
-                    Affinity t = Affinity.FromTooltip(((SymbolToken) next).tooltip);
+                    final Affinity t = Affinity.FromTooltip(((SymbolToken) next).tooltip);
                     if (t != null)
                     {
                         types.add(t);

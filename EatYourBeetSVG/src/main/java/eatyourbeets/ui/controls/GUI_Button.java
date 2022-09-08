@@ -27,7 +27,7 @@ public class GUI_Button extends GUIElement
 {
     public final Hitbox hb;
     public GUI_Image background;
-    public GUI_Image border;
+    public GUI_Image foreground;
 
     public float clickDelay = 0f;
     public float targetAlpha = 1f;
@@ -45,6 +45,8 @@ public class GUI_Button extends GUIElement
     public Color disabledButtonColor;
     public Color disabledTextColor = TEXT_DISABLED_COLOR.cpy();
 
+    protected float verticalRatio;
+    protected float horizontalRatio;
     protected boolean smartText;
     protected boolean adjustIconSize;
     protected BitmapFont font;
@@ -62,20 +64,22 @@ public class GUI_Button extends GUIElement
         this.background = RenderHelpers.ForTexture(buttonTexture);
         this.interactable = true;
         this.text = "-";
+        this.verticalRatio = 0.5f;
+        this.horizontalRatio = 0.5f;
         this.font = FontHelper.buttonLabelFont;
         this.fontScale = 1f;
         SetColor(Color.WHITE);
     }
 
-    public GUI_Button SetBorder(Texture borderTexture, Color color)
+    public GUI_Button SetForeground(Texture texture, Color color)
     {
-        if (borderTexture == null)
+        if (texture == null)
         {
-            this.border = null;
+            this.foreground = null;
         }
         else
         {
-            this.border = RenderHelpers.ForTexture(borderTexture, color).SetHitbox(hb);
+            this.foreground = RenderHelpers.ForTexture(texture, color).SetHitbox(hb);
         }
 
         return this;
@@ -114,26 +118,45 @@ public class GUI_Button extends GUIElement
         return this;
     }
 
-    public GUI_Button SetText(String text)
+    public GUI_Button SetText(Object text)
     {
-        this.text = text;
+        this.text = String.valueOf(text);
 
         return this;
     }
 
-    public GUI_Button SetText(String text, boolean smartText)
+    public GUI_Button SetText(Object text, boolean smartText)
     {
-        this.text = text;
-        this.smartText = smartText;
-
-        return this;
+        return SetText(text, smartText, false);
     }
 
-    public GUI_Button SetText(String text, boolean smartText, boolean resizeIcons)
+    public GUI_Button SetText(Object text, boolean smartText, boolean resizeIcons)
     {
-        this.text = text;
         this.smartText = smartText;
         this.adjustIconSize = resizeIcons;
+
+        return SetText(text);
+    }
+
+    public GUI_Button SetAlignment(float verticalRatio, float horizontalRatio)
+    {
+        return SetAlignment(verticalRatio, horizontalRatio, false);
+    }
+
+    public GUI_Button SetAlignment(Float verticalRatio, Float horizontalRatio, Boolean smartText)
+    {
+        if (verticalRatio != null)
+        {
+            this.verticalRatio = verticalRatio;
+        }
+        if (horizontalRatio != null)
+        {
+            this.horizontalRatio = horizontalRatio;
+        }
+        if (smartText != null)
+        {
+            this.smartText = smartText;
+        }
 
         return this;
     }
@@ -328,8 +351,22 @@ public class GUI_Button extends GUIElement
             }
             else
             {
-                font.getData().setScale(fontScale);
-                RenderHelpers.WriteCentered(sb, font, text, hb, color, scale);
+                font.getData().setScale(fontScale * scale);
+                if (horizontalRatio < 0.5f)
+                {
+                    final float step = hb.width * horizontalRatio;
+                    FontHelper.renderFontLeft(sb, font, text, hb.x + step, hb.y + hb.height * verticalRatio, textColor);
+                }
+                else if (horizontalRatio > 0.5f)
+                {
+                    final float step = hb.width * (1-horizontalRatio) * 2;
+                    FontHelper.renderFontRightAligned(sb, font, text, hb.x + hb.width - step, hb.y + hb.height * verticalRatio, textColor);
+                }
+                else
+                {
+                    FontHelper.renderFontCentered(sb, font, text, hb.cX, hb.y + hb.height * verticalRatio, textColor);
+                }
+                //RenderHelpers.WriteCentered(sb, font, text, hb, color, scale);
             }
 
             RenderHelpers.ResetFont(font);
@@ -346,10 +383,10 @@ public class GUI_Button extends GUIElement
     {
         background.SetColor(color).Render(sb, hb);
 
-        if (border != null && border.isActive)
+        if (foreground != null && foreground.isActive)
         {
-            border.color.a = currentAlpha;
-            border.Render(sb, hb);
+            foreground.color.a = currentAlpha;
+            foreground.Render(sb, hb);
         }
 
         if (interactable && this.hb.hovered && !this.hb.clickStarted)

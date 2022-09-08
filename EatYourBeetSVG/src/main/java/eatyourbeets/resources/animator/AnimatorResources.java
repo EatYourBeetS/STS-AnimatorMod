@@ -16,7 +16,10 @@ import eatyourbeets.cards.base.EYBCardMetadata;
 import eatyourbeets.characters.AnimatorCharacter;
 import eatyourbeets.potions.FalseLifePotion;
 import eatyourbeets.potions.GrowthPotion;
+import eatyourbeets.powers.affinity.animator.*;
 import eatyourbeets.resources.AbstractResources;
+import eatyourbeets.resources.CardTooltips;
+import eatyourbeets.resources.GR;
 import eatyourbeets.rewards.animator.MissingPieceReward;
 import eatyourbeets.rewards.animator.SpecialCardReward;
 import eatyourbeets.rewards.animator.SpecialGoldReward;
@@ -133,6 +136,21 @@ public class AnimatorResources extends AbstractResources
 
         JUtils.LogInfo(this, "InitializeCards();");
 
+        CardTooltips.RegisterPowerTooltip(GR.Animator.PlayerClass, "[Force]", "Force", new ForcePower());
+        CardTooltips.RegisterPowerTooltip(GR.Animator.PlayerClass, "[Agility]", "Agility", new AgilityPower());
+        CardTooltips.RegisterPowerTooltip(GR.Animator.PlayerClass, "[Intellect]", "Intellect", new IntellectPower());
+        CardTooltips.RegisterPowerTooltip(GR.Animator.PlayerClass, "[Blessing]", "Blessing", new BlessingPower());
+        CardTooltips.RegisterPowerTooltip(GR.Animator.PlayerClass, "[Corruption]", "Corruption", new CorruptionPower());
+
+        CardTooltips.RegisterName(GR.Animator.PlayerClass, "[R]", GR.Tooltips.Affinity_Red);
+        CardTooltips.RegisterName(GR.Animator.PlayerClass, "[G]", GR.Tooltips.Affinity_Green);
+        CardTooltips.RegisterName(GR.Animator.PlayerClass, "[B]", GR.Tooltips.Affinity_Blue);
+        CardTooltips.RegisterName(GR.Animator.PlayerClass, "[L]", GR.Tooltips.Affinity_Light);
+        CardTooltips.RegisterName(GR.Animator.PlayerClass, "[D]", GR.Tooltips.Affinity_Dark);
+        CardTooltips.RegisterName(GR.Animator.PlayerClass, "[M]", GR.Tooltips.Affinity_Star);
+        CardTooltips.RegisterName(GR.Animator.PlayerClass, "[W]", GR.Tooltips.Affinity_General);
+        CardTooltips.RegisterName(GR.Animator.PlayerClass, "[S]", GR.Tooltips.Affinity_Sealed);
+
         Strings.Initialize();
         CardSeries.InitializeStrings();
         LoadCustomCards();
@@ -164,6 +182,12 @@ public class AnimatorResources extends AbstractResources
         JUtils.LogInfo(this, "InitializeKeywords();");
 
         LoadKeywords(PlayerClass);
+
+//        CardTooltips.RegisterPowerTooltip(GR.Animator.PlayerClass, "[F]", "Force", new ForcePower());
+//        CardTooltips.RegisterPowerTooltip(GR.Animator.PlayerClass, "[A]", "Agility", new AgilityPower());
+//        CardTooltips.RegisterPowerTooltip(GR.Animator.PlayerClass, "[I]", "Intellect", new IntellectPower());
+//        CardTooltips.RegisterPowerTooltip(GR.Animator.PlayerClass, "[B]", "Blessing", new BlessingPower());
+//        CardTooltips.RegisterPowerTooltip(GR.Animator.PlayerClass, "[C]", "Corruption", new CorruptionPower());
     }
 
     @Override

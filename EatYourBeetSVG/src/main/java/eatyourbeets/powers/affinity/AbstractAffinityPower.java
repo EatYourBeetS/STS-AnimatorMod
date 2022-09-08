@@ -3,6 +3,7 @@ package eatyourbeets.powers.affinity;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.FontHelper;
@@ -10,6 +11,7 @@ import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import eatyourbeets.cards.base.Affinity;
+import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.cards.base.EYBCardTooltip;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.CommonPower;
@@ -17,6 +19,7 @@ import eatyourbeets.powers.PowerHelper;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.*;
 
+//TODO: Code cleanup
 public abstract class AbstractAffinityPower extends CommonPower
 {
     public final Affinity affinity;
@@ -31,6 +34,11 @@ public abstract class AbstractAffinityPower extends CommonPower
     protected static final int MAX_AMOUNT = 20;
     protected int thresholdIndex;
     protected int thresholdBonusAmount;
+
+    public static AbstractAffinityPower CreatePower(Affinity affinity, boolean classic)
+    {
+        return classic ? AnimatorClassicAffinityPower.CreatePower(affinity) : AnimatorAffinityPower.CreatePower(affinity);
+    }
 
     public AbstractAffinityPower(Affinity affinity, String powerID, String symbol)
     {
@@ -147,6 +155,11 @@ public abstract class AbstractAffinityPower extends CommonPower
     {
         final int[] thresholds = GetThresholds();
         return (thresholdIndex < thresholds.length) ? thresholds[thresholdIndex] : null;
+    }
+
+    public void SetThresholdLevel(int level)
+    {
+        thresholdIndex = level;
     }
 
     public int GetThresholdLevel()
@@ -308,6 +321,10 @@ public abstract class AbstractAffinityPower extends CommonPower
             }
         }
     }
+
+    public abstract AbstractPlayer.PlayerClass GetPlayerClass();
+    public abstract float ApplyScaling(float multi);
+    public abstract float ApplyScaling(EYBCard card, float base);
 
     public int GetScalingAmount()
     {

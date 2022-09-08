@@ -6,7 +6,7 @@ import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.effects.stance.StanceAura;
 import eatyourbeets.effects.stance.StanceParticleVertical;
 import eatyourbeets.powers.PowerHelper;
-import eatyourbeets.powers.affinity.IntellectPower;
+import eatyourbeets.powers.affinity.animatorClassic.IntellectPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;

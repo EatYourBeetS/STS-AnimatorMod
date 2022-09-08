@@ -3,24 +3,16 @@
 	"<LIM>": "Limited",
 	"<SLM>": "{Semi-Limited}",
 	"<slm>": "{Semi-Lim}",
-	
-	"<AGI>": "Agility",
-	"<FOR>": "Force",
-	"<INT>": "Intellect",
 
 	"<DRW>": "Draw 1 card",
 	"<DRW-M>": "Draw !M! card(s)",
 	"<SPACE>": "    ",
 
 	"<ST>": "Starter",
-	"<FS>": "{[F] Stance}",
-	"<IS>": "{[I] Stance}",
-	"<AS>": "{[A] Stance}",
-	"<CS>": "{[C] Stance}",
-	"<RS>": "{[A_Red] Stance}",
-	"<GS>": "{[A_Green] Stance}",
-	"<BS>": "{[A_Blue] Stance}",
-	"<DS>": "{[A_Dark] Stance}",
+	"<FS>": "{[Force] Stance}",
+	"<IS>": "{[Intellect] Stance}",
+	"<AS>": "{[Agility] Stance}",
+	"<CS>": "{[Corruption] Stance}",
 
 	"<R>": "[A_Red]",
 	"<G>": "[A_Green]",

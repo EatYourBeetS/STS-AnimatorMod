@@ -105,7 +105,7 @@ public abstract class AbstractScreen extends GUIElement
         final Texture buttonTexture = GR.Common.Images.HexagonalButton.Texture();
         final Texture buttonBorderTexture = GR.Common.Images.HexagonalButtonBorder.Texture();
         return new GUI_Button(buttonTexture, x, y)
-        .SetBorder(buttonBorderTexture, Color.WHITE)
+        .SetForeground(buttonBorderTexture, Color.WHITE)
         .SetClickDelay(0.3f)
         .SetDimensions(width, height);
     }

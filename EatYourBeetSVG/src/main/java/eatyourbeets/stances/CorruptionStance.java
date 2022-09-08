@@ -9,7 +9,7 @@ import eatyourbeets.effects.SFX;
 import eatyourbeets.effects.stance.StanceAura;
 import eatyourbeets.effects.stance.StanceParticleVertical;
 import eatyourbeets.powers.PowerHelper;
-import eatyourbeets.powers.affinity.CorruptionPower;
+import eatyourbeets.powers.affinity.animatorClassic.CorruptionPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;

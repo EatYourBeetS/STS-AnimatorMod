@@ -2,7 +2,6 @@ package eatyourbeets.ui.animator.combat;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -16,7 +15,7 @@ import eatyourbeets.effects.SFX;
 import eatyourbeets.effects.VFX;
 import eatyourbeets.interfaces.subscribers.OnStartOfTurnSubscriber;
 import eatyourbeets.powers.CombatStats;
-import eatyourbeets.powers.affinity.*;
+import eatyourbeets.powers.affinity.AbstractAffinityPower;
 import eatyourbeets.resources.GR;
 import eatyourbeets.ui.GUIElement;
 import eatyourbeets.ui.controls.GUI_Button;
@@ -35,36 +34,25 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
     public static final int BASE_COST = 2;
 
     public final ArrayList<AbstractAffinityPower> Powers = new ArrayList<>();
+    public final ArrayList<EYBCardAffinityRow> Rows = new ArrayList<>();
     public final EYBCardAffinities BaseAffinities = new EYBCardAffinities(null);
     public final EYBCardAffinities CurrentAffinities = new EYBCardAffinities(null);
-    public final ForcePower Force;
-    public final AgilityPower Agility;
-    public final IntellectPower Intellect;
-    public final BlessingPower Blessing;
-    public final CorruptionPower Corruption;
 
     protected final DraggableHitbox hb;
     protected final GUI_Image dragPanel_image;
     protected final GUI_Image draggable_icon;
     protected final GUI_Button info_button;
     protected final GUI_Button lock_button;
-    protected final ArrayList<EYBCardAffinityRow> rows = new ArrayList<>();
     protected RotatingList<String> tooltipMessages;
     protected EYBCardTooltip info_tooltip;
     protected EYBCardTooltip lock_tooltip;
     protected Vector2 savedPosition;
-    protected boolean canUseAffinities = true;
+    protected boolean canUseAffinities;
     protected boolean holdingShift;
 
     public EYBCardAffinitySystem()
     {
-        final Affinity[] affinityTypes = Affinity.Basic();
-
-        Powers.add(Force = new ForcePower());
-        Powers.add(Agility = new AgilityPower());
-        Powers.add(Intellect = new IntellectPower());
-        Powers.add(Blessing = new BlessingPower());
-        Powers.add(Corruption = new CorruptionPower());
+        canUseAffinities = true;
 
         hb = new DraggableHitbox(ScreenW(0.0366f), ScreenH(0.43f), Scale(80f), Scale(40f), true);
         hb.SetBounds(hb.width * 0.6f, Settings.WIDTH - (hb.width * 0.6f), ScreenH(0.35f), ScreenH(0.85f));
@@ -88,12 +76,12 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
         .SetTooltip(info_tooltip, false)
         .SetOnClick(() -> UpdateInfoTooltip(true));
 
-        for (Affinity type : affinityTypes)
+        for (Affinity type : Affinity.Basic())
         {
-            rows.add(new EYBCardAffinityRow(this, type, rows.size()));
+            Rows.add(new EYBCardAffinityRow(this, type, Rows.size()));
         }
 
-        lock_button = new GUI_Button(GR.Common.Images.Panel_Elliptical_Half_H.Texture(), new RelativeHitbox(hb, 1, 1, 1.55f, -0.5f -(rows.size() * 0.975f)))
+        lock_button = new GUI_Button(GR.Common.Images.Panel_Elliptical_Half_H.Texture(), new RelativeHitbox(hb, 1, 1, 1.55f, -0.5f -(Rows.size() * 0.975f)))
         .SetFont(EYBFontHelper.CardTooltipFont, 1f)
         .SetColor(new Color(0.05f, 0.05f, 0.05f, 1f))
         .SetTooltip(lock_tooltip, false);
@@ -104,7 +92,7 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
         });
         lock_button.SetOnClick(() -> UnlockAffinities(!canUseAffinities));
 
-        rows.add(new EYBCardAffinityRow(this, Affinity.Sealed, rows.size()));
+        Rows.add(new EYBCardAffinityRow(this, Affinity.Sealed, Rows.size()));
     }
 
     public EYBCardAffinities GetAffinities(Iterable<AbstractCard> cards, boolean unsealed)
@@ -233,7 +221,7 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
 
     public EYBCardAffinityRow GetRow(Affinity affinity)
     {
-        for (EYBCardAffinityRow row : rows)
+        for (EYBCardAffinityRow row : Rows)
         {
             if (row.Type == affinity)
             {
@@ -260,7 +248,7 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
     public int GetPowerAmount(Affinity affinity)
     {
         final AbstractAffinityPower p = GetPower(affinity);
-        return p == null ? 0 : p.amount;
+        return p == null ? 0 : p.GetPlayerClass() == GR.Animator.PlayerClass ? p.GetThresholdLevel() : p.amount;
     }
 
     @Override
@@ -268,7 +256,7 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
     {
         AddAffinitySealUses(1);
 
-        for (EYBCardAffinityRow row : rows)
+        for (EYBCardAffinityRow row : Rows)
         {
             final int value = Mathf.Min(BaseAffinities.GetLevel(row.Type), CurrentAffinities.GetLevel(row.Type));
             CurrentAffinities.Set(row.Type, value);
@@ -291,28 +279,12 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
 
     public float ModifyBlock(float block, EYBCard card)
     {
-        if (card.type != AbstractCard.CardType.ATTACK)
-        {
-            for (AbstractAffinityPower p : Powers)
-            {
-                block = ApplyScaling(p, card, block);
-            }
-        }
-
-        return block;
+        return card.type != AbstractCard.CardType.ATTACK ? ApplyScaling(Affinity.Star, card, block) : block;
     }
 
     public float ModifyDamage(float damage, EYBCard card)
     {
-        if (card.type == AbstractCard.CardType.ATTACK)
-        {
-            for (AbstractAffinityPower p : Powers)
-            {
-                damage = ApplyScaling(p, card, damage);
-            }
-        }
-
-        return damage;
+        return card.type == AbstractCard.CardType.ATTACK ? ApplyScaling(Affinity.Star, card, damage) : damage;
     }
 
     public float ApplyScaling(Affinity affinity, EYBCard card, float base)
@@ -321,18 +293,13 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
         {
             for (AbstractAffinityPower p : Powers)
             {
-                base = ApplyScaling(p, card, base);
+                base = p.ApplyScaling(card, base);
             }
 
             return base;
         }
 
-        return ApplyScaling(GetPower(affinity), card, base);
-    }
-
-    public float ApplyScaling(AbstractAffinityPower power, EYBCard card, float base)
-    {
-        return base + MathUtils.ceil(card.affinities.GetScaling(power.affinity, true) * power.GetScalingAmount() * 0.33f);
+        return GetPower(affinity).ApplyScaling(card, base);
     }
 
     public void Seal(EYBCardAffinities affinities, boolean reshuffle)
@@ -394,10 +361,12 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
 
     public void Initialize()
     {
+        final boolean classic = !GR.Animator.IsSelected();
+
         BaseAffinities.Clear();
         CurrentAffinities.Clear();
 
-        CombatStats.onStartOfTurn.ToggleSubscription(this, GR.Animator.IsSelected());
+        CombatStats.onStartOfTurn.ToggleSubscription(this, !classic);
 
         if (savedPosition != null)
         {
@@ -411,10 +380,23 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
             }
         }
 
-        UnlockAffinities(holdingShift != canUseAffinities);
-        holdingShift = false;
+        Powers.clear();
+        for (Affinity affinity : Affinity.Basic())
+        {
+            Powers.add(AbstractAffinityPower.CreatePower(affinity, classic));
+        }
 
-        for (EYBCardAffinityRow row : rows)
+        if (classic)
+        {
+            canUseAffinities = true;
+        }
+        else
+        {
+            UnlockAffinities(holdingShift != canUseAffinities);
+            holdingShift = false;
+        }
+
+        for (EYBCardAffinityRow row : Rows)
         {
             row.Initialize();
             BaseAffinities.SetRequirement(row.Type, BASE_COST);
@@ -448,7 +430,7 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
             }
         }
 
-        for (EYBCardAffinityRow row : rows)
+        for (EYBCardAffinityRow row : Rows)
         {
             row.Update(hoveredCard, draggingCard);
         }
@@ -516,7 +498,7 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
         info_button.Render(sb);
         lock_button.Render(sb);
 
-        for (EYBCardAffinityRow t : rows)
+        for (EYBCardAffinityRow t : Rows)
         {
             t.Render(sb);
         }

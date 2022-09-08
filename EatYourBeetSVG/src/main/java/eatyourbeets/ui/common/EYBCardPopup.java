@@ -122,7 +122,7 @@ public class EYBCardPopup extends GUIElement
         .SetOnToggle(this::ToggleBetaArt);
 
         this.downgradeCard_button = new GUI_Button(GR.Common.Images.Panel_Rounded_Half_H.Texture(), downgradeHB)
-        .SetBorder(GR.Common.Images.Panel_Rounded_Half_H_Border.Texture(), Colors.Gold(1))
+        .SetForeground(GR.Common.Images.Panel_Rounded_Half_H_Border.Texture(), Colors.Gold(1))
         .SetColor(new Color(0.15f, 0.15f, 0.15f, 1f), Colors.White(0.15f))
         .SetClickDelay(0.3f)
         .SetPosition((Settings.WIDTH * 0.025f) + (downgradeHB.width * 0.5f), Settings.HEIGHT * 0.725f)
@@ -133,7 +133,7 @@ public class EYBCardPopup extends GUIElement
         .SetOnClick(this::DowngradeCard);
 
         this.specialAction_button = new GUI_Button(GR.Common.Images.Panel_Rounded_Half_H.Texture(), specialHB)
-        .SetBorder(GR.Common.Images.Panel_Rounded_Half_H_Border.Texture(), Colors.Gold(1))
+        .SetForeground(GR.Common.Images.Panel_Rounded_Half_H_Border.Texture(), Colors.Gold(1))
         .SetColor(new Color(0.15f, 0.15f, 0.15f, 1f), Colors.White(0.15f))
         .SetClickDelay(0.3f)
         .SetPosition((Settings.WIDTH * 0.025f) + (specialHB.width * 0.5f), downgradeHB.cY - downgradeHB.height)

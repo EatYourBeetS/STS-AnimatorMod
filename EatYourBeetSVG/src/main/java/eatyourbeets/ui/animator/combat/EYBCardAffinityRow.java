@@ -5,8 +5,11 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.Hitbox;
-import eatyourbeets.cards.base.*;
-import eatyourbeets.powers.affinity.AbstractAffinityPower;
+import eatyourbeets.cards.base.Affinity;
+import eatyourbeets.cards.base.EYBCard;
+import eatyourbeets.cards.base.EYBCardAffinities;
+import eatyourbeets.cards.base.EYBCardTooltip;
+import eatyourbeets.powers.affinity.AnimatorAffinityPower;
 import eatyourbeets.resources.GR;
 import eatyourbeets.ui.GUIElement;
 import eatyourbeets.ui.controls.GUI_Button;
@@ -17,37 +20,35 @@ import eatyourbeets.utilities.*;
 
 public class EYBCardAffinityRow extends GUIElement
 {
-    public static final Color COLOR_BUTTON = new Color(0.13f, 0.13f, 0.13f, 1f);
+    public static final Color COLOR_BUTTON = new Color(0.62f, 0.58f, 0.36f, 1f);
     public static final Color COLOR_DEFAULT = new Color(0.05f, 0.05f, 0.05f, 1f);
     public static final Color COLOR_HIGHLIGHT_WEAK = new Color(0.5f, 0.5f, 0.5f, 0.75f);
     public static final Color COLOR_HIGHLIGHT_STRONG = new Color(0.75f, 0.75f, 0.35f, 0.75f);
 
     public final Affinity Type;
     public final EYBCardAffinitySystem System;
-    public final AbstractAffinityPower Power;
+    public AnimatorAffinityPower Power;
     public int BaseLevel;
     public int Level;
-    public int ThresholdCost;
+    public int UpgradeCost;
 
     protected static final EYBCardTooltip tooltip = new EYBCardTooltip("Affinities", "");
     protected final GUI_Image image_background;
     protected final GUI_Image image_affinity;
     protected final GUI_Label text_affinity;
-    protected final GUI_Image image_synergy;
-    protected final GUI_Button threshold_button;
+    protected final GUI_Image image_upgrade;
+    protected final GUI_Button button_upgrade;
+    protected final GUI_Label text_upgrade;
+    protected final float offset_y;
 
     public EYBCardAffinityRow(EYBCardAffinitySystem system, Affinity affinity, int index)
     {
         final Hitbox hb = system.hb;
-        final float offset_y = -0.5f -(index * 0.975f);
 
         Type = affinity;
         System = system;
-        Power = system.GetPower(affinity);
 
-        threshold_button = new GUI_Button(GR.Common.Images.Tag.Texture(),
-                new RelativeHitbox(hb, 1f, 0.92f, 1.6f, offset_y))
-                .SetColor(COLOR_BUTTON);
+        offset_y = -0.5f -(index * 0.975f);
 
         image_background = new GUI_Image(GR.Common.Images.Panel_Elliptical_Half_H.Texture(),
         new RelativeHitbox(hb, 1, 1, 0.5f, offset_y))
@@ -61,19 +62,28 @@ public class EYBCardAffinityRow extends GUIElement
         .SetAlignment(0.5f, 0.5f)
         .SetText("-");
 
-        image_synergy = new GUI_Image(GR.Common.Images.Arrow_Right.Texture(),
-        new RelativeHitbox(hb, Scale(20), Scale(20), hb.width - Scale(18f), offset_y * hb.height, false));
+        image_upgrade = new GUI_Image(GR.Common.Images.Arrow_Right.Texture(),
+        new RelativeHitbox(hb, Scale(20), Scale(20), hb.width - Scale(15f), offset_y * hb.height, false));
 
-        if (Power != null)
+        button_upgrade = new GUI_Button(GR.Common.Images.Tag.Texture(),
+        new RelativeHitbox(hb, Scale(35), Scale(30), hb.width * 1.95f, offset_y * hb.height, false))
+        .SetFont(null, 0.75f)
+        .SetText("+")
+        .SetColor(COLOR_BUTTON);
+
+        text_upgrade = new GUI_Label(EYBFontHelper.CardIconFont_Small,
+        new RelativeHitbox(hb, Scale(20), Scale(20), (hb.width * 1.95f) + Scale(10), (offset_y * hb.height) - Scale(5), false))
+        .SetAlignment(0.5f, 0.5f);
+
+        if (Type.ID >= 0)
         {
-            // TODO Only set the hitbox when playing as Classic Animator
-            //Power.hb = new RelativeHitbox(hb, 1, 1, 1.5f, offset_y);
-            threshold_button.SetOnClick(this::SpendCost).SetFont(null, 0.5f);
+            button_upgrade.SetOnClick(this::UpgradeAffinity);
         }
         else
         {
-            image_synergy.SetActive(false);
-            threshold_button.SetActive(false);
+            image_upgrade.SetActive(false);
+            text_upgrade.SetActive(false);
+            button_upgrade.SetActive(false);
         }
     }
 
@@ -89,9 +99,12 @@ public class EYBCardAffinityRow extends GUIElement
 
     public void Initialize()
     {
+        Power = JUtils.SafeCast(System.GetPower(Type), AnimatorAffinityPower.class);
+
         if (Power != null)
         {
             Power.Initialize(AbstractDungeon.player);
+            Power.hb = new RelativeHitbox(System.hb, 1f, 1, 1.5f, offset_y);
         }
     }
 
@@ -100,13 +113,7 @@ public class EYBCardAffinityRow extends GUIElement
         final int level = Mathf.Clamp(cardAffinities.GetLevel(Type, true), 0, 2);
         if (level > 0)
         {
-            System.BaseAffinities.Add(Type, level);
-            System.CurrentAffinities.Add(Type, level);
-
-            if (manual)
-            {
-                GameActions.Bottom.StackAffinityPower(Type, 1, level > 1);
-            }
+            GameActions.Bottom.StackAffinityPower(Type, level, false);
         }
     }
 
@@ -115,7 +122,16 @@ public class EYBCardAffinityRow extends GUIElement
         RefreshLevels();
 
         image_background.SetColor(COLOR_DEFAULT);
-        image_synergy.color.a = 1f;
+        //image_synergy.color.a = 1f;
+
+        if (Type.ID >= 0)
+        {
+            button_upgrade.SetActive(Level >= UpgradeCost && Level < Power.maxAmount);
+            if (text_upgrade.SetActive(button_upgrade.isActive).isActive)
+            {
+                text_upgrade.SetText(UpgradeCost).SetColor(Power.retainedTurns > 0 ? Colors.Green(1) : Colors.Cream(1));
+            }
+        }
 
         final boolean hovering = !draggingCard && image_background.hb.hovered && !System.hb.IsDragging();
         if (Type == Affinity.Sealed)
@@ -136,11 +152,18 @@ public class EYBCardAffinityRow extends GUIElement
                 }
             }
 
-            if (hovering)
+            if (button_upgrade.isActive && button_upgrade.hb.hovered && Power != null)
             {
-                if (BaseLevel > 0)
+                tooltip.description = GR.Animator.Strings.Affinities.UpgradeAffinityPower(UpgradeCost,
+                        Type.GetTooltip().GetTitleOrIcon(),
+                        Type.GetPowerTooltip(false).GetTitleOrIcon());
+                EYBCardTooltip.QueueTooltip(tooltip, false);
+            }
+            else if (hovering)
+            {
+                if (Power != null)
                 {
-                    tooltip.description = GR.Animator.Strings.Affinities.AffinityStatus(Level, BaseLevel);
+                    tooltip.description = GR.Animator.Strings.Affinities.AffinityStatus(UpgradeCost, "[" + Power.symbol + "]");
                     EYBCardTooltip.QueueTooltip(tooltip, image_background.hb, false);
                 }
 
@@ -153,11 +176,6 @@ public class EYBCardAffinityRow extends GUIElement
                     }
                 }
             }
-            else if (threshold_button.hb.hovered && Power != null)
-            {
-                tooltip.description = GR.Animator.Strings.Affinities.Threshold(ThresholdCost, Type.GetTooltip(), Type.GetPowerTooltip(false));
-                EYBCardTooltip.QueueTooltip(tooltip, false);
-            }
         }
 
         if (Type == Affinity.Sealed || Level == BaseLevel)
@@ -166,14 +184,7 @@ public class EYBCardAffinityRow extends GUIElement
         }
         else
         {
-            text_affinity.SetText(Level).SetColor(Colors.LightGreen(1));
-        }
-
-        if (Power != null)
-        {
-            threshold_button
-                    .SetText("+1 " + Type.GetPowerTooltip(false) + " (" + ThresholdCost + ") ", true, true)
-                    .SetTextColor(Level >= ThresholdCost ? Colors.LightGreen(1) : Colors.Cream(0.6f));
+            text_affinity.SetText(Level).SetColor(Level < BaseLevel ? Colors.LightOrange(1) : Colors.LightGreen(1));
         }
 
         Update();
@@ -185,8 +196,9 @@ public class EYBCardAffinityRow extends GUIElement
         image_background.TryUpdate();
         image_affinity.TryUpdate();
         text_affinity.TryUpdate();
-        image_synergy.TryUpdate();
-        threshold_button.TryUpdate();
+        image_upgrade.TryUpdate();
+        button_upgrade.TryUpdate();
+        text_upgrade.TryUpdate();
     }
 
     @Override
@@ -195,30 +207,31 @@ public class EYBCardAffinityRow extends GUIElement
         image_background.TryRender(sb);
         image_affinity.TryRender(sb);
         text_affinity.TryRender(sb);
-        image_synergy.TryRender(sb);
-        threshold_button.TryRender(sb);
+        image_upgrade.TryRender(sb);
 
-        // TODO Render power for Classic Animator
-/*        if (Power != null)
+        if (Power != null)
         {
             Power.Render(sb);
-        }*/
+        }
+
+        button_upgrade.TryRender(sb);
+        text_upgrade.TryRender(sb);
     }
 
-    protected void SpendCost()
+    protected void UpgradeAffinity()
     {
-        if (Power != null && System.TryUseAffinity(Type, ThresholdCost))
+        RefreshLevels();
+
+        if (UpgradeCost >= 0 && System.TryUseAffinity(Type, UpgradeCost))
         {
-            GameActions.Bottom.StackPower(TargetHelper.Player(), Power.GetThresholdBonusPower(), 1);
-            System.BaseAffinities.SetRequirement(Type, ThresholdCost + 1);
-            RefreshLevels();
+            Power.Upgrade(1);
         }
     }
 
-    private void RefreshLevels()
+    protected void RefreshLevels()
     {
         BaseLevel = System.BaseAffinities.GetLevel(Type, true);
         Level = System.CurrentAffinities.GetLevel(Type, true);
-        ThresholdCost = System.BaseAffinities.GetRequirement(Type);
+        UpgradeCost = Power == null ? -1 : Power.GetUpgradeCost();
     }
 }

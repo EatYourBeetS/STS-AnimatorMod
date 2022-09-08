@@ -31,29 +31,60 @@
 		"PROPER_NAME": "Multicolor"
 	},
 	
-	"Blue Stance":
+	"Force":
 	{
-	  "DESCRIPTION": "<LOAD FROM STANCE>",
-	  "NAMES": ["[a_blue] stance", "blue stance"],
-	  "PROPER_NAME": "Blue Stance"
+		"DESCRIPTION": "When you gain [Force], also gain [Strength].",
+		"NAMES": ["force"],
+		"PROPER_NAME": "Force"
 	},
-	"Dark Stance":
+	"Agility":
 	{
-	  "DESCRIPTION": "<LOAD FROM STANCE>",
-	  "NAMES": ["[a_dark] stance", "dark stance"],
-	  "PROPER_NAME": "Demon Stance"
+		"DESCRIPTION": "When you gain [Agility], also gain [Dexterity].",
+		"NAMES": ["agility"],
+		"PROPER_NAME": "Agility"
 	},
-	"Green Stance":
+	"Blessing":
 	{
-	  "DESCRIPTION": "<LOAD FROM STANCE>",
-	  "NAMES": ["[a_green] stance", "green stance"],
-	  "PROPER_NAME": "Green Stance"
+		"DESCRIPTION": "When you gain [Blessing], also gain [Vitality].",
+		"NAMES": ["blessing"],
+		"PROPER_NAME": "Blessing"
 	},
-	"Red Stance":
+	"Intellect":
 	{
-	  "DESCRIPTION": "<LOAD FROM STANCE>",
-	  "NAMES": ["[a_red] stance", "red stance"],
-	  "PROPER_NAME": "Red Stance"
+		"DESCRIPTION": "When you gain [Intellect], also gain [Focus].",
+		"NAMES": ["intellect"],
+		"PROPER_NAME": "Intellect"
+	},
+	"Corruption":
+	{
+		"DESCRIPTION": "When you gain [Corruption], also gain [Invocation].",
+		"NAMES": ["corruption"],
+		"PROPER_NAME": "Corruption"
+	},
+	
+	"Agility Stance":
+	{
+		"DESCRIPTION": "<LOAD FROM STANCE>",
+		"NAMES": ["[agility] stance", "agility stance"],
+		"PROPER_NAME": "Agility Stance"
+	},
+	"Force Stance":
+	{
+		"DESCRIPTION": "<LOAD FROM STANCE>",
+		"NAMES": ["[force] stance", "force stance"],
+		"PROPER_NAME": "Force Stance"
+	},
+	"Intellect Stance":
+	{
+		"DESCRIPTION": "<LOAD FROM STANCE>",
+		"NAMES": ["[intellect] stance", "intellect stance"],
+		"PROPER_NAME": "Intellect Stance"
+	},
+	"Corruption Stance":
+	{
+		"DESCRIPTION": "<LOAD FROM STANCE>",
+		"NAMES": ["[corruption] stance", "demon stance"],
+		"PROPER_NAME": "Demon Stance"
 	},
 	
 	"Green Scaling":
@@ -95,7 +126,7 @@
 	
 	"Boost":
 	{
-		"DESCRIPTION": "Gain the specified [A_Gen]. Also gain its associated threshold power until the end of turn.",
+		"DESCRIPTION": "Gain the specified [A_Gen], and reduce the cost of upgrading its [A_Gen] power by #b1 until end of turn (does not stack).",
 		"NAMES": ["boost"],
 		"PROPER_NAME": "Boost"
 	},

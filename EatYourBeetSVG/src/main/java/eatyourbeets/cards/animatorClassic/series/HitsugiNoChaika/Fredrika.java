@@ -262,7 +262,7 @@ public class Fredrika extends AnimatorClassicCard implements OnEndOfTurnFirstSub
             }
         }
 
-        if (formID != Form.Default)
+        if (formID != Form.Default && inBattle)
         {
             CombatStats.onEndOfTurnFirst.SubscribeOnce(this);
         }

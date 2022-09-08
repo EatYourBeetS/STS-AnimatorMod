@@ -1,6 +1,5 @@
 package eatyourbeets.utilities;
 
-import basemod.devcommands.power.Power;
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.GameActionManager;
@@ -64,8 +63,8 @@ import eatyourbeets.interfaces.subscribers.OnPhaseChangedSubscriber;
 import eatyourbeets.monsters.PlayerMinions.UnnamedDoll;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.PowerHelper;
-import eatyourbeets.powers.affinity.CorruptionPower;
-import eatyourbeets.powers.affinity.*;
+import eatyourbeets.powers.affinity.animatorClassic.*;
+import eatyourbeets.powers.affinity.animatorClassic.CorruptionPower;
 import eatyourbeets.powers.animator.EarthenThornsPower;
 import eatyourbeets.powers.common.EnergizedPower;
 import eatyourbeets.powers.common.*;

@@ -249,7 +249,7 @@ public class Fredrika extends AnimatorCard implements OnEndOfTurnLastSubscriber
             }
         }
 
-        if (formID != Form.Default)
+        if (formID != Form.Default && inBattle)
         {
             CombatStats.onEndOfTurnLast.SubscribeOnce(this);
         }

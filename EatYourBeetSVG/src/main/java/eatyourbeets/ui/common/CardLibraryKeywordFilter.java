@@ -28,14 +28,14 @@ public class CardLibraryKeywordFilter extends GUIElement implements FuncT1<Boole
         this.container = container;
         this.tooltip = tooltip;
         this.button = new GUI_Button(GR.Common.Images.Panel_Rounded_Half_H.Texture(), hb)
-        .SetBorder(GR.Common.Images.Panel_Rounded_Half_H_Border.Texture(), Colors.Gold(1))
+        .SetForeground(GR.Common.Images.Panel_Rounded_Half_H_Border.Texture(), Colors.Gold(1))
         .SetFont(EYBFontHelper.CardTooltipFont, 1f)
         .SetColor(new Color(0.1f, 0.1f, 0.1f, 0.6f))
         .SetTextColor(Colors.Gold(1f))
         .SetNonInteractableTextColor(Colors.Gold(0.3f))
         .SetText(text, true)
         .SetOnClick(this::Filter);
-        this.button.border.isActive = false;
+        this.button.foreground.isActive = false;
         this.button.targetAlpha = this.button.currentAlpha = 0.05f;
     }
 
@@ -43,7 +43,7 @@ public class CardLibraryKeywordFilter extends GUIElement implements FuncT1<Boole
     public void Update()
     {
         button.targetAlpha = container.hasFocus ? 1 : 0.05f;
-        button.border.isActive = CustomCardLibSortHeader.Instance.filter == this;
+        button.foreground.isActive = CustomCardLibSortHeader.Instance.filter == this;
         button.SetInteractable(container.hasFocus).Update();
     }
 

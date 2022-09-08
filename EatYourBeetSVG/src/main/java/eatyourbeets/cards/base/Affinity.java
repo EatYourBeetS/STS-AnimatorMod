@@ -104,12 +104,6 @@ public enum Affinity implements Comparable<Affinity>
         }
     }
 
-    public TextureRegion GetPowerIcon(boolean classic)
-    {
-        final EYBCardTooltip tip = GetPowerTooltip(classic);
-        return tip != null ? tip.icon : null;
-    }
-
     public Color GetAlternateColor(float lerp)
     {
         return Color.WHITE.cpy().lerp(GetAlternateColor(), lerp);
@@ -159,7 +153,7 @@ public enum Affinity implements Comparable<Affinity>
             case General: return GR.Tooltips.Affinity_General;
             case Sealed: return GR.Tooltips.Affinity_Sealed;
 
-            default: throw new EnumConstantNotPresentException(Affinity.class, this.name());
+            default: throw new RuntimeException("Invalid enum value: " + this.name());
         }
     }
 
@@ -174,26 +168,19 @@ public enum Affinity implements Comparable<Affinity>
             case Dark: return GR.Tooltips.DarkScaling;
             case Star: return GR.Tooltips.MulticolorScaling;
 
-            default: throw new EnumConstantNotPresentException(Affinity.class, this.name());
+            default: throw new RuntimeException("Invalid enum value: " + this.name());
         }
     }
 
-    public EYBCardTooltip GetPowerTooltip(boolean classic)
+    public TextureRegion GetPowerIcon(boolean thresholdPower)
     {
-        if (classic)
-        {
-            switch (this)
-            {
-                case Red: return GR.Tooltips.Force;
-                case Green: return GR.Tooltips.Agility;
-                case Blue: return GR.Tooltips.Intellect;
-                case Light: return GR.Tooltips.Blessing;
-                case Dark: return GR.Tooltips.Corruption;
+        final EYBCardTooltip tip = GetPowerTooltip(thresholdPower);
+        return tip != null ? tip.icon : null;
+    }
 
-                default: throw new EnumConstantNotPresentException(Affinity.class, this.name());
-            }
-        }
-        else
+    public EYBCardTooltip GetPowerTooltip(boolean thresholdPowers)
+    {
+        if (thresholdPowers)
         {
             switch (this)
             {
@@ -204,7 +191,21 @@ public enum Affinity implements Comparable<Affinity>
                 case Dark: return GR.Tooltips.Invocation;
                 case Star: return GR.Tooltips.Affinity_Star;
 
-                default: throw new EnumConstantNotPresentException(Affinity.class, this.name());
+                default: throw new RuntimeException("Invalid enum value: " + this.name());
+            }
+        }
+        else
+        {
+            switch (this)
+            {
+                case Red: return GR.Tooltips.Force;
+                case Green: return GR.Tooltips.Agility;
+                case Blue: return GR.Tooltips.Intellect;
+                case Light: return GR.Tooltips.Blessing;
+                case Dark: return GR.Tooltips.Corruption;
+                case Star: return GR.Tooltips.Affinity_Star;
+
+                default: throw new RuntimeException("Invalid enum value: " + this.name());
             }
         }
     }

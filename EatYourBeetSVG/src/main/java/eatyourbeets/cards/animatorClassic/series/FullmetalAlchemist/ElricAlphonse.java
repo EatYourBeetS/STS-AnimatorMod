@@ -4,7 +4,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animatorClassic.special.ElricAlphonse_Alt;
 import eatyourbeets.cards.base.*;
-import eatyourbeets.powers.affinity.IntellectPower;
+import eatyourbeets.powers.affinity.animatorClassic.IntellectPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 

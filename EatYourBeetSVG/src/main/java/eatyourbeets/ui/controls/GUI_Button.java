@@ -120,7 +120,7 @@ public class GUI_Button extends GUIElement
 
     public GUI_Button SetText(Object text)
     {
-        this.text = String.valueOf(text);
+        this.text = text == null ? "" : text.toString();
 
         return this;
     }

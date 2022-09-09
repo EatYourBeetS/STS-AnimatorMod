@@ -38,9 +38,9 @@ public class GUI_Label extends GUIElement
         this.hb = hb;
     }
 
-    public GUI_Label SetText(Object content)
+    public GUI_Label SetText(Object text)
     {
-        this.text = String.valueOf(content);
+        this.text = text == null ? "" : text.toString();
 
         return this;
     }

@@ -126,7 +126,7 @@ public class EYBCardAffinityRow extends GUIElement
 
         if (Type.ID >= 0)
         {
-            button_upgrade.SetActive(Level >= UpgradeCost && Level < Power.maxAmount);
+            button_upgrade.SetActive(Level >= UpgradeCost && Power.CanUpgrade());
             if (text_upgrade.SetActive(button_upgrade.isActive).isActive)
             {
                 text_upgrade.SetText(UpgradeCost).SetColor(Power.retainedTurns > 0 ? Colors.Green(1) : Colors.Cream(1));

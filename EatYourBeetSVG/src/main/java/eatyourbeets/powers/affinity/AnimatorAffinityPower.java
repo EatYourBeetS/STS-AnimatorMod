@@ -114,6 +114,11 @@ public abstract class AnimatorAffinityPower extends AbstractAffinityPower
         }
     }
 
+    public boolean CanUpgrade()
+    {
+        return GetThresholdLevel() < maxAmount;
+    }
+
     public void Upgrade(int amount)
     {
         final int current = GetThresholdLevel();

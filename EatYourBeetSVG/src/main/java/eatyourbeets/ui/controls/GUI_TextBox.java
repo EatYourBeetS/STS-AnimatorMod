@@ -23,7 +23,7 @@ public class GUI_TextBox extends GUIElement
 
     public GUI_TextBox SetText(Object value)
     {
-        this.label.SetText(String.valueOf(value));
+        this.label.SetText(value);
 
         return this;
     }

@@ -31,7 +31,7 @@ public class Saber extends AnimatorCard
         SetCooldown(8, 0, this::OnCooldownCompleted);
         SetLoyal(true);
 
-        SetAffinityRequirement(Affinity.Light, 2);
+        SetAffinityRequirement(Affinity.Light, 1);
     }
 
     @Override

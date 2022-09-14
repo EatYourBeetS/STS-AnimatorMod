@@ -25,9 +25,9 @@ public class Add extends AnimatorCard
         super(DATA);
 
         Initialize(0, 0, 3, 2);
-        SetUpgrade(0, 0, 3);
+        SetUpgrade(0, 0, 3, 1);
 
-        SetAffinity_Blue(1, 1, 0);
+        SetAffinity_Blue(2);
         SetAffinity_Dark(2);
 
         SetAffinityRequirement(Affinity.Dark, 2);

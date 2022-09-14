@@ -10,7 +10,6 @@ import eatyourbeets.effects.stance.StanceParticleVertical;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.PowerHelper;
 import eatyourbeets.powers.affinity.animatorClassic.AgilityPower;
-import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -19,7 +18,7 @@ public class AgilityStance extends EYBStance
     public static final Affinity AFFINITY = AgilityPower.AFFINITY_TYPE;
     public static final String STANCE_ID = CreateFullID(AgilityStance.class);
     public static final int STAT_GAIN_AMOUNT = 1;
-    public static final int BLOCK_RETAIN_AMOUNT = 6;
+    public static final int BLOCK_RETAIN_AMOUNT = 8;
 
     public static boolean IsActive()
     {
@@ -46,7 +45,7 @@ public class AgilityStance extends EYBStance
     {
         super.onEnterStance();
 
-        GameActions.Bottom.StackAffinityPower(AFFINITY, 1, true);
+        //GameActions.Bottom.StackAffinityPower(AFFINITY, 1, true);
 
         if (TryApplyStance(STANCE_ID))
         {
@@ -76,7 +75,7 @@ public class AgilityStance extends EYBStance
     @Override
     public void onRefreshStance()
     {
-        GameActions.Bottom.StackAffinityPower(AFFINITY, 1, true);
+        //GameActions.Bottom.StackAffinityPower(AFFINITY, 1, true);
     }
 
     @Override

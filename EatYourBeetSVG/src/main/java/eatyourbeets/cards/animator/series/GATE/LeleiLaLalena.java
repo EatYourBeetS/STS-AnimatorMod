@@ -12,7 +12,7 @@ public class LeleiLaLalena extends AnimatorCard
     public static final EYBCardData DATA = Register(LeleiLaLalena.class)
             .SetSkill(0, CardRarity.UNCOMMON, EYBCardTarget.None)
             .SetSeriesFromClassPackage()
-            .PostInitialize(data -> data.AddPreview(AffinityToken.GetCard(Affinity.General), true));
+            .PostInitialize(data -> data.AddPreview(AffinityToken.GetCard(Affinity.General), false));
 
     public LeleiLaLalena()
     {
@@ -24,7 +24,7 @@ public class LeleiLaLalena extends AnimatorCard
 
         SetEvokeOrbCount(1);
 
-        SetAffinityRequirement(Affinity.Blue, 3);
+        SetAffinityRequirement(Affinity.Blue, 2);
     }
 
     @Override

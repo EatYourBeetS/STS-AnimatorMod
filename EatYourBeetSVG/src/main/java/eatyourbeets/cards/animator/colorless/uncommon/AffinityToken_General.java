@@ -27,7 +27,7 @@ public class AffinityToken_General extends AffinityToken implements OnAddToDeckL
     {
         super(DATA, AFFINITY_TYPE);
 
-        Initialize(0, 1);
+        Initialize(0, 2);
         SetUpgrade(0, 3);
 
         SetUnplayable(true);

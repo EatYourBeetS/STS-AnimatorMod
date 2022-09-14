@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.localization.StanceStrings;
 import com.megacrit.cardcrawl.stances.AbstractStance;
+import com.megacrit.cardcrawl.stances.NeutralStance;
 import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
 import eatyourbeets.cards.base.EYBCardTooltip;
 import eatyourbeets.effects.SFX;
@@ -24,7 +25,7 @@ import java.util.Objects;
 public abstract class EYBStance extends AbstractStance
 {
     protected static final HashMap<String, FuncT0<AbstractStance>> stances = new HashMap<>();
-    protected static final HashMap<String, EYBCardTooltip> tooltips = new HashMap<>();
+    protected static final HashMap<String, EYBCardTooltip> classicTooltips = new HashMap<>();
     protected static final HashMap<String, EYBCardTooltip> affinityTooltips = new HashMap<>();
     protected static long sfxId = -1L;
     protected final AbstractCreature owner;
@@ -37,19 +38,32 @@ public abstract class EYBStance extends AbstractStance
         stances.put(IntellectStance.STANCE_ID, IntellectStance::new);
         stances.put(AgilityStance.STANCE_ID, AgilityStance::new);
         stances.put(CorruptionStance.STANCE_ID, CorruptionStance::new);
+        
+        classicTooltips.clear();
+        classicTooltips.put(ForceStance.STANCE_ID, GR.Tooltips.ForceStance);
+        classicTooltips.put(AgilityStance.STANCE_ID, GR.Tooltips.AgilityStance);
+        classicTooltips.put(IntellectStance.STANCE_ID, GR.Tooltips.IntellectStance);
+        classicTooltips.put(CorruptionStance.STANCE_ID, GR.Tooltips.CorruptionStance);
 
-//        tooltips.clear();
-//        tooltips.put(ForceStance.STANCE_ID, GR.Tooltips.ForceStance);
-//        tooltips.put(AgilityStance.STANCE_ID, GR.Tooltips.AgilityStance);
-//        tooltips.put(IntellectStance.STANCE_ID, GR.Tooltips.IntellectStance);
-//        tooltips.put(CorruptionStance.STANCE_ID, GR.Tooltips.CorruptionStance);
-//
-//        for (String key : tooltips.keySet())
-//        {
-//            tooltips.get(key).description = stances.get(key).Invoke().description;
-//        }
-//
-//        tooltips.put(NeutralStance.STANCE_ID, GR.Tooltips.NeutralStance);
+        for (String key : classicTooltips.keySet())
+        {
+            classicTooltips.get(key).description = stances.get(key).Invoke().description;
+        }
+
+        classicTooltips.put(NeutralStance.STANCE_ID, GR.Tooltips.NeutralStance);
+
+        affinityTooltips.clear();
+        affinityTooltips.put(ForceStance.STANCE_ID, GR.Tooltips.RedStance);
+        affinityTooltips.put(AgilityStance.STANCE_ID, GR.Tooltips.GreenStance);
+        affinityTooltips.put(IntellectStance.STANCE_ID, GR.Tooltips.BlueStance);
+        affinityTooltips.put(CorruptionStance.STANCE_ID, GR.Tooltips.DarkStance);
+
+        for (String key : affinityTooltips.keySet())
+        {
+            affinityTooltips.get(key).description = stances.get(key).Invoke().description;
+        }
+
+        affinityTooltips.put(NeutralStance.STANCE_ID, GR.Tooltips.NeutralStance);
     }
 
     public static EYBCardTooltip GetStanceTooltip(String stance)

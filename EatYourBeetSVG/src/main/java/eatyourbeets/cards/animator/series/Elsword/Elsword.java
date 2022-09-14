@@ -23,7 +23,7 @@ public class Elsword extends AnimatorCard
         Initialize(13, 0, 2);
         SetUpgrade(4, 0, 0);
 
-        SetAffinity_Red(1, 0, 2);
+        SetAffinity_Red(1, 1, 3);
         SetAffinity_Light(1);
     }
 

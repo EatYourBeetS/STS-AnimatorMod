@@ -16,9 +16,12 @@ import java.util.ArrayList;
 
 public abstract class EYBAction extends AbstractGameAction
 {
+    public static AbstractCard CurrentCard;
+
     public boolean canCancel;
     public boolean isRealtime;
     public GameActions.ActionOrder originalOrder;
+    public AbstractCard sourceCard;
 
     protected final ArrayList<Object> tags = new ArrayList<>(1);
     protected final AbstractPlayer player;
@@ -37,9 +40,17 @@ public abstract class EYBAction extends AbstractGameAction
     {
         this.rng = AbstractDungeon.cardRandomRng;
         this.player = AbstractDungeon.player;
+        this.sourceCard = CurrentCard;
         this.duration = this.startDuration = duration;
         this.actionType = type;
         this.canCancel = true;
+    }
+
+    public EYBAction SetSourceCard(AbstractCard card)
+    {
+        this.sourceCard = card;
+
+        return this;
     }
 
     public EYBAction SetOriginalOrder(GameActions.ActionOrder order)
@@ -203,5 +214,6 @@ public abstract class EYBAction extends AbstractGameAction
         name = other.name;
         message = other.message;
         originalOrder = other.originalOrder;
+        sourceCard = other.sourceCard;
     }
 }

@@ -108,7 +108,7 @@ public class Elesis extends AnimatorCard implements CustomSavable<Elesis.Form>
                 GameActions.Bottom.ApplyBurning(p, m, GameUtilities.GetDebuffsCount(m.powers) * magicNumber).SkipIfZero(true);
                 if (TryUseAffinity(Affinity.Green) && info.TryActivateSemiLimited())
                 {
-                    GameActions.Bottom.Draw(1);
+                    GameActions.Bottom.Draw(2);
                 }
                 break;
             }
@@ -232,9 +232,9 @@ public class Elesis extends AnimatorCard implements CustomSavable<Elesis.Form>
                 SetUpgrade(0, 0, 2);
 
                 affinities.Clear();
-                SetAffinity_Red(1, 0, 1);
+                SetAffinity_Red(1, 0, 3);
                 SetAffinity_Green(1);
-                SetAffinity_Light(2, 0, 3);
+                SetAffinity_Light(2, 0, 6);
 
                 this.cardText.OverrideDescription(cardData.Strings.EXTENDED_DESCRIPTION[0], true);
                 this.isCostModified = this.isCostModifiedForTurn = false;
@@ -270,8 +270,8 @@ public class Elesis extends AnimatorCard implements CustomSavable<Elesis.Form>
                 SetUpgrade(3, 0, 0);
 
                 affinities.Clear();
-                SetAffinity_Red(2);
-                SetAffinity_Dark(2, 0, 1);
+                SetAffinity_Red(2, 0, 1);
+                SetAffinity_Dark(2, 0, 2);
 
                 this.cardText.OverrideDescription(cardData.Strings.EXTENDED_DESCRIPTION[2], true);
                 this.isCostModified = this.isCostModifiedForTurn = false;

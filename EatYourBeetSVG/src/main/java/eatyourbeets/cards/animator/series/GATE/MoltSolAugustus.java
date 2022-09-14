@@ -1,15 +1,17 @@
 package eatyourbeets.cards.animator.series.GATE;
 
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.special.MoltSolAugustus_ImperialArchers;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
+import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.effects.SFX;
+import eatyourbeets.interfaces.subscribers.OnAffinitySealedSubscriber;
 import eatyourbeets.powers.AnimatorClickablePower;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.PowerTriggerConditionType;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
@@ -27,8 +29,8 @@ public class MoltSolAugustus extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 2, ARCHERS_AMOUNT);
-        SetUpgrade(0, 0, 1);
+        Initialize(0, 0, 1, ARCHERS_AMOUNT);
+        SetUpgrade(0, 6);
 
         SetAffinity_Red(1);
 
@@ -38,10 +40,11 @@ public class MoltSolAugustus extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.StackPower(new MoltSolAugustusPower(p, magicNumber));
+        GameActions.Bottom.GainBlock(block);
+        GameActions.Bottom.StackPower(new MoltSolAugustusPower(p, 1));
     }
 
-    public static class MoltSolAugustusPower extends AnimatorClickablePower
+    public static class MoltSolAugustusPower extends AnimatorClickablePower implements OnAffinitySealedSubscriber
     {
         public MoltSolAugustusPower(AbstractCreature owner, int amount)
         {
@@ -54,32 +57,27 @@ public class MoltSolAugustus extends AnimatorCard
         }
 
         @Override
+        public void onInitialApplication()
+        {
+            super.onInitialApplication();
+
+            CombatStats.onAffinitySealed.Subscribe(this);
+        }
+
+        @Override
         public String GetUpdatedDescription()
         {
             return FormatDescription(0, ARCHERS_AMOUNT, amount);
         }
 
         @Override
-        public void onPlayCard(AbstractCard card, AbstractMonster m)
+        public void OnAffinitySealed(EYBCard card, boolean manual)
         {
-            super.onPlayCard(card, m);
-
-            if (amount > 0 && GameUtilities.HasRedAffinity(card))
+            if (GameUtilities.HasRedAffinity(card))
             {
-                GameActions.Top.Draw(1);
-                reducePower(1);
+                CombatStats.Affinities.AddAffinitySealUses(amount);
+                GameActions.Bottom.GainDrawEssence(amount);
                 flash();
-            }
-        }
-
-        @Override
-        public void atEndOfTurn(boolean isPlayer)
-        {
-            super.atEndOfTurn(isPlayer);
-
-            if (ResetAmount() <= 0)
-            {
-                RemovePower();
             }
         }
 

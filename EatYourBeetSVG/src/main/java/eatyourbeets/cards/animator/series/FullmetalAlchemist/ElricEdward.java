@@ -24,10 +24,11 @@ public class ElricEdward extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(5, 0, 1);
+        Initialize(4, 0, 1);
+        SetUpgrade(2, 0, 0);
 
         SetAffinity_Blue(1, 1, 1);
-        SetAffinity_Light(1);
+        SetAffinity_Light(1, 0, 1);
 
         SetEvokeOrbCount(1);
     }

@@ -36,7 +36,7 @@ public class Lu extends AnimatorCard
         Initialize(2, 0, 3);
 
         SetAffinity_Red(1, 0, 2);
-        SetAffinity_Dark(2);
+        SetAffinity_Dark(2, 0, 2);
     }
 
     @Override

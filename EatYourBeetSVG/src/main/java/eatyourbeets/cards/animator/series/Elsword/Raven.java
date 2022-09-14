@@ -21,8 +21,8 @@ public class Raven extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(3, 0, 1, 4);
-        SetUpgrade(0, 0, 1);
+        Initialize(3, 0, 2, 5);
+        SetUpgrade(4, 0);
 
         SetAffinity_Red(1);
         SetAffinity_Green(1);
@@ -49,7 +49,7 @@ public class Raven extends AnimatorCard
 
         if (GameUtilities.IsAttacking(m.intent))
         {
-            GameActions.Bottom.ApplyWeak(p, m, magicNumber);
+            GameActions.Bottom.ApplyWeak(p, m, 1);
         }
         else
         {

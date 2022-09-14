@@ -22,14 +22,14 @@ public class Eve extends AnimatorCard
             .SetPower(3, CardRarity.RARE)
             .SetMaxCopies(1)
             .SetSeriesFromClassPackage()
-            .PostInitialize(data -> data.AddPreview(AffinityToken.GetCard(Affinity.General), true));
+            .PostInitialize(data -> data.AddPreview(AffinityToken.GetCard(Affinity.General), false));
 
     public Eve()
     {
         super(DATA);
 
-        Initialize(0, 0, 3);
-        SetUpgrade(0, 0, 2);
+        Initialize(0, 0, 5);
+        SetCostUpgrade(-1);
 
         SetAffinity_Blue(2);
         SetAffinity_Light(1);

@@ -1,29 +1,25 @@
 package eatyourbeets.stances;
 
 import com.badlogic.gdx.graphics.Color;
-import com.megacrit.cardcrawl.cards.DamageInfo;
-import com.megacrit.cardcrawl.core.AbstractCreature;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.powers.watcher.VigorPower;
+import eatyourbeets.actions.EYBAction;
 import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.effects.stance.StanceAura;
 import eatyourbeets.effects.stance.StanceParticleVertical;
-import eatyourbeets.interfaces.subscribers.OnAttackSubscriber;
-import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.PowerHelper;
 import eatyourbeets.powers.affinity.animatorClassic.ForcePower;
-import eatyourbeets.powers.common.DelayedDamagePower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
 
-public class ForceStance extends EYBStance implements OnAttackSubscriber
+public class ForceStance extends EYBStance
 {
     public static final Affinity AFFINITY = ForcePower.AFFINITY_TYPE;
     public static final String STANCE_ID = CreateFullID(ForceStance.class);
-    public static final int STAT_GAIN_AMOUNT = 3;
-    public static final int SELF_DAMAGE_AMOUNT = 1;
-    public static final int SELF_DAMAGE_REDUCTION = 8;
+    public static final int STAT_GAIN_AMOUNT = 1;
 
     public static boolean IsActive()
     {
@@ -50,12 +46,20 @@ public class ForceStance extends EYBStance implements OnAttackSubscriber
     {
         super.onEnterStance();
 
-        GameActions.Bottom.StackAffinityPower(AFFINITY, 1, true);
+        //GameActions.Bottom.StackAffinityPower(AFFINITY, 1, true);
 
         if (TryApplyStance(STANCE_ID))
         {
+            if (AbstractDungeon.actionManager.currentAction instanceof EYBAction)
+            {
+                final AbstractCard card = ((EYBAction) AbstractDungeon.actionManager.currentAction).sourceCard;
+                if (card != null)
+                {
+                    onPlayCard(card);
+                }
+            }
+
             GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Strength, +STAT_GAIN_AMOUNT);
-            CombatStats.onAttack.Subscribe(this);
         }
     }
 
@@ -67,35 +71,29 @@ public class ForceStance extends EYBStance implements OnAttackSubscriber
         if (TryApplyStance(null))
         {
             GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Strength, -STAT_GAIN_AMOUNT);
-            GameActions.Bottom.ReducePower(owner, DelayedDamagePower.POWER_ID, SELF_DAMAGE_REDUCTION);
-            CombatStats.onAttack.Unsubscribe(this);
         }
     }
 
     @Override
-    public void OnAttack(DamageInfo info, int damageAmount, AbstractCreature target)
+    public void onPlayCard(AbstractCard card)
     {
-        if (info.type == DamageInfo.DamageType.NORMAL && target != owner)
+        super.onPlayCard(card);
+
+        if (card.type == AbstractCard.CardType.ATTACK)
         {
-            GameActions.Bottom.TakeDamageAtEndOfTurn(1, AttackEffects.NONE).ShowEffect(false, true);
+            final int amount = card.costForTurn;
+            if (amount > 0)
+            {
+                GameActions.Bottom.TakeDamageAtEndOfTurn(amount, AttackEffects.NONE).ShowEffect(false, true);
+                GameActions.Bottom.StackPower(new VigorPower(owner, amount * 2)).ShowEffect(true, true);
+            }
         }
     }
-
-//    @Override
-//    public void onPlayCard(AbstractCard card)
-//    {
-//        super.onPlayCard(card);
-//
-//        if (card.type == AbstractCard.CardType.ATTACK)
-//        {
-//            GameActions.Bottom.TakeDamageAtEndOfTurn(1, AttackEffects.NONE).ShowEffect(false, true);
-//        }
-//    }
 
     @Override
     public void onRefreshStance()
     {
-        GameActions.Bottom.StackAffinityPower(AFFINITY, 1, true);
+        //GameActions.Bottom.StackAffinityPower(AFFINITY, 1, true);
     }
 
     @Override
@@ -119,6 +117,6 @@ public class ForceStance extends EYBStance implements OnAttackSubscriber
     @Override
     public void updateDescription()
     {
-        description = FormatDescription(STAT_GAIN_AMOUNT, SELF_DAMAGE_AMOUNT, SELF_DAMAGE_REDUCTION);
+        description = FormatDescription(STAT_GAIN_AMOUNT);
     }
 }

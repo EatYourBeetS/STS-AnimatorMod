@@ -184,6 +184,7 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
         }
         else
         {
+            amount = CombatStats.OnAffinityGained(affinity, amount);
             CurrentAffinities.Add(affinity, amount);
             BaseAffinities.Add(affinity, amount);
         }

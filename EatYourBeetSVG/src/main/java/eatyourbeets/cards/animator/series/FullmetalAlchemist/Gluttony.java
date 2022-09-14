@@ -3,17 +3,16 @@ package eatyourbeets.cards.animator.series.FullmetalAlchemist;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.CardUseInfo;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardTarget;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.attributes.HPAttribute;
+import eatyourbeets.interfaces.subscribers.OnAffinityGainedSubscriber;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.CardSelection;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
-public class Gluttony extends AnimatorCard
+public class Gluttony extends AnimatorCard implements OnAffinityGainedSubscriber
 {
     public static final EYBCardData DATA = Register(Gluttony.class)
             .SetSkill(2, CardRarity.UNCOMMON, EYBCardTarget.None)
@@ -41,14 +40,14 @@ public class Gluttony extends AnimatorCard
     }
 
     @Override
-    public void triggerOnOtherCardPlayed(AbstractCard c)
+    public int OnAffinityGained(Affinity affinity, int amount)
     {
-        super.triggerOnOtherCardPlayed(c);
-
-        if (GameUtilities.HasDarkAffinity(c) && GameUtilities.Retain(this))
+        if (amount > 0 && affinity == Affinity.Dark && player.hand.contains(this) && GameUtilities.Retain(this))
         {
             flash();
         }
+
+        return 0;
     }
 
     @Override
@@ -75,5 +74,13 @@ public class Gluttony extends AnimatorCard
     public boolean CheckSpecialCondition(boolean tryUse)
     {
         return player.drawPile.size() >= secondaryValue;
+    }
+
+    @Override
+    public void triggerWhenCreated(boolean startOfBattle)
+    {
+        super.triggerWhenCreated(startOfBattle);
+
+        CombatStats.onAffinityGained.Subscribe(this);
     }
 }

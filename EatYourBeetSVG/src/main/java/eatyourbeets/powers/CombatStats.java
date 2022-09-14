@@ -24,11 +24,9 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.relics.Calipers;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.stances.AbstractStance;
+import eatyourbeets.actions.EYBAction;
 import eatyourbeets.actions.special.HasteAction;
-import eatyourbeets.cards.base.CardSeries;
-import eatyourbeets.cards.base.CardUseInfo;
-import eatyourbeets.cards.base.EYBCard;
-import eatyourbeets.cards.base.EYBCardAffinities;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.characters.EYBPlayerCharacter;
 import eatyourbeets.interfaces.listeners.OnCardResetListener;
 import eatyourbeets.interfaces.subscribers.*;
@@ -73,6 +71,7 @@ public class CombatStats extends EYBPower implements InvisiblePower
     static final ArrayList<GameEvent<?>> events = new ArrayList<>();
     //
     public static final GameEvent<OnAffinitySealedSubscriber> onAffinitySealed = RegisterEvent(new GameEvent<>());
+    public static final GameEvent<OnAffinityGainedSubscriber> onAffinityGained = RegisterEvent(new GameEvent<>());
     public static final GameEvent<OnAffinityThresholdReachedSubscriber> onAffinityThresholdReached = RegisterEvent(new GameEvent<>());
     //
     public static final GameEvent<OnAfterDeathSubscriber> onAfterDeath = RegisterEvent(new GameEvent<>());
@@ -434,6 +433,16 @@ public class CombatStats extends EYBPower implements InvisiblePower
         }
     }
 
+    public static int OnAffinityGained(Affinity affinity, int amount)
+    {
+        for (OnAffinityGainedSubscriber s : onAffinityGained.GetSubscribers())
+        {
+            amount = s.OnAffinityGained(affinity, amount);
+        }
+
+        return amount;
+    }
+
     public static void OnAffinityThresholdReached(AbstractAffinityPower power, int thresholdIndex)
     {
         for (OnAffinityThresholdReachedSubscriber s : onAffinityThresholdReached.GetSubscribers())
@@ -563,8 +572,9 @@ public class CombatStats extends EYBPower implements InvisiblePower
         }
 
         final CardUseInfo info = new CardUseInfo(card, m);
-
+        EYBAction.CurrentCard = card;
         card.OnUse(p, m, info);
+        EYBAction.CurrentCard = null;
 
         if (info.IsSynergizing)
         {
@@ -576,7 +586,10 @@ public class CombatStats extends EYBPower implements InvisiblePower
         cachedActions.addAll(actions);
 
         actions.clear();
+
+        EYBAction.CurrentCard = card;
         card.OnLateUse(p, m, info);
+        EYBAction.CurrentCard = null;
 
         if (actions.isEmpty())
         {

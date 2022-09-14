@@ -57,7 +57,7 @@ public class EmiyaKiritsugu extends AnimatorCard
         final WeightedList<AbstractCard> uncommonCards = new WeightedList<>();
         for (AbstractCard c : p.drawPile.group)
         {
-            if (c.rarity == CardRarity.UNCOMMON)
+            if (c.rarity == CardRarity.UNCOMMON && GameUtilities.CanSeal(c))
             {
                 uncommonCards.Add(c, (GameUtilities.IsHindrance(c) || (GameUtilities.GetAffinityLevel(c, Affinity.Star, true) > 0)) ? 1 : 10);
             }
@@ -93,6 +93,8 @@ public class EmiyaKiritsugu extends AnimatorCard
                 EYBCardAffinities a = GameUtilities.GetAffinities(c);
                 if (a != null)
                 {
+                    GameActions.Bottom.SealAffinities(c, false);
+
                     if (a.GetLevel(Affinity.Light, true) > 0)
                     {
                         GameActions.Bottom.ObtainAffinityToken(Affinity.Dark, true);

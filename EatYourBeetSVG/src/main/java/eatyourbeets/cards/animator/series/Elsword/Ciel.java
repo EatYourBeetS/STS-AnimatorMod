@@ -27,13 +27,13 @@ public class Ciel extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 4, 16, 1);
+        Initialize(0, 4, 12, 1);
         SetUpgrade(0, 1, 0, 1);
 
         SetAffinity_Green(1, 0, 1);
         SetAffinity_Dark(2);
 
-        SetAffinityRequirement(Affinity.Dark, 2);
+        SetAffinityRequirement(Affinity.Dark, 1);
     }
 
     @Override

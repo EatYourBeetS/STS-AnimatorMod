@@ -24,7 +24,7 @@ public class Rider extends AnimatorCard
 
         SetAffinity_Green(1);
         SetAffinity_Blue(1);
-        SetAffinity_Dark(1, 1, 1);
+        SetAffinity_Dark(2, 0, 1);
     }
 
     @Override
@@ -52,7 +52,6 @@ public class Rider extends AnimatorCard
 
         if (CheckSpecialCondition(true))
         {
-            GameActions.Bottom.ReducePower(p, DelayedDamagePower.POWER_ID, secondaryValue);
             GameActions.Bottom.GainAgility(1, true);
             GameActions.Bottom.GainIntellect(1, true);
         }
@@ -61,6 +60,12 @@ public class Rider extends AnimatorCard
     @Override
     public boolean CheckSpecialCondition(boolean tryUse)
     {
-        return player.hasPower(DelayedDamagePower.POWER_ID);
+        boolean canUse = GameUtilities.GetPowerAmount(DelayedDamagePower.POWER_ID) >= secondaryValue;
+        if (canUse && tryUse)
+        {
+            GameActions.Bottom.ReducePower(player, DelayedDamagePower.POWER_ID, secondaryValue);
+        }
+
+        return canUse;
     }
 }

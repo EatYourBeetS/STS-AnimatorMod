@@ -19,7 +19,7 @@ public class ItamiYouji extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(2, 0, 1, 2);
+        Initialize(2, 0, 1, 5);
         SetUpgrade(1, 0, 0);
 
         SetAffinity_Red(1);
@@ -28,7 +28,7 @@ public class ItamiYouji extends AnimatorCard
 
         SetExhaust(true);
 
-        SetAffinityRequirement(Affinity.Star, 1);
+        SetAffinityRequirement(Affinity.Star, 2);
     }
 
     @Override

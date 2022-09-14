@@ -21,13 +21,13 @@ public class Caster extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 2, 3);
-        SetUpgrade(0, 0, 0, -1);
+        Initialize(0, 0, 2);
+        SetUpgrade(0, 0, 0);
 
         SetAffinity_Blue(2);
         SetAffinity_Dark(2);
 
-        SetEthereal(true);
+        SetDelayed(true);
         SetExhaust(true);
 
         SetAffinityRequirement(Affinity.Dark, 3);
@@ -36,7 +36,7 @@ public class Caster extends AnimatorCard
     @Override
     protected void OnUpgrade()
     {
-        SetEthereal(false);
+        SetDelayed(false);
     }
 
     @Override
@@ -62,7 +62,7 @@ public class Caster extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.ReduceStrength(m, magicNumber, false).SetStrengthGain(true);
-        GameActions.Bottom.ApplyFrail(info.IsStarter ? p : null, p, secondaryValue);
+        GameActions.Bottom.ApplyFrail(info.IsStarter ? p : null, p, magicNumber);
         GameActions.Bottom.GainCorruption(magicNumber);
 
         if (TryUseAffinity(Affinity.Dark))

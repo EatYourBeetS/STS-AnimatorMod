@@ -1,18 +1,18 @@
 package eatyourbeets.cards.animator.series.GATE;
 
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.tokens.AffinityToken;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
+import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.interfaces.subscribers.OnAffinitySealedSubscriber;
 import eatyourbeets.orbs.animator.Earth;
 import eatyourbeets.powers.AnimatorClickablePower;
 import eatyourbeets.powers.PowerTriggerConditionType;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
 
 public class Arpeggio extends AnimatorCard
 {
@@ -25,7 +25,7 @@ public class Arpeggio extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, POWER_ENERGY_COST);
+        Initialize(0, 0, POWER_ENERGY_COST, 3);
 
         SetAffinity_Blue(2);
 
@@ -41,10 +41,10 @@ public class Arpeggio extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.StackPower(new ArpeggioPower(p, 1));
+        GameActions.Bottom.StackPower(new ArpeggioPower(p, secondaryValue));
     }
 
-    public static class ArpeggioPower extends AnimatorClickablePower
+    public static class ArpeggioPower extends AnimatorClickablePower implements OnAffinitySealedSubscriber
     {
         public ArpeggioPower(AbstractCreature owner, int amount)
         {
@@ -62,21 +62,12 @@ public class Arpeggio extends AnimatorCard
             return FormatDescription(0, triggerCondition.requiredAmount, amount);
         }
 
-        public void atStartOfTurn()
-        {
-            super.atStartOfTurn();
-
-            ResetAmount();
-        }
-
         @Override
-        public void onAfterCardPlayed(AbstractCard usedCard)
+        public void OnAffinitySealed(EYBCard card, boolean manual)
         {
-            super.onAfterCardPlayed(usedCard);
-
-            if (usedCard instanceof AffinityToken && amount > 0)
+            if (amount > 0 && card instanceof AffinityToken)
             {
-                GameActions.Bottom.MakeCardInHand(GameUtilities.Imitate(usedCard));
+                GameActions.Bottom.GainEnergy(1);
                 reducePower(1);
                 flashWithoutSound();
             }

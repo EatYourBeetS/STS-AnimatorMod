@@ -21,11 +21,11 @@ public class Noah extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(15, 0, 1, 7);
+        Initialize(14, 0, 1, 7);
         SetUpgrade(2, 0, 0);
 
         SetAffinity_Green(1);
-        SetAffinity_Dark(2, 0, 1);
+        SetAffinity_Dark(2, 0, 2);
 
         SetAffinityRequirement(Affinity.Dark, 2);
     }

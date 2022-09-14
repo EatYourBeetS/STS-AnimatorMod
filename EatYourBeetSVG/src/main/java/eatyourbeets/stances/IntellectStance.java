@@ -42,7 +42,7 @@ public class IntellectStance extends EYBStance
     {
         super.onEnterStance();
 
-        GameActions.Bottom.StackAffinityPower(AFFINITY, 1, true);
+        //GameActions.Bottom.StackAffinityPower(AFFINITY, 1, true);
 
         if (TryApplyStance(STANCE_ID))
         {
@@ -72,7 +72,7 @@ public class IntellectStance extends EYBStance
     @Override
     public void onRefreshStance()
     {
-        GameActions.Bottom.StackAffinityPower(AFFINITY, 1, true);
+        //GameActions.Bottom.StackAffinityPower(AFFINITY, 1, true);
     }
 
     @Override

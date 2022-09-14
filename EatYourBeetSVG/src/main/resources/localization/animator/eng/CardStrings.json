@@ -388,7 +388,7 @@
 		},
 		"animator:Ara":
 		{
-			"DESCRIPTION": "Discard 1 card ** to gain !M! [G]. || When Sealed or ** !A! [G]: <DRW>.",
+			"DESCRIPTION": "Discard 1 card ** to Boost [G]. || When Sealed or ** !A! [G]: Gain !M! [DE].",
 			"NAME": "Ara"
 		},
 		"animator:Chung":
@@ -404,7 +404,12 @@
 		"animator:Elesis":
 		{
 			"DESCRIPTION": "At the start of combat, ** choose 1 of 3 {Forms} and ** permanently change ** this card into it.",
-			"EXTENDED_DESCRIPTION": ["Spend your remaining [E]: ** Gain twice that much [R] [L]. || When Drawn or Discarded: ** Increase this card's damage ** by !M! until played.", "Apply !M! [Burning] for every ** {Debuff} on the enemy. || <SLM>. !A! [G] or ** Discard: <DRW>.", "Apply 1 [Vulnerable]. || At the start of each ** combat: Lose !M! [HP]."],
+			"EXTENDED_DESCRIPTION": 
+			[
+				"Spend your remaining [E]: ** Gain twice that much [R] [L]. || When Drawn or Discarded: ** Raise this card's damage ** by !M! until played.",
+				"Apply !M! [Burning] for every ** {Debuff} on the enemy. || <SLM>. !A! [G] or ** Discard: <DRW-2>.",
+				"Apply 1 [Vulnerable]. || At the start of each ** combat: Lose !M! [HP]."
+			],
 			"NAME": "Elesis"
 		},
 		"animator:Elsword":
@@ -436,7 +441,7 @@
 		},
 		"animator:Raven":
 		{
-			"DESCRIPTION": "If the enemy is ** attacking: Apply !M! [Weak]. ** Else: Apply !M! [Vulnerable]. || !A! [G] [R]: Gain !S! [Block].",
+			"DESCRIPTION": "If the enemy is ** attacking: Apply 1 [Weak]. ** Else: Apply !M! [Vulnerable]. || !A! [G] [R]: Gain !S! [Block].",
 			"NAME": "Raven"
 		},
 		"animator:Rena":
@@ -450,7 +455,7 @@
 	{
 		"animator:Alexander":
 		{
-			"DESCRIPTION": "<FS>: Gain !M! [Block]. ** Otherwise: Gain [R]. || When Exhausted: ** Play this card.",
+			"DESCRIPTION": "When Sealed: Give ** this card {~Ethereal}. || When Exhausted: ** Play this card.",
 			"NAME": "Alexander"
 		},
 		"animator:Archer":
@@ -471,12 +476,12 @@
 		},
 		"animator:Caster":
 		{
-			"DESCRIPTION": "Steal !M! Strength. ** Gain !S! [Frail] and !M! [D]. || When Sealed: ** Channel [Dark].",
+			"DESCRIPTION": "Steal !M! Strength. ** Gain !M! [D] and [Frail]. || When Sealed: ** Channel [Dark].",
 			"NAME": "Caster"
 		},
 		"animator:EmiyaKiritsugu":
 		{
-			"DESCRIPTION": "To play this card, Exhaust ** 1 of 2 {Uncommon} cards in ** your draw pile. If it is: ** [L] -> Obtain {[D] Token}{+} ** [D] -> Obtain {[L] Token}{+} ** [B] -> Apply !S! [Vulnerable]",
+			"DESCRIPTION": "To play this, Exhaust and ** Seal 1 of 2 {Uncommon} cards ** in your draw pile. If it is: ** [L] -> Obtain {[D] Token}{+} ** [D] -> Obtain {[L] Token}{+} ** [B] -> Apply !S! [Vulnerable]",
 			"NAME": "Emiya Kiritsugu"
 		},
 		"animator:EmiyaShirou":
@@ -502,7 +507,7 @@
 		},
 		"animator:Rider":
 		{
-			"DESCRIPTION": "Apply !M! [Shackles]. || Lose !S! [DD] ** to gain [G] [B].",
+			"DESCRIPTION": "Apply !M! [Shackles]. || Reduce [DD] by !S! ** to Boost [G] [B].",
 			"NAME": "Rider"
 		},
 		"animator:RinTohsaka":
@@ -527,7 +532,7 @@
 		},
 		"animator:MatouShinji":
 		{
-			"DESCRIPTION": "Apply !M! [Poison] to ** a random enemy. || <LIM>. !A! [D]: ** Obtain {Command Spell}.",
+			"DESCRIPTION": "Apply !M! [Poison] to ** a random enemy. || <LIM>. !A! [D]: Obtain ** {Command Spell}.",
 			"NAME": "Shinji Matou"
 		},
 		"animator:MatouShinji_CommandSpell":
@@ -541,7 +546,7 @@
 	{
 		"animator:ElricAlphonse":
 		{
-			"DESCRIPTION": "If you have less ** than !M! [B]: Gain [B]. || <LIM>. Gain 1 [S].",
+			"DESCRIPTION": "If you have less ** than !M! [B]: Gain|Boost [B]. || <LIM>. Gain 1 [S].",
 			"NAME": "Alphonse Elric"
 		},
 		"animator:ElricAlphonse_Alt":
@@ -552,8 +557,7 @@
 		},
 		"animator:ElricEdward":
 		{
-			"DESCRIPTION": "Cycle 1 card. If it is a: || {Skill} -> Channel 1 [Frost]. ** {Attack} -> Channel 1 [Lightning]. ** {Power} -> Channel 1 [Earth].",
-			"UPGRADE_DESCRIPTION": "<DESCRIPTION> ** {Hindrance} -> Channel 1 [Fire].",
+			"DESCRIPTION": "Cycle 1 card. If it is a: || {Skill} -> Channel 1 [Frost]. ** {Attack} -> Channel 1 [Lightning]. ** {Power} -> Channel 1 [Earth]. ** {Other} -> Channel 1 [Fire].",
 			"NAME": "Edward Elric"
 		},
 		"animator:Envy":
@@ -569,7 +573,7 @@
 		},
 		"animator:Gluttony":
 		{
-			"DESCRIPTION": "Exhaust and Seal the top ** !S! cards of your draw pile. || While in hand, if you play ** a [D] card: Retain this.",
+			"DESCRIPTION": "Exhaust and Seal the top ** !S! cards in draw pile. || While in hand, if you ** gain [D]: Retain this.",
 			"NAME": "Gluttony"
 		},
 		"animator:Greed":
@@ -617,7 +621,7 @@
 		},
 		"animator:Wrath":
 		{
-			"DESCRIPTION": "Gain !M! [R]. Give all cards ** in hand +1 [R] scaling. || If you have at least ** 7 cards in Exhaust pile: ** Obtain {[R] Token}{+}.",
+			"DESCRIPTION": "Gain !M! [R]. Give all cards ** in hand +1 [Force] scaling. || If you have at least ** 7 cards in Exhaust pile: ** Obtain {[R] Token}{+}.",
 			"NAME": "Wrath"
 		}
 	},
@@ -626,8 +630,8 @@
 	{
 		"animator:Arpeggio":
 		{
-			"DESCRIPTION": "Imitate the first {[W] ** Token} you play each turn. || Once per combat, ** pay !M! [E]: Gain 1 [Orb_S] ** and Channel 1 [Earth].",
-			"EXTENDED_DESCRIPTION": ["Pay #b{0} [E]: Gain [Orb_S], #yChannel [Earth]. || #yImitate the next #b{1} [W] #yToken(s) played."],
+			"DESCRIPTION": "The next !S! times you ** Seal a {[W] Token}: Gain [E]. || Once per combat, ** pay !M! [E]: Gain 1 [Orb_S] ** and Channel 1 [Earth].",
+			"EXTENDED_DESCRIPTION": ["Pay #b{0} [E]: Gain [Orb_S], #yChannel [Earth]. || The next #b{1} time(s) you #ySeal an [W] #yToken(s), gain [E]."],
 			"NAME": "Arpeggio"
 		},
 		"animator:Bozes":
@@ -638,9 +642,9 @@
 		},
 		"animator:CatoElAltestan":
 		{
-			"DESCRIPTION": "<ST>. Boost [B]. || Fetch !M! [B] card and ** give it +1 [B] scaling. || !A! [B]: Apply !S! [Freezing].",
+			"DESCRIPTION": "<ST>. Boost [B]. || Fetch !M! [B] card and ** give it +1 [Intellect] scaling. || !A! [B]: Apply !S! [Freezing].",
 			"NAME": "Cato El Altestan",
-			"UPGRADE_DESCRIPTION": "<ST>. Boost [B]. || Fetch !M! [B] cards and ** give them +1 [B] scaling. || !A! [B]: Apply !S! [Freezing]."
+			"UPGRADE_DESCRIPTION": "<ST>. Boost [B]. || Fetch !M! [B] cards and ** give them +1 [Intellect] scaling. || !A! [B]: Apply !S! [Freezing]."
 		},
 		"animator:ItamiYouji":
 		{
@@ -649,7 +653,7 @@
 		},
 		"animator:Kuribayashi":
 		{
-			"DESCRIPTION": "Apply !M! [Vulnerable]. || !A! [G]: Retain 1 {Attack}. || !A! [R]: Deal !S! [DD].",
+			"DESCRIPTION": "Apply !M! [Vulnerable]. ** Retain 1 {Attack}. || !A! [R]: Deal !S! [DD].",
 			"EXTENDED_DESCRIPTION": ["At the end of turn, Retain #b{0} #yAttack(s)."],
 			"NAME": "Kuribayashi"
 		},
@@ -657,7 +661,7 @@
 		{
 			"DESCRIPTION": "Gain [B]. Discard ** a random card ** to {Channel} !M! [Frost]. || !A! [B]: Obtain {[W] Token}.",
 			"NAME": "Lelei La Lalena",
-			"UPGRADE_DESCRIPTION": "Gain [B]. Discard a ** card to {Channel} !M! [Frost]. || !A! [B]: Obtain {[W] Token}{+}."
+			"UPGRADE_DESCRIPTION": "Gain [B]. Discard a ** card to {Channel} !M! [Frost]. || !A! [B]: Obtain {[W] Token}."
 		},
 		"animator:MariKurokawa":
 		{
@@ -666,8 +670,8 @@
 		},
 		"animator:MoltSolAugustus":
 		{
-			"DESCRIPTION": "!M! times per turn, when you play a [R] card: <DRW>. || Once per turn, pay 3 [R]: ** Add !S! {Imperial Archers} ** to your draw pile.",
-			"EXTENDED_DESCRIPTION": ["Pay #b{0} [R] to add #b{0} #yImperial #yArchers to your draw pile. || On the next #b{1} [R] card(s) played, draw #b1 card."],
+			"DESCRIPTION": "Whenever you seal a [R] ** card: Gain !M! [A_Seal] and !M! [DE]. || Once per turn, pay 3 [R]: ** Add !S! {Imperial Archers} ** to your draw pile.",
+			"EXTENDED_DESCRIPTION": ["Pay #b{0} [R] to add #b{0} #yImperial #yArchers to your draw pile. || Whenever you seal a [R] card, gain #b{1} [A_Seal] and #b{1} [DE]."],
 			"NAME": "Molt Sol Augustus"
 		},
 		"animator:MoltSolAugustus_ImperialArchers":
@@ -677,7 +681,7 @@
 		},
 		"animator:PinaCoLada":
 		{
-			"DESCRIPTION": "Lose !M! [Block] to play. || The first {0-Cost} card ** you play each turn is ** played twice.",
+			"DESCRIPTION": "Use !A! [L] to play this. || The first {0-Cost} card ** you play each turn is ** played twice.",
 			"NAME": "Pina Co Lada"
 		},
 		"animator:RoryMercury":

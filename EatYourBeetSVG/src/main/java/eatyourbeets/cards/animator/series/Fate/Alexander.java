@@ -4,8 +4,8 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
-import eatyourbeets.stances.ForceStance;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
 public class Alexander extends AnimatorCard
 {
@@ -25,6 +25,14 @@ public class Alexander extends AnimatorCard
     }
 
     @Override
+    public void triggerOnAffinitySeal(boolean reshuffle)
+    {
+        super.triggerOnAffinitySeal(reshuffle);
+
+        GameActions.Bottom.ModifyAllInstances(uuid).AddCallback(GameUtilities::MakeEthereal);
+    }
+
+    @Override
     public void triggerOnExhaust()
     {
         super.triggerOnExhaust();
@@ -36,14 +44,5 @@ public class Alexander extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.DealDamageToAll(this, AttackEffects.SLASH_HEAVY);
-
-        if (ForceStance.IsActive())
-        {
-            GameActions.Bottom.GainBlock(magicNumber);
-        }
-        else
-        {
-            GameActions.Bottom.GainForce(1);
-        }
     }
 }

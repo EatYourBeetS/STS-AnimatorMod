@@ -19,9 +19,15 @@ public class TukaLunaMarceau extends AnimatorCard
         super(DATA);
 
         Initialize(0, 2, 1);
-        SetUpgrade(0, 2, 0);
+        SetUpgrade(0, 1, 0);
 
         SetAffinity_Green(1);
+    }
+
+    @Override
+    protected void OnUpgrade()
+    {
+        SetInnate(true);
     }
 
     @Override

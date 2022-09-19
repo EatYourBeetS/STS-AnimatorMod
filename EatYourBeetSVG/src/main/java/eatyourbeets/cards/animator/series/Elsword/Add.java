@@ -40,7 +40,7 @@ public class Add extends AnimatorCard
     {
         GameActions.Bottom.GainCorruption(secondaryValue);
         GameActions.Bottom.GainEnergyNextTurn(1);
-        GameActions.Bottom.GainDrawEssence(magicNumber);
+        GameActions.Bottom.GainInspiration(magicNumber);
     }
 
     @Override

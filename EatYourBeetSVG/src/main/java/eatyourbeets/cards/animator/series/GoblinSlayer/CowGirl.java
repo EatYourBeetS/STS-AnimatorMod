@@ -19,12 +19,18 @@ public class CowGirl extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 2, 2);
-        SetUpgrade(0, 0, 0, 1);
+        Initialize(0, 0, 2, 1);
+        SetUpgrade(0, 0, 0, 0);
 
         SetAffinity_Red(1);
 
         SetExhaust(true);
+    }
+
+    @Override
+    protected void OnUpgrade()
+    {
+        SetRetainOnce(true);
     }
 
     @Override
@@ -36,20 +42,10 @@ public class CowGirl extends AnimatorCard
     }
 
     @Override
-    public void triggerOnManualDiscard()
-    {
-        super.triggerOnManualDiscard();
-
-        if (CombatStats.TryActivateLimited(cardID))
-        {
-            GameActions.Bottom.Motivate();
-        }
-    }
-
-    @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.Heal(magicNumber).Overheal(upgraded);
+        GameActions.Bottom.GainTemporaryStats(secondaryValue, secondaryValue, secondaryValue);
         CombatStats.Affinities.AddTempAffinity(Affinity.Star, secondaryValue);
     }
 }

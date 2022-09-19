@@ -1,11 +1,10 @@
 package eatyourbeets.cards.animator.series.Konosuba;
 
-import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.status.Slimed;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 import eatyourbeets.cards.animator.status.Status_Slimed;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
@@ -21,17 +20,16 @@ public class Hans extends AnimatorCard
             .SetPower(1, CardRarity.UNCOMMON)
             .SetMaxCopies(2)
             .SetSeriesFromClassPackage()
-            .PostInitialize(data -> data.AddPreview(new Status_Slimed(), false));
+            .PostInitialize(data -> data.AddPreview(GetClassCard(Slimed.ID), true));
     public static final int SLIMED_AMOUNT = 3;
     public static final int POISON_AMOUNT = 2;
-    public static final int MAX_TEMP_HP = 6;
+    public static final int RECOVER_AMOUNT = 3;
 
     public Hans()
     {
         super(DATA);
 
-        Initialize(0, 0, 2, 2);
-        SetUpgrade(0, 0, 0, 1);
+        Initialize(0, 0, POISON_AMOUNT, SLIMED_AMOUNT);
 
         SetAffinity_Star(1, 0, 0);
     }
@@ -39,25 +37,21 @@ public class Hans extends AnimatorCard
     @Override
     public ColoredString GetSpecialVariableString()
     {
-        return super.GetSpecialVariableString(SLIMED_AMOUNT);
+        return super.GetSpecialVariableString(RECOVER_AMOUNT);
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.MakeCardInDrawPile(new Status_Slimed()).Repeat(SLIMED_AMOUNT);
-        GameActions.Bottom.StackPower(new HansPower(p, magicNumber, secondaryValue));
+        GameActions.Bottom.MakeCardInDrawPile(new Status_Slimed(upgraded)).Repeat(secondaryValue);
+        GameActions.Bottom.StackPower(new HansPower(p, magicNumber));
     }
 
     public static class HansPower extends AnimatorPower
     {
-        protected int tempHP;
-
-        public HansPower(AbstractCreature owner, int amount, int tempHP)
+        public HansPower(AbstractCreature owner, int amount)
         {
             super(owner, Hans.DATA);
-
-            this.tempHP = Math.min(MAX_TEMP_HP, tempHP);
 
             Initialize(amount);
         }
@@ -65,13 +59,7 @@ public class Hans extends AnimatorCard
         @Override
         public void updateDescription()
         {
-            description = FormatDescription(0, POISON_AMOUNT, amount, tempHP);
-        }
-
-        @Override
-        public void OnSamePowerApplied(AbstractPower power)
-        {
-            this.tempHP = Math.min(MAX_TEMP_HP, tempHP + ((HansPower)power).tempHP);
+            description = FormatDescription(0, POISON_AMOUNT, amount, RECOVER_AMOUNT);
         }
 
         @Override
@@ -81,7 +69,7 @@ public class Hans extends AnimatorCard
 
             if (card.type == CardType.STATUS)
             {
-                GameActions.Bottom.GainTemporaryHP(tempHP);
+                GameActions.Bottom.RecoverHP(RECOVER_AMOUNT);
                 flash();
             }
         }
@@ -93,18 +81,6 @@ public class Hans extends AnimatorCard
 
             GameActions.Bottom.ApplyPoison(TargetHelper.RandomEnemy(owner, amount), POISON_AMOUNT);
             flash();
-        }
-
-        @Override
-        protected ColoredString GetSecondaryAmount(Color c)
-        {
-            return new ColoredString(tempHP, Color.GOLD, c.a);
-        }
-
-        @Override
-        public AbstractPower makeCopy()
-        {
-            return new HansPower(owner, amount, tempHP);
         }
     }
 }

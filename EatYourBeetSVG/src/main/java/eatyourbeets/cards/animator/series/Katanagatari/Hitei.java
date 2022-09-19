@@ -92,7 +92,14 @@ public class Hitei extends AnimatorCard
                     {
                         GameActions.Top.ExhaustFromPile(name, 1, group)
                         .ShowEffect(true, true)
-                        .SetOptions(false, false);
+                        .SetOptions(false, false)
+                        .AddCallback(cards ->
+                        {
+                            for (AbstractCard c : cards)
+                            {
+                                GameActions.Bottom.SealAffinities(c, false);
+                            }
+                        });
                     }
                 });
             }

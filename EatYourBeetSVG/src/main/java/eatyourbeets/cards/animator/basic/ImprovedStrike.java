@@ -48,7 +48,7 @@ public abstract class ImprovedStrike extends ImprovedBasicCard
         }
         else
         {
-            Initialize(6, 0);
+            Initialize(6, 0, 1);
             SetUpgrade(2, 0);
         }
 
@@ -60,9 +60,9 @@ public abstract class ImprovedStrike extends ImprovedBasicCard
     {
         GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_DIAGONAL);
 
-        if (affinity != Affinity.Star)
+        if (magicNumber > 0)
         {
-            GameActions.Bottom.StackAffinityPower(affinity);
+            GameActions.Bottom.StackAffinityPower(affinity, 1, upgraded);
         }
     }
 }

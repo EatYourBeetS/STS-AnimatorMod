@@ -16,6 +16,16 @@ public abstract class AnimatorCard extends EYBCard
 
     public CardSeries series;
 
+    public static AbstractCard GetClassCard(String cardID)
+    {
+        return GetClassCard(cardID, false);
+    }
+
+    public static AbstractCard GetClassCard(String cardID, boolean upgrade)
+    {
+        return GR.CardLibrary.GetCard(PLAYER_CLASS, cardID, upgrade);
+    }
+
     protected static EYBCardData Register(Class<? extends AnimatorCard> type)
     {
         return RegisterCardData(type, GR.Animator.CreateID(type.getSimpleName()), GR.Animator)
@@ -51,7 +61,7 @@ public abstract class AnimatorCard extends EYBCard
     @Override
     public AbstractPlayer.PlayerClass GetPlayerClass()
     {
-        return GR.Animator.PlayerClass;
+        return PLAYER_CLASS;
     }
 
     @Override

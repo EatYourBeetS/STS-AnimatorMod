@@ -18,7 +18,7 @@ public class Shichika extends AnimatorCard
             .SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None)
             .SetMaxCopies(2)
             .SetSeriesFromClassPackage()
-            .PostInitialize(data -> data.AddPreview(new Shichika_Kyotouryuu(), true));
+            .PostInitialize(data -> data.AddPreview(new Shichika_Kyotouryuu(), false));
 
     private static final CardEffectChoice choices = new CardEffectChoice();
 
@@ -28,7 +28,7 @@ public class Shichika extends AnimatorCard
 
         Initialize(0, 2, 3);
 
-        SetAffinity_Red(2, 0, 1);
+        SetAffinity_Red(1, 1, 1);
         SetAffinity_Green(1, 1, 0);
 
         SetDelayed(true);
@@ -38,7 +38,7 @@ public class Shichika extends AnimatorCard
     @Override
     protected void OnUpgrade()
     {
-        SetRetain(true);
+        SetDelayed(false);
     }
 
     @Override

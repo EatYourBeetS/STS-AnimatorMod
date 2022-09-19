@@ -37,7 +37,7 @@ public class Togame extends AnimatorCard
     @Override
     public void OnLateUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.Draw(1);
+        GameActions.Bottom.Draw(2);
         GameActions.Bottom.ExhaustFromHand(name, 1, false)
         .SetOptions(false, false, false)
         .AddCallback(cards ->

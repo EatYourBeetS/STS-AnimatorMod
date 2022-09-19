@@ -1,20 +1,15 @@
 package eatyourbeets.cards.animator.series.Konosuba;
 
-import basemod.BaseMod;
-import com.badlogic.gdx.graphics.Color;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.orbs.Dark;
 import eatyourbeets.cards.animator.special.Sylvia_Chimera;
+import eatyourbeets.cards.animator.tokens.AffinityToken;
 import eatyourbeets.cards.base.*;
-import eatyourbeets.cards.base.attributes.AbstractAttribute;
-import eatyourbeets.cards.base.attributes.TempHPAttribute;
-import eatyourbeets.orbs.animator.Fire;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.ui.common.EYBCardPopupActions;
+import eatyourbeets.utilities.CardSelection;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.RandomizedList;
 
 public class Sylvia extends AnimatorCard
 {
@@ -36,6 +31,7 @@ public class Sylvia extends AnimatorCard
 
         SetAffinity_Red(1);
         SetAffinity_Dark(1);
+        SetAffinity_Star(0, 0, 1);
     }
 
     @Override
@@ -45,68 +41,19 @@ public class Sylvia extends AnimatorCard
     }
 
     @Override
-    public AbstractAttribute GetSpecialInfo()
+    public void triggerOnManualDiscard()
     {
-        return magicNumber > 0 ? TempHPAttribute.Instance.SetCard(this, true) : null;
-    }
+        super.triggerOnManualDiscard();
 
-    @Override
-    protected void Refresh(AbstractMonster enemy)
-    {
-        super.Refresh(enemy);
-
-        int amount = 0;
-        for (AbstractCard c : player.hand.group)
-        {
-            if (uuid != c.uuid && GameUtilities.GetAffinityLevel(c, Affinity.Blue, false) > 0)
-            {
-                amount += secondaryValue;
-            }
-        }
-
-        GameUtilities.ModifyMagicNumber(this, amount, true);
-    }
-
-    @Override
-    public void triggerOnAffinitySeal(boolean reshuffle)
-    {
-        GameActions.Bottom.Cycle(name, 1);
-        GameActions.Last.Exhaust(this);
+        final Affinity a = GameUtilities.GetRandomElement(Affinity.Basic());
+        GameActions.Bottom.MakeCardInHand(AffinityToken.GetCopy(a, false));
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.GainBlock(block);
-        GameActions.Bottom.ModifyAffinityLevel(p.hand, BaseMod.MAX_HAND_SIZE, Affinity.Blue, -1, true)
-        .Flash(Color.RED)
-        .SetFilter(c -> c.uuid != uuid)
-        .AddCallback(cards ->
-        {
-            if (cards.size() > 0)
-            {
-                GameActions.Bottom.GainTemporaryHP(cards.size() * secondaryValue);
-            }
-
-            if (affinities.GetLevel(Affinity.Star) <= 0)
-            {
-                for (AbstractCard c : cards)
-                {
-                    final RandomizedList<Affinity> list = new RandomizedList<>();
-                    for (Affinity a : Affinity.Basic())
-                    {
-                        if (affinities.GetLevel(a) < 2)
-                        {
-                            list.Add(a);
-                        }
-                    }
-
-                    if (list.Size() > 0)
-                    {
-                        affinities.Add(list.Retrieve(rng), 1);
-                    }
-                }
-            }
-        });
+        GameActions.Bottom.SealAffinities(p.drawPile, magicNumber, false).SetSelection(CardSelection.Random);
+        GameActions.Bottom.Callback(() -> CombatStats.Affinities.UseAffinity(Affinity.Star, 1));
     }
 }

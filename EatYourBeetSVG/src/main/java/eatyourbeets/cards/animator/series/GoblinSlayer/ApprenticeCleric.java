@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -17,7 +18,8 @@ public class ApprenticeCleric extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0);
+        Initialize(0, 0, 1, 2);
+        SetUpgrade(0, 0, 1);
 
         SetAffinity_Light(1, 1, 0);
         SetAffinity_Blue(1);
@@ -26,20 +28,16 @@ public class ApprenticeCleric extends AnimatorCard
     }
 
     @Override
-    protected void OnUpgrade()
-    {
-        super.OnUpgrade();
-
-        SetRetainOnce(true);
-    }
-
-    @Override
     public void triggerWhenDrawn()
     {
         super.triggerWhenDrawn();
 
-        GameActions.Bottom.GainBlessing(1);
-        GameActions.Bottom.Flash(this);
+        final int amount =  CombatStats.Affinities.GetPowerAmount(Affinity.Light) * secondaryValue;
+        if (amount > 0)
+        {
+            GameActions.Bottom.RecoverHP(amount);
+            GameActions.Bottom.Flash(this);
+        }
     }
 
     @Override
@@ -56,14 +54,9 @@ public class ApprenticeCleric extends AnimatorCard
         {
             for (AbstractCard c : cards)
             {
-                GameActions.Top.IncreaseScaling(c, Affinity.Light, 1);
+                GameActions.Top.IncreaseScaling(c, Affinity.Light, magicNumber);
                 GameActions.Top.SealAffinities(c, false);
             }
         });
-
-        if (TryUseAffinity(Affinity.Light))
-        {
-            GameActions.Bottom.GainBlessing(1);
-        }
     }
 }

@@ -2,58 +2,52 @@ package eatyourbeets.powers.common;
 
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.interfaces.subscribers.OnClickablePowerUsedSubscriber;
-import eatyourbeets.powers.CombatStats;
-import eatyourbeets.powers.CommonPower;
-import eatyourbeets.powers.EYBClickablePower;
+import eatyourbeets.powers.CommonClickablePower;
+import eatyourbeets.powers.PowerTriggerConditionType;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.InputManager;
 
-public class InspirationPower extends CommonPower implements OnClickablePowerUsedSubscriber
+public class InspirationPower extends CommonClickablePower
 {
     public static final String POWER_ID = CreateFullID(InspirationPower.class);
+    public static final int REQUIRED_AMOUNT = 3;
 
     public InspirationPower(AbstractCreature owner, int amount)
     {
-        super(owner, POWER_ID);
+        super(owner, POWER_ID, PowerTriggerConditionType.Special, REQUIRED_AMOUNT);
 
         this.canBeZero = true;
+        this.triggerCondition.SetCondition(v -> this.amount >= v);
+        this.triggerCondition.SetPayCost(this::ReducePower);
+        this.triggerCondition.SetUses(-1, false, false);
 
         Initialize(amount);
     }
 
     @Override
-    public void onInitialApplication()
+    public String GetUpdatedDescription()
     {
-        super.onInitialApplication();
-
-        CombatStats.onClickablePowerUsed.Subscribe(this);
+        return FormatDescription(0, triggerCondition.requiredAmount);
     }
 
     @Override
-    public void onRemove()
+    public void update(int slot)
     {
-        super.onRemove();
+        super.update(slot);
 
-        CombatStats.onClickablePowerUsed.Unsubscribe(this);
-    }
-
-    @Override
-    public void OnClickablePowerUsed(EYBClickablePower power, AbstractMonster target)
-    {
-        if (enabled & (amount > 0))
+        if (GameUtilities.CanAcceptInput(false) && InputManager.Control.IsJustPressed())
         {
-            SetEnabled(false);
-            ReducePower(1);
-            GameActions.Bottom.Motivate(1);
-            this.flashWithoutSound();
+            TryClick();
         }
     }
 
     @Override
-    public void atStartOfTurn()
+    public void OnUse(AbstractMonster m)
     {
-        super.atStartOfTurn();
+        super.OnUse(m);
 
-        SetEnabled(true);
+        GameActions.Bottom.Draw(1);
+        flashWithoutSound();
     }
 }

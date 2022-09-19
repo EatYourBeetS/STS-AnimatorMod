@@ -57,7 +57,7 @@ public class LivingPicture extends EnchantableRelic implements CustomSavable<Int
     {
         if (IsEnabled())
         {
-            GameActions.Bottom.GainDrawEssence(DRAW_ESSENCE);
+            GameActions.Bottom.GainInspiration(DRAW_ESSENCE);
             flash();
         }
     }

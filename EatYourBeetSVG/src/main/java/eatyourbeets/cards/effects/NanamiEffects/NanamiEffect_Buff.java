@@ -2,9 +2,8 @@ package eatyourbeets.cards.effects.NanamiEffects;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.resources.GR;
-import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.animator.series.Katanagatari.Nanami;
+import eatyourbeets.utilities.GameActions;
 
 public class NanamiEffect_Buff extends NanamiEffect
 {
@@ -17,7 +16,7 @@ public class NanamiEffect_Buff extends NanamiEffect
     @Override
     public String GetDescription(Nanami nanami)
     {
-        return ACTIONS.GainAmount(GetForce(nanami), GR.Tooltips.Force, true);
+        return ACTIONS.GainAmount(GetForce(nanami), GetForceTooltip(), true);
     }
 
     private int GetForce(Nanami nanami)

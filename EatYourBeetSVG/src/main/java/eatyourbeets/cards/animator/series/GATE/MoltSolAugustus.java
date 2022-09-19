@@ -76,7 +76,7 @@ public class MoltSolAugustus extends AnimatorCard
             if (GameUtilities.HasRedAffinity(card))
             {
                 CombatStats.Affinities.AddAffinitySealUses(amount);
-                GameActions.Bottom.GainDrawEssence(amount);
+                GameActions.Bottom.GainInspiration(amount);
                 flash();
             }
         }

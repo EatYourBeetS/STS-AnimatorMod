@@ -46,11 +46,6 @@
 		"DESCRIPTIONS": ["Take #b{0} damage at the end of your turn."],
 		"NAME": "Delayed Damage"
 	},
-	"eyb:DrawEssencePower":
-	{
-		"DESCRIPTIONS": ["Pay #b{0} [DE]: Draw #b1 card. NL NL You can also activate this power by pressing #pCTRL."],
-		"NAME": "Draw Essence"
-	},
 	"eyb:EnergizedPower":
 	{
 		"DESCRIPTIONS": ["Gain #b{0} additional [E] next turn."],
@@ -63,7 +58,7 @@
 	},
 	"eyb:InspirationPower":
 	{
-		"DESCRIPTIONS": ["Once per turn, when you activate an interactable power, #yMotivate #b1, then reduce this power by #b1."],
+		"DESCRIPTIONS": ["Pay #b{0} [INS]: Draw #b1 card. NL NL You can also activate this power by pressing #pCTRL."],
 		"NAME": "Inspiration"
 	},
 	"eyb:InvocationPower":

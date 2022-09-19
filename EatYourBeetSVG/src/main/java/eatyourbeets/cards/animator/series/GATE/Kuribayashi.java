@@ -21,13 +21,13 @@ public class Kuribayashi extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(8, 0, 2, 16);
+        Initialize(8, 0, 2, 11);
         SetUpgrade(2, 0, 0);
 
         SetAffinity_Red(1);
         SetAffinity_Green(1, 0, 1);
 
-        SetAffinityRequirement(Affinity.Red, 3);
+        SetAffinityRequirement(Affinity.Red, 2);
     }
 
     @Override

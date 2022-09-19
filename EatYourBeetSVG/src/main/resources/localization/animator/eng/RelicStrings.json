@@ -110,13 +110,13 @@
 	},
 	"animator:LivingPicture":
 	{
-		"DESCRIPTIONS": ["Whenever you #ySeal a card, gain #b{0} [DE]."],
+		"DESCRIPTIONS": ["Whenever you #ySeal a card, gain #b{0} [INS]."],
 		"FLAVOR": "It's always watching.",
 		"NAME": "Living Picture"
 	},
 	"animator:VividPicture":
 	{
-		"DESCRIPTIONS": ["Replaces #yLiving #yPicture. Once pwe turn, when you #ySeal a card, gain #b{0} [DE]."],
+		"DESCRIPTIONS": ["Replaces #yLiving #yPicture. Whenever you #ySeal a card, gain #b{0} [INS] and #yRecover #b{1} [HP]."],
 		"FLAVOR": "It's always watching.",
 		"NAME": "Vivid Picture"
 	},

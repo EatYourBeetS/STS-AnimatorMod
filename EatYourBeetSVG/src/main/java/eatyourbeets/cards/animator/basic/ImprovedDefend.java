@@ -56,9 +56,9 @@ public abstract class ImprovedDefend extends ImprovedBasicCard
     {
         GameActions.Bottom.GainBlock(block);
 
-        if (affinity != Affinity.Star)
+        if (magicNumber > 0)
         {
-            GameActions.Bottom.StackAffinityPower(affinity, magicNumber, false);
+            GameActions.Bottom.StackAffinityPower(affinity, magicNumber, upgraded);
         }
     }
 }

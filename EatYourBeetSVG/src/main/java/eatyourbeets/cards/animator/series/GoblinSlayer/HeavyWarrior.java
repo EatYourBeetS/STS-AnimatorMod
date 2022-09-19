@@ -9,31 +9,26 @@ import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.effects.VFX;
-import eatyourbeets.interfaces.listeners.OnCardResetListener;
-import eatyourbeets.powers.CombatStats;
-import eatyourbeets.utilities.ColoredString;
-import eatyourbeets.utilities.Colors;
-import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.JUtils;
+import eatyourbeets.utilities.*;
 
-public class HeavyWarrior extends AnimatorCard implements OnCardResetListener
+public class HeavyWarrior extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(HeavyWarrior.class)
             .SetAttack(3, CardRarity.RARE)
             .SetSeriesFromClassPackage();
 
-    private ColoredString magicNumberString = new ColoredString("X", Colors.Cream(1));
-
     public HeavyWarrior()
     {
         super(DATA);
 
-        Initialize(28, 0);
+        Initialize(30, 0);
 
         SetAffinity_Red(2, 0, 8);
         SetAffinity_Green(1, 0, 0);
 
         SetExhaust(true);
+
+        SetAffinityRequirement(Affinity.Red, 3);
     }
 
     @Override
@@ -43,32 +38,23 @@ public class HeavyWarrior extends AnimatorCard implements OnCardResetListener
     }
 
     @Override
-    public ColoredString GetMagicNumberString()
-    {
-        return magicNumberString;
-    }
-
-    @Override
     protected void Refresh(AbstractMonster enemy)
     {
         super.Refresh(enemy);
 
-        magicNumber = CombatStats.Affinities.GetUsableAffinity(Affinity.Red);
-        isMagicNumberModified = magicNumber > 0;
-        magicNumberString = super.GetMagicNumberString();
-
-        SetUnplayable(!JUtils.Any(player.hand.group, c -> c.uuid != uuid && c.costForTurn >= 2));
-    }
-
-    @Override
-    public void OnReset()
-    {
-        magicNumberString.SetText("X").SetColor(Colors.Cream(1));
+        boolean canPlayWithoutAffinity = JUtils.Any(player.hand.group, c -> c.uuid != uuid && GameUtilities.IsHighCost(c));
+        magicNumber = canPlayWithoutAffinity ? 0 : affinities.GetRequirement(Affinity.Red);
+        SetPlayable(canPlayWithoutAffinity || CheckAffinity(Affinity.Red));
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
+        if (magicNumber > 0)
+        {
+            TryUseAffinity(Affinity.Red, magicNumber);
+        }
+
         GameActions.Bottom.VFX(VFX.VerticalImpact(m.hb).SetColor(Color.LIGHT_GRAY));
         GameActions.Bottom.DealDamage(this, m, AttackEffects.BLUNT_HEAVY)
         .SetVFXColor(Color.DARK_GRAY);
@@ -76,12 +62,6 @@ public class HeavyWarrior extends AnimatorCard implements OnCardResetListener
         if (m.type == AbstractMonster.EnemyType.ELITE || m.type == AbstractMonster.EnemyType.BOSS)
         {
             GameActions.Bottom.Motivate(1);
-        }
-
-        if (magicNumber > 0)
-        {
-            TryUseAffinity(Affinity.Red, magicNumber);
-            GameActions.Bottom.GainForce(magicNumber);
         }
     }
 }

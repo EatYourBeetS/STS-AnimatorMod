@@ -21,7 +21,7 @@ public class Ara extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(3, 0, 1);
+        Initialize(3, 0, 2);
         SetUpgrade(1, 0, 0);
 
         SetAffinity_Green(1, 1, 1);
@@ -41,7 +41,7 @@ public class Ara extends AnimatorCard
     {
         super.triggerOnAffinitySeal(reshuffle);
 
-        GameActions.Bottom.GainDrawEssence(magicNumber);
+        GameActions.Bottom.GainInspiration(magicNumber);
     }
 
     @Override
@@ -66,7 +66,7 @@ public class Ara extends AnimatorCard
 
         if (TryUseAffinity(Affinity.Green))
         {
-            GameActions.Bottom.GainDrawEssence(magicNumber);
+            GameActions.Bottom.GainInspiration(magicNumber);
         }
     }
 }

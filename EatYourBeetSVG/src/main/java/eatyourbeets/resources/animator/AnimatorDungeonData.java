@@ -202,23 +202,26 @@ public class AnimatorDungeonData implements CustomSavable<AnimatorDungeonData>, 
     public void InitializeCardPool(boolean startGame)
     {
         final AbstractPlayer player = CombatStats.RefreshPlayer();
-        if (player.chosenClass != GR.AnimatorClassic.PlayerClass)
+        final boolean isAnimator = player.chosenClass == GR.Animator.PlayerClass;
+        final boolean isAnimatorClassic = player.chosenClass == GR.AnimatorClassic.PlayerClass;
+        AnimatorRelic.UpdateRelics(isAnimator, isAnimatorClassic);
+        EYBEvent.UpdateEvents(isAnimator, isAnimatorClassic);
+
+        if (!isAnimatorClassic)
         {
             AbstractDungeon.srcColorlessCardPool.group.removeIf(AnimatorClassicCard.class::isInstance);
             AbstractDungeon.colorlessCardPool.group.removeIf(AnimatorClassicCard.class::isInstance);
             AbstractDungeon.curseCardPool.group.removeIf(AnimatorClassicCard.class::isInstance);
         }
 
-        if (player.chosenClass != GR.Animator.PlayerClass)
+        if (!isAnimator)
         {
             AbstractDungeon.srcColorlessCardPool.group.removeIf(AnimatorCard.class::isInstance);
             AbstractDungeon.colorlessCardPool.group.removeIf(AnimatorCard.class::isInstance);
             AbstractDungeon.curseCardPool.group.removeIf(AnimatorCard.class::isInstance);
 
-            if (player.chosenClass == GR.AnimatorClassic.PlayerClass)
+            if (isAnimatorClassic)
             {
-                EYBEvent.UpdateEvents(true);
-                AnimatorRelic.UpdateRelics(true);
 
                 final ArrayList<CardGroup> groups = new ArrayList<>();
                 groups.addAll(GameUtilities.GetCardPools());
@@ -240,17 +243,9 @@ public class AnimatorDungeonData implements CustomSavable<AnimatorDungeonData>, 
                     });
                 }
             }
-            else
-            {
-                EYBEvent.UpdateEvents(false);
-                AnimatorRelic.UpdateRelics(false);
-            }
         }
         else // TODO: Call AnimatorDungeonData and UnnamedDungeonData from CommonDungeonData
         {
-            EYBEvent.UpdateEvents(true);
-            AnimatorRelic.UpdateRelics(true);
-
             if (startGame && Settings.isStandardRun())
             {
                 GR.Animator.Data.SaveTrophies(true);

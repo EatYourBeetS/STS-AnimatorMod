@@ -11,7 +11,6 @@ import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.attributes.TempHPAttribute;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
 
 public class ChaikaGaz extends AnimatorCard
 {
@@ -87,6 +86,6 @@ public class ChaikaGaz extends AnimatorCard
     @Override
     public boolean CheckSpecialCondition(boolean tryUse)
     {
-        return GameUtilities.GetPowerAmount(Affinity.Dark) >= (tryUse ? secondaryValue : (secondaryValue - magicNumber));
+        return CombatStats.Affinities.GetUsableAffinity(Affinity.Dark) >= (tryUse ? secondaryValue : (secondaryValue - magicNumber));
     }
 }

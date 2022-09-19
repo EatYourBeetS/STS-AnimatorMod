@@ -148,6 +148,29 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
         }
     }
 
+    public int UseAffinity(Affinity affinity, int amount)
+    {
+        int totalUsed = 0;
+        if (affinity == Affinity.Star)
+        {
+            for (Affinity a : Affinity.Basic())
+            {
+                totalUsed += UseAffinity(a, amount);
+            }
+        }
+        else
+        {
+            final int level = CurrentAffinities.GetLevel(affinity);
+            final int toUse = Mathf.Min(level, amount);
+            if (toUse > 0)
+            {
+                CurrentAffinities.Add(affinity, -toUse);
+            }
+        }
+
+        return totalUsed;
+    }
+
     public boolean CanUseAffinities()
     {
         return canUseAffinities;

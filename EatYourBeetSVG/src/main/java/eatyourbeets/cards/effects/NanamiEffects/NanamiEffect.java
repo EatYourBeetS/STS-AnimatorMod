@@ -3,6 +3,7 @@ package eatyourbeets.cards.effects.NanamiEffects;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.series.Katanagatari.Nanami;
+import eatyourbeets.cards.base.EYBCardTooltip;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.attributes.BlockAttribute;
 import eatyourbeets.cards.base.attributes.DamageAttribute;
@@ -142,5 +143,10 @@ public abstract class NanamiEffect
     protected int ModifyDamage(int damage, Nanami nanami)
     {
         return damage + (nanami.damage - nanami.baseDamage);
+    }
+
+    protected EYBCardTooltip GetForceTooltip()
+    {
+        return GR.AnimatorClassic.IsSelected() ? GR.Tooltips.Force : GR.Tooltips.Affinity_Red;
     }
 }

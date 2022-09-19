@@ -1138,6 +1138,17 @@ public class GameUtilities
         return null;
     }
 
+    public static ArrayList<ArrayList<String>> GetRelicPools()
+    {
+        final ArrayList<ArrayList<String>> result = new ArrayList<>();
+        result.add(AbstractDungeon.commonRelicPool);
+        result.add(AbstractDungeon.uncommonRelicPool);
+        result.add(AbstractDungeon.rareRelicPool);
+        result.add(AbstractDungeon.bossRelicPool);
+        result.add(AbstractDungeon.shopRelicPool);
+        return result;
+    }
+
     public static ArrayList<String> GetRelicPool(AbstractRelic.RelicTier tier)
     {
         switch (tier)

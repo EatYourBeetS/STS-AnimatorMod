@@ -2,12 +2,8 @@ package eatyourbeets.cards.animator.series.GoblinSlayer;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.CardUseInfo;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardTarget;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.orbs.animator.Earth;
-import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -25,7 +21,7 @@ public class LizardPriest extends AnimatorCard
         SetUpgrade(0, 2, 0, 0);
 
         SetAffinity_Red(1, 0, 0);
-        SetAffinity_Light(1, 1, 0);
+        SetAffinity_Light(2, 0, 0);
     }
 
     @Override
@@ -35,19 +31,10 @@ public class LizardPriest extends AnimatorCard
     }
 
     @Override
-    public void triggerOnAffinitySeal(boolean reshuffle)
-    {
-        super.triggerOnAffinitySeal(reshuffle);
-
-        if (CombatStats.TryActivateSemiLimited(cardID))
-        {
-            GameActions.Bottom.GainInspiration(1);
-        }
-    }
-
-    @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.GainBlock(block);
+        GameActions.Bottom.StackAffinityPower(Affinity.Red, 1, upgraded);
+        GameActions.Bottom.StackAffinityPower(Affinity.Light, 1, upgraded);
     }
 }

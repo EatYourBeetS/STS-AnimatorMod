@@ -18,11 +18,21 @@ import java.util.ArrayList;
 
 public abstract class UnnamedCard extends EYBCard
 {
-    protected static final Color defaultGlowColor = AbstractCard.BLUE_BORDER_GLOW_COLOR;
     protected static final AbstractPlayer.PlayerClass PLAYER_CLASS = GR.Unnamed.PlayerClass;
     protected static final UnnamedImages IMAGES = GR.Unnamed.Images;
+    protected static final Color defaultGlowColor = AbstractCard.BLUE_BORDER_GLOW_COLOR;
 
     protected Color borderIndicatorColor;
+
+    public static AbstractCard GetClassCard(String cardID)
+    {
+        return GetClassCard(cardID, false);
+    }
+
+    public static AbstractCard GetClassCard(String cardID, boolean upgrade)
+    {
+        return GR.CardLibrary.GetCard(PLAYER_CLASS, cardID, upgrade);
+    }
 
     protected static EYBCardData Register(Class<? extends UnnamedCard> type)
     {
@@ -59,7 +69,7 @@ public abstract class UnnamedCard extends EYBCard
     @Override
     public AbstractPlayer.PlayerClass GetPlayerClass()
     {
-        return GR.Unnamed.PlayerClass;
+        return PLAYER_CLASS;
     }
 
     @Override

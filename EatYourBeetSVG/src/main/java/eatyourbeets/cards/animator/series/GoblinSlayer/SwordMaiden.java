@@ -7,10 +7,8 @@ import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
-import eatyourbeets.cards.base.attributes.HPAttribute;
 import eatyourbeets.cards.base.attributes.TempHPAttribute;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.ListSelection;
 
 public class SwordMaiden extends AnimatorCard
@@ -23,10 +21,10 @@ public class SwordMaiden extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 6, 3);
+        Initialize(0, 3, 3, 3);
 
         SetAffinity_Blue(1);
-        SetAffinity_Light(2);
+        SetAffinity_Light(2, 0, 2);
 
         SetExhaust(true);
     }
@@ -38,28 +36,15 @@ public class SwordMaiden extends AnimatorCard
     }
 
     @Override
-    public AbstractAttribute GetPrimaryInfo()
+    public AbstractAttribute GetSecondaryInfo()
     {
         return TempHPAttribute.Instance.SetCard(this, true);
     }
 
     @Override
-    public AbstractAttribute GetSecondaryInfo()
-    {
-        return HPAttribute.Instance.SetCardHeal(this);
-    }
-
-    @Override
-    protected void Refresh(AbstractMonster enemy)
-    {
-        super.Refresh(enemy);
-
-        this.heal = GameUtilities.GetHealthRecoverAmount(secondaryValue);
-    }
-
-    @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
+        GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.GainTemporaryHP(magicNumber);
         GameActions.Bottom.RecoverHP(secondaryValue);
         GameActions.Bottom.RemoveDebuffs(player, ListSelection.Last(0), 1);

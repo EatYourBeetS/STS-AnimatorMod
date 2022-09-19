@@ -39,7 +39,7 @@ public abstract class EYBEvent extends AbstractImageEvent
         return null;
     }
 
-    public static void UpdateEvents(boolean isAnimator)
+    public static void UpdateEvents(boolean isAnimator, boolean isAnimatorClassic)
     {
         if (!isAnimator)
         {

@@ -37,7 +37,8 @@ public class Alexander extends AnimatorCard
     {
         super.triggerOnExhaust();
 
-        GameActions.Bottom.PlayCopy(this, null);
+        GameActions.Bottom.PlayCopy(this, null)
+        .SpendEnergy(false, true);
     }
 
     @Override

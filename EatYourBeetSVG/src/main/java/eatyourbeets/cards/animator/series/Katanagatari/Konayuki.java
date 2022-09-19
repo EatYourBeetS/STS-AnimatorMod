@@ -4,7 +4,6 @@ import com.megacrit.cardcrawl.cards.status.Wound;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
-import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.TargetHelper;
 
@@ -13,7 +12,8 @@ public class Konayuki extends AnimatorCard
     public static final EYBCardData DATA = Register(Konayuki.class)
             .SetSkill(1, CardRarity.COMMON, EYBCardTarget.None)
             .SetMaxCopies(2)
-            .SetSeriesFromClassPackage();
+            .SetSeriesFromClassPackage()
+            .PostInitialize(data -> data.AddPreview(GetClassCard(Wound.ID), false));
 
     public Konayuki()
     {
@@ -28,10 +28,11 @@ public class Konayuki extends AnimatorCard
     }
 
     @Override
-    public void triggerOnExhaust()
+    public void triggerOnAffinitySeal(boolean reshuffle)
     {
-        super.triggerOnExhaust();
+        super.triggerOnAffinitySeal(reshuffle);
 
+        GameActions.Bottom.ShowCopy(this);
         GameActions.Bottom.ApplyVulnerable(TargetHelper.RandomEnemy(), 1).IgnoreArtifact(true);
     }
 
@@ -39,7 +40,7 @@ public class Konayuki extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.GainForce(magicNumber);
-        GameActions.Bottom.MakeCardInDrawPile(GR.CardLibrary.GetCurrentClassCard(Wound.ID, false));
+        GameActions.Bottom.MakeCardInDrawPile(GetCurrentClassCard(Wound.ID, false));
 
         if (TryUseAffinity(Affinity.Red))
         {

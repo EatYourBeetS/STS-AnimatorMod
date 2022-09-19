@@ -21,8 +21,8 @@ public class HighElfArcher extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(3, 0, 1, 4);
-        SetUpgrade(1, 0, 1, 0);
+        Initialize(3, 0, 1);
+        SetUpgrade(1, 0, 1);
 
         SetAffinity_Green(1, 0, 1);
 
@@ -43,7 +43,7 @@ public class HighElfArcher extends AnimatorCard
 
         if (TryUseAffinity(Affinity.Green))
         {
-            GameActions.Bottom.DealDamageAtEndOfTurn(p, m, secondaryValue);
+            GameActions.Bottom.DealDamageAtEndOfTurn(p, m, damage);
         }
     }
 }

@@ -87,14 +87,14 @@ public class ApplyAffinityPower extends ApplyPower
 
         powerToApply.Stack(amount, retain);
 
-        if (playSFX)
-        {
-            powerToApply.flash();
-        }
-        else
-        {
-            powerToApply.flashWithoutSound();
-        }
+//        if (playSFX)
+//        {
+//            powerToApply.flash();
+//        }
+//        else
+//        {
+//            powerToApply.flashWithoutSound();
+//        }
 
         if (showEffect)
         {

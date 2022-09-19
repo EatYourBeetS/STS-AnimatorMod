@@ -21,9 +21,9 @@ public class Chris extends AnimatorCard
         super(DATA);
 
         Initialize(3, 0, 5, 3);
-        SetUpgrade(2, 0, 0, 1);
+        SetUpgrade(2, 0, 0, 2);
 
-        SetAffinity_Green(1, 1, 1);
+        SetAffinity_Green(1, 0, 0);
     }
 
     @Override

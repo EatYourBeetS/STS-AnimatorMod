@@ -9,7 +9,6 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.powers.AnimatorClickablePower;
 import eatyourbeets.powers.PowerTriggerConditionType;
-import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.ColoredString;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
@@ -23,7 +22,7 @@ public class Wiz extends AnimatorCard
             .SetSkill(1, CardRarity.RARE, EYBCardTarget.None)
             .SetMaxCopies(1)
             .SetSeriesFromClassPackage()
-            .PostInitialize(data -> data.AddPreview(GR.CardLibrary.GetCard(PLAYER_CLASS, Apparition.ID, false), false));
+            .PostInitialize(data -> data.AddPreview(GetClassCard(Apparition.ID, false), false));
 
     public Wiz()
     {

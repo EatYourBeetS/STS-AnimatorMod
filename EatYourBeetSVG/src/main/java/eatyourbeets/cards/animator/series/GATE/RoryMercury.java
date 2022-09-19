@@ -23,7 +23,7 @@ public class RoryMercury extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(5, 0, 0);
+        Initialize(5, 0, 4);
         SetUpgrade(2, 0, 0);
 
         SetAffinity_Red(1, 0, 1);
@@ -50,7 +50,7 @@ public class RoryMercury extends AnimatorCard
     {
         if (GameUtilities.GetPower(target, VulnerablePower.POWER_ID) != null && CombatStats.TryActivateSemiLimited(cardID))
         {
-            GameActions.Bottom.GainInspiration(1);
+            GameActions.Bottom.GainInspiration(magicNumber);
         }
     }
 }

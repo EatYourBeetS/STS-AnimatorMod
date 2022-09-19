@@ -18,12 +18,22 @@ import java.util.ArrayList;
 
 public abstract class AnimatorClassicCard extends EYBCard
 {
-    protected static final AbstractPlayer.PlayerClass PLAYER_CLASS = GR.Animator.PlayerClass;
+    protected static final AbstractPlayer.PlayerClass PLAYER_CLASS = GR.AnimatorClassic.PlayerClass;
     protected static final AbstractCard.CardTags SHAPESHIFTER = GR.Enums.CardTags.SHAPESHIFTER;
     protected static final AbstractCard.CardTags MARTIAL_ARTIST = GR.Enums.CardTags.MARTIAL_ARTIST;
     protected static final AbstractCard.CardTags SPELLCASTER = GR.Enums.CardTags.SPELLCASTER;
 
     public CardSeries series;
+
+    public static AbstractCard GetClassCard(String cardID)
+    {
+        return GetClassCard(cardID, false);
+    }
+
+    public static AbstractCard GetClassCard(String cardID, boolean upgrade)
+    {
+        return GR.CardLibrary.GetCard(PLAYER_CLASS, cardID, upgrade);
+    }
 
     protected static EYBCardData Register(Class<? extends AnimatorClassicCard> type)
     {
@@ -67,7 +77,7 @@ public abstract class AnimatorClassicCard extends EYBCard
     @Override
     public AbstractPlayer.PlayerClass GetPlayerClass()
     {
-        return GR.AnimatorClassic.PlayerClass;
+        return PLAYER_CLASS;
     }
 
     public void SetSeries(CardSeries series)

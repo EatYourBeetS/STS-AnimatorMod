@@ -16,20 +16,27 @@ import eatyourbeets.utilities.GameActions;
 public class Shichika_Kyotouryuu extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Shichika_Kyotouryuu.class)
-            .SetAttack(2, CardRarity.SPECIAL)
+            .SetAttack(1, CardRarity.SPECIAL)
             .SetSeries(Shichika.DATA.Series);
 
     public Shichika_Kyotouryuu()
     {
         super(DATA);
 
-        Initialize(2, 0, 4);
+        Initialize(1, 0, 4);
         SetUpgrade(1, 0, 0);
 
         SetAffinity_Red(1);
         SetAffinity_Green(1, 0, 1);
 
         SetExhaust(true);
+        SetEthereal(true);
+    }
+
+    @Override
+    protected void OnUpgrade()
+    {
+        SetEthereal(false);
     }
 
     @Override

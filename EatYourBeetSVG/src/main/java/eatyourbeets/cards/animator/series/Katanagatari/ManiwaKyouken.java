@@ -1,14 +1,11 @@
 package eatyourbeets.cards.animator.series.Katanagatari;
 
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
-import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
 
 public class ManiwaKyouken extends AnimatorCard
 {
@@ -26,6 +23,8 @@ public class ManiwaKyouken extends AnimatorCard
 
         SetAffinity_Green(1);
         SetAffinity_Dark(1, 0, 2);
+
+        SetAffinityRequirement(Affinity.Dark, 1);
     }
 
     @Override
@@ -65,24 +64,13 @@ public class ManiwaKyouken extends AnimatorCard
             }
         });
 
-        if (CheckSpecialCondition(true))
+        if (TryUseAffinity(Affinity.Dark))
         {
-            GameActions.Last.SelectFromHand(name, 1, false)
-            .SetFilter(GameUtilities::CanSeal)
-            .AddCallback(cards ->
-            {
-                for (AbstractCard c : cards)
-                {
-                    GameActions.Bottom.SealAffinities(c, false);
-                }
-            });
+            SetAffinityRequirement(Affinity.Dark, affinities.GetRequirement(Affinity.Dark) + 1);
+        }
+        else
+        {
             this.exhaustOnUseOnce = true;
         }
-    }
-
-    @Override
-    public boolean CheckSpecialCondition(boolean tryUse)
-    {
-        return CombatStats.Affinities.GetPowerAmount(Affinity.Dark) >= 3;
     }
 }

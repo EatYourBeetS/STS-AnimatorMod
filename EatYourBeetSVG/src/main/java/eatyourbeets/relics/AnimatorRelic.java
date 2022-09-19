@@ -1,7 +1,6 @@
 package eatyourbeets.relics;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.*;
 import eatyourbeets.relics.animator.AbstractMissingPiece;
 import eatyourbeets.resources.GR;
@@ -9,6 +8,8 @@ import eatyourbeets.resources.animator.AnimatorDungeonData;
 import eatyourbeets.utilities.FieldInfo;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
+
+import java.util.ArrayList;
 
 public abstract class AnimatorRelic extends EYBRelic
 {
@@ -19,12 +20,11 @@ public abstract class AnimatorRelic extends EYBRelic
         return GR.Animator.CreateID(type.getSimpleName());
     }
 
-    public static void UpdateRelics(boolean isAnimator)
+    public static void UpdateRelics(boolean isAnimator, boolean isAnimatorClassic)
     {
+        final AnimatorDungeonData data = GR.Animator.Dungeon;
         if (isAnimator)
         {
-            final AnimatorDungeonData data = GR.Animator.Dungeon;
-
             data.RemoveRelic(PenNib.ID);
             data.RemoveRelic(Kunai.ID);
             data.RemoveRelic(StrikeDummy.ID);
@@ -57,6 +57,33 @@ public abstract class AnimatorRelic extends EYBRelic
 
             AbstractMissingPiece.RefreshDescription();
         }
+
+        final ArrayList<String> toRemove = new ArrayList<>();
+        for (ArrayList<String> relics : GameUtilities.GetRelicPools())
+        {
+            for (String relicID : relics)
+            {
+                if (relicID.startsWith(GR.Animator.Prefix))
+                {
+                    if (relicID.startsWith(GR.AnimatorClassic.Prefix))
+                    {
+                        if (!isAnimatorClassic)
+                        {
+                            toRemove.add(relicID);
+                        }
+                    }
+                    else if (!isAnimator)
+                    {
+                        toRemove.add(relicID);
+                    }
+                }
+            }
+        }
+
+        for (String id : toRemove)
+        {
+            data.RemoveRelic(id);
+        }
     }
 
     public AnimatorRelic(String id, RelicTier tier, LandingSound sfx)
@@ -67,7 +94,7 @@ public abstract class AnimatorRelic extends EYBRelic
     @Override
     public boolean canSpawn()
     {
-        return AbstractDungeon.player.chosenClass == GetPlayerClass();
+        return GameUtilities.IsPlayerClass(GetPlayerClass());
     }
 
     @Override

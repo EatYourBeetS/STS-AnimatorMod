@@ -25,7 +25,7 @@ public class YunYun extends AnimatorCard
         SetAffinity_Blue(1, 1, 1);
         SetAffinity_Light(1, 0, 1);
 
-        SetAffinityRequirement(Affinity.Blue, 3);
+        SetAffinityRequirement(Affinity.Blue, 1);
     }
 
     @Override

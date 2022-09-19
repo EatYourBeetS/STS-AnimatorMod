@@ -45,6 +45,11 @@ public class Raven extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
+        if (TryUseAffinities(Affinity.Red, Affinity.Green))
+        {
+            GameActions.Bottom.GainBlock(secondaryValue);
+        }
+
         GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_DIAGONAL);
 
         if (GameUtilities.IsAttacking(m.intent))
@@ -54,11 +59,6 @@ public class Raven extends AnimatorCard
         else
         {
             GameActions.Bottom.ApplyVulnerable(p, m, magicNumber);
-        }
-
-        if (TryUseAffinities(Affinity.Red, Affinity.Green))
-        {
-            GameActions.Bottom.GainBlock(secondaryValue);
         }
     }
 }

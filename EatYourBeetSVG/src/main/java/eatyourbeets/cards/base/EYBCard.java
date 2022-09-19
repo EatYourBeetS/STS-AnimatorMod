@@ -85,6 +85,11 @@ public abstract class EYBCard extends EYBCardBase
 
     public abstract AbstractPlayer.PlayerClass GetPlayerClass();
 
+    public static AbstractCard GetCurrentClassCard(String cardID, boolean upgraded)
+    {
+        return GR.CardLibrary.GetCurrentClassCard(cardID, upgraded);
+    }
+
     public static EYBCardData GetStaticData(String cardID)
     {
         return staticCardData.get(cardID);

@@ -16,7 +16,8 @@ import java.util.ArrayList;
 public class VividPicture extends EnchantableRelic implements CustomSavable<Integer>, OnEquipUnnamedReignRelicListener, OnAffinitySealedSubscriber
 {
     public static final String ID = CreateFullID(VividPicture.class);
-    public static final int DRAW_ESSENCE = 5;
+    public static final int INSPIRATION = 2;
+    public static final int HP_RECOVER = 2;
 
     public VividPicture()
     {
@@ -31,7 +32,7 @@ public class VividPicture extends EnchantableRelic implements CustomSavable<Inte
     @Override
     public String getUpdatedDescription()
     {
-        return FormatDescription(0, DRAW_ESSENCE);
+        return FormatDescription(0, INSPIRATION);
     }
 
     @Override
@@ -77,7 +78,6 @@ public class VividPicture extends EnchantableRelic implements CustomSavable<Inte
     {
         super.ActivateBattleEffect();
 
-        SetEnabled(true);
         CombatStats.onAffinitySealed.Subscribe(this);
     }
 
@@ -86,16 +86,7 @@ public class VividPicture extends EnchantableRelic implements CustomSavable<Inte
     {
         super.DeactivateBattleEffect();
 
-        SetEnabled(true);
         CombatStats.onAffinitySealed.Unsubscribe(this);
-    }
-
-    @Override
-    public void atTurnStart()
-    {
-        super.atTurnStart();
-
-        SetEnabled(true);
     }
 
     @Override
@@ -103,8 +94,8 @@ public class VividPicture extends EnchantableRelic implements CustomSavable<Inte
     {
         if (IsEnabled())
         {
-            GameActions.Bottom.GainDrawEssence(DRAW_ESSENCE);
-            SetEnabled(false);
+            GameActions.Bottom.GainInspiration(INSPIRATION);
+            GameActions.Bottom.RecoverHP(HP_RECOVER);
             flash();
         }
     }

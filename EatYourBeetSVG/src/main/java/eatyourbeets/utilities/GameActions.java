@@ -13,6 +13,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -63,8 +64,8 @@ import eatyourbeets.interfaces.subscribers.OnPhaseChangedSubscriber;
 import eatyourbeets.monsters.PlayerMinions.UnnamedDoll;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.PowerHelper;
-import eatyourbeets.powers.affinity.animatorClassic.*;
 import eatyourbeets.powers.affinity.animatorClassic.CorruptionPower;
+import eatyourbeets.powers.affinity.animatorClassic.*;
 import eatyourbeets.powers.animator.EarthenThornsPower;
 import eatyourbeets.powers.common.EnergizedPower;
 import eatyourbeets.powers.common.*;
@@ -531,11 +532,6 @@ public final class GameActions
     public PlayVFX Flash(AbstractCard card, Color color, boolean superFlash)
     {
         return VFX(new CardFlashVfx(card, color.cpy(), superFlash));
-    }
-
-    public ApplyPower GainDrawEssence(int amount)
-    {
-        return StackPower(new DrawEssencePower(player, amount));
     }
 
     public ApplyAffinityPower GainAgility(int amount)
@@ -1115,6 +1111,11 @@ public final class GameActions
     public MoveCard Reshuffle(AbstractCard card, CardGroup sourcePile)
     {
         return MoveCard(card, sourcePile, player.drawPile).SetDestination(CardSelection.Bottom(GameUtilities.GetRNG().random((int)(player.drawPile.size() * 0.8f))));
+    }
+
+    public WaitAction ShowCopy(AbstractCard card)
+    {
+        return GameActions.Bottom.Wait(GameEffects.List.ShowCopy(card, Settings.WIDTH * 0.75f, Settings.HEIGHT * 0.5f).duration * 0.35f);
     }
 
     public PlaySFX SFX(String key)

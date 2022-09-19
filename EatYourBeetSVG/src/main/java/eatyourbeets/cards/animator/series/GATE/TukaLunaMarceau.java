@@ -6,6 +6,7 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 
 public class TukaLunaMarceau extends AnimatorCard
@@ -35,8 +36,7 @@ public class TukaLunaMarceau extends AnimatorCard
     {
         super.triggerOnAffinitySeal(reshuffle);
 
-        GameActions.Bottom.GainAgility(1, true);
-        GameActions.Bottom.GainBlessing(1, true);
+        CombatStats.Affinities.AddAffinitySealUses(1);
     }
 
     @Override

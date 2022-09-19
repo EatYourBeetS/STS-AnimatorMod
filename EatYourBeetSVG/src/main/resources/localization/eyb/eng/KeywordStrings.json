@@ -96,12 +96,6 @@
 		"NAMES": ["discard", "discarded", "discarding"],
 		"PROPER_NAME": "Discard"
 	},
-	"Draw Essence":
-	{
-		"DESCRIPTION": "You can pay #b3 [DE] during your turn to draw #b1 card.",
-		"NAMES": ["de"],
-		"PROPER_NAME": "Draw Essence"
-	},
 	"Earth":
 	{
 		"DESCRIPTION": "Orb: Gain #b2 [Thorns] the first #b3 times it is #yChanneled. It is #yEvoked after #b3 turns, dealing damage to random enemies.",
@@ -176,7 +170,7 @@
 	},
 	"Inspiration":
 	{
-		"DESCRIPTION": "Once per turn, when you activate an interactable #yPower, #yMotivate #b1, then reduce [Inspiration] by #b1.",
+		"DESCRIPTION": "You can pay #b3 [INS] during your turn to draw #b1 card.",
 		"NAMES": ["inspiration"],
 		"PROPER_NAME": "Inspiration"
 	},

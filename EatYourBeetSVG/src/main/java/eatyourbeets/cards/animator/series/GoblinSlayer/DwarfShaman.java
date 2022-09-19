@@ -1,12 +1,12 @@
 package eatyourbeets.cards.animator.series.GoblinSlayer;
 
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.effects.VFX;
 import eatyourbeets.orbs.animator.Earth;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 
@@ -26,7 +26,8 @@ public class DwarfShaman extends AnimatorCard
         SetAffinity_Blue(1, 0, 2);
         SetAffinity_Red(1);
 
-        SetAffinityRequirement(Affinity.Star, 1);
+        SetAffinityRequirement(Affinity.Red, 1);
+        SetAffinityRequirement(Affinity.Blue, 1);
         SetEvokeOrbCount(1);
     }
 
@@ -41,16 +42,10 @@ public class DwarfShaman extends AnimatorCard
     @Override
     public void OnLateUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        if (TryUseAffinity(Affinity.Star))
+        if (TryUseAffinities(Affinity.Red, Affinity.Blue))
         {
-            GameActions.Bottom.UpgradeFromHand(name, 1, false)
-            .AddCallback(cards ->
-            {
-                for (AbstractCard c : cards)
-                {
-                    GameActions.Bottom.SealAffinities(c, false);
-                }
-            });
+            GameActions.Bottom.UpgradeFromHand(name, 1, false);
+            CombatStats.Affinities.AddAffinitySealUses(1);
         }
     }
 }

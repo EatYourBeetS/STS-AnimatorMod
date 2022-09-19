@@ -1,62 +1,30 @@
 package eatyourbeets.cards.animator.special;
 
-import basemod.BaseMod;
-import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.series.Konosuba.Sylvia;
-import eatyourbeets.cards.base.Affinity;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.CardUseInfo;
-import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
-import eatyourbeets.interfaces.listeners.OnCardResetListener;
 import eatyourbeets.powers.CombatStats;
-import eatyourbeets.utilities.ColoredString;
-import eatyourbeets.utilities.Colors;
 import eatyourbeets.utilities.GameActions;
 
-public class Sylvia_Chimera extends AnimatorCard implements OnCardResetListener
+public class Sylvia_Chimera extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Sylvia_Chimera.class)
             .SetAttack(2, CardRarity.SPECIAL)
             .SetSeries(Sylvia.DATA.Series)
             .SetMaxCopies(1);
 
-    private ColoredString magicNumberString = new ColoredString("X", Colors.Cream(1));
-
     public Sylvia_Chimera()
     {
         super(DATA);
 
-        Initialize(12, 7);
-        SetUpgrade(2, 2);
+        Initialize(12, 6, 4, 2);
+        SetUpgrade(4, 2, 0, 0);
 
-        SetAffinity_Star(2, 0, 1);
+        SetAffinity_Star(2, 0, 3);
 
         SetRetainOnce(true);
-    }
-
-    @Override
-    public ColoredString GetMagicNumberString()
-    {
-        return magicNumberString;
-    }
-
-    @Override
-    protected void Refresh(AbstractMonster enemy)
-    {
-        super.Refresh(enemy);
-
-        magicNumber = CombatStats.Affinities.GetUsableAffinity(Affinity.Dark);
-        isMagicNumberModified = magicNumber > 0;
-        magicNumberString = super.GetMagicNumberString();
-    }
-
-    @Override
-    public void OnReset()
-    {
-        magicNumberString.SetText("X").SetColor(Colors.Cream(1));
     }
 
     @Override
@@ -65,16 +33,11 @@ public class Sylvia_Chimera extends AnimatorCard implements OnCardResetListener
         GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_HEAVY);
 
-        if (magicNumber > 0)
-        {
-            GameActions.Bottom.ApplyPoison(player, m, magicNumber);
-            GameActions.Bottom.GainPlatedArmor(magicNumber);
-            TryUseAffinity(Affinity.Dark);
-        }
+        GameActions.Bottom.ApplyPoison(player, m, magicNumber);
+        GameActions.Bottom.GainPlatedArmor(secondaryValue);
 
-        GameActions.Bottom.ModifyAffinityLevel(player.hand, BaseMod.MAX_HAND_SIZE, Affinity.General, -1, true)
-        .Flash(Color.RED)
-        .SetFilter(c -> c.uuid != uuid)
-        .SetDuration(0.05f, true);
+        GameActions.Bottom.SealAffinities(p.drawPile, p.drawPile.size(), false);
+        GameActions.Bottom.SealAffinities(p.discardPile, p.discardPile.size(), false);
+        GameActions.Bottom.Callback(() -> CombatStats.Affinities.UseAffinity(Affinity.Star, Integer.MAX_VALUE));
     }
 }

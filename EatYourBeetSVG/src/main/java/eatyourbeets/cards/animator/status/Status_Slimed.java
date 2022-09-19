@@ -13,12 +13,23 @@ public class Status_Slimed extends AnimatorCard
 
     public Status_Slimed()
     {
+        this(false);
+    }
+
+    public Status_Slimed(boolean upgrade)
+    {
         super(DATA);
 
         Initialize(0, 0);
+        SetCostUpgrade(-1);
 
         SetEndOfTurnPlay(false);
         SetExhaust(true);
+
+        if (upgrade)
+        {
+            upgrade();
+        }
     }
 
     @Override

@@ -22,7 +22,7 @@ public class ChaikaTrabant extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(11, 0, 2);
+        Initialize(12, 0, 2);
         SetUpgrade(2, 0, 1);
 
         SetAffinity_Blue(2, 0, 2);

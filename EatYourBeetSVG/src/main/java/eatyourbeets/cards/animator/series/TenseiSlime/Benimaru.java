@@ -21,8 +21,8 @@ public class Benimaru extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(3, 0, 2);
-        SetUpgrade(4, 0, 0);
+        Initialize(6, 0, 2);
+        SetUpgrade(3, 0, 0);
 
         SetAffinity_Red(1);
         SetAffinity_Blue(1);

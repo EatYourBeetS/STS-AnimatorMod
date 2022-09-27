@@ -26,9 +26,9 @@ public class IrohaTamaki extends AnimatorCard
         SetUpgrade(1, 0, 0, 0);
 
         SetAffinity_Green(1);
-        SetAffinity_Light(1, 1, 0);
+        SetAffinity_Light(2);
 
-        SetAffinityRequirement(Affinity.Light, 2);
+        SetAffinityRequirement(Affinity.Light, 1);
     }
 
     @Override
@@ -70,7 +70,7 @@ public class IrohaTamaki extends AnimatorCard
             .SetDuration(0.05f, false);
         }
 
-        if (TryUseAffinity(Affinity.Light))
+        if (CheckSpecialCondition(true))
         {
             GameActions.Bottom.SelectFromPile(name, 1, p.drawPile)
             .SetFilter(GameUtilities::IsHindrance)
@@ -90,5 +90,19 @@ public class IrohaTamaki extends AnimatorCard
                 }
             });
         }
+    }
+
+    @Override
+    public boolean CheckSpecialCondition(boolean tryUse)
+    {
+        for (AbstractCard c : player.drawPile.group)
+        {
+            if (GameUtilities.IsHindrance(c) && !c.hasTag(HASTE))
+            {
+                return super.CheckSpecialCondition(tryUse);
+            }
+        }
+
+        return false;
     }
 }

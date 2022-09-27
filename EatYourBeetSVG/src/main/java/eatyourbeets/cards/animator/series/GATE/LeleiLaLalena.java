@@ -32,7 +32,7 @@ public class LeleiLaLalena extends AnimatorCard
     {
         GameActions.Bottom.GainIntellect(1);
 
-        if (TryUseAffinity(Affinity.Blue))
+        if (CheckSpecialCondition(true))
         {
             GameActions.Bottom.ObtainAffinityToken(Affinity.General, upgraded);
         }

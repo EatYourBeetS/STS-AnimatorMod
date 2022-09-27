@@ -60,13 +60,13 @@ public class Enchantment4 extends Enchantment
         {
             for (Affinity a : Affinity.Basic())
             {
-                GameActions.Bottom.StackAffinityPower(a, 1, true);
+                GameActions.Bottom.GainAffinity(a, 1, true);
             }
             return;
         }
 
         final Affinity affinity = GetAffinity();
-        GameActions.Bottom.StackAffinityPower(affinity, 1, true);
+        GameActions.Bottom.GainAffinity(affinity, 1, true);
     }
 
     public Affinity GetAffinity()

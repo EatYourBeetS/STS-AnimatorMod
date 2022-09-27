@@ -210,6 +210,21 @@ public final class GameEffects
         return effect;
     }
 
+    public ShowCardBrieflyEffect[] ShowCopies(ArrayList<AbstractCard> cards)
+    {
+        final int max = cards.size();
+        final ShowCardBrieflyEffect[] effects = new ShowCardBrieflyEffect[max];
+        if (max > 0)
+        {
+            for (int i = 0; i < max; i++)
+            {
+                effects[i] = GameEffects.List.ShowCopy(cards.get(i), Settings.WIDTH * 0.25f + (i * AbstractCard.IMG_WIDTH * 0.6f), Settings.HEIGHT * 0.4f);
+            }
+        }
+
+        return effects;
+    }
+
     public ShowCardBrieflyEffect ShowCopy(AbstractCard card)
     {
         return ShowCardBriefly(card.makeStatEquivalentCopy());

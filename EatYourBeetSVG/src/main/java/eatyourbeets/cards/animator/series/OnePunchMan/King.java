@@ -19,11 +19,16 @@ public class King extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 1);
-        SetUpgrade(0, 0, 1);
+        Initialize(0, 0, 2);
 
         SetAffinity_Red(1);
         SetUnplayable(true);
+    }
+
+    @Override
+    protected void OnUpgrade()
+    {
+        SetHaste(true);
     }
 
     @Override

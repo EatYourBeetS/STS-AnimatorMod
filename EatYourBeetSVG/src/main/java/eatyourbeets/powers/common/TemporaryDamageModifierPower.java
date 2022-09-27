@@ -13,6 +13,8 @@ public class TemporaryDamageModifierPower extends CommonPower
     {
         super(owner, POWER_ID);
 
+        this.priority += 1;
+
         Initialize(amount);
     }
 

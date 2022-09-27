@@ -29,12 +29,18 @@ public class MadokaKaname extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 2, 3);
+        Initialize(0, 0, 2, 2);
 
         SetAffinity_Blue(1);
         SetAffinity_Light(2);
 
-        SetAffinityRequirement(Affinity.Light, 5);
+        SetAffinityRequirement(Affinity.Light, 6);
+    }
+
+    @Override
+    protected void OnUpgrade()
+    {
+        SetHaste(true);
     }
 
     @Override
@@ -44,7 +50,7 @@ public class MadokaKaname extends AnimatorCard
         GameActions.Bottom.ObtainAffinityToken(Affinity.Light, upgraded)
         .AddCallback(c -> GameActions.Bottom.Motivate(c, 1));
 
-        if (info.CanActivateLimited && TryUseAffinity(Affinity.Light) && info.TryActivateLimited())
+        if (CheckSpecialCondition(true))
         {
             GameActions.Bottom.VFX(new BorderFlashEffect(Color.PINK, true));
             GameActions.Bottom.ExhaustFromPile(name, 999, p.drawPile, p.hand, p.discardPile)
@@ -53,5 +59,11 @@ public class MadokaKaname extends AnimatorCard
             .SetFilter(c -> c.type == CardType.CURSE)
             .AddCallback(cards -> GameActions.Bottom.GainIntangible(secondaryValue));
         }
+    }
+
+    @Override
+    public boolean CheckSpecialCondition(boolean tryUse)
+    {
+        return super.CheckSpecialConditionLimited(tryUse, super::CheckSpecialCondition);
     }
 }

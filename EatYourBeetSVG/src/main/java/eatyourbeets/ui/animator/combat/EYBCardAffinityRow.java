@@ -113,7 +113,7 @@ public class EYBCardAffinityRow extends GUIElement
         final int level = Mathf.Clamp(cardAffinities.GetLevel(Type, true), 0, 2);
         if (level > 0)
         {
-            GameActions.Bottom.StackAffinityPower(Type, level, false);
+            GameActions.Top.GainAffinity(Type, level, false);
         }
     }
 

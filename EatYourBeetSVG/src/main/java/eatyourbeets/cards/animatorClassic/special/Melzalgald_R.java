@@ -7,11 +7,11 @@ import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.utilities.GameActions;
 
-public class Melzalgald_1 extends MelzalgaldAlt
+public class Melzalgald_R extends MelzalgaldAlt
 {
-    public static final EYBCardData DATA = Register(Melzalgald_1.class).SetAttack(1, CardRarity.SPECIAL);
+    public static final EYBCardData DATA = Register(Melzalgald_R.class).SetAttack(1, CardRarity.SPECIAL);
 
-    public Melzalgald_1()
+    public Melzalgald_R()
     {
         super(DATA);
 

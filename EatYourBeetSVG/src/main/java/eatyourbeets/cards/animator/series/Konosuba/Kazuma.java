@@ -18,7 +18,7 @@ public class Kazuma extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 5, 2);
+        Initialize(0, 6, 2);
         SetUpgrade(0, 3, 0);
 
         SetAffinity_Red(1);
@@ -31,24 +31,15 @@ public class Kazuma extends AnimatorCard
     {
         GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.Draw(1)
-        .AddCallback(info, (info2, cards) ->
+        .AddCallback(cards ->
         {
            for (AbstractCard c : cards)
            {
-               final EYBCardAffinities a = GameUtilities.GetAffinities(c);
-               if (a == null)
+               if (GameUtilities.IsSealed(c))
                {
-                   continue;
-               }
-
-               for (Affinity affinity : Affinity.Basic())
-               {
-                   if (affinities.GetLevel(affinity, true) > 0 && a.GetLevel(affinity, true) > 0)
-                   {
-                       GameActions.Bottom.GainTemporaryHP(magicNumber);
-                       GameActions.Bottom.GainBlessing(1);
-                       return;
-                   }
+                   GameActions.Bottom.GainTemporaryHP(magicNumber);
+                   GameActions.Bottom.GainBlessing(1);
+                   return;
                }
            }
         });

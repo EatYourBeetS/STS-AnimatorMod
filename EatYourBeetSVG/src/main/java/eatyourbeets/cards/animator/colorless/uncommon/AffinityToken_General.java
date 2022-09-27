@@ -16,7 +16,7 @@ public class AffinityToken_General extends AffinityToken implements OnAddToDeckL
             .SetColor(CardColor.COLORLESS)
             .PostInitialize(data ->
             {
-                for (EYBCardData d : AffinityToken.GetCards())
+                for (EYBCardData d : AffinityToken.GetCardData())
                 {
                     data.AddPreview(d.CreateNewInstance(), true);
                 }

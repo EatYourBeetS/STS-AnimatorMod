@@ -15,7 +15,7 @@ public class Evileye extends AnimatorCard
             .SetSkill(2, CardRarity.UNCOMMON, EYBCardTarget.None)
             .SetMaxCopies(2)
             .SetSeriesFromClassPackage();
-    public static final int INTELLECT_AMOUNT = 3;
+    public static final int INTELLECT_AMOUNT = 4;
 
     private static final CardEffectChoice choices = new CardEffectChoice();
 
@@ -29,8 +29,8 @@ public class Evileye extends AnimatorCard
         SetAffinity_Light(1);
         SetAffinity_Dark(1);
 
-        SetAffinityRequirement(Affinity.Dark, 4);
-        SetAffinityRequirement(Affinity.Light, 4);
+        SetAffinityRequirement(Affinity.Dark, 2);
+        SetAffinityRequirement(Affinity.Light, 2);
 
         SetEthereal(true);
     }
@@ -56,9 +56,9 @@ public class Evileye extends AnimatorCard
         choices.AddEffect(new GenericEffect_Draw(magicNumber));
         choices.Select(1, m);
 
-        if (TryUseAffinity(Affinity.Dark) || TryUseAffinity(Affinity.Light))
+        if (TryUseAffinities(Affinity.Dark, Affinity.Light))
         {
-            GameActions.Bottom.GainEnergy(1);
+            GameActions.Bottom.GainEnergy(2);
             this.exhaustOnUseOnce = true;
         }
     }

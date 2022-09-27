@@ -8,6 +8,7 @@ import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.orbs.animator.Earth;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 
 public class MattheusCallaway extends AnimatorCard
@@ -20,11 +21,11 @@ public class MattheusCallaway extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 4, 5);
-        SetUpgrade(0, 3, 0);
+        Initialize(0, 4, 6);
+        SetUpgrade(0, 2, 0);
 
-        SetAffinity_Green(1);
-        SetAffinity_Blue(1);
+        SetAffinity_Green(1, 1, 0);
+        SetAffinity_Blue(1, 1, 0);
     }
 
     @Override
@@ -44,7 +45,7 @@ public class MattheusCallaway extends AnimatorCard
     {
         GameActions.Delayed.Callback(info, (info2, __) ->
         {
-            if (player.filledOrbCount() >= player.maxOrbs && info2.TryActivateLimited())
+            if (CheckSpecialCondition(true))
             {
                 GameActions.Bottom.GainOrbSlots(1);
                 GameActions.Bottom.ChannelOrb(new Earth());
@@ -55,6 +56,6 @@ public class MattheusCallaway extends AnimatorCard
     @Override
     public boolean CheckSpecialCondition(boolean tryUse)
     {
-        return GameActionManager.totalDiscardedThisTurn > 0;
+        return CombatStats.CanActivateLimited(cardID) && GameActionManager.totalDiscardedThisTurn > 0 && CombatStats.TryActivateLimited(cardID);
     }
 }

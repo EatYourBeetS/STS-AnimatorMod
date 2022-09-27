@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.math.Vector2;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
@@ -465,22 +466,22 @@ public class RenderHelpers
         return font;
     }
 
-    public static void WriteSmartText(SpriteBatch sb, BitmapFont font, String text, float x, float y, float lineWidth, Color baseColor)
+    public static void WriteSmartText(AbstractPlayer.PlayerClass playerClass, SpriteBatch sb, BitmapFont font, String text, float x, float y, float lineWidth, Color baseColor)
     {
-        WriteSmartText(sb, font, text, x, y, lineWidth, font.getLineHeight() * Settings.scale, baseColor);
+        WriteSmartText(playerClass, sb, font, text, x, y, lineWidth, font.getLineHeight() * Settings.scale, baseColor);
     }
 
-    public static void WriteSmartText(SpriteBatch sb, BitmapFont font, String text, float x, float y, float lineWidth, Color baseColor, boolean resizeIcons)
+    public static void WriteSmartText(AbstractPlayer.PlayerClass playerClass, SpriteBatch sb, BitmapFont font, String text, float x, float y, float lineWidth, Color baseColor, boolean resizeIcons)
     {
-        WriteSmartText(sb, font, text, x, y, lineWidth, font.getLineHeight() * Settings.scale, baseColor, resizeIcons);
+        WriteSmartText(playerClass, sb, font, text, x, y, lineWidth, font.getLineHeight() * Settings.scale, baseColor, resizeIcons);
     }
 
-    public static void WriteSmartText(SpriteBatch sb, BitmapFont font, String text, float x, float y, float lineWidth, float lineSpacing, Color baseColor)
+    public static void WriteSmartText(AbstractPlayer.PlayerClass playerClass, SpriteBatch sb, BitmapFont font, String text, float x, float y, float lineWidth, float lineSpacing, Color baseColor)
     {
-        WriteSmartText(sb, font, text, x, y, lineWidth, lineSpacing, baseColor, false);
+        WriteSmartText(playerClass, sb, font, text, x, y, lineWidth, lineSpacing, baseColor, false);
     }
 
-    public static void WriteSmartText(SpriteBatch sb, BitmapFont font, String text, float x, float y, float lineWidth, float lineSpacing, Color baseColor, boolean resizeIcons)
+    public static void WriteSmartText(AbstractPlayer.PlayerClass playerClass, SpriteBatch sb, BitmapFont font, String text, float x, float y, float lineWidth, float lineSpacing, Color baseColor, boolean resizeIcons)
     {
         if (text != null)
         {
@@ -516,8 +517,14 @@ public class RenderHelpers
                     }
 
                     foundIcon = false;
-                    TextureRegion icon = GetSmallIcon(build.Invoke(builder));
-                    if (icon != null)
+                    final String id = build.Invoke(builder);
+                    final TextureRegion icon = GetSmallIcon(playerClass, id);
+                    if (icon == null)
+                    {
+                        JUtils.LogError(RenderHelpers.class, "Missing icon: " + id);
+                        builder.append("MISSING: ").append(id);
+                    }
+                    else
                     {
                         final float orbWidth = icon.getRegionWidth();
                         final float orbHeight = icon.getRegionHeight();
@@ -606,13 +613,13 @@ public class RenderHelpers
         }
     }
 
-    public static float GetSmartHeight(BitmapFont font, String text, float lineWidth)
+    public static float GetSmartHeight(AbstractPlayer.PlayerClass playerClass, BitmapFont font, String text, float lineWidth)
     {
-        return GetSmartHeight(font, text, lineWidth, font.getLineHeight());
+        return GetSmartHeight(playerClass, font, text, lineWidth, font.getLineHeight());
     }
 
     //TODO: Combine with WriteSmartText
-    public static float GetSmartHeight(BitmapFont font, String text, float lineWidth, float lineSpacing)
+    public static float GetSmartHeight(AbstractPlayer.PlayerClass playerClass, BitmapFont font, String text, float lineWidth, float lineSpacing)
     {
         if (text == null || text.isEmpty())
         {
@@ -644,7 +651,7 @@ public class RenderHelpers
                 if (']' == c)
                 {
                     foundIcon = false;
-                    TextureRegion icon = GetSmallIcon(build.Invoke(builder));
+                    TextureRegion icon = GetSmallIcon(playerClass, build.Invoke(builder));
                     if (icon != null)
                     {
                         if (curWidth + CARD_ENERGY_IMG_WIDTH > lineWidth)
@@ -717,7 +724,7 @@ public class RenderHelpers
         return curHeight;
     }
 
-    public static float GetSmartWidth(BitmapFont font, String text)
+    public static float GetSmartWidth(AbstractPlayer.PlayerClass playerClass, BitmapFont font, String text)
     {
         if (text == null || text.isEmpty())
         {
@@ -749,7 +756,7 @@ public class RenderHelpers
                 if (']' == c)
                 {
                     foundIcon = false;
-                    TextureRegion icon = GetSmallIcon(build.Invoke(builder));
+                    TextureRegion icon = GetSmallIcon(playerClass, build.Invoke(builder));
                     if (icon != null)
                     {
                         curWidth += CARD_ENERGY_IMG_WIDTH + spaceWidth;
@@ -805,21 +812,27 @@ public class RenderHelpers
         return curWidth;
     }
 
-    public static TextureRegion GetSmallIcon(String id)
+    public static TextureRegion GetSmallIcon(AbstractPlayer.PlayerClass playerClass, String id)
     {
+        if (playerClass == GR.AnimatorClassic.PlayerClass)
+        {
+            switch (id)
+            {
+                case "F":
+                    return GR.Tooltips.Force.icon;
+                case "A":
+                    return GR.Tooltips.Agility.icon;
+                case "I":
+                    return GR.Tooltips.Intellect.icon;
+                case "B":
+                    return GR.Tooltips.Blessing.icon;
+                case "C":
+                    return GR.Tooltips.Corruption.icon;
+            }
+        }
+
         switch (id)
         {
-            case "F":
-                return GR.Tooltips.Force.icon;
-            case "A":
-                return GR.Tooltips.Agility.icon;
-            case "I":
-                return GR.Tooltips.Intellect.icon;
-            case "B":
-                return GR.Tooltips.Blessing.icon;
-            case "C":
-                return GR.Tooltips.Corruption.icon;
-
             case "E":
                 return AbstractDungeon.player != null ? AbstractDungeon.player.getOrb() : GR.Tooltips.Energy.icon;
             case "CARD":
@@ -832,7 +845,7 @@ public class RenderHelpers
                 return AbstractCard.orb_special;
 
             default:
-                final EYBCardTooltip tooltip = CardTooltips.FindByID(GameUtilities.GetPlayerClass(), id);
+                final EYBCardTooltip tooltip = CardTooltips.FindByID(playerClass, id);
                 return (tooltip != null) ? tooltip.icon : null;
         }
     }
@@ -861,7 +874,7 @@ public class RenderHelpers
 
     public static float GetTooltipHeight(EYBCardTooltip tip)
     {
-        return -GetSmartHeight(FontHelper.tipBodyFont, tip.description, BODY_TEXT_WIDTH, TIP_DESC_LINE_SPACING) - 7.0F * Settings.scale;
+        return -GetSmartHeight(tip.playerClass, FontHelper.tipBodyFont, tip.description, BODY_TEXT_WIDTH, TIP_DESC_LINE_SPACING) - 7.0F * Settings.scale;
     }
 
     public static float CalculateAdditionalOffset(ArrayList<EYBCardTooltip> tips, float hb_cY)

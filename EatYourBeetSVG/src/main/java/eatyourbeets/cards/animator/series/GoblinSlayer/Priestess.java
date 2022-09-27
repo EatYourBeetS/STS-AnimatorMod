@@ -1,5 +1,7 @@
 package eatyourbeets.cards.animator.series.GoblinSlayer;
 
+import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
@@ -52,13 +54,31 @@ public class Priestess extends AnimatorCard
         GameActions.Bottom.GainTemporaryHP(magicNumber);
         GameActions.Bottom.ApplyWeak(TargetHelper.Enemies(), 1);
 
-        if (TryUseAffinity(Affinity.Light))
+        if (CheckSpecialCondition(true))
         {
-            GameActions.Bottom.GainBlessing(1);
             GameActions.Bottom.ExhaustFromPile(name, 1, p.drawPile, p.hand, p.discardPile)
             .ShowEffect(true, true)
             .SetOptions(true, true)
             .SetFilter(GameUtilities::IsHindrance);
         }
+    }
+
+    @Override
+    public boolean CheckSpecialCondition(boolean tryUse)
+    {
+        return (HasHindrances(player.drawPile) || HasHindrances(player.hand) || HasHindrances(player.discardPile)) && super.CheckSpecialCondition(tryUse);
+    }
+
+    protected boolean HasHindrances(CardGroup group)
+    {
+        for (AbstractCard c : group.group)
+        {
+            if (GameUtilities.IsHindrance(c))
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

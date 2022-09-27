@@ -4,6 +4,8 @@ import com.megacrit.cardcrawl.core.Settings;
 import eatyourbeets.cards.base.EYBCardTooltip;
 import eatyourbeets.resources.CardTooltips;
 
+import java.util.Locale;
+
 public abstract class SpecialToken extends CTToken
 {
     private static final CTContext internalParser = new CTContext();
@@ -51,7 +53,7 @@ public abstract class SpecialToken extends CTToken
                     EYBCardTooltip tooltip = CardTooltips.FindByName(parser.resources.PlayerClass, word
                     .replace(" NL ", " ")
                     .split("\\(")[0] // Ignore modifiers
-                    .toLowerCase());
+                    .toLowerCase(Locale.ROOT));
 
                     if (tooltip != null)
                     {

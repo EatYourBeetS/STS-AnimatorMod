@@ -12,11 +12,10 @@ import com.megacrit.cardcrawl.powers.PoisonPower;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.effects.VFX;
-import eatyourbeets.interfaces.subscribers.OnApplyPowerSubscriber;
 import eatyourbeets.powers.AnimatorPower;
-import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
+import eatyourbeets.utilities.GameUtilities;
 
 public class Entoma extends AnimatorCard
 {
@@ -28,10 +27,10 @@ public class Entoma extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(5, 0, 2);
+        Initialize(4, 0, 2);
         SetUpgrade(0, 0, 2);
 
-        SetAffinity_Dark(1, 1, 1);
+        SetAffinity_Dark(2, 0, 1);
 
         SetAffinityRequirement(Affinity.Dark, 3);
     }
@@ -41,16 +40,16 @@ public class Entoma extends AnimatorCard
     {
         GameActions.Bottom.DealDamage(this, m, AttackEffects.POISON)
         .SetDamageEffect(e -> GameEffects.List.Add(VFX.Bite(e.hb, Color.GREEN)).duration);
-        GameActions.Bottom.StackAffinityPower(Affinity.Dark);
+        GameActions.Bottom.GainAffinity(Affinity.Dark);
         GameActions.Bottom.ApplyPoison(p, m, magicNumber);
 
-        if (TryUseAffinity(Affinity.Dark) && !m.hasPower(EntomaPower.DeriveID(cardID)))
+        if (!m.hasPower(EntomaPower.DeriveID(cardID)) && CheckSpecialCondition(true))
         {
             GameActions.Bottom.ApplyPower(new EntomaPower(m, p, 1));
         }
     }
 
-    public static class EntomaPower extends AnimatorPower implements OnApplyPowerSubscriber
+    public static class EntomaPower extends AnimatorPower
     {
         public EntomaPower(AbstractCreature owner, AbstractCreature source, int amount)
         {
@@ -64,33 +63,7 @@ public class Entoma extends AnimatorCard
         @Override
         public void updateDescription()
         {
-            this.description = FormatDescription(0, amount, maxAmount);
-        }
-
-        @Override
-        public void onInitialApplication()
-        {
-            super.onInitialApplication();
-
-            CombatStats.onApplyPower.Subscribe(this);
-        }
-
-        @Override
-        public void onRemove()
-        {
-            super.onRemove();
-
-            CombatStats.onApplyPower.Unsubscribe(this);
-        }
-
-        @Override
-        public void OnApplyPower(AbstractPower power, AbstractCreature target, AbstractCreature source)
-        {
-            if (target == owner && PoisonPower.POWER_ID.equals(power.ID))
-            {
-                GameActions.Bottom.GainTemporaryHP(amount);
-                flashWithoutSound();
-            }
+            this.description = FormatDescription(0);
         }
 
         @Override
@@ -98,7 +71,12 @@ public class Entoma extends AnimatorCard
         {
             if (AbstractDungeon.actionManager.currentAction instanceof PoisonLoseHpAction)
             {
-                GameActions.Bottom.GainTemporaryHP(amount);
+                final AbstractPower p = GameUtilities.GetPower(owner, PoisonPower.POWER_ID);
+                if (p != null)
+                {
+                    p.amount += 1;
+                }
+
                 flashWithoutSound();
             }
 

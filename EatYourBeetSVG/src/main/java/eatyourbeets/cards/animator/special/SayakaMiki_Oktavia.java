@@ -27,7 +27,7 @@ public class SayakaMiki_Oktavia extends AnimatorCard
         SetAffinity_Blue(1, 0, 1);
         SetAffinity_Dark(1);
 
-        SetAffinityRequirement(Affinity.Dark, 3);
+        SetAffinityRequirement(Affinity.Dark, 1);
     }
 
     @Override

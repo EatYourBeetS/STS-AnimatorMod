@@ -49,7 +49,11 @@ public class Father extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        if (!p.hasRelic(relic.relicId))
+        if (p.hasRelic(relic.relicId))
+        {
+            GameActions.Bottom.GainVitality(magicNumber);
+        }
+        else
         {
             p.decreaseMaxHealth((int)Math.ceil(p.maxHealth * (secondaryValue / 100f)));
             GameActions.Bottom.VFX(new OfferingEffect(), 0.5f);
@@ -57,10 +61,6 @@ public class Father extends AnimatorCard
             AbstractDungeon.bossRelicPool.remove(relic.relicId);
 
             p.energy.energy += 1;
-        }
-        else
-        {
-            GameActions.Bottom.GainVitality(magicNumber);
         }
     }
 }

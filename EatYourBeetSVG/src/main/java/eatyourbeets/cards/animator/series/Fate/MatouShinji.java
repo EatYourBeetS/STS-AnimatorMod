@@ -47,9 +47,15 @@ public class MatouShinji extends AnimatorCard
         })
         .SetDuration(0.02f, false);
 
-        if (info.CanActivateLimited && TryUseAffinity(Affinity.Dark) && info.TryActivateLimited())
+        if (CheckSpecialCondition(true))
         {
             GameActions.Bottom.MakeCardInHand(new MatouShinji_CommandSpell());
         }
+    }
+
+    @Override
+    public boolean CheckSpecialCondition(boolean tryUse)
+    {
+        return super.CheckSpecialConditionLimited(tryUse, super::CheckSpecialCondition);
     }
 }

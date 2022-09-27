@@ -28,8 +28,8 @@ public class FlandreScarlet extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(6, 0, 1, 3);
-        SetUpgrade(3, 0, 0);
+        Initialize(9, 0, 1, 3);
+        SetUpgrade(0, 0, 1);
 
         SetAffinity_Dark(1);
         SetAffinity_Red(2);

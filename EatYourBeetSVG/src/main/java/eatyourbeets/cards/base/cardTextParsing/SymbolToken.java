@@ -31,6 +31,12 @@ public class SymbolToken extends CTToken
     static
     {
         final Container animator = new Container(GR.Animator.PlayerClass);
+        final Container animatorClassic = new Container(GR.AnimatorClassic.PlayerClass);
+        final Container unnamed = new Container(GR.Unnamed.PlayerClass);
+        tokenCache.put(animator.playerClass, animator);
+        tokenCache.put(animatorClassic.playerClass, animatorClassic);
+        tokenCache.put(unnamed.playerClass, unnamed);
+
         animator.map.put("R", new SymbolToken(animator.playerClass, "[R]"));
         animator.map.put("G", new SymbolToken(animator.playerClass, "[G]"));
         animator.map.put("B", new SymbolToken(animator.playerClass, "[B]"));
@@ -39,21 +45,17 @@ public class SymbolToken extends CTToken
         animator.map.put("M", new SymbolToken(animator.playerClass, "[M]"));
         animator.map.put("W", new SymbolToken(animator.playerClass, "[W]"));
         animator.map.put("S", new SymbolToken(animator.playerClass, "[S]"));
-        final Container animatorClassic = new Container(GR.AnimatorClassic.PlayerClass);
         animatorClassic.map.put("F", new SymbolToken(animatorClassic.playerClass, "[F]"));
         animatorClassic.map.put("A", new SymbolToken(animatorClassic.playerClass, "[A]"));
         animatorClassic.map.put("I", new SymbolToken(animatorClassic.playerClass, "[I]"));
         animatorClassic.map.put("B", new SymbolToken(animatorClassic.playerClass, "[B]"));
         animatorClassic.map.put("C", new SymbolToken(animatorClassic.playerClass, "[C]"));
-        final Container unnamed = new Container(GR.Unnamed.PlayerClass);
-        final SymbolToken energyToken = new SymbolToken(null, "[E]");
-        animator.map.put("E", energyToken);
-        animatorClassic.map.put("E", energyToken);
-        unnamed.map.put("E", energyToken);
 
-        tokenCache.put(animator.playerClass, animator);
-        tokenCache.put(animatorClassic.playerClass, animatorClassic);
-        tokenCache.put(unnamed.playerClass, unnamed);
+        final SymbolToken energyToken = new SymbolToken(null, "[E]");
+        for (Container c : tokenCache.values())
+        {
+            c.map.put("E", energyToken);
+        }
     }
 
     private SymbolToken(AbstractPlayer.PlayerClass playerClass, String text)

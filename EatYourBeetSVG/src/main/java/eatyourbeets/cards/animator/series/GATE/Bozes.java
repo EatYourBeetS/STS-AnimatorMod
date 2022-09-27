@@ -21,7 +21,7 @@ public class Bozes extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(6, 0, 2);
+        Initialize(7, 0, 2);
         SetUpgrade(0, 0, 1);
 
         SetAffinity_Red(2);

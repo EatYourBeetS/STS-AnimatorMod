@@ -25,13 +25,13 @@ public class Boros extends AnimatorCard
             .SetPower(3, CardRarity.RARE)
             .SetSeriesFromClassPackage();
     private static final int POWER_ENERGY_COST = 3;
-    private static final int RECOVER_HP_AMOUNT = 12;
+    private static final int RECOVER_HP_AMOUNT = 14;
 
     public Boros()
     {
         super(DATA);
 
-        Initialize(0, 0, 2, 12);
+        Initialize(0, 0, 2, RECOVER_HP_AMOUNT);
 
         SetAffinity_Red(2);
         SetAffinity_Green(1);

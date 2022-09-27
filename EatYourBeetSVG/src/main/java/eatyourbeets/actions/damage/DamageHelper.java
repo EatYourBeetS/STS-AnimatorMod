@@ -10,6 +10,7 @@ import eatyourbeets.powers.animator.EarthenThornsPower;
 import eatyourbeets.utilities.GameUtilities;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class DamageHelper
 {
@@ -77,7 +78,7 @@ public class DamageHelper
 
         for (int i = target.powers.size()-1; i >= 0; i--)
         {
-            if (target.powers.get(i).ID.toLowerCase().contains("thorns"))
+            if (target.powers.get(i).ID.toLowerCase(Locale.ROOT).contains("thorns"))
             {
                 toReAdd.add(target.powers.get(i));
                 target.powers.remove(i);

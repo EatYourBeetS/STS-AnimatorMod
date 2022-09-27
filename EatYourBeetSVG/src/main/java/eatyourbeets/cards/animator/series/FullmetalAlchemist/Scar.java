@@ -51,7 +51,7 @@ public class Scar extends AnimatorCard
             }
         });
 
-        if (CheckAffinity(Affinity.Blue))
+        if (CheckSpecialCondition(true))
         {
             GameActions.Bottom.SelectFromPile(name, 1, p.exhaustPile)
             .SetMessage(cardData.Strings.EXTENDED_DESCRIPTION[0], secondaryValue)

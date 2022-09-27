@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInsertPatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpireReturn;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
@@ -31,7 +32,8 @@ public class SingleRelicViewPopupPatches
                 float width = _DESC_LINE_WIDTH.Get(null);
                 float spacing = _DESC_LINE_SPACING.Get(null);
                 float height = FontHelper.getSmartHeight(FontHelper.cardDescFont_N, temp.description, width, spacing) / 2.0F;
-                RenderHelpers.WriteSmartText(sb, FontHelper.cardDescFont_N, temp.description, (float)Settings.WIDTH / 2.0F - 200.0F * Settings.scale, (float)Settings.HEIGHT / 2.0F - 140.0F * Settings.scale - height, width, spacing, Settings.CREAM_COLOR);
+                final AbstractPlayer.PlayerClass playerClass = ((EYBRelic) temp).GetPlayerClass();
+                RenderHelpers.WriteSmartText(playerClass, sb, FontHelper.cardDescFont_N, temp.description, (float)Settings.WIDTH / 2.0F - 200.0F * Settings.scale, (float)Settings.HEIGHT / 2.0F - 140.0F * Settings.scale - height, width, spacing, Settings.CREAM_COLOR);
                 return SpireReturn.Return(null);
             }
 

@@ -47,7 +47,7 @@ public class Saitama extends AnimatorCard
         Initialize(0, 0);
 
         SetAffinity_Red(2);
-        SetAffinity_Green(1, 1, 0);
+        SetAffinity_Green(2);
         SetAffinity_Light(1);
 
         SetAttackType(EYBAttackType.Normal);

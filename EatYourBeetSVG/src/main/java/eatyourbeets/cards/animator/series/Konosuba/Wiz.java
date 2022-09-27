@@ -6,12 +6,14 @@ import com.megacrit.cardcrawl.cards.colorless.Apparition;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.*;
+import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardUseInfo;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.powers.AnimatorClickablePower;
 import eatyourbeets.powers.PowerTriggerConditionType;
 import eatyourbeets.utilities.ColoredString;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.RandomizedList;
 
 public class Wiz extends AnimatorCard
@@ -80,9 +82,7 @@ public class Wiz extends AnimatorCard
     {
         public WizPower(AbstractCreature owner, int amount)
         {
-            super(owner, Wiz.DATA, PowerTriggerConditionType.Special, POWER_COST,
-                    cost -> GameUtilities.GetPowerAmount(Affinity.Light) >= cost && player.exhaustPile.size() >= CARD_CHOICE,
-                    cost -> GameActions.Bottom.ReducePower(Affinity.Light, cost));
+            super(owner, Wiz.DATA, PowerTriggerConditionType.Affinity_Light, POWER_COST, __ -> player.exhaustPile.size() >= CARD_CHOICE, null);
 
             triggerCondition.SetUses(amount, false, true);
 

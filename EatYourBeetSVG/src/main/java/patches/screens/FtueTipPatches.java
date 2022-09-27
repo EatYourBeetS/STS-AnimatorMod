@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.ui.FtueTip;
+import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.RenderHelpers;
 import javassist.CannotCompileException;
 import javassist.expr.ExprEditor;
@@ -34,7 +35,7 @@ public class FtueTipPatches
         {
             if (msg.startsWith("~"))
             {
-                RenderHelpers.WriteSmartText(sb, font, msg.substring(1), x, y, lineWidth, lineSpacing, baseColor);
+                RenderHelpers.WriteSmartText(GameUtilities.GetPlayerClass(), sb, font, msg.substring(1), x, y, lineWidth, lineSpacing, baseColor);
             }
             else
             {

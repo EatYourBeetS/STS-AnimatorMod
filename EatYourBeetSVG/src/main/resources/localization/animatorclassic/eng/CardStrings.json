@@ -1264,19 +1264,19 @@
 			"NAME": "Ichigo Bankai"
 		},
 
-		"animatorClassic:Melzalgald_1":
+		"animatorClassic:Melzalgald_R":
 		{
 			"DESCRIPTION": "Gain !M! [F].",
 			"NAME": "Melzalgald"
 		},
-		"animatorClassic:Melzalgald_2":
-		{
-			"DESCRIPTION": "Gain !M! [I].",
-			"NAME": "Melzalgald"
-		},
-		"animatorClassic:Melzalgald_3":
+		"animatorClassic:Melzalgald_G":
 		{
 			"DESCRIPTION": "Gain !M! [A].",
+			"NAME": "Melzalgald"
+		},
+		"animatorClassic:Melzalgald_B":
+		{
+			"DESCRIPTION": "Gain !M! [I].",
 			"NAME": "Melzalgald"
 		},
 		"animatorClassic:OrbCore":

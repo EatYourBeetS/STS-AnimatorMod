@@ -20,12 +20,12 @@ public class RoyMustang extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(7, 0, 0, BURNING_ATTACK_BONUS);
+        Initialize(9, 0, 0, BURNING_ATTACK_BONUS);
         SetUpgrade(2, 0, 0);
 
         SetAffinity_Blue(1, 1, 1);
         SetAffinity_Light(1);
-        SetAffinity_Red(1);
+        SetAffinity_Red(1, 1, 0);
 
         SetEvokeOrbCount(1);
 
@@ -38,7 +38,7 @@ public class RoyMustang extends AnimatorCard
         GameActions.Bottom.DealDamageToAll(this, AttackEffects.FIRE);
         GameActions.Bottom.ChannelOrbs(Fire::new, Math.min(p.orbs.size(), GameUtilities.GetEnemies(true).size()));
 
-        if (TryUseAffinity(Affinity.Red))
+        if (CheckSpecialCondition(true))
         {
             GameActions.Bottom.Callback(() -> BurningPower.AddPlayerAttackBonus(BURNING_ATTACK_BONUS));
         }

@@ -18,19 +18,18 @@ public class HiiragiShinya extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 1, 2);
-        SetUpgrade(0, 0, 1);
+        Initialize(0, 0, 1, 1);
+        SetUpgrade(0, 0, 1, 1);
 
-        SetAffinity_Green(1, 1, 0);
+        SetAffinity_Green(1);
         SetAffinity_Blue(1);
-
-        SetAffinityRequirement(Affinity.Blue, 3);
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.ApplyLockOn(p, m, magicNumber);
+        GameActions.Bottom.StackPower(new SupportDamagePower(p, secondaryValue));
         GameActions.Bottom.FetchFromPile(name, 1, p.discardPile)
         .SetOptions(false, false)
         .AddCallback(cards ->
@@ -43,10 +42,5 @@ public class HiiragiShinya extends AnimatorCard
                 GameUtilities.RefreshHandLayout();
             }
         });
-
-        if (TryUseAffinity(Affinity.Blue))
-        {
-            GameActions.Bottom.StackPower(new SupportDamagePower(p, secondaryValue));
-        }
     }
 }

@@ -42,26 +42,29 @@ public class HeavyWarrior extends AnimatorCard
     {
         super.Refresh(enemy);
 
-        boolean canPlayWithoutAffinity = JUtils.Any(player.hand.group, c -> c.uuid != uuid && GameUtilities.IsHighCost(c));
-        magicNumber = canPlayWithoutAffinity ? 0 : affinities.GetRequirement(Affinity.Red);
-        SetPlayable(canPlayWithoutAffinity || CheckAffinity(Affinity.Red));
+        SetPlayable(CheckSpecialCondition(false));
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        if (magicNumber > 0)
+        if (CheckSpecialCondition(true))
         {
-            TryUseAffinity(Affinity.Red, magicNumber);
-        }
+            GameActions.Bottom.VFX(VFX.VerticalImpact(m.hb).SetColor(Color.LIGHT_GRAY));
+            GameActions.Bottom.DealDamage(this, m, AttackEffects.BLUNT_HEAVY)
+            .SetVFXColor(Color.DARK_GRAY);
 
-        GameActions.Bottom.VFX(VFX.VerticalImpact(m.hb).SetColor(Color.LIGHT_GRAY));
-        GameActions.Bottom.DealDamage(this, m, AttackEffects.BLUNT_HEAVY)
-        .SetVFXColor(Color.DARK_GRAY);
-
-        if (m.type == AbstractMonster.EnemyType.ELITE || m.type == AbstractMonster.EnemyType.BOSS)
-        {
-            GameActions.Bottom.Motivate(1);
+            if (m.type == AbstractMonster.EnemyType.ELITE || m.type == AbstractMonster.EnemyType.BOSS)
+            {
+                GameActions.Bottom.Motivate(1);
+            }
         }
+    }
+
+    @Override
+    public boolean CheckSpecialCondition(boolean tryUse)
+    {
+        boolean canPlayWithoutAffinity = JUtils.Any(player.hand.group, c -> c.uuid != uuid && GameUtilities.IsHighCost(c));
+        return canPlayWithoutAffinity || super.CheckSpecialCondition(tryUse);
     }
 }

@@ -7,7 +7,6 @@ import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.tokens.AffinityToken;
 import eatyourbeets.cards.base.*;
-import eatyourbeets.powers.CombatStats;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
 import eatyourbeets.utilities.GameActions;
@@ -45,11 +44,10 @@ public class EmirEins extends AnimatorCard
     public void triggerOnAffinitySeal(boolean reshuffle)
     {
         super.triggerOnAffinitySeal(reshuffle);
-        if (CombatStats.TryActivateLimited(cardID))
-        {
-            GameActions.Bottom.TakeDamageAtEndOfTurn(magicNumber);
-            GameActions.Bottom.ObtainAffinityToken(Affinity.General, false);
-        }
+
+        GameActions.Bottom.ShowCopy(this);
+        GameActions.Bottom.TakeDamageAtEndOfTurn(magicNumber);
+        GameActions.Bottom.ObtainAffinityToken(Affinity.General, false);
     }
 
     @Override

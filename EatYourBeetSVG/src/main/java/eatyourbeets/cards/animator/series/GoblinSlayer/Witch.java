@@ -27,18 +27,13 @@ public class Witch extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 9);
+        Initialize(0, 10);
+        SetUpgrade(0, 3);
 
         SetAffinity_Blue(2, 0, 1);
         SetAffinity_Dark(1, 0, 1);
 
-        SetExhaust(true);
-    }
-
-    @Override
-    protected void OnUpgrade()
-    {
-        SetExhaust(false);
+        SetFading(true);
     }
 
     @Override

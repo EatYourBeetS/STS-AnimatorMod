@@ -20,11 +20,11 @@ public class CrowleyEusford extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(15, 0, 3);
+        Initialize(16, 0, 3);
         SetUpgrade(4, 0, 0);
 
-        SetAffinity_Red(2, 0, 3);
-        SetAffinity_Green(1, 0, 3);
+        SetAffinity_Red(2, 0, 6);
+        SetAffinity_Green(1, 0, 6);
         SetAffinity_Dark(1);
     }
 

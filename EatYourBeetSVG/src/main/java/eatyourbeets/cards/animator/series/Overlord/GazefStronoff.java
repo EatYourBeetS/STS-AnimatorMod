@@ -2,6 +2,7 @@ package eatyourbeets.cards.animator.series.Overlord;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.WeakPower;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.powers.common.DeEnergizedPower;
 import eatyourbeets.utilities.GameActions;
@@ -17,12 +18,12 @@ public class GazefStronoff extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 14, 2);
+        Initialize(0, 14, 3);
 
         SetAffinity_Red(1, 1, 0);
         SetAffinity_Light(1);
 
-        SetAffinityRequirement(Affinity.Red, 5);
+        SetAffinityRequirement(Affinity.Red, 1);
 
         SetEthereal(true);
     }
@@ -37,11 +38,21 @@ public class GazefStronoff extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.GainBlock(block);
-        GameActions.Bottom.GainTemporaryStats(magicNumber, 0, 0);
+        GameActions.Bottom.StackPower(new DeEnergizedPower(p, 1)).ShowEffect(false, false);
 
-        if (!TryUseAffinity(Affinity.Red))
+        if (CheckSpecialCondition(true))
         {
-            GameActions.Bottom.StackPower(new DeEnergizedPower(p, 1)).ShowEffect(false, false);
+            GameActions.Bottom.RemovePower(p, p, WeakPower.POWER_ID);
         }
+        else
+        {
+            GameActions.Bottom.GainAffinity(Affinity.Red, 1, true);
+        }
+    }
+
+    @Override
+    public boolean CheckSpecialCondition(boolean tryUse)
+    {
+        return player.hasPower(WeakPower.POWER_ID) && super.CheckSpecialCondition(tryUse);
     }
 }

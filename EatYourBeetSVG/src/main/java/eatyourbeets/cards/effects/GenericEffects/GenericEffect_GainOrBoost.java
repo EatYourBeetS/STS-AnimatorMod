@@ -45,6 +45,6 @@ public class GenericEffect_GainOrBoost extends GenericEffect
     @Override
     public void Use(EYBCard card, AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Bottom.StackAffinityPower(affinity, amount, retain);
+        GameActions.Bottom.GainAffinity(affinity, amount, retain);
     }
 }

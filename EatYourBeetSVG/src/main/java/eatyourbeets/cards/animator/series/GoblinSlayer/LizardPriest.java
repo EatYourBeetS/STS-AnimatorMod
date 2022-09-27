@@ -34,7 +34,7 @@ public class LizardPriest extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.GainBlock(block);
-        GameActions.Bottom.StackAffinityPower(Affinity.Red, 1, upgraded);
-        GameActions.Bottom.StackAffinityPower(Affinity.Light, 1, upgraded);
+        GameActions.Bottom.GainAffinity(Affinity.Red, 1, upgraded);
+        GameActions.Bottom.GainAffinity(Affinity.Light, 1, upgraded);
     }
 }

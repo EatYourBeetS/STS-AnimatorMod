@@ -55,7 +55,7 @@ public class LivingPicture extends EnchantableRelic implements CustomSavable<Int
     @Override
     public void OnAffinitySealed(EYBCard card, boolean manual)
     {
-        if (IsEnabled())
+        if (IsEnabled() && player.hand.contains(card))
         {
             GameActions.Bottom.GainInspiration(DRAW_ESSENCE);
             flash();

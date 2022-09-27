@@ -346,8 +346,8 @@ public class GUI_Button extends GUIElement
             if (smartText)
             {
                 font.getData().setScale(fontScale * scale);
-                final float width = RenderHelpers.GetSmartWidth(font, text);
-                RenderHelpers.WriteSmartText(sb, font, text, hb.cX - (width * 0.5f), hb.y + (hb.height * 0.625f), hb.width, color, adjustIconSize);
+                final float width = RenderHelpers.GetSmartWidth(GetPlayerClass(), font, text);
+                RenderHelpers.WriteSmartText(GetPlayerClass(), sb, font, text, hb.cX - (width * 0.5f), hb.y + (hb.height * 0.625f), hb.width, color, adjustIconSize);
             }
             else
             {

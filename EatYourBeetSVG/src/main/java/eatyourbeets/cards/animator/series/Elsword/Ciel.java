@@ -27,10 +27,10 @@ public class Ciel extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 4, 12, 1);
-        SetUpgrade(0, 1, 0, 1);
+        Initialize(0, 4, 12, 2);
+        SetUpgrade(0, 2, 0, 0);
 
-        SetAffinity_Green(1, 0, 1);
+        SetAffinity_Green(1);
         SetAffinity_Dark(2);
 
         SetAffinityRequirement(Affinity.Dark, 1);
@@ -48,30 +48,20 @@ public class Ciel extends AnimatorCard
         GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.GainBlock(block);
 
-        GameActions.Bottom.ModifyAllCopies(Lu.DATA.ID)
-        .AddCallback(info, (info2, c) ->
+        if (info.TryActivateStarter())
         {
-            final boolean activate;
-            if (!info2.HasData())
-            {
-                activate = info2.SetData(TryUseAffinity(Affinity.Dark));
-            }
-            else
-            {
-                activate = info2.GetData(false);
-            }
+            GameActions.Bottom.ApplyLockOn(TargetHelper.Enemies(), secondaryValue);
+        }
 
-            if (activate)
+        if (CheckSpecialCondition(true))
+        {
+            GameActions.Bottom.ModifyAllCopies(Lu.DATA.ID)
+            .AddCallback(info, (info2, c) ->
             {
                 GameUtilities.IncreaseDamage(c, magicNumber, false);
                 GameUtilities.SetCardTag(c, HASTE, true);
                 c.flash();
-            }
-        });
-
-        if (info.TryActivateStarter())
-        {
-            GameActions.Bottom.ApplyLockOn(TargetHelper.Enemies(), secondaryValue);
+            });
         }
     }
 
@@ -79,6 +69,13 @@ public class Ciel extends AnimatorCard
     public void triggerOnAffinitySeal(boolean reshuffle)
     {
         super.triggerOnAffinitySeal(reshuffle);
+
         GameActions.Bottom.ApplyLockOn(TargetHelper.Enemies(), secondaryValue);
+    }
+
+    @Override
+    public boolean CheckSpecialCondition(boolean tryUse)
+    {
+        return GameUtilities.GetAllInBattleCopies(Lu.DATA.ID).size() > 0 && super.CheckSpecialCondition(tryUse);
     }
 }

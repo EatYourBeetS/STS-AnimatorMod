@@ -38,6 +38,12 @@ public class Destroyer extends AnimatorCard
     }
 
     @Override
+    protected void OnUpgrade()
+    {
+        SetRetainOnce(true);
+    }
+
+    @Override
     public ColoredString GetSpecialVariableString()
     {
         return GetSpecialVariableString(BURNING_AMOUNT);

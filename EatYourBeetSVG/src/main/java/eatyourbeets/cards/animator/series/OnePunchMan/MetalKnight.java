@@ -26,20 +26,14 @@ public class MetalKnight extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(13, 0, 3);
+        Initialize(12, 0, 3);
+        SetUpgrade(4, 0, 0);
 
         SetAffinity_Red(1);
         SetAffinity_Blue(1, 0, 2);
         SetAffinity_Dark(1);
 
-        SetExhaust(true);
         SetInnate(true);
-    }
-
-    @Override
-    protected void OnUpgrade()
-    {
-        SetExhaust(false);
     }
 
     @Override

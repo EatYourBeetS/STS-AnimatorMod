@@ -2,6 +2,7 @@ package eatyourbeets.cards.animator.special;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.cards.animator.tokens.AffinityToken;
 import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
@@ -25,11 +26,12 @@ public class Sora_BattlePlan3 extends Sora_BattlePlan
     @Override
     public void OnLateUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.ObtainAffinityToken(Affinity.General, false).Repeat(magicNumber);
-
         for (Affinity a : Affinity.Basic())
         {
-            GameActions.Bottom.StackAffinityPower(a, 1, true);
+            GameActions.Bottom.GainAffinity(a, 1, true);
         }
+
+        AffinityToken.SelectTokenAction(name, false, false, 1);
+        AffinityToken.SelectTokenAction(name, false, false, 1);
     }
 }

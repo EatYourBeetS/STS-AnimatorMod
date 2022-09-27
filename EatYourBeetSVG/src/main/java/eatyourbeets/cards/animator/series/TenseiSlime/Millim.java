@@ -1,21 +1,19 @@
 package eatyourbeets.cards.animator.series.TenseiSlime;
 
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.rewards.RewardItem;
+import com.megacrit.cardcrawl.orbs.Dark;
 import eatyourbeets.cards.base.*;
+import eatyourbeets.cards.base.modifiers.CostModifiers;
 import eatyourbeets.effects.AttackEffects;
-import eatyourbeets.interfaces.listeners.OnReceiveRewardsListener;
-import eatyourbeets.orbs.animator.Chaos;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
 
-import java.util.ArrayList;
-
-public class Millim extends AnimatorCard implements OnReceiveRewardsListener
+public class Millim extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Millim.class)
-            .SetAttack(2, CardRarity.COMMON, EYBAttackType.Elemental)
+            .SetAttack(1, CardRarity.COMMON, EYBAttackType.Elemental)
             .SetMaxCopies(0)
             .SetSeriesFromClassPackage()
             .ModifyRewards((data, rewards) ->
@@ -23,7 +21,13 @@ public class Millim extends AnimatorCard implements OnReceiveRewardsListener
                 final EYBCard copy = data.GetFirstCopy(player.masterDeck);
                 if (copy != null)
                 {
-                    GR.Common.Dungeon.TryReplaceFirstCardReward(rewards, (5 - Math.min(4, copy.timesUpgraded / 2)) * 0.05f, true, data);
+                    float chances = 0.075f;
+                    if (copy.timesUpgraded < 5)
+                    {
+                        chances += (5 - copy.timesUpgraded) * 0.025f;
+                    }
+
+                    GR.Common.Dungeon.TryReplaceFirstCardReward(rewards, chances, true, data);
                 }
             });
 
@@ -31,35 +35,29 @@ public class Millim extends AnimatorCard implements OnReceiveRewardsListener
     {
         super(DATA);
 
-        Initialize(6, 0, 2);
+        Initialize(15, 0, 3);
 
         SetAffinity_Star(1, 0, 1);
 
-        SetAffinityRequirement(Affinity.Star, 3);
         SetUnique(true, true);
-    }
-
-    @Override
-    public void OnReceiveRewards(ArrayList<RewardItem> rewards, boolean normalRewards)
-    {
-        if (normalRewards)
-        {
-            GR.Common.Dungeon.TryReplaceFirstCardReward(rewards, (5 - Math.min(4, timesUpgraded / 2)) * 0.05f, c -> c.rarity == CardRarity.COMMON, DATA);
-        }
     }
 
     @Override
     protected void OnUpgrade()
     {
-        if (timesUpgraded % 3 == 1)
+        if (timesUpgraded <= 4)
         {
-            upgradeMagicNumber(1);
-            upgradeDamage(1);
+            upgradeDamage(2);
+            upgradeMagicNumber(0);
         }
         else
         {
-            upgradeMagicNumber(0);
-            upgradeDamage(2);
+            if (timesUpgraded == 5)
+            {
+                upgradeMagicNumber(-1);
+            }
+
+            upgradeDamage(1);
         }
     }
 
@@ -67,15 +65,16 @@ public class Millim extends AnimatorCard implements OnReceiveRewardsListener
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_HEAVY);
-
-        for (int i = 0; i < magicNumber; i++)
+        GameActions.Bottom.ChannelOrb(new Dark());
+        GameActions.Bottom.SelectFromPile(name, magicNumber, p.drawPile)
+        .SetOptions(false, false, true)
+        .SetFilter(c -> c.costForTurn > 0)
+        .AddCallback(cards ->
         {
-            GameActions.Bottom.GainRandomAffinityPower(1, false);
-        }
-
-        if (info.CanActivateLimited && TryUseAffinity(Affinity.Star) && info.TryActivateLimited())
-        {
-            GameActions.Bottom.ChannelOrb(new Chaos());
-        }
+            for (AbstractCard c : cards)
+            {
+                CostModifiers.For(c).Add(cardID, 1);
+            }
+        });
     }
 }

@@ -9,6 +9,7 @@ import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.orbs.animator.Fire;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.animator.FlamingWeaponPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
@@ -42,7 +43,6 @@ public class Shizu extends AnimatorCard
 
         if (CheckSpecialCondition(true))
         {
-            this.exhaustOnUseOnce = true;
             GameActions.Bottom.MakeCardInHand(new Shizu_Ifrit()).SetUpgrade(upgraded, false);
         }
     }
@@ -50,6 +50,11 @@ public class Shizu extends AnimatorCard
     @Override
     public boolean CheckSpecialCondition(boolean tryUse)
     {
-        return GameUtilities.GetOrbCount(Dark.ORB_ID) >= 1 && GameUtilities.GetOrbCount(Fire.ORB_ID) >= 1;
+        if (CombatStats.CanActivateLimited(cardID) && (GameUtilities.GetOrbCount(Dark.ORB_ID) >= 1) && (GameUtilities.GetOrbCount(Fire.ORB_ID) >= 1))
+        {
+            return !tryUse || CombatStats.TryActivateLimited(cardID);
+        }
+
+        return false;
     }
 }

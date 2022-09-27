@@ -23,6 +23,7 @@ public class TukaLunaMarceau extends AnimatorCard
         SetUpgrade(0, 1, 0);
 
         SetAffinity_Green(1);
+        SetAffinity_Light(1);
     }
 
     @Override

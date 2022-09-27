@@ -20,7 +20,7 @@ public class PandorasActor extends AnimatorCard
         super(DATA);
 
         Initialize(0, 4, 4);
-        SetUpgrade(0, 2, 2);
+        SetUpgrade(0, 4, 0);
 
         SetAffinity_Star(1, 0, 0);
     }

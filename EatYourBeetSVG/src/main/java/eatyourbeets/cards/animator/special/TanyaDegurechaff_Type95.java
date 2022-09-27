@@ -37,7 +37,7 @@ public class TanyaDegurechaff_Type95 extends AnimatorCard
     {
         for (Affinity a : Affinity.Basic())
         {
-            GameActions.Bottom.StackAffinityPower(a, magicNumber, false);
+            GameActions.Bottom.GainAffinity(a, magicNumber, false);
         }
 
         GameActions.Bottom.SelectFromHand(name, 1, false)

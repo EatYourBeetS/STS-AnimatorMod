@@ -28,7 +28,7 @@ public class ElricEdward extends AnimatorCard
         SetUpgrade(2, 0, 0);
 
         SetAffinity_Blue(1, 1, 1);
-        SetAffinity_Light(1, 0, 1);
+        SetAffinity_Light(1, 1, 1);
 
         SetEvokeOrbCount(1);
     }
@@ -62,10 +62,7 @@ public class ElricEdward extends AnimatorCard
 
                     case CURSE:
                     case STATUS:
-                        if (upgraded)
-                        {
-                            GameActions.Bottom.ChannelOrb(new Fire());
-                        }
+                        GameActions.Bottom.ChannelOrb(new Fire());
                         return;
                 }
             }

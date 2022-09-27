@@ -21,8 +21,8 @@ public class TsurugaMeisai extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 7);
-        SetUpgrade(0, 2);
+        Initialize(0, 8);
+        SetUpgrade(0, 3);
 
         SetAffinity_Red(1);
         SetAffinity_Light(1);

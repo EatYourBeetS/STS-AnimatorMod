@@ -29,7 +29,7 @@ public class Lancer extends AnimatorCard
         SetUpgrade(3, 0, 0);
 
         SetAffinity_Red(1);
-        SetAffinity_Green(1, 1, 1);
+        SetAffinity_Green(2, 0, 1);
     }
 
     @Override

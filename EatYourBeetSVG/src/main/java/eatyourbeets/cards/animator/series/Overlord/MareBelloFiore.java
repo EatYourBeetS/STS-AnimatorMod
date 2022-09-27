@@ -3,10 +3,7 @@ package eatyourbeets.cards.animator.series.Overlord;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
-import eatyourbeets.cards.base.attributes.AbstractAttribute;
-import eatyourbeets.cards.base.attributes.TempHPAttribute;
 import eatyourbeets.orbs.animator.Earth;
-import eatyourbeets.utilities.ColoredString;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -23,28 +20,21 @@ public class MareBelloFiore extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 6, 1);
-        SetUpgrade(0, 0, 0, 1);
+        Initialize(0, 0, 2, 2);
 
         SetAffinity_Blue(1);
         SetAffinity_Green(1);
 
         SetAffinityRequirement(Affinity.Blue, 2);
-        SetAffinityRequirement(Affinity.Green, 2);
 
         SetExhaust(true);
     }
 
     @Override
-    public AbstractAttribute GetSpecialInfo()
+    protected void OnUpgrade()
     {
-        return gainTempHP ? TempHPAttribute.Instance.SetCard(this, true) : null;
-    }
-
-    @Override
-    public ColoredString GetSpecialVariableString()
-    {
-        return super.GetSpecialVariableString(WEAK);
+        SetExhaust(false);
+        SetFading(true);
     }
 
     @Override
@@ -52,7 +42,7 @@ public class MareBelloFiore extends AnimatorCard
     {
         super.OnDrag(m);
 
-        if (m != null && CheckAffinity(Affinity.Green))
+        if (m != null)
         {
             GameUtilities.GetIntent(m).AddWeak();
         }
@@ -63,25 +53,20 @@ public class MareBelloFiore extends AnimatorCard
     {
         super.Refresh(enemy);
 
-        SetAttackTarget(CheckAffinity(Affinity.Green) ? EYBCardTarget.Normal : EYBCardTarget.None);
-        gainTempHP = CheckAffinity(Affinity.Blue);
+        SetAttackTarget(CheckSpecialCondition(false) ? EYBCardTarget.Normal : EYBCardTarget.None);
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        if (TryUseAffinity(Affinity.Blue))
-        {
-            GameActions.Bottom.GainTemporaryHP(magicNumber);
-        }
-        if (TryUseAffinity(Affinity.Green))
-        {
-            GameActions.Bottom.ApplyWeak(p, m, WEAK);
-        }
-
         GameActions.Bottom.ChannelOrbs(Earth::new, secondaryValue);
         GameActions.Bottom.TriggerOrbPassive(player.orbs.size())
         .SetFilter(o -> Earth.ORB_ID.equals(o.ID))
         .SetSequential(true);
+
+        if (CheckSpecialCondition(true))
+        {
+            GameActions.Bottom.ApplyWeak(p, m, WEAK);
+        }
     }
 }

@@ -226,7 +226,7 @@ public class ArthurGaz extends AnimatorCard
             GameActions.Bottom.GainBlock(magicNumber);
             for (Affinity affinity : Affinity.Basic())
             {
-                GameActions.Bottom.StackAffinityPower(affinity, secondaryValue, false);
+                GameActions.Bottom.GainAffinity(affinity, secondaryValue, false);
             }
             GameActions.Bottom.DiscardFromHand(name, 1, true)
             .SetFilter(c -> c.type == CardType.ATTACK);

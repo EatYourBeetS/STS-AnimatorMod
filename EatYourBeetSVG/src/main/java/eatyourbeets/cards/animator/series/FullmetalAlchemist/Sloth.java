@@ -20,7 +20,7 @@ public class Sloth extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(14, 12, 2, 9);
+        Initialize(13, 13, 2, 9);
         SetUpgrade(0, 0, -1, 0);
 
         SetAffinity_Red(2, 0, 2);

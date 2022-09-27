@@ -21,8 +21,8 @@ public class DolaCouronne extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 6);
-        SetUpgrade(0, 0, 3);
+        Initialize(0, 2, 6);
+        SetUpgrade(0, 3, 0);
 
         SetAffinity_Green(1);
         SetAffinity_Light(1);
@@ -39,6 +39,7 @@ public class DolaCouronne extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
+        GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.StackPower(new DolaCouronnePower(p, magicNumber));
     }
 

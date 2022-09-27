@@ -9,6 +9,7 @@ import eatyourbeets.powers.CombatStats;
 import eatyourbeets.ui.common.EYBCardPopupActions;
 import eatyourbeets.utilities.CardSelection;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
 
 public class Sylvia extends AnimatorCard
@@ -26,8 +27,8 @@ public class Sylvia extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 6, 0, 3);
-        SetUpgrade(0, 2, 0, 0);
+        Initialize(0, 5, 2, 3);
+        SetUpgrade(0, 3, 0, 0);
 
         SetAffinity_Red(1);
         SetAffinity_Dark(1);
@@ -53,7 +54,15 @@ public class Sylvia extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.GainBlock(block);
-        GameActions.Bottom.SealAffinities(p.drawPile, magicNumber, false).SetSelection(CardSelection.Random);
+        GameActions.Bottom.SealAffinities(p.drawPile, magicNumber, false)
+        .SetSelection(CardSelection.Random)
+        .AddCallback(cards ->
+        {
+            if (cards.size() > 0)
+            {
+                GameEffects.List.ShowCopies(cards);
+            }
+        });
         GameActions.Bottom.Callback(() -> CombatStats.Affinities.UseAffinity(Affinity.Star, 1));
     }
 }

@@ -59,7 +59,7 @@ public class Megumin extends AnimatorCard
         {
             for (Affinity a : Affinity.Basic())
             {
-                GameActions.Bottom.StackAffinityPower(a, amount);
+                GameActions.Bottom.GainAffinity(a, amount);
             }
         }
     }

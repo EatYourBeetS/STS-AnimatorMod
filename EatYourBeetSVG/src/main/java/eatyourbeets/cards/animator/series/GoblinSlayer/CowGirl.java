@@ -28,6 +28,14 @@ public class CowGirl extends AnimatorCard
     }
 
     @Override
+    public void triggerOnAffinitySeal(boolean reshuffle)
+    {
+        super.triggerOnAffinitySeal(reshuffle);
+
+        GameActions.Bottom.GainTemporaryStats(secondaryValue, secondaryValue, secondaryValue);
+    }
+
+    @Override
     protected void OnUpgrade()
     {
         SetRetainOnce(true);
@@ -45,7 +53,6 @@ public class CowGirl extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.Heal(magicNumber).Overheal(upgraded);
-        GameActions.Bottom.GainTemporaryStats(secondaryValue, secondaryValue, secondaryValue);
         CombatStats.Affinities.AddTempAffinity(Affinity.Star, secondaryValue);
     }
 }

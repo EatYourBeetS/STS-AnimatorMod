@@ -18,13 +18,11 @@ public class ApprenticeCleric extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 1, 2);
+        Initialize(0, 0, 2, 2);
         SetUpgrade(0, 0, 1);
 
         SetAffinity_Light(1, 1, 0);
         SetAffinity_Blue(1);
-
-        SetAffinityRequirement(Affinity.Light, 1);
     }
 
     @Override
@@ -32,11 +30,14 @@ public class ApprenticeCleric extends AnimatorCard
     {
         super.triggerWhenDrawn();
 
-        final int amount =  CombatStats.Affinities.GetPowerAmount(Affinity.Light) * secondaryValue;
-        if (amount > 0)
+        if (CombatStats.TryActivateSemiLimited(cardID))
         {
-            GameActions.Bottom.RecoverHP(amount);
-            GameActions.Bottom.Flash(this);
+            final int amount = CombatStats.Affinities.GetPowerAmount(Affinity.Light) * secondaryValue;
+            if (amount > 0)
+            {
+                GameActions.Bottom.RecoverHP(amount);
+                GameActions.Bottom.Flash(this);
+            }
         }
     }
 

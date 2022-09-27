@@ -25,7 +25,7 @@ public class Shizu_Ifrit extends AnimatorCard
         super(DATA);
 
         Initialize(0, 0, 40);
-        SetUpgrade(0, 0, 10);
+        SetUpgrade(0, 0, 20);
 
         SetAffinity_Red(2);
         SetAffinity_Dark(2);

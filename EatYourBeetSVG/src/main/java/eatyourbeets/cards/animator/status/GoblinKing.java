@@ -34,7 +34,7 @@ public class GoblinKing extends AnimatorCard
         }
         else
         {
-            GameActions.Bottom.StackAffinityPower(Affinity.Dark, 1, true);
+            GameActions.Bottom.GainAffinity(Affinity.Dark, 1, true);
         }
     }
 }

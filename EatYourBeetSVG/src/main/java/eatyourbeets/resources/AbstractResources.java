@@ -16,6 +16,7 @@ import org.apache.commons.lang3.StringUtils;
 import java.io.File;
 import java.lang.reflect.Type;
 import java.nio.charset.StandardCharsets;
+import java.util.Locale;
 import java.util.Map;
 
 public abstract class AbstractResources extends GR
@@ -131,7 +132,7 @@ implements EditCharactersSubscriber, EditCardsSubscriber, EditKeywordsSubscriber
 
     public FileHandle GetFallbackFile(String fileName)
     {
-        return Gdx.files.internal("localization/" + Prefix.toLowerCase() + "/eng/" + fileName);
+        return Gdx.files.internal("localization/" + Prefix.toLowerCase(Locale.ROOT) + "/eng/" + fileName);
     }
 
     public <T> T GetFallbackStrings(String fileName, Type typeOfT)
@@ -166,7 +167,7 @@ implements EditCharactersSubscriber, EditCardsSubscriber, EditKeywordsSubscriber
                 language = Settings.GameLanguage.ENG;
             }
 
-            return Gdx.files.internal("localization/" + Prefix.toLowerCase() + "/" + language.name().toLowerCase() + "/" + fileName);
+            return Gdx.files.internal("localization/" + Prefix.toLowerCase(Locale.ROOT) + "/" + language.name().toLowerCase(Locale.ROOT) + "/" + fileName);
         }
     }
 

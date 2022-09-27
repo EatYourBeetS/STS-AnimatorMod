@@ -7,23 +7,23 @@ import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.utilities.GameActions;
 
-public class Melzalgald_3 extends MelzalgaldAlt
+public class Melzalgald_B extends MelzalgaldAlt
 {
-    public static final EYBCardData DATA = Register(Melzalgald_3.class).SetAttack(1, CardRarity.SPECIAL);
+    public static final EYBCardData DATA = Register(Melzalgald_B.class).SetAttack(1, CardRarity.SPECIAL);
 
-    public Melzalgald_3()
+    public Melzalgald_B()
     {
         super(DATA);
 
         Initialize(6, 0, 2);
         SetUpgrade(0, 0, 1);
-        SetScaling(0, 2, 0);
+        SetScaling(2, 0, 0);
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_HEAVY);
-        GameActions.Bottom.GainAgility(magicNumber);
+        GameActions.Bottom.GainIntellect(magicNumber);
     }
 }

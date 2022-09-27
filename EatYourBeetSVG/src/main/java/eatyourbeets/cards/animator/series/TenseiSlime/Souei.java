@@ -62,8 +62,6 @@ public class Souei extends AnimatorCard
     @Override
     public void OnLateUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.GainCorruption(1, true);
-        GameActions.Bottom.GainAgility(1, true);
         GameActions.Bottom.DiscardFromHand(name, secondaryValue, false)
         .SetOptions(true, true, true)
         .AddCallback(cards ->
@@ -75,10 +73,16 @@ public class Souei extends AnimatorCard
             }
         });
 
-        if (info.CanActivateLimited && TryUseAffinity(Affinity.Green) && info.TryActivateLimited())
+        if (CheckSpecialCondition(true))
         {
             GameActions.Bottom.GainIntangible(1);
         }
+    }
+
+    @Override
+    public boolean CheckSpecialCondition(boolean tryUse)
+    {
+        return super.CheckSpecialConditionLimited(tryUse, super::CheckSpecialCondition);
     }
 
     protected static class SoueiPower extends AnimatorPower

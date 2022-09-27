@@ -61,7 +61,7 @@ public class CatoElAltestan extends AnimatorCard
             }
         });
 
-        if (CheckAffinity(Affinity.Blue))
+        if (CheckSpecialCondition(true))
         {
             GameActions.Bottom.ApplyFreezing(player, m, secondaryValue);
         }

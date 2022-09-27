@@ -81,6 +81,7 @@ public class Enchantment2 extends Enchantment
         else if (upgradeIndex == 3)
         {
             CombatStats.Affinities.AddAffinitySealUses(magicNumber);
+            GameActions.Bottom.GainInspiration(magicNumber);
         }
         else
         {

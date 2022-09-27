@@ -2,6 +2,7 @@ package eatyourbeets.cards.animator.series.Elsword;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.cards.animator.tokens.AffinityToken;
 import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
@@ -15,16 +16,17 @@ public class Ara extends AnimatorCard
     public static final EYBCardData DATA = Register(Ara.class)
             .SetAttack(1, CardRarity.COMMON)
             .SetMaxCopies(2)
-            .SetSeriesFromClassPackage();
+            .SetSeriesFromClassPackage()
+            .PostInitialize(data -> data.AddPreview(AffinityToken.GetCard(Affinity.Green), false));
 
     public Ara()
     {
         super(DATA);
 
         Initialize(3, 0, 2);
-        SetUpgrade(1, 0, 0);
+        SetUpgrade(2, 0, 0);
 
-        SetAffinity_Green(1, 1, 1);
+        SetAffinity_Green(2);
         SetAffinity_Red(1);
 
         SetAffinityRequirement(Affinity.Green, 1);
@@ -60,11 +62,11 @@ public class Ara extends AnimatorCard
         {
             if (cards.size() >= 1)
             {
-                GameActions.Bottom.GainAgility(1, true);
+                GameActions.Bottom.ObtainAffinityToken(Affinity.Green, false);
             }
         });
 
-        if (TryUseAffinity(Affinity.Green))
+        if (CheckSpecialCondition(true))
         {
             GameActions.Bottom.GainInspiration(magicNumber);
         }

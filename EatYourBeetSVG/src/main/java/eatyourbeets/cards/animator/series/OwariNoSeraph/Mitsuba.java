@@ -2,6 +2,7 @@ package eatyourbeets.cards.animator.series.OwariNoSeraph;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
@@ -10,7 +11,6 @@ import eatyourbeets.cards.base.modifiers.DamageModifiers;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
 
 public class Mitsuba extends AnimatorCard
@@ -24,22 +24,12 @@ public class Mitsuba extends AnimatorCard
         super(DATA);
 
         Initialize(6, 2, 2);
-        SetUpgrade(2, 0, 1);
+        SetUpgrade(3, 0, 1);
 
         SetAffinity_Red(1);
         SetAffinity_Light(1);
-    }
 
-    @Override
-    public void triggerOnAffinitySeal(boolean reshuffle)
-    {
-        super.triggerOnAffinitySeal(reshuffle);
-
-        if (CombatStats.TryActivateLimited(cardID))
-        {
-            GameEffects.Queue.ShowCardBriefly(makeStatEquivalentCopy());
-            this.affinities.sealed = false;
-        }
+        SetAffinityRequirement(Affinity.Sealed, 1);
     }
 
     @Override
@@ -47,6 +37,11 @@ public class Mitsuba extends AnimatorCard
     {
         GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_HEAVY);
+
+        if (CheckSpecialCondition(true))
+        {
+            CombatStats.Affinities.AddTempAffinity(Affinity.Star, 1);
+        }
     }
 
     @Override

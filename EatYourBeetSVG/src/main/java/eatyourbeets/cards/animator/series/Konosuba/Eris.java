@@ -21,7 +21,7 @@ public class Eris extends AnimatorCard
         super(DATA);
 
         Initialize(0, 0, 2);
-        SetUpgrade(0, 0, 0);
+        SetCostUpgrade(-1);
 
         SetAffinity_Blue(1);
         SetAffinity_Light(2);
@@ -30,15 +30,9 @@ public class Eris extends AnimatorCard
     }
 
     @Override
-    protected void OnUpgrade()
-    {
-        SetRetain(true);
-    }
-
-    @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.StackAffinityPower(Affinity.Light, 1, true);
+        GameActions.Bottom.GainAffinity(Affinity.Light, 1, true);
         GameActions.Bottom.MakeCard(new Special_Miracle(), p.drawPile).Repeat(magicNumber);
         GameActions.Bottom.StackPower(new ErisPower(p, 1));
     }

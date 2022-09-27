@@ -6,6 +6,7 @@ import eatyourbeets.cards.animator.status.Status_Dazed;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 
 public class ClaudiaDodge extends AnimatorCard
@@ -18,8 +19,8 @@ public class ClaudiaDodge extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 6, 2);
-        SetUpgrade(0, 0, 2);
+        Initialize(0, 8, 2);
+        SetUpgrade(0, 0, 3);
 
         SetAffinity_Blue(1, 0, 1);
         SetAffinity_Green(1);
@@ -33,8 +34,11 @@ public class ClaudiaDodge extends AnimatorCard
     {
         super.triggerWhenDrawn();
 
-        GameActions.Bottom.MakeCardInHand(new Status_Dazed());
-        GameActions.Bottom.Flash(this);
+        if (CombatStats.TryActivateSemiLimited(cardID))
+        {
+            GameActions.Bottom.MakeCardInHand(new Status_Dazed());
+            GameActions.Bottom.Flash(this);
+        }
     }
 
     @Override

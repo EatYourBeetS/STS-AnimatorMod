@@ -23,7 +23,7 @@ public class ZankiKiguchi extends AnimatorCard
         super(DATA);
 
         Initialize(2, 0, 1);
-        SetUpgrade(3, 0, 0);
+        SetUpgrade(0, 0, 1);
 
         SetAffinity_Red(1);
         SetAffinity_Green(0, 0, 1);
@@ -46,7 +46,7 @@ public class ZankiKiguchi extends AnimatorCard
                 {
                     GameActions.Bottom.SFX(SFX.DAMARU, 0.8f, 0.95f, 0.5f);
                     GameActions.Bottom.GainEnergy(1);
-                    GameActions.Bottom.Draw(1);
+                    GameActions.Bottom.Draw(2);
                 }
             });
         }
@@ -55,7 +55,6 @@ public class ZankiKiguchi extends AnimatorCard
     @Override
     public boolean CheckSpecialCondition(boolean tryUse)
     {
-        return !GameUtilities.InStance(NeutralStance.STANCE_ID) && tryUse
-               ? TryUseAffinity(Affinity.Star) : CheckAffinity(Affinity.Star);
+        return !GameUtilities.InStance(NeutralStance.STANCE_ID) && super.CheckSpecialCondition(tryUse);
     }
 }

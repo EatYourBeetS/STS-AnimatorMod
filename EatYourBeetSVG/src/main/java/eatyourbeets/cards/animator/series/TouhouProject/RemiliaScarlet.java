@@ -26,7 +26,7 @@ public class RemiliaScarlet extends AnimatorCard
                 data.AddPopupAction(new EYBCardPopupActions.TouhouProject_Remilia(FlandreScarlet.DATA, 3));
                 data.AddPreview(new FlandreScarlet(), true);
             });
-    public static final int RECOVER_AMOUNT = 6;
+    public static final int RECOVER_AMOUNT = 7;
 
     public RemiliaScarlet()
     {

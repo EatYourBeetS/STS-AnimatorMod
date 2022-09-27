@@ -24,8 +24,8 @@ public class Add extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 3, 2);
-        SetUpgrade(0, 0, 3, 1);
+        Initialize(0, 0, 4, 2);
+        SetUpgrade(0, 0, 2, 1);
 
         SetAffinity_Blue(2);
         SetAffinity_Dark(2);
@@ -46,7 +46,7 @@ public class Add extends AnimatorCard
     @Override
     public void OnLateUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        if (TryUseAffinity(Affinity.Dark))
+        if (CheckSpecialCondition(true))
         {
             GameActions.Bottom.ExhaustFromPile(name, 1, p.hand, p.drawPile, p.discardPile)
             .AddCallback(this::OnCardChosen);

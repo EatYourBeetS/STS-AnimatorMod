@@ -2,9 +2,9 @@ package eatyourbeets.cards.animator.series.OnePunchMan;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.animator.special.Melzalgald_1;
-import eatyourbeets.cards.animator.special.Melzalgald_2;
-import eatyourbeets.cards.animator.special.Melzalgald_3;
+import eatyourbeets.cards.animator.special.Melzalgald_R;
+import eatyourbeets.cards.animator.special.Melzalgald_B;
+import eatyourbeets.cards.animator.special.Melzalgald_G;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
@@ -21,19 +21,19 @@ public class Melzalgald extends AnimatorCard
             .SetSeriesFromClassPackage()
             .PostInitialize(data ->
             {
-                data.AddPreview(new Melzalgald_1(), true);
-                data.AddPreview(new Melzalgald_2(), true);
-                data.AddPreview(new Melzalgald_3(), true);
+                data.AddPreview(new Melzalgald_R(), true);
+                data.AddPreview(new Melzalgald_B(), true);
+                data.AddPreview(new Melzalgald_G(), true);
             });
 
     public Melzalgald()
     {
         super(DATA);
 
-        Initialize(18, 0, 4);
+        Initialize(16, 0, 4);
         SetUpgrade(0, 0, 0);
 
-        SetAffinity_Star(1, 0, 3);
+        SetAffinity_Star(1, 1, 3);
 
         SetExhaust(true);
     }
@@ -58,8 +58,8 @@ public class Melzalgald extends AnimatorCard
         GameActions.Bottom.RecoverHP(magicNumber);
         GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_HEAVY);
 
-        GameActions.Bottom.MakeCardInHand(new Melzalgald_1()).SetUpgrade(upgraded, false);
-        GameActions.Bottom.MakeCardInHand(new Melzalgald_2()).SetUpgrade(upgraded, false);
-        GameActions.Bottom.MakeCardInHand(new Melzalgald_3()).SetUpgrade(upgraded, false);
+        GameActions.Bottom.MakeCardInHand(new Melzalgald_R()).SetUpgrade(upgraded, false);
+        GameActions.Bottom.MakeCardInHand(new Melzalgald_B()).SetUpgrade(upgraded, false);
+        GameActions.Bottom.MakeCardInHand(new Melzalgald_G()).SetUpgrade(upgraded, false);
     }
 }

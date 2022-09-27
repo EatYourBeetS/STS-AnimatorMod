@@ -30,8 +30,8 @@ public class Ain extends AnimatorCard
         Initialize(2, 0, 3);
         SetUpgrade(1, 0, 0);
 
-        SetAffinity_Light(1);
-        SetAffinity_Blue(2, 0, 1);
+        SetAffinity_Light(2);
+        SetAffinity_Blue(2, 0, 2);
 
         SetAffinityRequirement(Affinity.Blue, 2);
     }
@@ -73,11 +73,6 @@ public class Ain extends AnimatorCard
     @Override
     public boolean CheckSpecialCondition(boolean tryUse)
     {
-        if (GameActionManager.totalDiscardedThisTurn > 0)
-        {
-            return true;
-        }
-
-        return tryUse ? TryUseAffinity(Affinity.Blue) : CheckAffinity(Affinity.Blue);
+        return (GameActionManager.totalDiscardedThisTurn > 0) || super.CheckSpecialCondition(tryUse);
     }
 }

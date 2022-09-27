@@ -27,19 +27,13 @@ public class AlinaGray extends AnimatorCard
         super(DATA);
 
         Initialize(0, 0, 1, 3);
+        SetUpgrade(0, 0, 0, 2);
 
         SetAffinity_Blue(1, 1, 0);
         SetAffinity_Green(1);
         SetAffinity_Dark(1);
 
-        SetDelayed(true);
         SetExhaust(true);
-    }
-
-    @Override
-    protected void OnUpgrade()
-    {
-        SetDelayed(false);
     }
 
     @Override

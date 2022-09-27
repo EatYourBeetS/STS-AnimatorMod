@@ -16,7 +16,7 @@ public class AyaShameimaru extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(AyaShameimaru.class)
             .SetSkill(2, CardRarity.UNCOMMON, EYBCardTarget.Self)
-            .SetMaxCopies(1)
+            .ObtainableAsReward((data, deck) -> deck.size() >= (10 + (12 * data.GetTotalCopies(deck))))
             .SetSeriesFromClassPackage();
 
     public AyaShameimaru()
@@ -27,7 +27,7 @@ public class AyaShameimaru extends AnimatorCard
         SetUpgrade(0, 3, 0, 0);
 
         SetAffinity_Green(1, 1, 1);
-        SetAffinity_Light(1);
+        SetAffinity_Light(1, 0, 1);
     }
 
     @Override

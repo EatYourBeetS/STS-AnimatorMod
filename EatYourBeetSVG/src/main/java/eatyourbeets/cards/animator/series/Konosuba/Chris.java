@@ -20,10 +20,10 @@ public class Chris extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(3, 0, 5, 3);
-        SetUpgrade(2, 0, 0, 2);
+        Initialize(3, 0, 5, 4);
+        SetUpgrade(3, 0, 0, 0);
 
-        SetAffinity_Green(1, 0, 0);
+        SetAffinity_Green(1);
     }
 
     @Override

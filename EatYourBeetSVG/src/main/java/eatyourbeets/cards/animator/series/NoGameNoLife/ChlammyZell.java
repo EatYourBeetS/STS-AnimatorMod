@@ -17,26 +17,32 @@ public class ChlammyZell extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 3, 1);
-        SetUpgrade(0, 0, 1);
+        Initialize(0, 0, 1, 4);
+        SetUpgrade(0, 0, 1, 1);
 
         SetAffinity_Blue(1);
         SetAffinity_Dark(1);
 
-        SetAffinityRequirement(Affinity.Blue, 3);
-        SetAffinityRequirement(Affinity.Dark, 3);
+        SetAffinityRequirement(Affinity.Blue, 2);
+        SetAffinityRequirement(Affinity.Dark, 2);
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.GainBlock(block);
-        GameActions.Bottom.Draw(1);
+        GameActions.Bottom.GainInspiration(secondaryValue);
         GameActions.Bottom.DrawNextTurn(magicNumber);
 
-        if (info.CanActivateLimited && CheckAffinity(Affinity.Blue) && TryUseAffinity(Affinity.Dark) && TryUseAffinity(Affinity.Blue) && info.TryActivateLimited())
+        if (CheckSpecialCondition(true))
         {
             GameActions.Bottom.MakeCardInHand(new ChlammyZell_Scheme());
         }
+    }
+
+    @Override
+    public boolean CheckSpecialCondition(boolean tryUse)
+    {
+        return super.CheckSpecialConditionLimited(tryUse, super::CheckSpecialCondition);
     }
 }

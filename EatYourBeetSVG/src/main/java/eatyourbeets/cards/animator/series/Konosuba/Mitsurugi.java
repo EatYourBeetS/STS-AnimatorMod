@@ -33,7 +33,7 @@ public class Mitsurugi extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(8, 0);
+        Initialize(10, 0);
         SetUpgrade(2, 0);
 
         SetAffinity_Red(1, 0, 1);

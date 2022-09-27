@@ -541,7 +541,7 @@ public final class GameActions
 
     public ApplyAffinityPower GainAgility(int amount, boolean retain)
     {
-        return StackAffinityPower(AgilityPower.AFFINITY_TYPE, amount, retain);
+        return GainAffinity(AgilityPower.AFFINITY_TYPE, amount, retain);
     }
 
     public ApplyPower GainArtifact(int amount)
@@ -556,7 +556,7 @@ public final class GameActions
 
     public ApplyAffinityPower GainBlessing(int amount, boolean retain)
     {
-        return StackAffinityPower(BlessingPower.AFFINITY_TYPE, amount, retain);
+        return GainAffinity(BlessingPower.AFFINITY_TYPE, amount, retain);
     }
 
     public GainBlock GainBlock(int amount)
@@ -591,7 +591,7 @@ public final class GameActions
     
     public ApplyAffinityPower GainCorruption(int amount, boolean retain)
     {
-        return StackAffinityPower(CorruptionPower.AFFINITY_TYPE, amount, retain);
+        return GainAffinity(CorruptionPower.AFFINITY_TYPE, amount, retain);
     }
 
     public ApplyPower GainDexterity(int amount)
@@ -626,7 +626,7 @@ public final class GameActions
 
     public ApplyAffinityPower GainForce(int amount, boolean retain)
     {
-        return StackAffinityPower(ForcePower.AFFINITY_TYPE, amount, retain);
+        return GainAffinity(ForcePower.AFFINITY_TYPE, amount, retain);
     }
 
     public GainGold GainGold(int amount)
@@ -651,7 +651,7 @@ public final class GameActions
 
     public ApplyAffinityPower GainIntellect(int amount, boolean retain)
     {
-        return StackAffinityPower(IntellectPower.AFFINITY_TYPE, amount, retain);
+        return GainAffinity(IntellectPower.AFFINITY_TYPE, amount, retain);
     }
 
     public ApplyPower GainMalleable(int amount)
@@ -683,7 +683,7 @@ public final class GameActions
     {
         if (GameUtilities.IsPlayerClass(GR.Animator.PlayerClass))
         {
-            return StackAffinityPower(null, amount, retain);
+            return GainAffinity(null, amount, retain);
         }
         
         return GainRandomAffinityPower(amount, retain, Affinity.Red, Affinity.Green, Affinity.Blue);
@@ -691,7 +691,7 @@ public final class GameActions
 
     public ApplyAffinityPower GainRandomAffinityPower(int amount, boolean retain, Affinity... affinities)
     {
-        return StackAffinityPower(GameUtilities.GetRandomElement(affinities), amount, retain);
+        return GainAffinity(GameUtilities.GetRandomElement(affinities), amount, retain);
     }
 
     public ApplyPower GainStrength(int amount)
@@ -1183,17 +1183,22 @@ public final class GameActions
         return Add(new SpendEnergy(amount, canSpendLess));
     }
 
-    public ApplyAffinityPower StackAffinityPower(Affinity affinity)
+    public ApplyAffinityPower BoostAffinity(Affinity affinity)
     {
-        return StackAffinityPower(affinity, 1, false);
+        return GainAffinity(affinity, 1, true);
     }
 
-    public ApplyAffinityPower StackAffinityPower(Affinity affinity, int amount)
+    public ApplyAffinityPower GainAffinity(Affinity affinity)
     {
-        return StackAffinityPower(affinity, amount, false);
+        return GainAffinity(affinity, 1, false);
     }
 
-    public ApplyAffinityPower StackAffinityPower(Affinity affinity, int amount, boolean retain)
+    public ApplyAffinityPower GainAffinity(Affinity affinity, int amount)
+    {
+        return GainAffinity(affinity, amount, false);
+    }
+
+    public ApplyAffinityPower GainAffinity(Affinity affinity, int amount, boolean retain)
     {
         return Add(new ApplyAffinityPower(player, affinity, amount, retain));
     }

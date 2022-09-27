@@ -26,8 +26,8 @@ public class MamiTomoe_Candeloro extends AnimatorCard implements OnLoseHPSubscri
     {
         super(DATA);
 
-        Initialize(0, 18, 1);
-        SetUpgrade(0, 4, 0);
+        Initialize(0, 20, 1);
+        SetUpgrade(0, 6, 0);
 
         SetAffinity_Dark(2);
         SetAffinity_Light(2);

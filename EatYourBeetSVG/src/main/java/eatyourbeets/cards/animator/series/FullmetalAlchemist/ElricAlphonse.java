@@ -49,6 +49,6 @@ public class ElricAlphonse extends AnimatorCard
     @Override
     public boolean CheckSpecialCondition(boolean tryUse)
     {
-        return CombatStats.Affinities.GetPowerAmount(Affinity.Blue) < magicNumber;
+        return CombatStats.Affinities.GetUsableAffinity(Affinity.Blue) < magicNumber;
     }
 }

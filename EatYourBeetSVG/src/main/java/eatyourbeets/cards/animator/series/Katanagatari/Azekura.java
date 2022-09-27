@@ -16,7 +16,7 @@ public class Azekura extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 7, 3);
+        Initialize(0, 8, 3);
         SetUpgrade(0, 0, 1);
 
         SetAffinity_Red(1, 1, 1);
@@ -36,7 +36,7 @@ public class Azekura extends AnimatorCard
             GameActions.Bottom.ModifyAllCopies(cardID, c -> GameUtilities.DecreaseMagicNumber(c, 1, false));
         }
 
-        if (!TryUseAffinity(Affinity.Red))
+        if (!CheckSpecialCondition(true))
         {
             GameActions.Bottom.DrawReduction(1);
         }

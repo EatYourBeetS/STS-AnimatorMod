@@ -153,8 +153,10 @@ public class CommonResources extends AbstractResources
                     final Keyword k = (Keyword) field.get(null);
                     if (CardTooltips.FindByName(null, k.NAMES[0]) == null)
                     {
+                        final String id = JUtils.Capitalize(field.getName());
                         final EYBCardTooltip tooltip = new EYBCardTooltip(JUtils.Capitalize(k.NAMES[0]), k.DESCRIPTION);
-                        CardTooltips.RegisterID(null, JUtils.Capitalize(field.getName()), tooltip);
+                        JUtils.LogInfo(this, "Registering keyword:" + id + " Title:" + tooltip.title);
+                        CardTooltips.RegisterID(null, id, tooltip);
 
                         for (String name : k.NAMES)
                         {

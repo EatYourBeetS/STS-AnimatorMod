@@ -46,10 +46,10 @@ public class Spearman extends AnimatorCard
         GameActions.Bottom.GainForce(1, true);
         GameActions.Bottom.MakeCardInHand(new Status_Wound());
 
-        if (CheckAffinity(Affinity.Red))
+        if (CheckSpecialCondition(true))
         {
             GameActions.Bottom.Draw(1)
-            .SetFilter(c -> Witch.DATA.IsCard(c) && TryUseAffinity(Affinity.Green), false)
+            .SetFilter(Witch.DATA::IsCard, false)
             .AddCallback(cards ->
             {
                 for (AbstractCard c : cards)
@@ -58,5 +58,19 @@ public class Spearman extends AnimatorCard
                 }
             });
         }
+    }
+
+    @Override
+    public boolean CheckSpecialCondition(boolean tryUse)
+    {
+        for (AbstractCard c : player.drawPile.group)
+        {
+            if (Witch.DATA.IsCard(c))
+            {
+                return super.CheckSpecialCondition(tryUse);
+            }
+        }
+
+        return false;
     }
 }

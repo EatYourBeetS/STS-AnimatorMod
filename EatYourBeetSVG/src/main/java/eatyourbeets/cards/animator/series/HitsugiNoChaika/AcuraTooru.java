@@ -34,7 +34,7 @@ public class AcuraTooru extends AnimatorCard
         Initialize(0, 5, 0, 1);
         SetUpgrade(0, 0, 0, 1);
 
-        SetAffinity_Green(1);
+        SetAffinity_Green(1, 0, 1);
         SetAffinity_Red(1);
     }
 

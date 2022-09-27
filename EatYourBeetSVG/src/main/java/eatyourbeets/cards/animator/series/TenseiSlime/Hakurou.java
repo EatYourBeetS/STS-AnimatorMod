@@ -30,8 +30,6 @@ public class Hakurou extends AnimatorCard
 
         SetAffinity_Red(1, 0, 0);
         SetAffinity_Green(1, 1, 2);
-
-        SetDelayed(true);
     }
 
     @Override

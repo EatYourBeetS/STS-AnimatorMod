@@ -22,7 +22,7 @@ public class EmiyaShirou extends AnimatorCard
         super(DATA);
 
         Initialize(0, 5, 2);
-        SetUpgrade(0, 1, 1);
+        SetUpgrade(0, 2, 1);
 
         SetAffinity_Red(1);
         SetAffinity_Light(1);

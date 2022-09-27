@@ -27,7 +27,7 @@ public class Ainz extends AnimatorCard
         super(DATA);
 
         Initialize(0, 0);
-        SetUpgrade(0, 6);
+        SetUpgrade(0, 7);
 
         SetAffinity_Red(1);
         SetAffinity_Blue(2);
@@ -97,7 +97,7 @@ public class Ainz extends AnimatorCard
             {
                 if (a != Affinity.Light)
                 {
-                    GameActions.Bottom.StackAffinityPower(a, amount, true);
+                    GameActions.Bottom.GainAffinity(a, amount, true);
                 }
             }
 

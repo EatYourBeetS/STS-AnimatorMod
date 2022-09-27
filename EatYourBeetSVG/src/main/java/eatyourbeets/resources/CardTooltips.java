@@ -228,6 +228,7 @@ public class CardTooltips
     public static void RegisterID(AbstractPlayer.PlayerClass playerClass, String id, EYBCardTooltip tooltip)
     {
         GetContainer(playerClass).AddByID(id, tooltip);
+        tooltip.playerClass = playerClass;
         tooltip.id = id;
     }
 

@@ -23,7 +23,7 @@ public class Cocytus extends AnimatorCard
         super(DATA);
 
         Initialize(13, 0, 2, 1);
-        SetUpgrade(0, 0, 1, 1);
+        SetUpgrade(2, 0, 1, 1);
 
         SetAffinity_Red(2, 0, 3);
 
@@ -60,7 +60,7 @@ public class Cocytus extends AnimatorCard
             }
         });
 
-        if (TryUseAffinity(Affinity.Blue))
+        if (CheckSpecialCondition(true))
         {
             GameActions.Bottom.ApplyFreezing(p, m, 1);
         }

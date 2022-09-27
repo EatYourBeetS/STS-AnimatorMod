@@ -25,32 +25,28 @@ public class Vesta extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 3);
+        Initialize(0, 0, 2, 3);
+        SetUpgrade(0, 0, 1, 0);
 
         SetAffinity_Blue(1);
 
-        SetAffinityRequirement(Affinity.Blue, 3);
+        SetAffinityRequirement(Affinity.Star, 1);
         SetExhaust(true);
-    }
-
-    @Override
-    protected void OnUpgrade()
-    {
-        SetRetainOnce(true);
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.StackAffinityPower(Affinity.Blue);
+        GameActions.Bottom.GainAffinity(Affinity.Blue, magicNumber, false);
+        GameActions.Bottom.GainInspiration(magicNumber);
 
         //TODO: This could all be done in VestaPower
-        VestaElixirEffects.BeginCreateElixir((Vesta) this.makeStatEquivalentCopy(), TryUseAffinity(Affinity.Blue));
+        VestaElixirEffects.BeginCreateElixir((Vesta) this.makeStatEquivalentCopy(), CheckSpecialCondition(true));
     }
 
     public void ResearchElixir(Vesta_Elixir elixir)
     {
-        int timer = magicNumber;
+        int timer = secondaryValue;
         final ArrayList<VestaElixirEffect> effects = new ArrayList<>();
         for (VestaElixirEffect effect : elixir.effects)
         {

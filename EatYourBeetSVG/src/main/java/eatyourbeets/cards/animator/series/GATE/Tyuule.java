@@ -99,7 +99,7 @@ public class Tyuule extends AnimatorCard implements OnCardResetListener
             }
         }
 
-        if (TryUseAffinity(Affinity.Green))
+        if (CheckSpecialCondition(true))
         {
             GameActions.Bottom.ApplyPoison(p, m, magicNumber);
         }

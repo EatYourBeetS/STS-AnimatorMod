@@ -31,7 +31,7 @@ public class Sonic extends AnimatorCard
         SetAffinity_Green(2);
         SetAffinity_Dark(1);
 
-        SetAffinityRequirement(Affinity.Green, 2);
+        SetAffinityRequirement(Affinity.Dark, 1);
     }
 
     @Override
@@ -41,7 +41,7 @@ public class Sonic extends AnimatorCard
         GameActions.Bottom.GainBlur(secondaryValue);
         GameActions.Bottom.StackPower(new SonicPower(p, magicNumber));
 
-        if (TryUseAffinity(Affinity.Green))
+        if (CheckSpecialCondition(true))
         {
             GameActions.Bottom.CreateThrowingKnives(1);
         }

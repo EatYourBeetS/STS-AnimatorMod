@@ -31,13 +31,13 @@ public class PinaCoLada extends AnimatorCard
     {
         super.Refresh(enemy);
 
-        SetPlayable(CheckAffinity(Affinity.Light));
+        SetPlayable(CheckSpecialCondition(false));
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        if (TryUseAffinity(Affinity.Light))
+        if (CheckSpecialCondition(true))
         {
             GameActions.Bottom.StackPower(new PinaCoLadaPower(p, 1));
         }

@@ -19,11 +19,11 @@ public class Rena extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 3, 1, 1);
+        Initialize(0, 4, 1, 1);
         SetUpgrade(0, 2);
 
         SetAffinity_Green(1, 1, 1);
-        SetAffinity_Dark(1);
+        SetAffinity_Dark(1, 1, 1);
     }
 
     @Override

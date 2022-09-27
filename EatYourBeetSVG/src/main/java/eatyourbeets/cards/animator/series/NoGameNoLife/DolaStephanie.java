@@ -18,7 +18,7 @@ public class DolaStephanie extends AnimatorCard
             .SetSeriesFromClassPackage()
             .PostInitialize(data ->
             {
-                for (EYBCardData d : AffinityToken.GetCards())
+                for (EYBCardData d : AffinityToken.GetCardData())
                 {
                     data.AddPreview(d.CreateNewInstance(), true);
                 }
@@ -32,20 +32,19 @@ public class DolaStephanie extends AnimatorCard
 
         SetAffinity_Star(1);
 
-        SetAffinityRequirement(Affinity.Star, 2);
+        SetAffinityRequirement(Affinity.Sealed, 1);
 
-        SetExhaust(true);
-    }
-
-    @Override
-    protected void OnUpgrade()
-    {
-        SetExhaust(false);
+        SetFading(true);
     }
 
     @Override
     public void OnLateUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
+        if (upgraded)
+        {
+            GameActions.Bottom.Draw(1);
+        }
+
         GameActions.Bottom.SelectFromHand(name, 1, false)
         .SetMessage(GR.Common.Strings.HandSelection.MoveToDrawPile)
         .AddCallback(info, (info2, cards) ->
@@ -55,7 +54,7 @@ public class DolaStephanie extends AnimatorCard
                 GameActions.Top.MoveCard(c, player.hand, player.drawPile);
 
                 final EYBCardAffinities a = GameUtilities.GetAffinities(c);
-                if (a != null && TryUseAffinity(Affinity.Star))
+                if (a != null && !a.sealed && CheckSpecialCondition(true))
                 {
                     final int star = a.GetLevel(Affinity.Star, true);
                     if (star > 0)

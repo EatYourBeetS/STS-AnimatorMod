@@ -29,8 +29,8 @@ public class KyokoSakura extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(11, 0);
-        SetUpgrade(2, 0);
+        Initialize(11, 0, 1);
+        SetUpgrade(3, 0);
 
         SetAffinity_Red(1, 1, 0);
         SetAffinity_Blue(1);
@@ -42,10 +42,10 @@ public class KyokoSakura extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.DealDamageToRandomEnemy(this, AttackEffects.SPEAR).SetVFXColor(Color.RED);
+        GameActions.Bottom.Draw(magicNumber);
 
-        if (TryUseAffinity(Affinity.Red))
+        if (CheckSpecialCondition(true))
         {
-            GameActions.Bottom.GainForce(1);
             GameActions.Bottom.ChannelOrb(new Fire());
         }
     }

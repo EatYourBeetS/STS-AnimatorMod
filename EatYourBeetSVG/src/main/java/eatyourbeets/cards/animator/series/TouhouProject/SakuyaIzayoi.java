@@ -1,12 +1,12 @@
 package eatyourbeets.cards.animator.series.TouhouProject;
 
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.special.ThrowingKnife;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.powers.AnimatorPower;
-import eatyourbeets.stances.AgilityStance;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -28,15 +28,20 @@ public class SakuyaIzayoi extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 2);
+        Initialize(0, 4);
         SetUpgrade(0, 2);
 
         SetAffinity_Red(1);
         SetAffinity_Green(1);
 
         SetExhaust(true);
+    }
 
-        SetAffinityRequirement(Affinity.Green, 2);
+    @Override
+    protected void OnUpgrade()
+    {
+        SetExhaust(false);
+        SetFading(true);
     }
 
     @Override
@@ -45,20 +50,30 @@ public class SakuyaIzayoi extends AnimatorCard
         GameActions.Bottom.GainBlock(block);
 
         int x = GameUtilities.UseXCostEnergy(this);
-        if (TryUseAffinity(Affinity.Green))
-        {
-            x += 1;
-        }
-        if (AgilityStance.IsActive())
+        if (CheckSpecialCondition(true))
         {
             x += 1;
         }
 
         if (x > 0)
         {
-            GameActions.Bottom.GainAgility(upgraded ? x : (x - 1));
+            GameActions.Bottom.GainAgility(x);
             GameActions.Bottom.StackPower(new SakuyaIzayoiPower(p, x));
         }
+    }
+
+    @Override
+    public boolean CheckSpecialCondition(boolean tryUse)
+    {
+        for (AbstractCard c : player.hand.group)
+        {
+            if (c instanceof ThrowingKnife)
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public static class SakuyaIzayoiPower extends AnimatorPower

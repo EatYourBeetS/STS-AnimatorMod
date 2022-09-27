@@ -19,7 +19,7 @@ public class Demiurge extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0,0,7);
+        Initialize(0,0,6);
         SetUpgrade(0,0,-2);
 
         SetAffinity_Blue(1);

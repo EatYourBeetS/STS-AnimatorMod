@@ -47,7 +47,7 @@ public class AcuraAkari extends AnimatorCard
         .SetOptions(true, false, true)
         .AddCallback(cards -> GameActions.Bottom.CreateThrowingKnives(cards.size()));
 
-        if (CheckSpecialCondition(true) || TryUseAffinity(Affinity.Dark))
+        if (CheckSpecialCondition(true))
         {
             GameActions.Bottom.StackPower(new TemporaryEnvenomPower(p, secondaryValue));
         }
@@ -56,6 +56,6 @@ public class AcuraAkari extends AnimatorCard
     @Override
     public boolean CheckSpecialCondition(boolean tryUse)
     {
-        return AgilityStance.IsActive();
+        return AgilityStance.IsActive() || super.CheckSpecialCondition(tryUse);
     }
 }

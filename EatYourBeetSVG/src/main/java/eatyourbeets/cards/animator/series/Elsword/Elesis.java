@@ -106,7 +106,7 @@ public class Elesis extends AnimatorCard implements CustomSavable<Elesis.Form>
             case Pyro:
             {
                 GameActions.Bottom.ApplyBurning(p, m, GameUtilities.GetDebuffsCount(m.powers) * magicNumber).SkipIfZero(true);
-                if (TryUseAffinity(Affinity.Green) && info.TryActivateSemiLimited())
+                if (CheckSpecialCondition(true))
                 {
                     GameActions.Bottom.Draw(2);
                 }
@@ -292,5 +292,13 @@ public class Elesis extends AnimatorCard implements CustomSavable<Elesis.Form>
     {
         bonusDamage += amount;
         baseDamage += amount;
+    }
+
+    @Override
+    public boolean CheckSpecialCondition(boolean tryUse)
+    {
+        return currentForm == Form.Saber
+             ? super.CheckSpecialConditionSemiLimited(tryUse, super::CheckSpecialCondition)
+             : super.CheckSpecialCondition(tryUse);
     }
 }

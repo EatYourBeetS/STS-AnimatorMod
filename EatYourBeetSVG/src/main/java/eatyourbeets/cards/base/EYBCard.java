@@ -33,6 +33,7 @@ import eatyourbeets.resources.animator.AnimatorImages;
 import eatyourbeets.ui.cards.CardPreview;
 import eatyourbeets.ui.common.EYBCardPopup;
 import eatyourbeets.utilities.*;
+import javafx.util.Pair;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -50,6 +51,7 @@ public abstract class EYBCard extends EYBCardBase
     protected Color borderIndicatorColor;
     protected CardPreview cardPreview;
     protected boolean usingAffinities;
+    protected int affinityRequirement;
 
     public static final String UNPLAYABLE_MESSAGE = CardCrawlGame.languagePack.getCardStrings(Tactician.ID).EXTENDED_DESCRIPTION[0];
     public static final int UNPLAYABLE_COST = -2;
@@ -340,7 +342,74 @@ public abstract class EYBCard extends EYBCardBase
 
     public boolean CheckSpecialCondition(boolean tryUse)
     {
+        return affinityRequirement > 0 && CheckAffinities(tryUse);
+    }
+
+    public boolean CheckSpecialConditionLimited(boolean tryUse, FuncT1<Boolean, Boolean> condition)
+    {
+        boolean t = CombatStats.CanActivateLimited(cardID);
+        if (t)
+        {
+            t = condition.Invoke(tryUse);
+            if (t)
+            {
+                if (tryUse)
+                {
+                    return CombatStats.TryActivateLimited(cardID);
+                }
+
+                return true;
+            }
+        }
+
         return false;
+    }
+
+    public boolean CheckSpecialConditionSemiLimited(boolean tryUse, FuncT1<Boolean, Boolean> condition)
+    {
+        boolean t = CombatStats.CanActivateSemiLimited(cardID);
+        if (t)
+        {
+            t = condition.Invoke(tryUse);
+            if (t)
+            {
+                if (tryUse)
+                {
+                    return CombatStats.TryActivateSemiLimited(cardID);
+                }
+
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public boolean CheckAffinities(boolean tryUse)
+    {
+        final ArrayList<Pair<Affinity, Integer>> toUse = new ArrayList<>();
+        for (Affinity a : Affinity.All())
+        {
+            final int req = affinities.GetRequirement(a);
+            if (req > 0)
+            {
+                if (!CheckAffinity(a, req))
+                {
+                    return false;
+                }
+                else if (tryUse)
+                {
+                    toUse.add(new Pair<>(a, req));
+                }
+            }
+        }
+
+        for (Pair<Affinity, Integer> pair : toUse)
+        {
+            TryUseAffinity(pair.getKey(), pair.getValue());
+        }
+
+        return true;
     }
 
     public boolean CheckAffinity(Affinity affinity)
@@ -350,7 +419,7 @@ public abstract class EYBCard extends EYBCardBase
 
     public boolean CheckAffinity(Affinity affinity, int amount)
     {
-        if (!CombatStats.Affinities.CanUseAffinities())
+        if (isInAutoplay || !CombatStats.Affinities.CanUseAffinities())
         {
             return false;
         }
@@ -393,7 +462,7 @@ public abstract class EYBCard extends EYBCardBase
 
     public boolean TryUseAffinity(Affinity affinity, int amount)
     {
-        if (!CombatStats.Affinities.CanUseAffinities())
+        if (isInAutoplay || !CombatStats.Affinities.CanUseAffinities())
         {
             return false;
         }
@@ -554,7 +623,6 @@ public abstract class EYBCard extends EYBCardBase
                 }
             }
 
-
             if (requireAll)
             {
                 return result.SetColor(Settings.GREEN_TEXT_COLOR);
@@ -615,6 +683,11 @@ public abstract class EYBCard extends EYBCardBase
     public void SetExhaust(boolean value)
     {
         this.exhaust = value;
+    }
+
+    public void SetFading(boolean value)
+    {
+        this.SetTag(FADING, value);
     }
 
     public void SetEthereal(boolean value)
@@ -723,6 +796,7 @@ public abstract class EYBCard extends EYBCardBase
     protected void SetAffinityRequirement(Affinity affinity, int requirement)
     {
         affinities.SetRequirement(affinity, requirement);
+        affinityRequirement = requirement;
     }
 
     //@Formatter: Off

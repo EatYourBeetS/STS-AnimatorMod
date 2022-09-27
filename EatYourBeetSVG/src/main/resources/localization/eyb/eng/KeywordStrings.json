@@ -380,7 +380,7 @@
 	},
 	"~Fading":
 	{
-		"DESCRIPTION": "Convert #yFading to #yExhaust after #b1 use.",
+		"DESCRIPTION": "Convert #yFading to #yExhaust after use.",
 		"NAMES": ["~fading"],
 		"PROPER_NAME": "Fading"
 	},

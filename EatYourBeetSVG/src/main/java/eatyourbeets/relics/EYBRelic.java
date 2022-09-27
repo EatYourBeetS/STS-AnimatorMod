@@ -15,10 +15,14 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 import eatyourbeets.cards.base.EYBCardTooltip;
 import eatyourbeets.resources.CardTooltips;
 import eatyourbeets.resources.GR;
-import eatyourbeets.utilities.*;
+import eatyourbeets.utilities.FieldInfo;
+import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.JUtils;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.Scanner;
 
 public abstract class EYBRelic extends CustomRelic
@@ -252,7 +256,7 @@ public abstract class EYBRelic extends CustomRelic
             }
 
             s = s.trim();
-            s = s.toLowerCase();
+            s = s.toLowerCase(Locale.ROOT);
 
             EYBCardTooltip tip = CardTooltips.FindByName(playerClass, s);
             if (tip != null && !tips.contains(tip))

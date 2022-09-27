@@ -115,9 +115,9 @@ public class VestaElixirEffects
         RandomizedList<VestaElixirEffect> effectPool = new RandomizedList<>();
 
         effectPool.Add(new VestaElixirEffect_CardDraw(upgraded));
-        effectPool.Add(new VestaElixirEffect_Intellect(upgraded));
-        effectPool.Add(new VestaElixirEffect_Force(upgraded));
-        effectPool.Add(new VestaElixirEffect_Agility(upgraded));
+        effectPool.Add(new VestaElixirEffect_Affinity_Blue(upgraded));
+        effectPool.Add(new VestaElixirEffect_Affinity_Red(upgraded));
+        effectPool.Add(new VestaElixirEffect_Affinity_Green(upgraded));
         effectPool.Add(new VestaElixirEffect_OrbSlots(upgraded));
         effectPool.Add(new VestaElixirEffect_TempHP(upgraded));
         effectPool.Add(new VestaElixirEffect_Metallicize(upgraded));

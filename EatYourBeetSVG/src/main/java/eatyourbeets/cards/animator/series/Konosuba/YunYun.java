@@ -19,10 +19,10 @@ public class YunYun extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(7, 0);
-        SetUpgrade(2, 0);
+        Initialize(9, 0);
+        SetUpgrade(3, 0);
 
-        SetAffinity_Blue(1, 1, 1);
+        SetAffinity_Blue(1, 0, 1);
         SetAffinity_Light(1, 0, 1);
 
         SetAffinityRequirement(Affinity.Blue, 1);

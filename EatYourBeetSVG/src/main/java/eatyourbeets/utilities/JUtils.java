@@ -2,7 +2,6 @@ package eatyourbeets.utilities;
 
 import com.google.gson.Gson;
 import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.helpers.TipHelper;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import eatyourbeets.interfaces.delegates.ActionT1;
 import eatyourbeets.interfaces.delegates.ActionT3;
@@ -70,11 +69,6 @@ public class JUtils
         }
 
         return false;
-    }
-
-    public static String Capitalize(String text)
-    {
-        return text.length() <= 1 ? text.toUpperCase() : TipHelper.capitalize(text);
     }
 
     public static <T> int Count(Iterable<T> list, Predicate<T> predicate)
@@ -529,9 +523,24 @@ public class JUtils
         return result.toArray(arr);
     }
 
+    public static String LowerCase(Object text)
+    {
+        return text == null ? "" : text.toString().toLowerCase(Locale.ROOT);
+    }
+
+    public static String UpperCase(Object text)
+    {
+        return text == null ? "" : text.toString().toUpperCase(Locale.ROOT);
+    }
+
+    public static String Capitalize(String text)
+    {
+        return ModifyString(text, w -> UpperCase(w.charAt(0)) + (w.length() > 1 ? LowerCase(w.substring(1)) : ""));
+    }
+
     public static String TitleCase(String text)
     {
-        return ModifyString(text, w -> Character.toUpperCase(w.charAt(0)) + (w.length() > 1 ? w.substring(1) : ""));
+        return ModifyString(text, w -> UpperCase(w.charAt(0)) + (w.length() > 1 ? w.substring(1) : ""));
     }
 
     public static String ModifyString(String text, FuncT1<String, String> modifyWord)

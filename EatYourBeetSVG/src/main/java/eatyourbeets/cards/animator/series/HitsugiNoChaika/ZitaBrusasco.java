@@ -23,19 +23,12 @@ public class ZitaBrusasco extends AnimatorCard
         super(DATA);
 
         Initialize(0, 3);
+        SetUpgrade(0, 2);
 
-        SetAffinity_Light(1);
-        SetAffinity_Blue(1, 0, 1);
+        SetAffinity_Light(1, 1, 0);
+        SetAffinity_Blue(1, 1, 1);
 
         SetEvokeOrbCount(1);
-
-        SetExhaust(true);
-    }
-
-    @Override
-    protected void OnUpgrade()
-    {
-        SetExhaust(false);
     }
 
     @Override

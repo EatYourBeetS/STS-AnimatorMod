@@ -21,18 +21,20 @@ public class SwordMaiden extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 3, 3, 3);
+        Initialize(0, 0, 4, 6);
 
         SetAffinity_Blue(1);
         SetAffinity_Light(2, 0, 2);
 
         SetExhaust(true);
+        SetRetain(true);
     }
 
     @Override
     protected void OnUpgrade()
     {
-        SetRetain(true);
+        SetExhaust(false);
+        SetFading(true);
     }
 
     @Override
@@ -44,7 +46,6 @@ public class SwordMaiden extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.GainTemporaryHP(magicNumber);
         GameActions.Bottom.RecoverHP(secondaryValue);
         GameActions.Bottom.RemoveDebuffs(player, ListSelection.Last(0), 1);

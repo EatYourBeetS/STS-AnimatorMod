@@ -31,11 +31,13 @@ public class SayakaMiki extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 2, 3);
+        Initialize(0, 0, 2, 4);
         SetUpgrade(0, 0, 2);
 
         SetAffinity_Green(1, 1, 0);
         SetAffinity_Blue(2);
+
+        SetAffinityRequirement(Affinity.Light, 1);
     }
 
     @Override
@@ -49,20 +51,21 @@ public class SayakaMiki extends AnimatorCard
     {
         GameActions.Bottom.GainTemporaryHP(magicNumber);
         GameActions.Bottom.StackPower(new SayakaMikiPower(p, 1)).ShowEffect(false, false);
-        GameActions.Bottom.GainBlessing(1, true);
-        GameActions.Delayed.Callback(() ->
+
+        if (CheckSpecialCondition(true))
         {
-            if (CheckSpecialCondition(true))
-            {
-                GameActions.Bottom.RecoverHP(secondaryValue);
-            }
-        });
+            GameActions.Bottom.RecoverHP(secondaryValue);
+        }
+        else
+        {
+            GameActions.Bottom.GainBlessing(1, true);
+        }
     }
 
     @Override
     public boolean CheckSpecialCondition(boolean tryUse)
     {
-        return GameUtilities.GetPowerAmount(Affinity.Light) >= (tryUse ? 3 : 2);
+        return GameUtilities.GetHealthRecoverAmount(secondaryValue) > 0 && super.CheckSpecialCondition(tryUse);
     }
 
     public static class SayakaMikiPower extends AnimatorPower

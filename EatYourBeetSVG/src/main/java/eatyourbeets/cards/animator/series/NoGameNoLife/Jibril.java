@@ -8,7 +8,6 @@ import eatyourbeets.actions.orbs.ShuffleOrbs;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.effects.VFX;
-import eatyourbeets.orbs.animator.Fire;
 import eatyourbeets.utilities.GameActions;
 
 public class Jibril extends AnimatorCard
@@ -21,7 +20,7 @@ public class Jibril extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(6, 0, 2);
+        Initialize(9, 0, 2);
         SetUpgrade(3, 0, 0);
 
         SetAffinity_Blue(2, 0, 2);

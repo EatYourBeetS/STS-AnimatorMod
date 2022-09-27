@@ -130,7 +130,7 @@ public class GUI_Label extends GUIElement
         if (smartText)
         {
             final float step = hb.width * horizontalRatio;
-            RenderHelpers.WriteSmartText(sb, font, text, hb.x + step, hb.y + (hb.height * verticalRatio),
+            RenderHelpers.WriteSmartText(GetPlayerClass(), sb, font, text, hb.x + step, hb.y + (hb.height * verticalRatio),
             hb.width - (step * 2), font.getLineHeight(), textColor);
         }
         else if (horizontalRatio < 0.5f)

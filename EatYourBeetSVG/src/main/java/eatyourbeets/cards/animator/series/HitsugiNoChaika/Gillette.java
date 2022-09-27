@@ -21,10 +21,10 @@ public class Gillette extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(5, 0, 1);
+        Initialize(6, 0, 1);
         SetUpgrade(3, 0, 0);
 
-        SetAffinity_Green(1, 0, 1);
+        SetAffinity_Green(1);
         SetAffinity_Light(1);
     }
 

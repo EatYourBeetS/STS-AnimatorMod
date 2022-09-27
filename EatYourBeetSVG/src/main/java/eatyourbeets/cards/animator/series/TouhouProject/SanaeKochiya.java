@@ -14,28 +14,27 @@ public class SanaeKochiya extends AnimatorCard
     public static final EYBCardData DATA = Register(SanaeKochiya.class)
             .SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None)
             .SetSeriesFromClassPackage()
-            .PostInitialize(data -> data.AddPreview(AffinityToken.GetCard(Affinity.General), false));
+            .PostInitialize(data -> data.AddPreviews(AffinityToken.GetCards(), false));
 
     public SanaeKochiya()
     {
         super(DATA);
 
-        Initialize(0, 2, 1, 5);
-        SetUpgrade(0, 2);
+        Initialize(0, 4, 1);
+        SetUpgrade(0, 2, 1);
 
-        SetAffinity_Light(1, 1, 2);
+        SetAffinity_Light(2, 0, 2);
         SetAffinity_Green(1);
     }
 
     @Override
-    public void triggerWhenDrawn()
+    public void triggerOnAffinitySeal(boolean reshuffle)
     {
-        super.triggerWhenDrawn();
+        super.triggerOnAffinitySeal(reshuffle);
 
         if (CombatStats.TryActivateLimited(cardID))
         {
-            GameActions.Top.Discard(this, player.hand)
-            .AddCallback(() -> GameActions.Top.ObtainAffinityToken(Affinity.General, false));
+            AffinityToken.SelectTokenAction(name, false, false, 1);
         }
     }
 
@@ -44,25 +43,17 @@ public class SanaeKochiya extends AnimatorCard
     {
         GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.GainBlessing(magicNumber, false);
-    }
 
-    @Override
-    public void OnLateUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
-    {
-        GameActions.Bottom.Callback(() ->
+        if (CheckSpecialCondition(true))
         {
-            if (CheckSpecialCondition(true))
-            {
-                GameActions.Bottom.ChannelOrb(new Aether());
-                GameActions.Bottom.Exhaust(this);
-            }
-        });
+            GameActions.Bottom.ChannelOrb(new Aether());
+            exhaustOnUseOnce = true;
+        }
     }
 
     @Override
     public boolean CheckSpecialCondition(boolean tryUse)
     {
-        return GameUtilities.GetPowerAmount(Affinity.Light) >= (tryUse ? secondaryValue : (secondaryValue - magicNumber));
+        return GameUtilities.GetPowerAmount(Affinity.Light) > 0;
     }
 }
-

@@ -59,7 +59,7 @@ public class EngravedStaff extends AnimatorRelic implements OnAffinityThresholdR
             final RandomizedList<Affinity> affinities = new RandomizedList<>(Affinity.Basic());
             while (affinities.Size() > 0 && i > 0)
             {
-                GameActions.Bottom.StackAffinityPower(affinities.Retrieve(rng), 1, true);
+                GameActions.Bottom.GainAffinity(affinities.Retrieve(rng), 1, true);
                 i -= 1;
             }
 

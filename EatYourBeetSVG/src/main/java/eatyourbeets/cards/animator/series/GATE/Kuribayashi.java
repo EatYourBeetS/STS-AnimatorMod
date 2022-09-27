@@ -43,7 +43,7 @@ public class Kuribayashi extends AnimatorCard
         GameActions.Bottom.ApplyVulnerable(p, m, magicNumber);
         GameActions.Bottom.StackPower(new KuribayashiPower(p, 1));
 
-        if (TryUseAffinity(Affinity.Red))
+        if (CheckSpecialCondition(true))
         {
             GameActions.Bottom.DealDamageAtEndOfTurn(p, m, secondaryValue, AttackEffects.GUNSHOT);
         }

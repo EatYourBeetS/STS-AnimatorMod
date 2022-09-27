@@ -147,7 +147,7 @@ public class ParseGenericCommand extends ConsoleCommand
 
                 if (tokens[1].equals("vfx"))
                 {
-                    final String key = tokens[2].toUpperCase();
+                    final String key = tokens[2].toUpperCase(Locale.ROOT);
                     try
                     {
                         final FieldInfo<AbstractGameAction.AttackEffect> effectField = JUtils.GetField(key, AttackEffects.class);
@@ -176,7 +176,7 @@ public class ParseGenericCommand extends ConsoleCommand
 
                 if (tokens[1].equals("sfx") && tokens.length > 2)
                 {
-                    final String key = tokens[2].toUpperCase();
+                    final String key = tokens[2].toUpperCase(Locale.ROOT);
                     final float pitch = tokens.length > 3 ? JUtils.ParseFloat(tokens[3], 1f) : 1;
                     final float volume = tokens.length > 4 ? JUtils.ParseFloat(tokens[4], 1f) : 1;
                     SFX.Play(key, pitch, pitch, volume);
@@ -220,7 +220,7 @@ public class ParseGenericCommand extends ConsoleCommand
                     {
                         player.masterDeck.group.add(data.CreateNewInstance(upgrade));
                     }
-                    for (EYBCardData data : AffinityToken.GetCards())
+                    for (EYBCardData data : AffinityToken.GetCardData())
                     {
                         player.masterDeck.group.add(data.CreateNewInstance(upgrade));
                     }
@@ -255,7 +255,7 @@ public class ParseGenericCommand extends ConsoleCommand
                     boolean upgrade = tokens.length > 3 && tokens[3].equals("+");
                     for (Affinity affinity : Affinity.All())
                     {
-                        if (affinity.name().toLowerCase().equals(tokens[2]))
+                        if (affinity.name().toLowerCase(Locale.ROOT).equals(tokens[2]))
                         {
                             for (Map.Entry<String, AbstractCard> pair : CardLibrary.cards.entrySet())
                             {
@@ -378,7 +378,7 @@ public class ParseGenericCommand extends ConsoleCommand
                     {
                         for (Affinity t : Affinity.All())
                         {
-                            if (t.name().toLowerCase().equals(tokens[2]))
+                            if (t.name().toLowerCase(Locale.ROOT).equals(tokens[2]))
                             {
                                 affinity = t;
                                 break;

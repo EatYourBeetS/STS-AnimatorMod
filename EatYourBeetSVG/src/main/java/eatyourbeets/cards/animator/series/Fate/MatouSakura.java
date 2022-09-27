@@ -20,8 +20,8 @@ public class MatouSakura extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 3, 3);
-        SetUpgrade(0, 0, 2);
+        Initialize(0, 4, 4);
+        SetUpgrade(0, 2, 2);
 
         SetAffinity_Dark(2, 0, 1);
         SetAffinity_Blue(1, 0, 1);
@@ -50,7 +50,7 @@ public class MatouSakura extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.GainBlock(block);
-        GameActions.Bottom.GainCorruption(1, upgraded);
+        GameActions.Bottom.GainCorruption(1, true);
         GameActions.Bottom.ChannelOrb(new Dark());
 
 //        GameActions.Bottom.Callback(m, (enemy, __) ->

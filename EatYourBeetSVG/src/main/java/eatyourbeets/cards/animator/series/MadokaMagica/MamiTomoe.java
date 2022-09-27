@@ -27,10 +27,10 @@ public class MamiTomoe extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(7, 0, 1);
+        Initialize(8, 0, 1);
         SetUpgrade(0, 0, 1);
 
-        SetAffinity_Blue(1, 1, 1);
+        SetAffinity_Blue(2, 0, 1);
         SetAffinity_Light(2);
 
         SetCardPreview(c -> c.costForTurn == 0);

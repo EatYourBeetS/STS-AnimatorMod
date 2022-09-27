@@ -10,6 +10,8 @@ import eatyourbeets.utilities.ColoredString;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
 
+import java.util.Locale;
+
 public class WordToken extends CTToken
 {
     protected EYBCardTooltip tooltip = null;
@@ -133,7 +135,7 @@ public class WordToken extends CTToken
 
             if (parser.card != null)
             {
-                final EYBCardTooltip tooltip = CardTooltips.FindByName(parser.resources.PlayerClass, word.toLowerCase());
+                final EYBCardTooltip tooltip = CardTooltips.FindByName(parser.resources.PlayerClass, word.toLowerCase(Locale.ROOT));
                 if (tooltip != null)
                 {
                     if (tooltip.isKeyword)

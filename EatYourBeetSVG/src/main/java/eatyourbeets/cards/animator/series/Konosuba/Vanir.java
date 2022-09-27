@@ -24,8 +24,8 @@ public class Vanir extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(11, 0, 3);
-        SetUpgrade(2, 0);
+        Initialize(12, 0, 3);
+        SetUpgrade(1, 0, -1);
 
         SetAffinity_Blue(0, 0, 1);
         SetAffinity_Star(1, 0, 0);

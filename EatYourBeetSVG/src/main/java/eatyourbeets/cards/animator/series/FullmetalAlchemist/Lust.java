@@ -27,8 +27,8 @@ public class Lust extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(2, 0, 2, 3);
-        SetUpgrade(1, 0, 0, 1);
+        Initialize(2, 0, 2, 4);
+        SetUpgrade(2, 0, 0, 0);
 
         SetAffinity_Star(1, 0, 0);
         SetAffinity_Green(0, 0, 1);

@@ -1,20 +1,17 @@
 package eatyourbeets.cards.animator.series.NoGameNoLife;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import eatyourbeets.cards.base.attributes.HPAttribute;
-import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
-import eatyourbeets.interfaces.subscribers.OnAfterCardPlayedSubscriber;
-import eatyourbeets.interfaces.subscribers.OnEndOfTurnLastSubscriber;
-import eatyourbeets.powers.CombatStats;
+import eatyourbeets.cards.base.attributes.HPAttribute;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
-public class IzunaHatsuse extends AnimatorCard implements OnEndOfTurnLastSubscriber, OnAfterCardPlayedSubscriber
+public class IzunaHatsuse extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(IzunaHatsuse.class)
             .SetSkill(0, CardRarity.COMMON)
@@ -32,10 +29,10 @@ public class IzunaHatsuse extends AnimatorCard implements OnEndOfTurnLastSubscri
     {
         super(DATA);
 
-        Initialize(2, 2, 2);
-        SetUpgrade(1, 1, 0);
+        Initialize(3, 2, 2, 2);
+        SetUpgrade(0, 0, 1, -1);
 
-        SetAffinity_Green(1);
+        SetAffinity_Green(1, 1, 0);
 
         SetTransformed(transformed);
     }
@@ -80,11 +77,12 @@ public class IzunaHatsuse extends AnimatorCard implements OnEndOfTurnLastSubscri
     }
 
     @Override
-    public void OnAfterCardPlayed(AbstractCard card)
+    public void triggerOnAffinitySeal(boolean reshuffle)
     {
-        if (!transformed && card.uuid != uuid && card.type == CardType.ATTACK)
+        super.triggerOnAffinitySeal(reshuffle);
+
+        if (!transformed)
         {
-            CombatStats.onEndOfTurnLast.SubscribeOnce(this);
             SetTransformed(true);
         }
     }
@@ -98,20 +96,6 @@ public class IzunaHatsuse extends AnimatorCard implements OnEndOfTurnLastSubscri
     }
 
     @Override
-    public void triggerOnEndOfPlayerTurn()
-    {
-        super.triggerOnEndOfPlayerTurn();
-
-        SetTransformed(false);
-    }
-
-    @Override
-    public void OnEndOfTurnLast(boolean isPlayer)
-    {
-        SetTransformed(false);
-    }
-
-    @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         if (transformed)
@@ -119,14 +103,14 @@ public class IzunaHatsuse extends AnimatorCard implements OnEndOfTurnLastSubscri
             GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_HORIZONTAL);
             GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_DIAGONAL);
             GameActions.Bottom.RecoverHP(magicNumber);
-            GameActions.Bottom.StackAffinityPower(Affinity.Red);
-            GameActions.Bottom.StackAffinityPower(Affinity.Green);
+            GameActions.Bottom.GainAffinity(Affinity.Red, 1, true);
+            GameActions.Bottom.GainAffinity(Affinity.Green, 1, true);
         }
         else
         {
             GameActions.Bottom.GainBlock(block);
             GameActions.Bottom.ApplyWeak(p, m, 1);
-            GameActions.Bottom.GainTemporaryStats(-magicNumber, 0, 0);
+            GameActions.Bottom.GainTemporaryStats(-secondaryValue, 0, 0);
         }
     }
 
@@ -145,14 +129,6 @@ public class IzunaHatsuse extends AnimatorCard implements OnEndOfTurnLastSubscri
         return transformed ? null : super.GetCardPreview();
     }
 
-    @Override
-    public void triggerWhenCreated(boolean startOfBattle)
-    {
-        super.triggerWhenCreated(startOfBattle);
-
-        CombatStats.onAfterCardPlayed.Subscribe(this);
-    }
-
     private void SetTransformed(boolean value)
     {
         if (transformed != value)
@@ -164,6 +140,7 @@ public class IzunaHatsuse extends AnimatorCard implements OnEndOfTurnLastSubscri
                 LoadImage("Alt");
                 SetAttackType(EYBAttackType.Normal);
 
+                affinities.sealed = false;
                 affinities.Set(Affinity.Red, 1);
                 affinities.Set(Affinity.Dark, 1);
 

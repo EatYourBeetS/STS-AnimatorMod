@@ -2,6 +2,7 @@ package eatyourbeets.cards.animator.series.TenseiSlime;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.cards.animator.tokens.AffinityToken;
 import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
@@ -9,7 +10,6 @@ import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.stances.ForceStance;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
 
 public class Shion extends AnimatorCard
 {
@@ -21,7 +21,7 @@ public class Shion extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(14, 0, 2, 9);
+        Initialize(16, 0, 10);
         SetUpgrade(4, 0, 0);
 
         SetAffinity_Red(2, 0, 2);
@@ -39,20 +39,26 @@ public class Shion extends AnimatorCard
     @Override
     public void OnLateUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DiscardFromHand(name, magicNumber, false)
-        .SetFilter(c -> GameUtilities.HasRedAffinity(c) || GameUtilities.HasLightAffinity(c))
+        GameActions.Bottom.DiscardFromHand(name, 1, false)
+        .SetFilter(c -> c instanceof AffinityToken)
         .SetOptions(false, true, false)
         .AddCallback(cards ->
         {
-            if (cards.size() >= magicNumber)
+            if (cards.size() > 0)
             {
-                GameActions.Bottom.GainBlock(secondaryValue);
+                GameActions.Bottom.GainBlock(magicNumber);
             }
         });
 
-        if (info.CanActivateLimited && TryUseAffinity(Affinity.Red) && info.TryActivateLimited())
+        if (CheckSpecialCondition(true))
         {
             GameActions.Bottom.ChangeStance(ForceStance.STANCE_ID);
         }
+    }
+
+    @Override
+    public boolean CheckSpecialCondition(boolean tryUse)
+    {
+        return !ForceStance.IsActive() && super.CheckSpecialConditionLimited(tryUse, super::CheckSpecialCondition);
     }
 }

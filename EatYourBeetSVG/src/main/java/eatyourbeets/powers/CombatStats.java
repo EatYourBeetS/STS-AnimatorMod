@@ -913,6 +913,12 @@ public class CombatStats extends EYBPower implements InvisiblePower
             canActivateStarter = false;
         }
 
+        if (card.hasTag(EYBCard.FADING))
+        {
+            GameUtilities.SetCardTag(card, EYBCard.FADING, false);
+            card.exhaust = true;
+        }
+
         CardsPlayedThisCombat(turnCount).add(card);
 
         if (player.limbo.contains(card))

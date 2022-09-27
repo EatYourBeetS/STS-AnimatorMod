@@ -56,7 +56,7 @@ public class Noah extends AnimatorCard
         .SetDamageEffect(c -> GameEffects.List.Add(VFX.Clash(c.hb)).SetColors(Color.PURPLE, Color.LIGHT_GRAY, Color.VIOLET, Color.BLUE).duration * 0.6f);
         GameActions.Bottom.ApplyFreezing(p, m, magicNumber);
 
-        if (TryUseAffinity(Affinity.Dark))
+        if (CheckSpecialCondition(true))
         {
             GameActions.Bottom.GainCorruption(1, true);
         }

@@ -1,12 +1,12 @@
 package eatyourbeets.cards.animator.tokens;
 
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.random.Random;
 import eatyourbeets.actions.pileSelection.SelectFromPile;
 import eatyourbeets.cards.animator.colorless.uncommon.AffinityToken_General;
 import eatyourbeets.cards.base.*;
-import eatyourbeets.effects.SFX;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.*;
@@ -28,7 +28,7 @@ public abstract class AffinityToken extends AnimatorCard
         return data;
     }
 
-    public static ArrayList<EYBCardData> GetCards()
+    public static ArrayList<EYBCardData> GetCardData()
     {
         if (cards.isEmpty())
         {
@@ -39,6 +39,18 @@ public abstract class AffinityToken extends AnimatorCard
         }
 
         return cards;
+    }
+
+    public static ArrayList<AbstractCard> GetCards()
+    {
+        final ArrayList<EYBCardData> data = GetCardData();
+        final ArrayList<AbstractCard> copies = new ArrayList<>(data.size());
+        for (EYBCardData eyb : data)
+        {
+            copies.add(eyb.CreateNewInstance());
+        }
+
+        return copies;
     }
 
     public static EYBCardData GetCardData(Affinity affinity)
@@ -93,7 +105,7 @@ public abstract class AffinityToken extends AnimatorCard
     {
         GameActions.Top.Exhaust(this);
         CombatStats.Affinities.AddAffinitySealUses(1);
-        GameActions.Bottom.SFX(SFX.RELIC_ACTIVATION, 0.75f, 0.85f);
+        //GameActions.Bottom.SFX(SFX.RELIC_ACTIVATION, 0.75f, 0.85f);
         GameActions.Bottom.GainBlock(block).SetVFX(true, true);
     }
 
@@ -129,7 +141,7 @@ public abstract class AffinityToken extends AnimatorCard
         final CardGroup group = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
         if (amount == -1)
         {
-            for (EYBCardData data : GetCards())
+            for (EYBCardData data : GetCardData())
             {
                 final EYBCard c = data.MakeCopy(upgraded);
                 if (noBlock)
@@ -142,7 +154,7 @@ public abstract class AffinityToken extends AnimatorCard
         }
         else
         {
-            final RandomizedList<EYBCardData> temp = new RandomizedList<>(GetCards());
+            final RandomizedList<EYBCardData> temp = new RandomizedList<>(GetCardData());
             while (amount > 0 && temp.Size() > 0)
             {
                 final EYBCard c = temp.Retrieve(rng, true).MakeCopy(upgraded);

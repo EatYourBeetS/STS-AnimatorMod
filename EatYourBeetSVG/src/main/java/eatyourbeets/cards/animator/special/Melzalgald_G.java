@@ -8,19 +8,19 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.utilities.GameActions;
 
-public class Melzalgald_2 extends MelzalgaldAlt
+public class Melzalgald_G extends MelzalgaldAlt
 {
-    public static final EYBCardData DATA = Register(Melzalgald_2.class)
+    public static final EYBCardData DATA = Register(Melzalgald_G.class)
             .SetAttack(1, CardRarity.SPECIAL)
             .SetSeries(SERIES);
 
-    public Melzalgald_2()
+    public Melzalgald_G()
     {
         super(DATA);
 
-        SetAffinity_Blue(0, 0, 2);
+        SetAffinity_Green(0, 0, 2);
 
-        SetAffinityRequirement(Affinity.Green, 2);
+        SetAffinityRequirement(Affinity.Star, 1);
     }
 
     @Override
@@ -29,9 +29,9 @@ public class Melzalgald_2 extends MelzalgaldAlt
         GameActions.Bottom.GainEnergyNextTurn(1);
         GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_HEAVY);
 
-        if (TryUseAffinity(Affinity.Green))
+        if (CheckSpecialCondition(true))
         {
-            GameActions.Bottom.GainIntellect(magicNumber);
+            GameActions.Bottom.GainAgility(magicNumber);
         }
     }
 }

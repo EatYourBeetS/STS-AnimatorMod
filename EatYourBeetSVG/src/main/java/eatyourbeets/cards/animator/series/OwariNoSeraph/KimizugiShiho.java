@@ -20,9 +20,9 @@ public class KimizugiShiho extends AnimatorCard
         super(DATA);
 
         Initialize(4, 0, 2, 3);
-        SetUpgrade(1, 0, 0, 0);
+        SetUpgrade(2, 0, 0, 0);
 
-        SetAffinity_Red(1, 1, 1);
+        SetAffinity_Red(2);
         SetAffinity_Green(1);
 
         SetCardPreview(GameUtilities::IsHindrance);
@@ -58,7 +58,6 @@ public class KimizugiShiho extends AnimatorCard
             GameActions.Bottom.DealDamage(this, m, AttackEffects.DAGGER).SetVFXColor(Color.RED);
         }
 
-        GameActions.Bottom.StackAffinityPower(Affinity.Red);
         GameActions.Bottom.Draw(1).SetFilter(GameUtilities::IsHindrance, false);
     }
 }

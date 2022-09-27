@@ -12,6 +12,7 @@ import com.evacipated.cardcrawl.mod.stslib.Keyword;
 import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.InvisiblePower;
 import com.megacrit.cardcrawl.blights.AbstractBlight;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
@@ -68,6 +69,7 @@ public class EYBCardTooltip
     private static AbstractCreature creature;
     private static Vector2 genericTipPos = new Vector2(0, 0);
 
+    public AbstractPlayer.PlayerClass playerClass;
     public TextureRegion icon;
     public String id;
     public String title;
@@ -501,7 +503,7 @@ public class EYBCardTooltip
 
         BitmapFont descriptionFont = card == null ? FontHelper.tipBodyFont : EYBFontHelper.CardTooltipFont;
 
-        final float textHeight = RenderHelpers.GetSmartHeight(descriptionFont, description, BODY_TEXT_WIDTH, TIP_DESC_LINE_SPACING);
+        final float textHeight = RenderHelpers.GetSmartHeight(playerClass, descriptionFont, description, BODY_TEXT_WIDTH, TIP_DESC_LINE_SPACING);
         final float h = (hideDescription || StringUtils.isEmpty(description)) ? (-40f * Settings.scale) : (-textHeight - 7f * Settings.scale);
 
         sb.setColor(Settings.TOP_PANEL_SHADOW_COLOR);
@@ -537,7 +539,7 @@ public class EYBCardTooltip
 
             if (!hideDescription)
             {
-                RenderHelpers.WriteSmartText(sb, descriptionFont, description, x + TEXT_OFFSET_X, y + BODY_OFFSET_Y, BODY_TEXT_WIDTH, TIP_DESC_LINE_SPACING, BASE_COLOR);
+                RenderHelpers.WriteSmartText(playerClass, sb, descriptionFont, description, x + TEXT_OFFSET_X, y + BODY_OFFSET_Y, BODY_TEXT_WIDTH, TIP_DESC_LINE_SPACING, BASE_COLOR);
             }
         }
 

@@ -62,9 +62,15 @@ public class YoumuKonpaku extends AnimatorCard implements OnStartOfTurnSubscribe
         .SetDamageEffect(c -> GameEffects.List.Add(VFX.Clash(c.hb)).duration)
         .SetVFXColor(Color.TEAL);
 
-        if (AgilityStance.IsActive())
+        if (CheckSpecialCondition(true))
         {
             CombatStats.onStartOfTurn.SubscribeOnce(this);
         }
+    }
+
+    @Override
+    public boolean CheckSpecialCondition(boolean tryUse)
+    {
+        return AgilityStance.IsActive();
     }
 }

@@ -18,8 +18,8 @@ public class ChaikaBohdan extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(4, 0, 2);
-        SetUpgrade(3, 0, 1);
+        Initialize(8, 0, 2);
+        SetUpgrade(0, 0, 1);
 
         SetAffinity_Red(1, 0, 1);
         SetAffinity_Green(1, 0, 1);
@@ -43,7 +43,7 @@ public class ChaikaBohdan extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_HORIZONTAL);
-        GameActions.Bottom.GainAgility(1);
+        GameActions.Bottom.GainAgility(1, upgraded);
     }
 
     @Override

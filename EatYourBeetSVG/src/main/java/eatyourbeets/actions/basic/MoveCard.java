@@ -21,6 +21,7 @@ import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.*;
 
 import java.util.List;
+import java.util.Locale;
 
 public class MoveCard extends EYBActionWithCallback<AbstractCard>
 {
@@ -116,7 +117,7 @@ public class MoveCard extends EYBActionWithCallback<AbstractCard>
 
         if (!sourcePile.contains(card))
         {
-            JUtils.LogWarning(this, "Could not find " + card.cardID + " in " + sourcePile.type.name().toLowerCase());
+            JUtils.LogWarning(this, "Could not find " + card.cardID + " in " + sourcePile.type.name().toLowerCase(Locale.ROOT));
             Complete();
             return;
         }

@@ -21,14 +21,14 @@ public class Sebas extends AnimatorCard
         super(DATA);
 
         Initialize(0, 10, 2);
-        SetUpgrade(0, 2, 0);
+        SetUpgrade(0, 4, 0);
 
-        SetAffinity_Red(1, 1, 1);
+        SetAffinity_Red(2, 0, 2);
         SetAffinity_Light(1);
 
         SetExhaust(true);
 
-        SetAffinityRequirement(Affinity.Red, 4);
+        SetAffinityRequirement(Affinity.Green, 2);
     }
 
     @Override
@@ -48,11 +48,17 @@ public class Sebas extends AnimatorCard
         {
             energy += 1;
         }
-        if (TryUseAffinity(Affinity.Red))
+        if (CheckAffinities(true))
         {
             energy += 1;
         }
 
         GameActions.Bottom.GainEnergy(energy);
+    }
+
+    @Override
+    public boolean CheckSpecialCondition(boolean tryUse)
+    {
+        return AgilityStance.IsActive() || super.CheckSpecialCondition(tryUse);
     }
 }

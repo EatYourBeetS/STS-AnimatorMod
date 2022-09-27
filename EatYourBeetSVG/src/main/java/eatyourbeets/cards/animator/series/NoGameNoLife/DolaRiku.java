@@ -7,6 +7,7 @@ import eatyourbeets.cards.base.*;
 import eatyourbeets.ui.cards.CardPreview;
 import eatyourbeets.utilities.CardSelection;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.JUtils;
 
 public class DolaRiku extends AnimatorCard
 {
@@ -21,7 +22,7 @@ public class DolaRiku extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 6);
+        Initialize(0, 7);
         SetUpgrade(0, 3);
 
         SetAffinity_Light(1);
@@ -41,7 +42,7 @@ public class DolaRiku extends AnimatorCard
     {
         super.Refresh(enemy);
 
-        cardPreview = CheckAffinity(Affinity.Blue) ? discardPilePreview : drawPilePreview;
+        cardPreview = CheckSpecialCondition(true) ? discardPilePreview : drawPilePreview;
     }
 
     @Override
@@ -55,7 +56,7 @@ public class DolaRiku extends AnimatorCard
         {
             if (cards.size() >= 1)
             {
-                if (TryUseAffinity(Affinity.Blue))
+                if (CheckSpecialCondition(true))
                 {
                     GameActions.Bottom.FetchFromPile(name, 1, player.discardPile)
                     .ShowEffect(true, false)
@@ -68,5 +69,11 @@ public class DolaRiku extends AnimatorCard
                 }
             }
         });
+    }
+
+    @Override
+    public boolean CheckSpecialCondition(boolean tryUse)
+    {
+        return JUtils.Any(player.discardPile.group, c -> c.type == CardType.ATTACK) && super.CheckSpecialCondition(tryUse);
     }
 }

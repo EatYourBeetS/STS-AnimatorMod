@@ -164,7 +164,8 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
             final int toUse = Mathf.Min(level, amount);
             if (toUse > 0)
             {
-                CurrentAffinities.Add(affinity, -toUse);
+                CurrentAffinities.Set(affinity, level - toUse);
+                totalUsed = toUse;
             }
         }
 

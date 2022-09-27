@@ -25,11 +25,11 @@ public class Layla extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(6, 0, 2, POISON_AMOUNT);
+        Initialize(7, 0, 2, POISON_AMOUNT);
         SetUpgrade(4, 0);
 
         SetAffinity_Blue(1, 0, 1);
-        SetAffinity_Dark(1, 1, 1);
+        SetAffinity_Dark(2, 0, 1);
 
         SetAffinityRequirement(Affinity.Blue, 2);
     }
@@ -40,23 +40,31 @@ public class Layla extends AnimatorCard
         GameActions.Bottom.DealDamage(this, m, AttackEffects.BLUNT_LIGHT);
         GameActions.Bottom.StackPower(new LaylaPower(m, p, magicNumber));
 
-        if (info.CanActivateSemiLimited && TryUseAffinity(Affinity.Blue))
+        if (CheckSpecialCondition(true))
         {
-            boolean appliedFreezing = false;
             for (AbstractMonster c : GameUtilities.GetEnemies(true))
             {
                 if (c.hasPower(PoisonPower.POWER_ID))
                 {
                     GameActions.Bottom.ApplyFreezing(p, c, 1);
-                    appliedFreezing = true;
                 }
             }
+        }
+    }
 
-            if (appliedFreezing)
+    @Override
+    public boolean CheckSpecialCondition(boolean tryUse)
+    {
+        boolean canApply = false;
+        for (AbstractMonster c : GameUtilities.GetEnemies(true))
+        {
+            if (c.hasPower(PoisonPower.POWER_ID))
             {
-                info.TryActivateSemiLimited();
+                canApply = true;
             }
         }
+
+        return canApply && super.CheckSpecialCondition(tryUse);
     }
 
     public static class LaylaPower extends AnimatorPower

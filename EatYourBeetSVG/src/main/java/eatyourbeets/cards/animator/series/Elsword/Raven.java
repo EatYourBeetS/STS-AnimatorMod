@@ -45,7 +45,7 @@ public class Raven extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        if (TryUseAffinities(Affinity.Red, Affinity.Green))
+        if (CheckSpecialCondition(true))
         {
             GameActions.Bottom.GainBlock(secondaryValue);
         }

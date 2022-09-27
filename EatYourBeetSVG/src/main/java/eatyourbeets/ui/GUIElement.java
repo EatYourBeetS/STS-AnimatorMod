@@ -2,7 +2,9 @@ package eatyourbeets.ui;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
+import eatyourbeets.utilities.GameUtilities;
 
 public abstract class GUIElement
 {
@@ -39,6 +41,11 @@ public abstract class GUIElement
         this.isActive = active;
 
         return this;
+    }
+
+    public static AbstractPlayer.PlayerClass GetPlayerClass()
+    {
+        return GameUtilities.GetPlayerClass();
     }
 
     protected static float Scale(float value)

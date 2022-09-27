@@ -62,7 +62,7 @@ public abstract class ImprovedStrike extends ImprovedBasicCard
 
         if (magicNumber > 0)
         {
-            GameActions.Bottom.StackAffinityPower(affinity, 1, upgraded);
+            GameActions.Bottom.GainAffinity(affinity, 1, upgraded);
         }
     }
 }

@@ -36,7 +36,7 @@ public class NinaCliffe extends AnimatorCard
 
         Initialize(0, 2, 2, 5);
 
-        SetAffinity_Blue(2, 0, 2);
+        SetAffinity_Blue(2, 0, 4);
         SetAffinity_Green(1);
 
         SetExhaust(true);

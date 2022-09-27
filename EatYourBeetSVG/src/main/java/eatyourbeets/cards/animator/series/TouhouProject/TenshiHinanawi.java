@@ -21,7 +21,7 @@ public class TenshiHinanawi extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 2, 7);
+        Initialize(0, 2, 6);
         SetUpgrade(0, 2, 0);
 
         SetAffinity_Red(1);

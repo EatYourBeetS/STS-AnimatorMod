@@ -23,7 +23,7 @@ public class Yoichi extends AnimatorCard
         SetAffinity_Green(1);
         SetAffinity_Light(1, 1, 0);
 
-        SetAffinityRequirement(Affinity.Light, 2);
+        SetAffinityRequirement(Affinity.Light, 1);
     }
 
     @Override
@@ -39,7 +39,7 @@ public class Yoichi extends AnimatorCard
         GameActions.Bottom.StackPower(new SupportDamagePower(p, 1))
         .AddCallback(info, (info2, power) ->
         {
-            if (info2.CanActivateSemiLimited && TryUseAffinity(Affinity.Light) && info2.TryActivateSemiLimited())
+            if (CheckSpecialCondition(true))
             {
                 final SupportDamagePower supportDamage = JUtils.SafeCast(power, SupportDamagePower.class);
                 if (supportDamage != null)
@@ -48,5 +48,11 @@ public class Yoichi extends AnimatorCard
                 }
             }
         });
+    }
+
+    @Override
+    public boolean CheckSpecialCondition(boolean tryUse)
+    {
+        return super.CheckSpecialConditionSemiLimited(tryUse, super::CheckSpecialCondition);
     }
 }

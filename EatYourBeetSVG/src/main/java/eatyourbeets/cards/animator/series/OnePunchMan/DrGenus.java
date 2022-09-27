@@ -11,7 +11,6 @@ import eatyourbeets.cards.base.modifiers.BlockModifiers;
 import eatyourbeets.cards.base.modifiers.CostModifiers;
 import eatyourbeets.cards.base.modifiers.DamageModifiers;
 import eatyourbeets.powers.AnimatorPower;
-import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.JUtils;
 
@@ -76,11 +75,11 @@ public class DrGenus extends AnimatorCard
         GameActions.Bottom.FetchFromPile(name, 1, p.discardPile)
         .SetOptions(false, false)
         .SetFilter(c -> !c.hasTag(VOLATILE))
-        .AddCallback(cards ->
+        .AddCallback(info, (info2, cards) ->
         {
            for (AbstractCard c : cards)
            {
-               if (info.CanActivateLimited && TryUseAffinity(Affinity.Blue) && CombatStats.TryActivateLimited(cardID))
+               if (CheckSpecialCondition(true))
                {
                    GameActions.Bottom.StackPower(new DrGenusPower(player, c, secondaryValue));
                }
@@ -95,6 +94,12 @@ public class DrGenus extends AnimatorCard
                .AddCallback(c, (selected, drGenus) -> ((DrGenus)drGenus.get(0)).ApplyEffect(selected));
            }
         });
+    }
+
+    @Override
+    public boolean CheckSpecialCondition(boolean tryUse)
+    {
+        return super.CheckSpecialConditionLimited(tryUse, super::CheckSpecialCondition);
     }
 
     protected void ApplyEffect(AbstractCard card)
@@ -131,11 +136,11 @@ public class DrGenus extends AnimatorCard
             case 3:
                 if (card.baseBlock > 0)
                 {
-                    BlockModifiers.For(card).Add(cardID, rng.random(-2, 2));
+                    BlockModifiers.For(card).Add(cardID, rng.random(-1, 2));
                 }
                 if (card.baseDamage > 0)
                 {
-                    DamageModifiers.For(card).Add(cardID, rng.random(-2, 2));
+                    DamageModifiers.For(card).Add(cardID, rng.random(-1, 2));
                 }
                 GameActions.Bottom.SealAffinities(card, false);
                 break;

@@ -32,7 +32,7 @@ public class VividPicture extends EnchantableRelic implements CustomSavable<Inte
     @Override
     public String getUpdatedDescription()
     {
-        return FormatDescription(0, INSPIRATION);
+        return FormatDescription(0, INSPIRATION, HP_RECOVER);
     }
 
     @Override
@@ -92,10 +92,10 @@ public class VividPicture extends EnchantableRelic implements CustomSavable<Inte
     @Override
     public void OnAffinitySealed(EYBCard card, boolean manual)
     {
-        if (IsEnabled())
+        if (IsEnabled() && player.hand.contains(card))
         {
             GameActions.Bottom.GainInspiration(INSPIRATION);
-            GameActions.Bottom.RecoverHP(HP_RECOVER);
+            GameActions.Bottom.GainTemporaryHP(HP_RECOVER);
             flash();
         }
     }

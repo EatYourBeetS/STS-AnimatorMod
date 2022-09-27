@@ -34,7 +34,7 @@ public class GoblinChampion extends AnimatorCard
         }
         else
         {
-            GameActions.Bottom.StackAffinityPower(Affinity.Red, 1, false);
+            GameActions.Bottom.GainAffinity(Affinity.Red, 1, false);
         }
     }
 }

@@ -4,7 +4,6 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
 
 public class Miko extends AnimatorCard
 {
@@ -16,34 +15,28 @@ public class Miko extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 8, 2, 2);
+        Initialize(0, 12, 2, 2);
         SetUpgrade(0, 2, 1, 0);
 
         SetAffinity_Light(1);
         SetAffinity_Red(1);
 
-        SetMultiDamage(true);
+        SetAffinityRequirement(Affinity.Light, 1);
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.GainBlock(block);
+        GameActions.Bottom.Scry(magicNumber);
 
         if (CheckSpecialCondition(true))
         {
-            GameActions.Bottom.Scry(magicNumber + secondaryValue);
+            GameActions.Bottom.GainInspiration(secondaryValue);
         }
         else
         {
-            GameActions.Bottom.Scry(magicNumber);
-            GameActions.Bottom.StackAffinityPower(Affinity.Light);
+            GameActions.Bottom.GainAffinity(Affinity.Light, secondaryValue, false);
         }
-    }
-
-    @Override
-    public boolean CheckSpecialCondition(boolean tryUse)
-    {
-        return GameUtilities.GetPowerAmount(Affinity.Light) < 6;
     }
 }

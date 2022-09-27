@@ -45,7 +45,7 @@ public class Saber extends AnimatorCard
     {
         GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_DIAGONAL);
 
-        cooldown.ProgressCooldownAndTrigger(TryUseAffinity(Affinity.Light) ? 3 : 1, m);
+        cooldown.ProgressCooldownAndTrigger(CheckSpecialCondition(true) ? 3 : 1, m);
     }
 
     protected void OnCooldownCompleted(AbstractMonster m)

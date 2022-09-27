@@ -26,8 +26,8 @@ public class Genos extends AnimatorCard implements OnModifyDamageFirstSubscriber
     {
         super(DATA);
 
-        Initialize(14, 0, 2, 4);
-        SetUpgrade(4, 0, 0, 1);
+        Initialize(14, 0, 2, 5);
+        SetUpgrade(4, 0, 0, 0);
 
         SetAffinity_Red(1);
         SetAffinity_Light(1);

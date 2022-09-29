@@ -1,5 +1,6 @@
 package eatyourbeets.powers;
 
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.relics.EYBRelic;
@@ -10,6 +11,12 @@ public abstract class AnimatorPower extends EYBPower
     public static String CreateFullID(Class<? extends AnimatorPower> type)
     {
         return GR.Animator.CreateID(type.getSimpleName());
+    }
+
+    @Override
+    public AbstractPlayer.PlayerClass GetPlayerClass()
+    {
+        return GR.Animator.PlayerClass;
     }
 
     public AnimatorPower(AbstractCreature owner, AbstractCreature source, String id)

@@ -1,4 +1,4 @@
-package eatyourbeets.relics.animator;
+package eatyourbeets.relics.deprecated;
 
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -16,7 +16,7 @@ public class ColorlessFragment extends AbstractMissingPiece
 
     public ColorlessFragment()
     {
-        super(ID, RelicTier.SHOP, LandingSound.FLAT);
+        super(ID, RelicTier.DEPRECATED, LandingSound.FLAT);
     }
 
     @Override

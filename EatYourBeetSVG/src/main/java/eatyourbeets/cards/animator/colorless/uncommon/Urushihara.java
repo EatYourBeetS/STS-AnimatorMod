@@ -24,7 +24,7 @@ public class Urushihara extends AnimatorCard implements OnStartOfTurnPostDrawSub
     {
         super(DATA);
 
-        Initialize(23, 0, 2, 5);
+        Initialize(24, 0, 2, 5);
         SetUpgrade(0, 0, -1, -1);
 
         SetAffinity_Blue(1);

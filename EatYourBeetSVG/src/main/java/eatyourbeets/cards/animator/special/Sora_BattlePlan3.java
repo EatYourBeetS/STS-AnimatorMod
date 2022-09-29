@@ -1,5 +1,6 @@
 package eatyourbeets.cards.animator.special;
 
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.tokens.AffinityToken;
@@ -31,7 +32,19 @@ public class Sora_BattlePlan3 extends Sora_BattlePlan
             GameActions.Bottom.GainAffinity(a, 1, true);
         }
 
-        AffinityToken.SelectTokenAction(name, false, false, 1);
-        AffinityToken.SelectTokenAction(name, false, false, 1);
+        SelectToken();
+        SelectToken();
+    }
+
+    private void SelectToken()
+    {
+        GameActions.Bottom.Add(AffinityToken.SelectTokenAction(name, false, false, 1))
+        .AddCallback(cards ->
+        {
+            for (AbstractCard c : cards)
+            {
+                GameActions.Bottom.MakeCardInHand(c);
+            }
+        });
     }
 }

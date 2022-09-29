@@ -17,7 +17,7 @@ import eatyourbeets.utilities.GameActions;
 public class CursedBlade extends AnimatorRelic
 {
     public static final String ID = CreateFullID(CursedBlade.class);
-    public static final int BUFF_AMOUNT = 3;
+    public static final int BUFF_AMOUNT = 4;
     public static final int HP_COST = 3;
     public static final int DAMAGE_AND_COST_INCREASE = 2;
     public static final int AOE_DAMAGE = 9;
@@ -51,8 +51,8 @@ public class CursedBlade extends AnimatorRelic
         super.ActivateBattleEffect();
 
         GameActions.Bottom.ApplyPower(new CursedBladePower(player, this));
-        GameActions.Bottom.GainAgility(BUFF_AMOUNT, true);
-        GameActions.Bottom.GainForce(BUFF_AMOUNT, true);
+        GameActions.Bottom.GainAgility(BUFF_AMOUNT, false);
+        GameActions.Bottom.GainForce(BUFF_AMOUNT, false);
         flash();
     }
 

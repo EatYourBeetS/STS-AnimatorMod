@@ -421,7 +421,9 @@ public class EYBCardTooltip
             }
             else if (p instanceof EYBPower)
             {
-                tip.icon = ((EYBPower) p).powerIcon;
+                final EYBPower power = (EYBPower) p;
+                tip.playerClass = power.GetPlayerClass();
+                tip.icon = power.powerIcon;
             }
 
             if (tip.icon == null && p.img != null)
@@ -503,7 +505,8 @@ public class EYBCardTooltip
 
         BitmapFont descriptionFont = card == null ? FontHelper.tipBodyFont : EYBFontHelper.CardTooltipFont;
 
-        final float textHeight = RenderHelpers.GetSmartHeight(playerClass, descriptionFont, description, BODY_TEXT_WIDTH, TIP_DESC_LINE_SPACING);
+        final AbstractPlayer.PlayerClass pClass = GetPlayerClass();
+        final float textHeight = RenderHelpers.GetSmartHeight(pClass, descriptionFont, description, BODY_TEXT_WIDTH, TIP_DESC_LINE_SPACING);
         final float h = (hideDescription || StringUtils.isEmpty(description)) ? (-40f * Settings.scale) : (-textHeight - 7f * Settings.scale);
 
         sb.setColor(Settings.TOP_PANEL_SHADOW_COLOR);
@@ -539,7 +542,7 @@ public class EYBCardTooltip
 
             if (!hideDescription)
             {
-                RenderHelpers.WriteSmartText(playerClass, sb, descriptionFont, description, x + TEXT_OFFSET_X, y + BODY_OFFSET_Y, BODY_TEXT_WIDTH, TIP_DESC_LINE_SPACING, BASE_COLOR);
+                RenderHelpers.WriteSmartText(pClass, sb, descriptionFont, description, x + TEXT_OFFSET_X, y + BODY_OFFSET_Y, BODY_TEXT_WIDTH, TIP_DESC_LINE_SPACING, BASE_COLOR);
             }
         }
 
@@ -625,6 +628,11 @@ public class EYBCardTooltip
     public String GetTitleOrIcon()
     {
         return (id != null) ? "[" + id + "]" : title;
+    }
+
+    public AbstractPlayer.PlayerClass GetPlayerClass()
+    {
+        return playerClass != null ? playerClass : GameUtilities.GetPlayerClass();
     }
 
     @Override

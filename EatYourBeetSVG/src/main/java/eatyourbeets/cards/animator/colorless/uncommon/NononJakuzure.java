@@ -34,27 +34,12 @@ public class NononJakuzure extends AnimatorCard implements OnAffinitySealedSubsc
     }
 
     @Override
-    public void Refresh(AbstractMonster enemy)
-    {
-        super.Refresh(enemy);
-
-        if (player.hand.contains(this))
-        {
-            CombatStats.onAffinitySealed.Subscribe(this);
-        }
-    }
-
-    @Override
     public void OnAffinitySealed(EYBCard card, boolean manual)
    {
-        if (!player.hand.contains(this))
-        {
-            CombatStats.onAffinitySealed.Unsubscribe(this);
-        }
-        else if (card != this)
+        if (player.hand.contains(this) && player.hand.contains(card) && card != this)
         {
             GameUtilities.IncreaseSecondaryValue(this, 1, false);
-            flash();
+            GameUtilities.Flash(this, false);
        }
     }
 
@@ -85,5 +70,13 @@ public class NononJakuzure extends AnimatorCard implements OnAffinitySealedSubsc
             .MotivateZeroCost(false)
             .AddCallback(remaining - 1, this::OnMotivate);
         }
+    }
+
+    @Override
+    public void triggerWhenCreated(boolean startOfBattle)
+    {
+        super.triggerWhenCreated(startOfBattle);
+
+        CombatStats.onAffinitySealed.Subscribe(this);
     }
 }

@@ -21,19 +21,14 @@ public class Azriel extends AnimatorCard_UltraRare
     {
         super(DATA);
 
-        Initialize(0, 0);
+        Initialize(0, 0, 2);
+        SetUpgrade(0, 0, 1);
 
         SetAffinity_Red(1);
         SetAffinity_Blue(1);
         SetAffinity_Dark(1);
 
         SetEthereal(true);
-    }
-
-    @Override
-    protected void OnUpgrade()
-    {
-        SetEthereal(false);
     }
 
     @Override
@@ -44,6 +39,6 @@ public class Azriel extends AnimatorCard_UltraRare
             GameActions.Bottom.StackPower(new PlayerFlightPower(p, 2));
         }
 
-        GameActions.Bottom.StackPower(new AzrielPower(p, 1));
+        GameActions.Bottom.StackPower(new AzrielPower(p, magicNumber));
     }
 }

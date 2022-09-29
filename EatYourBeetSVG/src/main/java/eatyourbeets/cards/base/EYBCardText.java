@@ -211,7 +211,7 @@ public class EYBCardText
         offset_y = 0;
 
         final boolean showActualScaling = inHand && player.hoveredCard == card && (player.isDraggingCard || player.isHoveringDropZone || player.inSingleTargetMode);
-        for (Affinity affinity : Affinity.All())
+        for (Affinity affinity : Affinity.All(false))
         {
             int scaling = card.affinities.GetScaling(affinity, false);
             if (scaling > 0)

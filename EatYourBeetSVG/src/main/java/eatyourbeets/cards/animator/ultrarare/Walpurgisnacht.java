@@ -24,7 +24,8 @@ public class Walpurgisnacht extends AnimatorCard_UltraRare
     {
         super(DATA);
 
-        Initialize(0, 0, 2);
+        Initialize(0, 0, 3);
+        SetUpgrade(0, 0, 1);
 
         SetAffinity_Blue(2);
         SetAffinity_Dark(2);

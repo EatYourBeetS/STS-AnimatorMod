@@ -20,7 +20,7 @@ import eatyourbeets.utilities.*;
 
 public class EYBCardAffinityRow extends GUIElement
 {
-    public static final Color COLOR_BUTTON = new Color(0.62f, 0.58f, 0.36f, 1f);
+    public static final Color COLOR_BUTTON = new Color(0.8f, 0.8f, 0.6f, 1f);
     public static final Color COLOR_DEFAULT = new Color(0.05f, 0.05f, 0.05f, 1f);
     public static final Color COLOR_HIGHLIGHT_WEAK = new Color(0.5f, 0.5f, 0.5f, 0.75f);
     public static final Color COLOR_HIGHLIGHT_STRONG = new Color(0.75f, 0.75f, 0.35f, 0.75f);
@@ -33,10 +33,11 @@ public class EYBCardAffinityRow extends GUIElement
     public int UpgradeCost;
 
     protected static final EYBCardTooltip tooltip = new EYBCardTooltip("Affinities", "");
+    protected static boolean hasUpgradableAffinities = false;
     protected final GUI_Image image_background;
     protected final GUI_Image image_affinity;
     protected final GUI_Label text_affinity;
-    protected final GUI_Image image_upgrade;
+    protected final GUI_Image image_arrow;
     protected final GUI_Button button_upgrade;
     protected final GUI_Label text_upgrade;
     protected final float offset_y;
@@ -50,8 +51,8 @@ public class EYBCardAffinityRow extends GUIElement
 
         offset_y = -0.5f -(index * 0.975f);
 
-        image_background = new GUI_Image(GR.Common.Images.Panel_Elliptical_Half_H.Texture(),
-        new RelativeHitbox(hb, 1, 1, 0.5f, offset_y))
+        image_background = new GUI_Image(GR.Common.Images.Panel_Rounded_Half_H.Texture(),
+        new RelativeHitbox(hb, 1f, 1, 0.5f, offset_y))
         .SetColor(COLOR_DEFAULT);
 
         image_affinity = new GUI_Image(affinity.GetIcon(),
@@ -62,28 +63,34 @@ public class EYBCardAffinityRow extends GUIElement
         .SetAlignment(0.5f, 0.5f)
         .SetText("-");
 
-        image_upgrade = new GUI_Image(GR.Common.Images.Arrow_Right.Texture(),
-        new RelativeHitbox(hb, Scale(20), Scale(20), hb.width - Scale(15f), offset_y * hb.height, false));
-
-        button_upgrade = new GUI_Button(GR.Common.Images.Tag.Texture(),
-        new RelativeHitbox(hb, Scale(35), Scale(30), hb.width * 1.95f, offset_y * hb.height, false))
-        .SetFont(null, 0.75f)
-        .SetText("+")
-        .SetColor(COLOR_BUTTON);
+        image_arrow = new GUI_Image(GR.Common.Images.Arrow_Right.Texture(),
+        new RelativeHitbox(hb, Scale(20), Scale(20), hb.width - Scale(12f), (offset_y * hb.height) - Scale(8), false));
 
         text_upgrade = new GUI_Label(EYBFontHelper.CardIconFont_Small,
-        new RelativeHitbox(hb, Scale(20), Scale(20), (hb.width * 1.95f) + Scale(10), (offset_y * hb.height) - Scale(5), false))
-        .SetAlignment(0.5f, 0.5f);
+        new RelativeHitbox(hb, Scale(20), Scale(20), hb.width - Scale(12f), (offset_y * hb.height) + Scale(4), false))
+        .SetAlignment(0.5f, 0.5f)
+        .SetFont(null, 0.8f);
+
+        button_upgrade = new GUI_Button(GR.Common.Images.Tag.Texture(),
+        new RelativeHitbox(hb, Scale(35), Scale(30), (hb.width * 2f) + Scale(26), offset_y * hb.height, false))
+        .SetFont(null, 0.75f)
+        .SetColor(COLOR_BUTTON, 0.6f)
+        .UseNotInteractableColor(true);
+
+//        text_upgrade = new GUI_Label(EYBFontHelper.CardIconFont_Small,
+//        new RelativeHitbox(hb, Scale(20), Scale(20), (hb.width * 2f) + Scale(25), (offset_y * hb.height), false))
+//        .SetAlignment(0.5f, 0.5f);
 
         if (Type.ID >= 0)
         {
-            button_upgrade.SetOnClick(this::UpgradeAffinity);
+            button_upgrade.SetOnClick(this::UpgradeAffinity).SetText("+").SetActive(true);
+            image_arrow.SetActive(true);
         }
         else
         {
-            image_upgrade.SetActive(false);
+            button_upgrade.SetOnClick(this::UpgradeAllAffinities).SetText("ALL").SetFont(null, 0.7f).SetActive(false);
+            image_arrow.SetActive(false);
             text_upgrade.SetActive(false);
-            button_upgrade.SetActive(false);
         }
     }
 
@@ -126,11 +133,22 @@ public class EYBCardAffinityRow extends GUIElement
 
         if (Type.ID >= 0)
         {
-            button_upgrade.SetActive(Level >= UpgradeCost && Power.CanUpgrade());
+            //button_upgrade.SetColor(Testing.TryGetColor(button_upgrade.buttonColor), 0.6f);
+
+            if (button_upgrade.SetInteractable(Level >= UpgradeCost && Power.CanUpgrade()).interactable)
+            {
+                hasUpgradableAffinities = true;
+            }
+
             if (text_upgrade.SetActive(button_upgrade.isActive).isActive)
             {
                 text_upgrade.SetText(UpgradeCost).SetColor(Power.retainedTurns > 0 ? Colors.Green(1) : Colors.Cream(1));
             }
+        }
+        else
+        {
+            button_upgrade.SetActive(hasUpgradableAffinities);
+            hasUpgradableAffinities = false;
         }
 
         final boolean hovering = !draggingCard && image_background.hb.hovered && !System.hb.IsDragging();
@@ -163,7 +181,18 @@ public class EYBCardAffinityRow extends GUIElement
             {
                 if (Power != null)
                 {
-                    tooltip.description = GR.Animator.Strings.Affinities.AffinityStatus(UpgradeCost, "[" + Power.symbol + "]");
+                    final String icon;
+                    switch (Power.symbol)
+                    {
+                        case "F": icon = "[Force]"; break;
+                        case "A": icon = "[Agility]"; break;
+                        case "I": icon = "[Intellect]"; break;
+                        case "B": icon = "[Blessing]"; break;
+                        case "C": icon = "[Corruption]"; break;
+                        default: throw new RuntimeException("Unsupported Affinity Power: " + Power.ID);
+                    }
+
+                    tooltip.description = GR.Animator.Strings.Affinities.AffinityStatus(UpgradeCost, icon);
                     EYBCardTooltip.QueueTooltip(tooltip, image_background.hb, false);
                 }
 
@@ -196,7 +225,7 @@ public class EYBCardAffinityRow extends GUIElement
         image_background.TryUpdate();
         image_affinity.TryUpdate();
         text_affinity.TryUpdate();
-        image_upgrade.TryUpdate();
+        image_arrow.TryUpdate();
         button_upgrade.TryUpdate();
         text_upgrade.TryUpdate();
     }
@@ -207,7 +236,7 @@ public class EYBCardAffinityRow extends GUIElement
         image_background.TryRender(sb);
         image_affinity.TryRender(sb);
         text_affinity.TryRender(sb);
-        image_upgrade.TryRender(sb);
+        image_arrow.TryRender(sb);
 
         if (Power != null)
         {
@@ -225,6 +254,17 @@ public class EYBCardAffinityRow extends GUIElement
         if (UpgradeCost >= 0 && System.TryUseAffinity(Type, UpgradeCost))
         {
             Power.Upgrade(1);
+        }
+    }
+
+    protected void UpgradeAllAffinities()
+    {
+        for (EYBCardAffinityRow row : System.Rows)
+        {
+            if (row.button_upgrade.interactable)
+            {
+                row.UpgradeAffinity();
+            }
         }
     }
 

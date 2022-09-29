@@ -13,7 +13,7 @@ public class MisaKurobane extends AnimatorCard
             .SetSkill(0, CardRarity.UNCOMMON, EYBCardTarget.None)
             .SetColor(CardColor.COLORLESS)
             .SetSeries(CardSeries.Charlotte)
-            .PostInitialize(data -> data.AddPreview(new MisaKurobane_Yusarin(), false));
+            .PostInitialize(data -> data.AddPreview(new MisaKurobane_Yusarin(), true));
 
     public MisaKurobane()
     {
@@ -27,7 +27,7 @@ public class MisaKurobane extends AnimatorCard
         SetExhaust(true);
         SetEvokeOrbCount(1);
 
-        SetAffinityRequirement(Affinity.Light, 3);
+        SetAffinityRequirement(Affinity.Light, 2);
     }
 
     @Override

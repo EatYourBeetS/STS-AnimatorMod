@@ -1,6 +1,5 @@
 package eatyourbeets.cards.animator.ultrarare;
 
-import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -12,7 +11,6 @@ import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.effects.SFX;
 import eatyourbeets.powers.AnimatorClickablePower;
 import eatyourbeets.powers.PowerTriggerConditionType;
-import eatyourbeets.utilities.ColoredString;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -29,7 +27,8 @@ public class ShikizakiKiki extends AnimatorCard_UltraRare
     {
         super(DATA);
 
-        Initialize(0, 0, BLOCK_DAMAGE_BONUS, POWER_ENERGY_COST);
+        Initialize(0, 0, 1, POWER_ENERGY_COST);
+        SetUpgrade(0, 0, 1);
 
         SetAffinity_Red(1);
         SetAffinity_Blue(1);
@@ -37,22 +36,14 @@ public class ShikizakiKiki extends AnimatorCard_UltraRare
     }
 
     @Override
-    protected void OnUpgrade()
-    {
-        SetInnate(true);
-    }
-
-    @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.GainBlock(block);
-        GameActions.Bottom.StackPower(new ShikizakiKikiPower(p, 1));
+        GameActions.Bottom.StackPower(new ShikizakiKikiPower(p, magicNumber));
     }
 
     public static class ShikizakiKikiPower extends AnimatorClickablePower
     {
-        private int attacks;
-
         public ShikizakiKikiPower(AbstractCreature owner, int amount)
         {
             super(owner, ShikizakiKiki.DATA, PowerTriggerConditionType.Energy, POWER_ENERGY_COST);
@@ -65,7 +56,7 @@ public class ShikizakiKiki extends AnimatorCard_UltraRare
         @Override
         public String GetUpdatedDescription()
         {
-            return FormatDescription(0, triggerCondition.requiredAmount, 1, amount);
+            return FormatDescription(0, triggerCondition.requiredAmount, amount, 1);
         }
 
         @Override
@@ -75,29 +66,31 @@ public class ShikizakiKiki extends AnimatorCard_UltraRare
 
             if (card.type == CardType.ATTACK)
             {
-                attacks += 1;
-
-                if (attacks >= 3)
-                {
-                    attacks = 0;
-                    GameActions.Bottom.GainInspiration(amount);
-                    this.flash();
-                }
+                GameActions.Bottom.GainInspiration(1);
+                this.flash();
             }
         }
 
         @Override
         public void OnUse(AbstractMonster m)
         {
-            for (AbstractCard c : player.drawPile.group)
+            for (AbstractCard c : player.hand.group)
             {
+                boolean flash = false;
                 if (c.baseBlock > 0)
                 {
-                    GameUtilities.IncreaseBlock(c, BLOCK_DAMAGE_BONUS, false);
+                    GameUtilities.IncreaseBlock(c, amount, false);
+                    flash = true;
                 }
                 if (c.baseDamage > 0)
                 {
-                    GameUtilities.IncreaseDamage(c, BLOCK_DAMAGE_BONUS, false);
+                    GameUtilities.IncreaseDamage(c, amount, false);
+                    flash = true;
+                }
+
+                if (flash)
+                {
+                    c.superFlash();
                 }
             }
 
@@ -105,12 +98,6 @@ public class ShikizakiKiki extends AnimatorCard_UltraRare
             GameActions.Bottom.SFX(SFX.ATTACK_FIRE, 0.5f, 0.6f).SetDuration(0.25f, true);
             GameActions.Bottom.SFX(SFX.ATTACK_AXE, 0.5f, 0.6f).SetDuration(0.25f, true);
             GameActions.Bottom.SFX(SFX.CARD_UPGRADE, 0.5f, 0.6f).SetDuration(0.25f, true);
-        }
-
-        @Override
-        protected ColoredString GetSecondaryAmount(Color c)
-        {
-            return new ColoredString(attacks, Color.WHITE, c.a);
         }
     }
 }

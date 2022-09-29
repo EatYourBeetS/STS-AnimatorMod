@@ -20,8 +20,8 @@ public class HououinKyouma extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 14);
-        SetUpgrade(0, 0, -2);
+        Initialize(0, 0, 9);
+        SetUpgrade(0, 0, -3);
 
         SetAffinity_Blue(2);
 

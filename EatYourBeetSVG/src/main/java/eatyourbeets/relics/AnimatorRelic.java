@@ -2,7 +2,7 @@ package eatyourbeets.relics;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.relics.*;
-import eatyourbeets.relics.animator.AbstractMissingPiece;
+import eatyourbeets.relics.deprecated.AbstractMissingPiece;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.AnimatorDungeonData;
 import eatyourbeets.utilities.FieldInfo;

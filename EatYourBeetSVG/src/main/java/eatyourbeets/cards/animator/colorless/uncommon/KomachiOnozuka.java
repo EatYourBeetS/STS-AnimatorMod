@@ -34,8 +34,8 @@ public class KomachiOnozuka extends AnimatorCard
         Initialize(11, 0, 2, 0);
         SetUpgrade(3, 0, 0, 0);
 
-        SetAffinity_Dark(1, 0, 1);
-        SetAffinity_Green(1, 0, 1);
+        SetAffinity_Dark(1, 0, 6);
+        SetAffinity_Green(1, 0, 6);
 
         SetObtainableInCombat(false);
     }

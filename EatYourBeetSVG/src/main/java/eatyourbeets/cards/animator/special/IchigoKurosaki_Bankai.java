@@ -24,7 +24,7 @@ public class IchigoKurosaki_Bankai extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(8, 0);
+        Initialize(9, 0);
         SetUpgrade(3, 0);
 
         SetAffinity_Green(2, 0, 1);

@@ -1,5 +1,6 @@
 package eatyourbeets.cards.animator.series.TouhouProject;
 
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.tokens.AffinityToken;
@@ -34,7 +35,14 @@ public class SanaeKochiya extends AnimatorCard
 
         if (CombatStats.TryActivateLimited(cardID))
         {
-            AffinityToken.SelectTokenAction(name, false, false, 1);
+            GameActions.Bottom.Add(AffinityToken.SelectTokenAction(name, false, false, 1))
+            .AddCallback(cards ->
+            {
+                for (AbstractCard c : cards)
+                {
+                    GameActions.Bottom.MakeCardInHand(c);
+                }
+            });
         }
     }
 

@@ -1,5 +1,6 @@
 package eatyourbeets.cards.animator.series.NoGameNoLife;
 
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -43,7 +44,14 @@ public class FielNirvalen extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        AffinityToken.SelectTokenAction(name, upgraded, false, 1);
+        GameActions.Bottom.Add(AffinityToken.SelectTokenAction(name, upgraded, false, 1))
+        .AddCallback(cards ->
+        {
+            for (AbstractCard c : cards)
+            {
+                GameActions.Bottom.MakeCardInHand(c);
+            }
+        });
         GameActions.Bottom.StackPower(new FielNirvalenPower(p, secondaryValue));
     }
 

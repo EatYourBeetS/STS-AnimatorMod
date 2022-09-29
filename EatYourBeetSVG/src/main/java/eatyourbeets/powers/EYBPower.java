@@ -56,6 +56,11 @@ public abstract class EYBPower extends AbstractPower implements CloneablePowerIn
         return base + "Power";
     }
 
+    public AbstractPlayer.PlayerClass GetPlayerClass()
+    {
+        return GameUtilities.GetPlayerClass();
+    }
+
     /** cardData, relic and originalID are exclusive of one another */
     protected EYBPower(AbstractCreature owner, EYBCardData cardData, EYBRelic relic, String originalID)
     {

@@ -18,7 +18,7 @@ public class EYBNeowReward extends NeowReward
 
         if (type == NeowRewardType.THREE_ENEMY_KILL)
         {
-            SetText("Your first 3 card rewards contain 1 additional card.");
+            SetText("Your first 2 card rewards contain 2 additional cards.");
         }
     }
 
@@ -28,7 +28,7 @@ public class EYBNeowReward extends NeowReward
 
         if (type == NeowRewardType.THREE_ENEMY_KILL)
         {
-            SetText("Your first 3 card rewards contain 1 additional card.");
+            SetText("Your first 2 card rewards contain 2 additional cards.");
         }
     }
 

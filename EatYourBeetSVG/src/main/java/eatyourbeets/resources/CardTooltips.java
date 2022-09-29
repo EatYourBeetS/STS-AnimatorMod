@@ -24,7 +24,6 @@ import eatyourbeets.powers.unnamed.MarkedPower;
 import eatyourbeets.powers.unnamed.SummoningSicknessPower;
 import eatyourbeets.powers.unnamed.WitheringPower;
 import eatyourbeets.resources.common.CommonImages;
-import eatyourbeets.resources.common.CommonResources;
 import eatyourbeets.ui.TextureCache;
 import eatyourbeets.utilities.JUtils;
 
@@ -413,9 +412,7 @@ public class CardTooltips
         EYBCardTooltip tooltip = CardTooltips.FindByID(playerClass, id);
         if (tooltip == null)
         {
-            JUtils.LogError(CommonResources.class, "Could not find tooltip: Symbol: {0}, ID: {1}, Power: {2} ",
-                    symbol, id, power.name);
-            return;
+            throw new RuntimeException(JUtils.Format("Could not find tooltip: Symbol: {0}, ID: {1}, Power: {2} ", symbol, id, power.name));
         }
 
         tooltip.icon = new TextureAtlas.AtlasRegion(power.img, 3, 5, size-6, size-6);

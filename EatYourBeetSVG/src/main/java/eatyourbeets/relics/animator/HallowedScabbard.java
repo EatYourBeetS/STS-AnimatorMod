@@ -11,7 +11,7 @@ public class HallowedScabbard extends AnimatorRelic
     public static final String ID = CreateFullID(HallowedScabbard.class);
     public static final int DAMAGE_THRESHOLD = 12;
     public static final int REGENERATION = 4;
-    public static final int BLESSING = 2;
+    public static final int BLESSING = 4;
 
     public HallowedScabbard()
     {

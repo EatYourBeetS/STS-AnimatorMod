@@ -1,16 +1,16 @@
 package eatyourbeets.relics.animator;
 
-import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
+import eatyourbeets.cards.base.EYBCard;
+import eatyourbeets.interfaces.subscribers.OnAffinitySealedSubscriber;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.relics.AnimatorRelic;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.JUtils;
 
-public class WornHelmet extends AnimatorRelic
+public class WornHelmet extends AnimatorRelic implements OnAffinitySealedSubscriber
 {
     public static final String ID = CreateFullID(WornHelmet.class);
-    public static final int BLOCK_AMOUNT1 = 4;
-    public static final int BLOCK_AMOUNT2 = 1;
+    public static final int BLOCK_AMOUNT = 5;
 
     public WornHelmet()
     {
@@ -20,35 +20,23 @@ public class WornHelmet extends AnimatorRelic
     @Override
     public String getUpdatedDescription()
     {
-        return FormatDescription(0, BLOCK_AMOUNT1, BLOCK_AMOUNT2);
+        return FormatDescription(0, BLOCK_AMOUNT);
     }
 
     @Override
-    public void atBattleStart()
+    protected void RefreshBattleEffect(boolean enabled)
     {
-        GameActions.Bottom.Add(new RelicAboveCreatureAction(player, this));
-        GameActions.Bottom.GainBlock(BLOCK_AMOUNT1);
-        SetCounter(0);
-        flash();
+        super.RefreshBattleEffect(enabled);
+
+        CombatStats.onAffinitySealed.ToggleSubscription(this, enabled);
     }
 
     @Override
-    public void onRefreshHand()
+    public void OnAffinitySealed(EYBCard card, boolean manual)
     {
-        super.onRefreshHand();
-
-        SetCounter(JUtils.Count(player.hand.group, GameUtilities::IsHindrance));
-    }
-
-    @Override
-    public void onPlayerEndTurn()
-    {
-        super.onPlayerEndTurn();
-
-        int block = JUtils.Count(player.hand.group, GameUtilities::IsHindrance) * BLOCK_AMOUNT2;
-        if (block > 0)
+        if (GameUtilities.IsHindrance(card))
         {
-            GameActions.Bottom.GainBlock(block);
+            GameActions.Bottom.GainBlock(BLOCK_AMOUNT);
             flash();
         }
     }

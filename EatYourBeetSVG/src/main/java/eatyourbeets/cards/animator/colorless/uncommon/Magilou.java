@@ -14,7 +14,7 @@ import eatyourbeets.utilities.GameActions;
 public class Magilou extends AnimatorCard implements OnCardResetListener
 {
     public static final EYBCardData DATA = Register(Magilou.class)
-            .SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None)
+            .SetSkill(0, CardRarity.UNCOMMON, EYBCardTarget.None)
             .SetMaxCopies(1)
             .SetColor(CardColor.COLORLESS)
             .SetSeries(CardSeries.TalesOfBerseria)

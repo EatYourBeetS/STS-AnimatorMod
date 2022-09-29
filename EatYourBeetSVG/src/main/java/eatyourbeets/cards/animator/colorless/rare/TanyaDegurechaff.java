@@ -28,7 +28,7 @@ public class TanyaDegurechaff extends AnimatorCard
         SetAffinity_Green(2, 0, 1);
         SetAffinity_Blue(2, 0, 1);
 
-        SetAffinityRequirement(Affinity.Star, 3);
+        SetAffinityRequirement(Affinity.Sealed, 2);
     }
 
     @Override
@@ -41,9 +41,15 @@ public class TanyaDegurechaff extends AnimatorCard
         .SetFilter(GameUtilities::IsHindrance)
         .SetOptions(CardSelection.Top, true);
 
-        if (info.CanActivateLimited && TryUseAffinity(Affinity.Star) && info.TryActivateLimited())
+        if (CheckSpecialCondition(true))
         {
             GameActions.Bottom.MakeCardInDrawPile(new TanyaDegurechaff_Type95());
         }
+    }
+
+    @Override
+    public boolean CheckSpecialCondition(boolean tryUse)
+    {
+        return super.CheckSpecialConditionLimited(tryUse, super::CheckSpecialCondition);
     }
 }

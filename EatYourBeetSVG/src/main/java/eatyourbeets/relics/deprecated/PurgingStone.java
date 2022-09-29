@@ -1,4 +1,4 @@
-package eatyourbeets.relics.animator;
+package eatyourbeets.relics.deprecated;
 
 import basemod.BaseMod;
 import com.megacrit.cardcrawl.cards.AbstractCard;

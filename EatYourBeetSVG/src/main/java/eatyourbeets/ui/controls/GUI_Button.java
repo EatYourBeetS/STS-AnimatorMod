@@ -17,10 +17,7 @@ import eatyourbeets.interfaces.delegates.ActionT2;
 import eatyourbeets.resources.GR;
 import eatyourbeets.ui.GUIElement;
 import eatyourbeets.ui.hitboxes.AdvancedHitbox;
-import eatyourbeets.utilities.Colors;
-import eatyourbeets.utilities.GenericCallback;
-import eatyourbeets.utilities.InputManager;
-import eatyourbeets.utilities.RenderHelpers;
+import eatyourbeets.utilities.*;
 import org.apache.commons.lang3.StringUtils;
 
 public class GUI_Button extends GUIElement
@@ -34,6 +31,7 @@ public class GUI_Button extends GUIElement
     public float currentAlpha = 1f;
     public boolean interactable;
     public boolean forceRenderTooltip;
+    public Boolean useNonInteractableColor;
     public EYBCardTooltip tooltip;
     public GenericCallback<GUI_Button> onLeftClick;
     public GenericCallback<GUI_Button> onRightClick;
@@ -232,6 +230,14 @@ public class GUI_Button extends GUIElement
         return this;
     }
 
+    public GUI_Button SetColor(Color buttonColor, float disabledColorBlackLerp)
+    {
+        this.buttonColor = buttonColor.cpy();
+        this.disabledButtonColor = Colors.Lerp(buttonColor, Color.BLACK, disabledColorBlackLerp);
+
+        return this;
+    }
+
     public GUI_Button SetColor(Color buttonColor, Color hoverBlendColor)
     {
         this.buttonColor = buttonColor.cpy();
@@ -267,6 +273,13 @@ public class GUI_Button extends GUIElement
         {
             this.tooltip.canRender = show;
         }
+
+        return this;
+    }
+
+    public GUI_Button UseNotInteractableColor(boolean value)
+    {
+        this.useNonInteractableColor = value;
 
         return this;
     }
@@ -338,7 +351,7 @@ public class GUI_Button extends GUIElement
         final boolean interactable = IsInteractable();
         if (StringUtils.isNotEmpty(text))
         {
-            this.RenderButton(sb, interactable, buttonColor);
+            this.RenderButton(sb, interactable, interactable ? buttonColor : (useNonInteractableColor != null && useNonInteractableColor) ? disabledButtonColor : buttonColor);
 
             final Color color = interactable ? textColor : disabledTextColor;
             final float scale = (FontHelper.getSmartWidth(font, text, 9999f, 0f) > (hb.width * 0.7)) ? 0.8f : 1f;
@@ -373,7 +386,7 @@ public class GUI_Button extends GUIElement
         }
         else
         {
-            this.RenderButton(sb, interactable, interactable ? buttonColor : disabledButtonColor);
+            this.RenderButton(sb, interactable, interactable ? buttonColor : (useNonInteractableColor == null || useNonInteractableColor) ? disabledButtonColor : buttonColor);
         }
 
         this.hb.render(sb);

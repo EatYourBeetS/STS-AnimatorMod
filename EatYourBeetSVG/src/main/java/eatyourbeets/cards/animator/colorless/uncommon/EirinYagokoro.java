@@ -25,7 +25,7 @@ public class EirinYagokoro extends AnimatorCard implements OnAddToDeckListener
     {
         super(DATA);
 
-        Initialize(0, 0, 6, 4);
+        Initialize(0, 0, 6, 5);
         SetUpgrade(0, 0, 2, 2);
 
         SetAffinity_Dark(1);

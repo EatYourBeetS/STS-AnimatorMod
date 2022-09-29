@@ -27,6 +27,8 @@ public class TheEruzaStone extends UnnamedReignRelic
     @Override
     protected void ActivateBattleEffect()
     {
+        super.ActivateBattleEffect();
+
         SetEnabled(true);
         SetCounter(MAX_VITALITY);
     }

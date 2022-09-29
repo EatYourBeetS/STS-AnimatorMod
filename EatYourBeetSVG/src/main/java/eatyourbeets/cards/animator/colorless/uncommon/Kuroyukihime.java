@@ -25,7 +25,7 @@ public class Kuroyukihime extends AnimatorCard
 
         SetExhaust(true);
 
-        SetAffinityRequirement(Affinity.Star, 3);
+        SetAffinityRequirement(Affinity.Star, 1);
     }
 
     @Override
@@ -36,7 +36,7 @@ public class Kuroyukihime extends AnimatorCard
         .AddCallback(() ->
         {//
             GameActions.Bottom.MakeCardInHand(new Kuroyukihime_BlackLotus())
-            .SetUpgrade(CheckAffinity(Affinity.Star), false);
+            .SetUpgrade(CheckSpecialCondition(true), false);
         });
     }
 }

@@ -19,7 +19,7 @@ public class SeriousSaitama extends AnimatorCard_UltraRare
     {
         super(DATA);
 
-        Initialize(0, 0, 0);
+        Initialize(0, 0, 1);
         SetUpgrade(0, 0, 1);
 
         SetAffinity_Red(2);

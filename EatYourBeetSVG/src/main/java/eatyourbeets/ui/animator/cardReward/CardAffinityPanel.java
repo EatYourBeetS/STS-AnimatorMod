@@ -49,7 +49,7 @@ public class CardAffinityPanel extends GUIElement
         .SetForegroundTexture(ICONS.BorderFG.Texture())
         .SetHitbox(new RelativeHitbox(hb, ICON_SIZE, ICON_SIZE, 0.45f, 1f, true));
 
-        for (Affinity t : Affinity.All())
+        for (Affinity t : Affinity.All(false))
         {
             counters.add(new CardAffinityCounter(hb, t));
         }

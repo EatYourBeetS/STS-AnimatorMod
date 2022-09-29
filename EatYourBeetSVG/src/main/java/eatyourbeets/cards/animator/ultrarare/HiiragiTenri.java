@@ -7,6 +7,8 @@ import eatyourbeets.cards.animator.tokens.AffinityToken;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.attributes.TempHPAttribute;
+import eatyourbeets.powers.animator.SupportDamagePower;
+import eatyourbeets.utilities.ColoredString;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -22,6 +24,7 @@ public class HiiragiTenri extends AnimatorCard_UltraRare
                 token.upgrade();
                 data.AddPreview(token, true);
             });
+    public static final int SUPPORT_DAMAGE = 13;
 
     public HiiragiTenri()
     {
@@ -36,13 +39,19 @@ public class HiiragiTenri extends AnimatorCard_UltraRare
         SetRetainOnce(true);
         SetPurge(true);
 
-        SetAffinityRequirement(Affinity.General, 4);
+        SetAffinityRequirement(Affinity.Sealed, 3);
     }
 
     @Override
     public AbstractAttribute GetSpecialInfo()
     {
         return magicNumber > 0 ? TempHPAttribute.Instance.SetCard(this, true) : null;
+    }
+
+    @Override
+    public ColoredString GetSpecialVariableString()
+    {
+        return super.GetSpecialVariableString(SUPPORT_DAMAGE);
     }
 
     @Override
@@ -61,9 +70,9 @@ public class HiiragiTenri extends AnimatorCard_UltraRare
             GameActions.Bottom.GainTemporaryHP(magicNumber);
         }
 
-        if (CheckAffinity(Affinity.General))
+        if (CheckSpecialCondition(true))
         {
-            GameActions.Bottom.ObtainAffinityToken(Affinity.General, true);
+            GameActions.Bottom.StackPower(new SupportDamagePower(p, SUPPORT_DAMAGE));
         }
 
         GameActions.Bottom.SelectFromPile(name, secondaryValue, p.discardPile)

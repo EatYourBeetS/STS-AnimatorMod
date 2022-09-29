@@ -1,18 +1,15 @@
 package eatyourbeets.relics.animator;
 
-import eatyourbeets.cards.base.Affinity;
-import eatyourbeets.interfaces.subscribers.OnAffinityThresholdReachedSubscriber;
+import com.megacrit.cardcrawl.cards.AbstractCard;
+import eatyourbeets.cards.base.EYBCard;
+import eatyourbeets.interfaces.subscribers.OnAffinitySealedSubscriber;
 import eatyourbeets.powers.CombatStats;
-import eatyourbeets.powers.affinity.AbstractAffinityPower;
 import eatyourbeets.relics.AnimatorRelic;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.RandomizedList;
 
-public class EngravedStaff extends AnimatorRelic implements OnAffinityThresholdReachedSubscriber
+public class EngravedStaff extends AnimatorRelic implements OnAffinitySealedSubscriber
 {
     public static final String ID = CreateFullID(EngravedStaff.class);
-    public static final int BOOST_AMOUNT = 1;
-    public static final int TEMP_HP_AMOUNT = 1;
 
     public EngravedStaff()
     {
@@ -20,50 +17,20 @@ public class EngravedStaff extends AnimatorRelic implements OnAffinityThresholdR
     }
 
     @Override
-    protected void ActivateBattleEffect()
+    protected void RefreshBattleEffect(boolean enabled)
     {
-        super.ActivateBattleEffect();
+        super.RefreshBattleEffect(enabled);
 
-        CombatStats.onAffinityThresholdReached.Subscribe(this);
+        CombatStats.onAffinitySealed.ToggleSubscription(this, enabled);
     }
 
     @Override
-    protected void DeactivateBattleEffect()
+    public void OnAffinitySealed(EYBCard card, boolean manual)
     {
-        super.DeactivateBattleEffect();
-
-        CombatStats.onAffinityThresholdReached.Unsubscribe(this);
-    }
-
-    @Override
-    public void OnAffinityThresholdReached(AbstractAffinityPower power, int thresholdLevel)
-    {
-        GameActions.Bottom.GainTemporaryHP(TEMP_HP_AMOUNT);
-        flash();
-    }
-
-    @Override
-    public String getUpdatedDescription()
-    {
-        return FormatDescription(0, TEMP_HP_AMOUNT);
-    }
-
-    @Override
-    public void atTurnStartPostDraw()
-    {
-        super.atTurnStartPostDraw();
-
-        GameActions.Bottom.Callback(() ->
+        if (card.rarity == AbstractCard.CardRarity.RARE)
         {
-            int i = BOOST_AMOUNT;
-            final RandomizedList<Affinity> affinities = new RandomizedList<>(Affinity.Basic());
-            while (affinities.Size() > 0 && i > 0)
-            {
-                GameActions.Bottom.GainAffinity(affinities.Retrieve(rng), 1, true);
-                i -= 1;
-            }
-
+            GameActions.Bottom.GainEnergy(1);
             flash();
-        });
+        }
     }
 }

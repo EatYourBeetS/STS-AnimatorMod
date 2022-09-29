@@ -13,7 +13,7 @@ import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.effects.SFX;
 import eatyourbeets.effects.card.PermanentUpgradeEffect;
 import eatyourbeets.interfaces.listeners.OnAddingToCardRewardListener;
-import eatyourbeets.relics.animator.AbstractMissingPiece;
+import eatyourbeets.relics.deprecated.AbstractMissingPiece;
 import eatyourbeets.relics.animator.CursedGlyph;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.AnimatorStrings;

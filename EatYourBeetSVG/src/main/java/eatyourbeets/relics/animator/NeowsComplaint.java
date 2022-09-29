@@ -5,7 +5,8 @@ import eatyourbeets.relics.AnimatorRelic;
 public class NeowsComplaint extends AnimatorRelic
 {
     public static final String ID = CreateFullID(NeowsComplaint.class);
-    public static final int TOTAL_REWARDS = 3;
+    public static final int TOTAL_REWARDS = 2;
+    public static final int CARD_BONUS = 2;
 
     public NeowsComplaint()
     {
@@ -27,7 +28,7 @@ public class NeowsComplaint extends AnimatorRelic
         if (counter > 0)
         {
             AddCounter(-1);
-            amount += 1;
+            amount += CARD_BONUS;
             flash();
         }
 
@@ -38,6 +39,7 @@ public class NeowsComplaint extends AnimatorRelic
     public void setCounter(int counter)
     {
         super.setCounter(counter);
+
         SetEnabled(counter > 0);
     }
 }

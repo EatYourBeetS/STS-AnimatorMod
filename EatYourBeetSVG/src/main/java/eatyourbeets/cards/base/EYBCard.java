@@ -388,7 +388,7 @@ public abstract class EYBCard extends EYBCardBase
     public boolean CheckAffinities(boolean tryUse)
     {
         final ArrayList<Pair<Affinity, Integer>> toUse = new ArrayList<>();
-        for (Affinity a : Affinity.All())
+        for (Affinity a : Affinity.All(true))
         {
             final int req = affinities.GetRequirement(a);
             if (req > 0)
@@ -477,7 +477,7 @@ public abstract class EYBCard extends EYBCardBase
             return -1;
         }
 
-        return CombatStats.Affinities.GetPlayerAffinities().GetLevel(affinity);
+        return CombatStats.Affinities.GetUsableAffinity(affinity);
     }
 
     public boolean IsStarter()
@@ -1041,6 +1041,17 @@ public abstract class EYBCard extends EYBCardBase
         {
             cooldown.ProgressCooldown(false);
         }
+    }
+
+    @Override
+    public boolean hasEnoughEnergy()
+    {
+        final boolean turnHasEnded = AbstractDungeon.actionManager.turnHasEnded;
+        AbstractDungeon.actionManager.turnHasEnded = false;
+        final boolean result = super.hasEnoughEnergy();
+        AbstractDungeon.actionManager.turnHasEnded = turnHasEnded;
+
+        return result;
     }
 
     @Override

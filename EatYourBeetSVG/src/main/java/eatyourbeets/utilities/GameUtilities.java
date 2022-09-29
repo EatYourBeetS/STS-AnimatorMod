@@ -348,10 +348,10 @@ public class GameUtilities
         return GetAffinityLevel(card, affinity, useStarLevel, false);
     }
 
-    public static int GetAffinityLevel(AbstractCard card, Affinity affinity, boolean useStarLevel, boolean ignoreSealed)
+    public static int GetAffinityLevel(AbstractCard card, Affinity affinity, boolean useStarLevel, boolean allowSealed)
     {
         final EYBCardAffinities a = GetAffinities(card);
-        return (a != null && (ignoreSealed || !a.sealed)) ? a.GetLevel(affinity, useStarLevel) : 0;
+        return (a != null && (allowSealed || !a.sealed)) ? a.GetLevel(affinity, useStarLevel) : 0;
     }
 
     public static AnimatorAscensionManager GetAscensionData()
@@ -674,6 +674,11 @@ public class GameUtilities
         return cards;
     }
 
+    public static RandomizedList<AbstractCard> GetColorlessCardPoolInCombat()
+    {
+        return GetCardPoolInCombat(GetColorlessCardPool(), null);
+    }
+
     public static RandomizedList<AbstractCard> GetCardPoolInCombat(AbstractCard.CardRarity rarity)
     {
         return GetCardPoolInCombat(GetCardPool(rarity), null);
@@ -694,6 +699,11 @@ public class GameUtilities
         }
 
         return cards;
+    }
+
+    public static CardGroup GetColorlessCardPool()
+    {
+        return GetCardPool(null);
     }
 
     public static CardGroup GetCardPool(AbstractCard.CardRarity rarity)

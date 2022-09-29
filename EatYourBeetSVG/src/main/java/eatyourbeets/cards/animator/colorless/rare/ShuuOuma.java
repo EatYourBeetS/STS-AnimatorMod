@@ -30,12 +30,16 @@ public class ShuuOuma extends AnimatorCard
     }
 
     @Override
+    protected void OnUpgrade()
+    {
+        SetInnate(true);
+    }
+
+    @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.StackPower(new ShuuOumaPower(player, 1));
-
-        (upgraded ? GameActions.Bottom.FetchFromPile(name, magicNumber, player.drawPile, player.discardPile)
-                  : GameActions.Bottom.FetchFromPile(name, magicNumber, player.drawPile))
+        GameActions.Bottom.FetchFromPile(name, magicNumber, player.drawPile)
         .SetOptions(false, false)
         .SetFilter(c -> c.type.equals(CardType.POWER))
         .AddCallback(cards ->

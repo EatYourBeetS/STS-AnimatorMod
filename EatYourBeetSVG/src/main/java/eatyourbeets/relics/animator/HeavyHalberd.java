@@ -1,17 +1,18 @@
 package eatyourbeets.relics.animator;
 
-import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.powers.VulnerablePower;
-import eatyourbeets.interfaces.subscribers.OnApplyPowerSubscriber;
+import eatyourbeets.cards.base.Affinity;
+import eatyourbeets.interfaces.subscribers.OnAffinityThresholdReachedSubscriber;
 import eatyourbeets.powers.CombatStats;
+import eatyourbeets.powers.affinity.AbstractAffinityPower;
 import eatyourbeets.relics.AnimatorRelic;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.TargetHelper;
 
-public class HeavyHalberd extends AnimatorRelic implements OnApplyPowerSubscriber
+public class HeavyHalberd extends AnimatorRelic implements OnAffinityThresholdReachedSubscriber
 {
     public static final String ID = CreateFullID(HeavyHalberd.class);
-    public static final int FORCE_AMOUNT = 1;
+    public static final int VULNERABLE_AMOUNT = 2;
+    public static final int DRAW_AMOUNT = 2;
 
     public HeavyHalberd()
     {
@@ -21,28 +22,29 @@ public class HeavyHalberd extends AnimatorRelic implements OnApplyPowerSubscribe
     @Override
     public String getUpdatedDescription()
     {
-        return FormatDescription(0, FORCE_AMOUNT);
+        return FormatDescription(0, VULNERABLE_AMOUNT, DRAW_AMOUNT);
     }
 
     @Override
-    protected void ActivateBattleEffect()
+    protected void RefreshBattleEffect(boolean enabled)
     {
-        CombatStats.onApplyPower.Subscribe(this);
+        super.RefreshBattleEffect(enabled);
+
+        CombatStats.onAffinityThresholdReached.ToggleSubscription(this, enabled);
     }
 
     @Override
-    protected void DeactivateBattleEffect()
+    public void OnAffinityThresholdReached(AbstractAffinityPower power, int thresholdLevel)
     {
-        CombatStats.onApplyPower.Unsubscribe(this);
-    }
-
-    @Override
-    public void OnApplyPower(AbstractPower power, AbstractCreature target, AbstractCreature source)
-    {
-        if (source != null && source.isPlayer && VulnerablePower.POWER_ID.equals(power.ID))
+        if (power.affinity == Affinity.Red)
         {
-            GameActions.Bottom.GainForce(1);
-            this.flash();
+            GameActions.Bottom.ApplyVulnerable(TargetHelper.Enemies(player), VULNERABLE_AMOUNT);
+            flash();
+        }
+        else if (power.affinity == Affinity.Green)
+        {
+            GameActions.Bottom.Draw(DRAW_AMOUNT);
+            flash();
         }
     }
 }

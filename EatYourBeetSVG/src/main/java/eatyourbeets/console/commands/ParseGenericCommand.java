@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.cards.curses.AscendersBane;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
+import com.megacrit.cardcrawl.helpers.RelicLibrary;
 import com.megacrit.cardcrawl.helpers.TipHelper;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
@@ -253,7 +254,7 @@ public class ParseGenericCommand extends ConsoleCommand
                     }
 
                     boolean upgrade = tokens.length > 3 && tokens[3].equals("+");
-                    for (Affinity affinity : Affinity.All())
+                    for (Affinity affinity : Affinity.All(false))
                     {
                         if (affinity.name().toLowerCase(Locale.ROOT).equals(tokens[2]))
                         {
@@ -376,7 +377,7 @@ public class ParseGenericCommand extends ConsoleCommand
                     Affinity affinity = Affinity.Star;
                     if (tokens.length > 2)
                     {
-                        for (Affinity t : Affinity.All())
+                        for (Affinity t : Affinity.All(false))
                         {
                             if (t.name().toLowerCase(Locale.ROOT).equals(tokens[2]))
                             {
@@ -421,7 +422,7 @@ public class ParseGenericCommand extends ConsoleCommand
                         int generalLV1 = 0;
                         int generalUP1 = 0;
                         int generalLV2 = 0;
-                        for (Affinity affinity : Affinity.All())
+                        for (Affinity affinity : Affinity.All(false))
                         {
                             final EYBCardAffinityStatistics.Group group = stats.GetGroup(affinity);
                             sb.append(":").append(TipHelper.capitalize(affinity.name())).append(":")
@@ -492,6 +493,31 @@ public class ParseGenericCommand extends ConsoleCommand
                     return;
                 }
 
+                if (tokens[1].equals("get-relics"))
+                {
+                    if (!GameUtilities.InGame() || player == null || player.masterDeck == null)
+                    {
+                        DevConsole.log("You need to be in game to use this command.");
+                        return;
+                    }
+
+                    if (!GameUtilities.IsTestMode())
+                    {
+                        return;
+                    }
+
+                    for (ArrayList<String> pool : GameUtilities.GetRelicPools())
+                    {
+                        for (String key : pool)
+                        {
+                            if (key.startsWith(GR.Animator.Prefix + ":") && !player.hasRelic(key))
+                            {
+                                GameUtilities.ObtainRelic(player.hb_x, player.hb_y, RelicLibrary.getRelic(key));
+                            }
+                        }
+                    }
+                }
+
                 if (tokens[1].equals("get-cards") && tokens.length > 2)
                 {
                     if (!GameUtilities.InGame() || player == null || player.masterDeck == null)
@@ -505,6 +531,15 @@ public class ParseGenericCommand extends ConsoleCommand
                     if (name.equals("colorless"))
                     {
                         cards.addAll(CardSeries.Affinity.GetColorlessCards());
+
+                        if (GameUtilities.IsTestMode() && tokens.length > 3 && tokens[3].equals("ur"))
+                        {
+                            DevConsole.log("Test mode detected: Adding UltraRares.");
+                            for (AbstractCard c : AnimatorCard_UltraRare.GetCards().values())
+                            {
+                                cards.add((AnimatorCard) c.makeCopy());
+                            }
+                        }
                     }
                     else
                     {

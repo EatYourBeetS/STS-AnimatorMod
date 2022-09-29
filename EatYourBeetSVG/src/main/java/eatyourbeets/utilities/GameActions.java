@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
 import com.megacrit.cardcrawl.actions.defect.IncreaseMaxOrbAction;
 import com.megacrit.cardcrawl.actions.unique.ArmamentsAction;
+import com.megacrit.cardcrawl.actions.unique.RetainCardsAction;
 import com.megacrit.cardcrawl.actions.utility.ShakeScreenAction;
 import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.actions.watcher.ChangeStanceAction;
@@ -1161,6 +1162,21 @@ public final class GameActions
     public SelectFromPile SelectFromPile(String sourceName, int amount, CardGroup... groups)
     {
         return Add(new SelectFromPile(sourceName, amount, groups));
+    }
+
+    public SelectFromHand Retain(String sourceName, int amount, boolean isRandom)
+    {
+        return (SelectFromHand) SelectFromHand(sourceName, 1, false)
+        .SetOptions(true, true, true)
+        .SetMessage(RetainCardsAction.TEXT[0])
+        .SetFilter(GameUtilities::CanRetain)
+        .AddCallback(cards ->
+        {
+            for (AbstractCard c : cards)
+            {
+                GameUtilities.Retain(c);
+            }
+        });
     }
 
     public SequentialAction Sequential(AbstractGameAction action, AbstractGameAction action2)

@@ -1,5 +1,6 @@
 package eatyourbeets.powers;
 
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.interfaces.delegates.ActionT1;
@@ -12,6 +13,12 @@ public abstract class AnimatorClickablePower extends EYBClickablePower
     public static String CreateFullID(Class<? extends AnimatorClickablePower> type)
     {
         return GR.Animator.CreateID(type.getSimpleName());
+    }
+
+    @Override
+    public AbstractPlayer.PlayerClass GetPlayerClass()
+    {
+        return GR.Animator.PlayerClass;
     }
 
     public AnimatorClickablePower(AbstractCreature owner, String id, PowerTriggerConditionType type, int requiredAmount)

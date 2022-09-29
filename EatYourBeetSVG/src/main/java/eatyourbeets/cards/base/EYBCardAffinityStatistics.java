@@ -79,7 +79,7 @@ public class EYBCardAffinityStatistics implements Iterable<EYBCardAffinityStatis
 
         for (EYBCardAffinities a : cardsAffinities)
         {
-            for (Affinity t : Affinity.All())
+            for (Affinity t : Affinity.All(false))
             {
                 int level = a.GetLevel(t, useStar);
                 int upgrade = a.GetUpgrade(t, useStar);

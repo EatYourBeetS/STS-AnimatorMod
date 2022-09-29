@@ -1,17 +1,16 @@
-package eatyourbeets.relics.animator;
+package eatyourbeets.relics.deprecated;
 
-import eatyourbeets.interfaces.markers.Hidden;
 import eatyourbeets.relics.AnimatorRelic;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
-public class SoulGem extends AnimatorRelic implements Hidden
+public class SoulGem extends AnimatorRelic
 {
     public static final String ID = CreateFullID(SoulGem.class);
 
     public SoulGem()
     {
-        super(ID, RelicTier.RARE, LandingSound.HEAVY);
+        super(ID, RelicTier.DEPRECATED, LandingSound.HEAVY);
     }
 
     @Override

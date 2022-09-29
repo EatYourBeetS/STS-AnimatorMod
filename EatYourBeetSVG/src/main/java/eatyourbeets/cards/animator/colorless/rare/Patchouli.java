@@ -17,6 +17,7 @@ import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.interfaces.delegates.ActionT0;
+import eatyourbeets.stances.IntellectStance;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
@@ -93,7 +94,7 @@ public class Patchouli extends AnimatorCard
             GameActions.Bottom.WaitRealtime(0.2f);
         }
 
-        if (info.CanActivateLimited && TryUseAffinity(Affinity.Blue) && info.TryActivateLimited())
+        if (CheckSpecialCondition(true))
         {
             GameActions.Bottom.Add(OrbCore.SelectCoreAction(name, 1, 5, true)
             .AddCallback(cards ->
@@ -104,6 +105,12 @@ public class Patchouli extends AnimatorCard
                 }
             }));
         }
+    }
+
+    @Override
+    public boolean CheckSpecialCondition(boolean tryUse)
+    {
+        return super.CheckSpecialConditionLimited(tryUse, use -> IntellectStance.IsActive() || super.CheckSpecialCondition(use));
     }
 
     private void Lightning()

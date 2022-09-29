@@ -1,9 +1,48 @@
-
 {
+	"animator:OddDevice_1":
+	{
+		"DESCRIPTIONS": ["Press #pCTRL outside combat to change this effect.",
+			"All [~Ranged] #yAttacks deal #b{0} additional damage.",
+			"All [~Elemental] #yAttacks deal #b{0} additional damage.",
+			"All [~Piercing] #yAttacks deal #b{0} additional damage."
+		],
+		"FLAVOR": "Press that button and then that happens.",
+		"NAME": "Odd Device #1"
+	},
+	"animator:OddDevice_2":
+	{
+		"DESCRIPTIONS": ["Press #pCTRL outside combat to change this effect.",
+			"Apply #b{0} less [DD] to yourself and #b{1} additional [DD] to enemies.",
+			"Apply #b{0} additional [Burning] from all sources.",
+			"Apply #b{0} additional [Poison] from all sources."
+		],
+		"FLAVOR": "Press this button and then that happens.",
+		"NAME": "Odd Device #2"
+	},
+	"animator:OddDevice_3":
+	{
+		"DESCRIPTIONS": ["Press #pCTRL outside combat to change this effect.",
+			"The first #yLow-Cost #yPower you play each combat is played twice.",
+			"The first #yLow-Cost #yAttack you play each combat is played twice.",
+			"The first #yLow-Cost #ySkill you play each combat is played twice."
+		],
+		"FLAVOR": "Press that button and then this happens.",
+		"NAME": "Odd Device #3"
+	},
+	"animator:OddDevice_4":
+	{
+		"DESCRIPTIONS": ["Press #pCTRL outside combat to change this effect.", 
+			"While you have #b{0} or more cards in #yExhaust pile, gain #b{1} [Block] at the end of turn.",
+			"At the start of turn, Scry #b{0}. Whenever you discard a card, gain #b{1} [INS].",
+			"At the start of combat, gain #b{0} [S]. NL At the start of turn, #yMotivate #b{1} [S] cards."
+		],
+		"FLAVOR": "Press this button and then this happens.",
+		"NAME": "Odd Device #4"
+	},
 	"animator:AlchemistGlove":
 	{
-		"DESCRIPTIONS": ["At the start of each combat, #yChannel 1 #yFire."],
-		"FLAVOR": "You can control the flames with the snap of a finger.",
+		"DESCRIPTIONS": ["At the start of combat, #yChannel [Fire]."],
+		"FLAVOR": "Control the flames with the snap of a finger.",
 		"NAME": "Alchemist Glove"
 	},
 	"animator:AncientMedallion":
@@ -14,7 +53,7 @@
 	},
 	"animator:BattleDrones":
 	{
-		"DESCRIPTIONS": ["Whenever you #ySeal a card, deal #b{0} damage to a random enemy and gain #b{1} #yBlock."],
+		"DESCRIPTIONS": ["Whenever you #ySeal a card in hand, deal #b{0} damage to a random enemy."],
 		"FLAVOR": "Engineering perfection.",
 		"NAME": "Battle Drones"
 	},
@@ -26,7 +65,7 @@
 	},
 	"animator:Buoy":
 	{
-		"DESCRIPTIONS": ["If you end your turn below #b{0}% HP, gain #b{1} #yBlock."],
+		"DESCRIPTIONS": ["At the end of turn, #yRecover #b{0} [HP]."],
 		"FLAVOR": "When it comes to speed I'm the best there is, swift like the island breeze!",
 		"NAME": "Buoy"
 	},
@@ -50,7 +89,7 @@
 	},
 	"animator:CursedBlade":
 	{
-		"DESCRIPTIONS": ["Start each combat with #b{0} [F] and [A]. Whenever you take unblocked Attack damage, add a #yWound to your hand.", "Once per turn, pay #b{0} [MHP] to deal #b{1} damage to ALL enemies, then increase damage and cost by #b{2}."],
+		"DESCRIPTIONS": ["Start each combat with #b{0} [G] [R]. Whenever you take unblocked Attack damage, add a #yWound to your hand.", "Once per turn, pay #b{0} [MHP] to deal #b{1} damage to ALL enemies, then increase damage and cost by #b{2}."],
 		"FLAVOR": "Power comes at a price.",
 		"NAME": "Cursed Blade"
 	},
@@ -68,7 +107,7 @@
 	},
 	"animator:EngravedStaff":
 	{
-		"DESCRIPTIONS": ["At the start of turn, #yBoost a random [Affinity] #yPowers. NL Whenever you reach an [Affinity] #yPower threshold, gain #b{0} [THP]."],
+		"DESCRIPTIONS": ["Whenever you #ySeal a #yRare card, gain [E]."],
 		"FLAVOR": "One of the most treasured possessions of the Guild.",
 		"NAME": "Engraved Staff"
 	},
@@ -80,13 +119,13 @@
 	},
 	"animator:HallowedScabbard":
 	{
-		"DESCRIPTIONS": ["Once per combat, if you lose a total of #b{0} or more [HP], gain #b{1} #yRegeneration and #b{2} [B]."],
+		"DESCRIPTIONS": ["Once per combat, if you lose a total of #b{0} or more [HP], gain #b{1} #yRegeneration and #b{2} [L]."],
 		"FLAVOR": "The holder of the scabbard is granted potent healing, allowing for critical and fatal wound to be rapidly repaired.",
 		"NAME": "Hallowed Scabbard"
 	},
 	"animator:HeavyHalberd":
 	{
-		"DESCRIPTIONS": ["Whenever you apply [Vulnerable], gain #b{0} [Force]."],
+		"DESCRIPTIONS": ["When you gain [Agility], draw #b{1} cards. NL When you gain [Force], apply #b{0} [Vulnerable] to ALL enemies."],
 		"FLAVOR": "Ruling over death means ruling over life. Death is the climax of life. To have the best death, you must honor life.",
 		"NAME": "Heavy Halberd"
 	},
@@ -122,7 +161,7 @@
 	},
 	"animator:MantleOfTheStrategist":
 	{
-		"DESCRIPTIONS": ["Start each combat with #b{0} [Inspiration]."],
+		"DESCRIPTIONS": ["At the end of turn, if you have #b{0} or more [Inspiration], #yRetain 1 card."],
 		"FLAVOR": "A robe made from cloth woven from the tracks of falling stars.",
 		"NAME": "Mantle of the Strategist"
 	},
@@ -182,7 +221,7 @@
 	},
 	"animator:ShionDessert":
 	{
-		"DESCRIPTIONS": ["At the start of each turn, apply #b{0} #yPoison to the enemy with the most #yPoison."],
+		"DESCRIPTIONS": ["At the start of turn, apply #b{0} [Poison] to the enemy with the most [Poison]."],
 		"FLAVOR": "Here, have a taste, how bad can it be?",
 		"NAME": "Shion's Dessert"
 	},
@@ -236,13 +275,13 @@
 	},
 	"animator:WizardHat":
 	{
-		"DESCRIPTIONS": ["Start each combat with #b{0} [I].", "Once per combat, pay #b{0} [E] to deal #b{1} damage to ALL enemies. Increase damage by #b{2} each turn."],
+		"DESCRIPTIONS": ["Start each combat with #b{0} [B].", "Once per combat, pay #b{0} [E] to deal #b{1} damage to ALL enemies. Increase damage by #b{2} each turn."],
 		"FLAVOR": "Explosion magic is the strongest magic. But that also means it takes time to prepare.",
 		"NAME": "Wizard Hat"
 	},
 	"animator:WornHelmet":
 	{
-		"DESCRIPTIONS": ["Start each combat with #b{0} #yBlock. At the end of each turn, gain #b{1} #yBlock for every #yHindrance in your hand."],
+		"DESCRIPTIONS": ["Whenever you #ySeal a #yHindrance, gain #b{0} [Block]."],
 		"FLAVOR": "Goblins.",
 		"NAME": "Worn Helmet"
 	},

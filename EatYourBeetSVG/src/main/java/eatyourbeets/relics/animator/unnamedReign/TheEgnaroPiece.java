@@ -31,6 +31,8 @@ public class TheEgnaroPiece extends UnnamedReignRelic
     @Override
     protected void ActivateBattleEffect()
     {
+        super.ActivateBattleEffect();
+
         this.counter = VITALITY_AMOUNT * (player.masterDeck.size() / CARDS_STEP);
         if (counter > 0)
         {

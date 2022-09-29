@@ -66,7 +66,11 @@ public class GUI_Label extends GUIElement
 
     public GUI_Label SetFont(BitmapFont font, float fontScale)
     {
-        this.font = font;
+        if (font != null)
+        {
+            this.font = font;
+        }
+
         this.fontScale = fontScale;
 
         return this;

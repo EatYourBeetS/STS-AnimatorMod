@@ -104,9 +104,10 @@ public abstract class AnimatorAffinityPower extends AbstractAffinityPower
         }
 
         final Color imgColor = Colors.White((enabled && (retainedTurns + amount) > 0) ? 1 : 0.5f);
-        RenderHelpers.DrawCentered(sb, imgColor, img, x + 16 * scale, cY + (3f * scale), 32, 32, 1, 0);
+        RenderHelpers.DrawCentered(sb, imgColor, img, x + 20 * scale, cY + (3f * scale), 32, 32, 1, 0);
 
-        FontHelper.renderFontRightTopAligned(sb, FontHelper.powerAmountFont, String.valueOf(amount), x + 48 * scale, y, fontScale, amountColor);
+        final float textX = x + ((amount > 9 ? 56 : 50) * scale);
+        FontHelper.renderFontRightTopAligned(sb, FontHelper.powerAmountFont, String.valueOf(amount), textX, y, fontScale, amountColor);
 
         for (AbstractGameEffect e : effects)
         {
@@ -126,8 +127,13 @@ public abstract class AnimatorAffinityPower extends AbstractAffinityPower
         if (amount > 0)
         {
             retainedTurns = 0;
-            SetThresholdLevel(current + amount);
-            GameActions.Bottom.StackPower(TargetHelper.Source(owner), GetThresholdBonusPower(), amount);
+
+            for (int i = 0; i < amount; i++)
+            {
+                thresholdIndex += 1;
+                OnThresholdReached();
+                CombatStats.OnAffinityThresholdReached(this, thresholdIndex);
+            }
         }
     }
 
@@ -137,8 +143,8 @@ public abstract class AnimatorAffinityPower extends AbstractAffinityPower
         amount = Mathf.Min(current, amount);
         if (amount > 0)
         {
-            SetThresholdLevel(current - amount);
             GameActions.Bottom.ReducePower(owner, GetThresholdBonusPower().ID, amount);
+            SetThresholdLevel(current - amount);
         }
     }
 

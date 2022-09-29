@@ -9,7 +9,6 @@ import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.effects.AttackEffects;
-import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -62,16 +61,6 @@ public class Canti extends AnimatorCard
         else
         {
             GameActions.Bottom.DealDamage(this, m, AttackEffects.BLUNT_HEAVY);
-        }
-    }
-
-    @Override
-    public void triggerOnAffinitySeal(boolean reshuffle)
-    {
-        super.triggerOnAffinitySeal(reshuffle);
-
-        if (CombatStats.TryActivateLimited(cardID)) {
-            GameActions.Bottom.Cycle(name, player.hand.size());
         }
     }
 }

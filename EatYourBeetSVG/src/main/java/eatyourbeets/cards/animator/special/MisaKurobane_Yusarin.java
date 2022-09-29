@@ -31,6 +31,7 @@ public class MisaKurobane_Yusarin extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
+        GameActions.Bottom.Draw(1);
         GameActions.Bottom.Motivate(magicNumber);
     }
 }

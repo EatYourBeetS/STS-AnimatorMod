@@ -22,13 +22,12 @@ public class HinaKagiyama extends AnimatorCard
             .SetSeries(CardSeries.TouhouProject)
             .SetMaxCopies(1)
             .PostInitialize(data -> data.AddPreview(new Special_Miracle(), false));
-    public static final int MAX_BLESSING_PER_TURN = 3;
 
     public HinaKagiyama()
     {
         super(DATA);
 
-        Initialize(0, 0, MAX_BLESSING_PER_TURN);
+        Initialize(0, 0, 1);
 
         SetAffinity_Blue(1);
         SetAffinity_Light(2);
@@ -43,7 +42,7 @@ public class HinaKagiyama extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.StackPower(new HinaKagiyamaPower(p, 1));
+        GameActions.Bottom.StackPower(new HinaKagiyamaPower(p, magicNumber));
     }
 
     public static class HinaKagiyamaPower extends AnimatorPower implements OnAfterCardDrawnSubscriber, OnCardCreatedSubscriber
@@ -51,8 +50,6 @@ public class HinaKagiyama extends AnimatorCard
         public HinaKagiyamaPower(AbstractCreature owner, int amount)
         {
             super(owner, HinaKagiyama.DATA);
-
-            this.canBeZero = true;
 
             Initialize(amount);
         }
@@ -73,14 +70,6 @@ public class HinaKagiyama extends AnimatorCard
 
             CombatStats.onAfterCardDrawn.Unsubscribe(this);
             CombatStats.onCardCreated.Unsubscribe(this);
-        }
-
-        @Override
-        public void atStartOfTurn()
-        {
-            super.atStartOfTurn();
-
-            ResetAmount();
         }
 
         @Override
@@ -109,11 +98,9 @@ public class HinaKagiyama extends AnimatorCard
 
         public void Activate(AbstractCard c)
         {
-            if (enabled && c.type == AbstractCard.CardType.CURSE)
+            if (c.type == AbstractCard.CardType.CURSE)
             {
-                GameActions.Bottom.GainBlessing(1);
-                reducePower(1);
-                SetEnabled(amount > 0);
+                GameActions.Bottom.GainBlessing(amount);
                 flashWithoutSound();
             }
         }

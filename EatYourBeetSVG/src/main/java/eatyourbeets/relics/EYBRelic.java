@@ -269,10 +269,15 @@ public abstract class EYBRelic extends CustomRelic
 
     protected void ActivateBattleEffect()
     {
-
+        RefreshBattleEffect(true);
     }
 
     protected void DeactivateBattleEffect()
+    {
+        RefreshBattleEffect(false);
+    }
+
+    protected void RefreshBattleEffect(boolean enabled)
     {
 
     }

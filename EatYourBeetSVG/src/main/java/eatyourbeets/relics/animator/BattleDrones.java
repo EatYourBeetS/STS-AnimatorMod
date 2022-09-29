@@ -17,8 +17,7 @@ import eatyourbeets.utilities.JUtils;
 public class BattleDrones extends AnimatorRelic implements OnAffinitySealedSubscriber
 {
     public static final String ID = CreateFullID(BattleDrones.class);
-    public static final int DAMAGE_AMOUNT = 3;
-    public static final int BLOCK_AMOUNT = 1;
+    public static final int DAMAGE_AMOUNT = 4;
 
     public BattleDrones()
     {
@@ -26,39 +25,38 @@ public class BattleDrones extends AnimatorRelic implements OnAffinitySealedSubsc
     }
 
     @Override
-    public void atBattleStart()
+    public String getUpdatedDescription()
     {
-        super.atBattleStart();
+        return JUtils.Format(DESCRIPTIONS[0], DAMAGE_AMOUNT);
+    }
 
-        CombatStats.onAffinitySealed.Subscribe(this);
+    @Override
+    protected void RefreshBattleEffect(boolean enabled)
+    {
+        super.RefreshBattleEffect(enabled);
+
+        CombatStats.onAffinitySealed.ToggleSubscription(this, enabled);
     }
 
     @Override
     public void OnAffinitySealed(EYBCard card, boolean manual)
     {
-        if (card != null)
+        if (player.hand.contains(card))
         {
             GameActions.Bottom.Callback(() ->
             {
-                GameActions.Bottom.GainBlock(BLOCK_AMOUNT).SetVFX(true, true);
                 GameActions.Bottom.DealDamageToRandomEnemy(DAMAGE_AMOUNT, DamageInfo.DamageType.THORNS, AttackEffects.NONE)
-                        .SetDamageEffect(enemy ->
-                        {
-                            SFX.Play(SFX.ATTACK_MAGIC_BEAM_SHORT);
-                            final Hitbox source = (player.relics.indexOf(this) / MAX_RELICS_PER_PAGE == relicPage) ? this.hb : player.hb;
-                            GameEffects.List.Add(VFX.SmallLaser(source, enemy.hb, Color.CYAN));
-                            GameEffects.List.BorderFlash(Color.SKY);
-                            return 0f;
-                        });
+                .SetDamageEffect(enemy ->
+                {
+                    SFX.Play(SFX.ATTACK_MAGIC_BEAM_SHORT);
+                    final Hitbox source = (player.relics.indexOf(this) / MAX_RELICS_PER_PAGE == relicPage) ? this.hb : player.hb;
+                    GameEffects.List.Add(VFX.SmallLaser(source, enemy.hb, Color.CYAN));
+                    GameEffects.List.BorderFlash(Color.SKY);
+                    return 0f;
+                });
 
                 flash();
             });
         }
-    }
-
-    @Override
-    public String getUpdatedDescription()
-    {
-        return JUtils.Format(DESCRIPTIONS[0], DAMAGE_AMOUNT, BLOCK_AMOUNT);
     }
 }

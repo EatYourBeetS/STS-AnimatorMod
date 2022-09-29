@@ -521,7 +521,6 @@ public class RenderHelpers
                     final TextureRegion icon = GetSmallIcon(playerClass, id);
                     if (icon == null)
                     {
-                        JUtils.LogError(RenderHelpers.class, "Missing icon: " + id);
                         builder.append("MISSING: ").append(id);
                     }
                     else
@@ -814,6 +813,29 @@ public class RenderHelpers
 
     public static TextureRegion GetSmallIcon(AbstractPlayer.PlayerClass playerClass, String id)
     {
+        if (playerClass == GR.Animator.PlayerClass)
+        {
+            switch (id)
+            {
+                case "R":
+                    return GR.Tooltips.Affinity_Red.icon;
+                case "G":
+                    return GR.Tooltips.Affinity_Green.icon;
+                case "B":
+                    return GR.Tooltips.Affinity_Blue.icon;
+                case "L":
+                    return GR.Tooltips.Affinity_Light.icon;
+                case "D":
+                    return GR.Tooltips.Affinity_Dark.icon;
+                case "M":
+                    return GR.Tooltips.Affinity_Star.icon;
+                case "S":
+                    return GR.Tooltips.Affinity_Sealed.icon;
+                case "W":
+                    return GR.Tooltips.Affinity_General.icon;
+            }
+        }
+
         if (playerClass == GR.AnimatorClassic.PlayerClass)
         {
             switch (id)
@@ -846,7 +868,18 @@ public class RenderHelpers
 
             default:
                 final EYBCardTooltip tooltip = CardTooltips.FindByID(playerClass, id);
-                return (tooltip != null) ? tooltip.icon : null;
+                if (tooltip == null)
+                {
+                    JUtils.LogError(RenderHelpers.class, "Missing tooltip: " + id);
+                    return null;
+                }
+                if (tooltip.icon == null)
+                {
+                    JUtils.LogError(RenderHelpers.class, "Missing icon: " + id);
+                    return null;
+                }
+
+                return tooltip.icon;
         }
     }
 

@@ -27,7 +27,7 @@ public class Emonzaemon_EntouJyuu extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 2, BONUS_DAMAGE);
+        Initialize(0, 0, 3, BONUS_DAMAGE);
         SetUpgrade(0, 0, 1);
 
         SetAffinity_Red(1);

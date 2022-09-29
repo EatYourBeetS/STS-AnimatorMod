@@ -27,16 +27,18 @@ public enum Affinity implements Comparable<Affinity>
     protected static final TextureCache BorderLV1 = GR.Common.Images.Affinities.Border_Weak;
     protected static final TextureCache BorderSealed = GR.Common.Images.Affinities.Border_Seal;
     protected static final Affinity[] BASIC_TYPES = new Affinity[5];
-    protected static final Affinity[] ALL_TYPES = new Affinity[6];
+    protected static final Affinity[] BASIC_TYPES_M = new Affinity[6];
+    protected static final Affinity[] ALL_TYPES = new Affinity[7];
 
     static
     {
-        ALL_TYPES[0] = BASIC_TYPES[0] = Red;
-        ALL_TYPES[1] = BASIC_TYPES[1] = Green;
-        ALL_TYPES[2] = BASIC_TYPES[2] = Blue;
-        ALL_TYPES[3] = BASIC_TYPES[3] = Light;
-        ALL_TYPES[4] = BASIC_TYPES[4] = Dark;
-        ALL_TYPES[5] = Star;
+        ALL_TYPES[0] = BASIC_TYPES[0] = BASIC_TYPES_M[0] = Red;
+        ALL_TYPES[1] = BASIC_TYPES[1] = BASIC_TYPES_M[1] = Green;
+        ALL_TYPES[2] = BASIC_TYPES[2] = BASIC_TYPES_M[2] = Blue;
+        ALL_TYPES[3] = BASIC_TYPES[3] = BASIC_TYPES_M[3] = Light;
+        ALL_TYPES[4] = BASIC_TYPES[4] = BASIC_TYPES_M[4] = Dark;
+        ALL_TYPES[5] = BASIC_TYPES_M[5] = Star;
+        ALL_TYPES[6] = Sealed;
     }
 
     public static Affinity[] Basic()
@@ -44,9 +46,9 @@ public enum Affinity implements Comparable<Affinity>
         return BASIC_TYPES;
     }
 
-    public static Affinity[] All()
+    public static Affinity[] All(boolean includeSealed)
     {
-        return ALL_TYPES;
+        return includeSealed ? ALL_TYPES : BASIC_TYPES_M;
     }
 
     public final int ID;

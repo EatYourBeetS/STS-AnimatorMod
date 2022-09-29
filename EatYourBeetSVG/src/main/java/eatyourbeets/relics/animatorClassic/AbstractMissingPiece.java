@@ -192,7 +192,7 @@ public abstract class AbstractMissingPiece extends AnimatorClassicRelic implemen
 //            }
 //        }
 //
-//        if (relicId.equals(eatyourbeets.relics.animator.ColorlessFragment.ID))
+//        if (relicId.equals(eatyourbeets.relics.deprecated.ColorlessFragment.ID))
 //        {
 //            list.Add(Synergies.ANY, ColorlessFragment.COLORLESS_WEIGHT);
 //        }

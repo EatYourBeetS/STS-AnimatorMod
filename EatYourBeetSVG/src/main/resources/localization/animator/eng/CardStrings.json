@@ -91,7 +91,7 @@
 		},
 		"animator:HarukoHaruhara":
 		{
-			"DESCRIPTION": "Cycle 1 random card. ** Gain !M! [E]. Increase the ** cost of a random card ** by 1 this turn.",
+			"DESCRIPTION": "Cycle 1 random card. ** Gain !M! [E]. Raise the ** cost of a random ** card by 1 this turn.",
 			"NAME": "Haruko Haruhara"
 		},
 		"animator:Hibiki":
@@ -122,8 +122,14 @@
 		},
 		"animator:Patchouli":
 		{
-			"DESCRIPTION": "Attack 1 additional time ** for each unique orb ** Channeled this combat. || <LIM>. Synergy or !A! [B]: Obtain 1 {Orb Core+}.",
+			"DESCRIPTION": "Attack 1 additional time ** for each unique orb ** Channeled this combat. || <LIM>. <IS> or !A! [B]: ** Obtain 1 {Orb Core+}.",
 			"NAME": "Patchouli"
+		},
+		"animator:Rorona":
+		{
+			"DESCRIPTION": "Once per turn: ** Pay !M! [Gold] to obtain a ** random potion (Max 2). || At the end of combat, if ** your deck has 25+ cards: ** Upgrade a random card.",
+			"EXTENDED_DESCRIPTION": ["Pay #b{0} [Gold] to obtain a random potion. || At the end of combat, if your deck has more than #b{1} cards, #yUpgrade #b{2} random card(s) (max #b2 cards)."],
+			"NAME": "Rorona"
 		},
 		"animator:SakuraKinomoto":
 		{
@@ -132,10 +138,9 @@
 		},
 		"animator:ShuuOuma":
 		{
-			"DESCRIPTION": "Fetch 1 {Power} from your ** draw pile and take [DD] ** equal to twice its cost. || This turn, whenever you play ** a {Power}: Boost [R] [B] [D].",
+			"DESCRIPTION": "Fetch 1 {Power} from your ** draw pile and take [DD] ** equal to twice its cost. || This turn, when you play a ** {Power}: Boost [R] [B] [D].",
 			"EXTENDED_DESCRIPTION": ["This turn, whenever you play a #yPower: #yBoost [D] [B] [R] #b{0} time(s)."],
-			"NAME": "Shuu Ouma",
-			"UPGRADE_DESCRIPTION": "Fetch 1 {Power} from your ** draw or discard pile and take ** [DD] equal to twice its cost. || This turn, whenever you play ** a {Power}: Boost [R] [B] [D]."
+			"NAME": "Shuu Ouma"
 		},
 		"animator:TakanashiRikka":
 		{
@@ -145,12 +150,12 @@
 		},
 		"animator:TanyaDegurechaff":
 		{
-			"DESCRIPTION": "Discard the top !M! ** {Hindrances} of your ** draw pile. || <LIM>. !A! [M]: Add {Type ** 95} to your draw pile.",
+			"DESCRIPTION": "Discard the top !M! ** {Hindrances} of your ** draw pile. || <LIM>. !A! [S]: Add {Type ** 95} to your draw pile.",
 			"NAME": "Tanya Degurechaff"
 		},
 		"animator:TanyaDegurechaff_Type95":
 		{
-			"DESCRIPTION": "Gain !M! of each {[W] Power}. || Give a card in your ** hand +!S! [M] scaling.",
+			"DESCRIPTION": "Gain !M! of each [W]. || Give a card in your ** hand +!S! [M] scaling.",
 			"NAME": "Type 95"
 		}
 	},
@@ -159,7 +164,7 @@
 	{
 		"animator:Canti":
 		{
-			"DESCRIPTION": "Deal additional ** damage equal to the ** enemy's current ** attack damage. || <LIM>. When Sealed: Cycle any number of cards in hand.",
+			"DESCRIPTION": "Deal additional ** damage equal to the ** enemy's current ** attack damage.",
 			"NAME": "Canti"
 		},
 		"animator:Cirno":
@@ -174,9 +179,8 @@
 		},
 		"animator:IchigoKurosaki":
 		{
-			"DESCRIPTION": "Boost [R] [G]. || <LIM> When Exhausted: ** If you reached !S! [R] this ** combat, add {Ichigo Bankai} ** to your draw pile.",
-			"NAME": "Ichigo Kurosaki",
-			"UPGRADE_DESCRIPTION": "<DRW>. <DESCRIPTION>"
+			"DESCRIPTION": "Gain|Boost [R] [G]. ** <DRW>. || !A! [R]: Add {Ichigo Bankai} ** to your draw pile.",
+			"NAME": "Ichigo Kurosaki"
 		},
 		"animator:IchigoKurosaki_Bankai":
 		{
@@ -196,12 +200,12 @@
 		},
 		"animator:Kuroyukihime":
 		{
-			"DESCRIPTION": "Discard !M! cards to ** obtain {Black Lotus}. || Then, if you have ** !A! [M]: Upgrade it.",
+			"DESCRIPTION": "Discard !M! cards to ** obtain {Black Lotus}. || !A! [M]: Upgrade it.",
 			"NAME": "Kuroyukihime"
 		},
 		"animator:Kuroyukihime_BlackLotus":
 		{
-			"DESCRIPTION": "Gain [R] [G]. || !A! [G]: <DRW-M>, ** then increase [G] ** requirement by 1.",
+			"DESCRIPTION": "Gain [R] [G]. || !A! [G]: <DRW-2>, ** then increase [G] ** requirement by 1.",
 			"NAME": "Black Lotus"
 		},
 		"animator:LimeBell":
@@ -216,23 +220,23 @@
 		},
 		"animator:Magilou_Bienfu":
 		{
-			"DESCRIPTION": "Unplayable. || When Drawn: Boost [B]. || When Discarded: Move ** this to your draw pile ** and give it {~Haste}.",
+			"DESCRIPTION": "Unplayable. || When Drawn: Boost [B]. ** When Discarded: Move ** this to your draw pile ** and give it {~Haste}.",
 			"NAME": "Bienfu"
 		},
 		"animator:MamizouFutatsuiwa":
 		{
-			"DESCRIPTION": "Exhaust a card. Obtain a new copy of it. || <LIM>. When Sealed: ** Reshuffle your discard pile.",
+			"DESCRIPTION": "Retain 1 card and ** change its [W] to [M]. || When Sealed: Exhaust, ** then obtain a random ** {+Upgraded} {Colorless} card.",
 			"EXTENDED_DESCRIPTION": ["turn into a Shapeshifter."],
 			"NAME": "Mamizou Futatsuiwa"
 		},
 		"animator:MisaKurobane":
 		{
-			"DESCRIPTION": "<DRW-M>. ** Channel 1 [Fire]. || !A! [L]: Add {Yusarin} ** to your draw pile.",
+			"DESCRIPTION": "<DRW-M>. ** Channel 1 [Fire]. || !A! [L]: Add {Yusarin}{+} ** to your draw pile.",
 			"NAME": "Misa Kurobane"
 		},
 		"animator:MisaKurobane_Yusarin":
 		{
-			"DESCRIPTION": "Motivate !M!.",
+			"DESCRIPTION": "<DRW>. ** Motivate !M!.",
 			"NAME": "Yusarin"
 		},
 		"animator:MisakiNakahara":
@@ -242,25 +246,18 @@
 		},
 		"animator:NononJakuzure":
 		{
-			"DESCRIPTION": "Cycle !M! card(s). Motivate !S!. || Whenever you Seal ** while this is in your hand: ** Increase this card's ** Motivate by 1.",
+			"DESCRIPTION": "Cycle !M! card(s). Motivate !S!. || Whenever you Seal another ** card in hand: Raise this ** card's Motivate amount by 1.",
 			"NAME": "Nonon Jakuzure"
 		},
 		"animator:QuestionMark":
 		{
-			"DESCRIPTION": "Unplayable. || When Sealed: ** Exhaust, then Obtain a random card.",
-			"NAME": "Question Mark",
-			"UPGRADE_DESCRIPTION": "Unplayable. || When Sealed: ** Exhaust, then Obtain a random upgraded card."
+			"DESCRIPTION": "Unplayable. || When Sealed: Obtain ** 1 out of !M! random ** Upgraded cards.",
+			"NAME": "Question Mark"
 		},
 		"animator:Shimakaze":
 		{
-			"DESCRIPTION": "Gain [G]. || <DRW-M>. ** Add 1 Dazed to ** your draw pile.",
+			"DESCRIPTION": "Gain|Boost [G]. || <DRW-M>. ** Add 1 Dazed to ** your draw pile.",
 			"NAME": "Shimakaze"
-		},
-		"animator:Rorona":
-		{
-			"DESCRIPTION": "Once per turn: ** Pay !M! [Gold] to obtain a ** random potion (Max 2). || At the end of combat, if ** your deck has 25+ cards: ** Upgrade a random card.",
-			"EXTENDED_DESCRIPTION": ["Pay #b{0} [Gold] to obtain a random potion. || At the end of combat, if your deck has more than #b{1} cards, #yUpgrade #b{2} random card(s) (max #b2 cards)."],
-			"NAME": "Rorona"
 		},
 		"animator:Clownpiece":
 		{
@@ -2026,8 +2023,8 @@
 		},
 		"animator:HinaKagiyama":
 		{
-			"DESCRIPTION": "The first !M! times you draw ** a Curse each turn: Gain [L]. || Whenever a Curse is ** Exhausted: Obtain 1 {Miracle}.",
-			"EXTENDED_DESCRIPTION": ["The next #b{0} time(s) you draw a curse this turn, gain #b1 [L]. Whenever a #yCurse is #yExhausted: Obtain #b1 #yMiracle."],
+			"DESCRIPTION": "Whenever you draw ** a Curse: Gain !M! [L]. || Whenever a Curse is ** Exhausted: Obtain 1 {Miracle}.",
+			"EXTENDED_DESCRIPTION": ["TWhenever you draw a curse, gain #b{0} [L]. Whenever a #yCurse is #yExhausted: Obtain #b1 #yMiracle."],
 			"NAME": "Hina Kagiyama"
 		},
 		"animator:Khajiit":
@@ -2158,12 +2155,12 @@
 	{
 		"animator:Azriel":
 		{
-			"DESCRIPTION": "Gain 2 Flight. While you ** have it, you can't have ** more than 20 [Block] or [THP]. || When you apply a {Debuff}: ** Boost 1 random {[W] Power}.",
+			"DESCRIPTION": "Gain 2 Flight. While you ** have it, you can't have ** more than 20 [Block] or [THP]. || When you apply a {Debuff}: Gain !M! random [W].",
 			"NAME": "Azriel"
 		},
 		"animator:Chomusuke":
 		{
-			"DESCRIPTION": "<DRW>. || <SLM>. When ** Exhausted: Return this ** card to your hand and ** gain [E] [E]",
+			"DESCRIPTION": "<DRW>. || <slm>. On Exhaust: ** Gain [E][E] and return ** this to your hand.",
 			"NAME": "Chomusuke"
 		},
 		"animator:Cthulhu":
@@ -2183,12 +2180,12 @@
 		},
 		"animator:Hero":
 		{
-			"DESCRIPTION": "<DRW-M>. || <LIM>. If this card kills ** an enemy, 40% chance to ** obtain a {Relic} at the ** end of combat.",
+			"DESCRIPTION": "<DRW-M>. || <LIM>. If this card kills ** an enemy, 40% chance ** to obtain a {Relic} at ** the end of combat.",
 			"NAME": "'Hero'"
 		},
 		"animator:HiiragiTenri":
 		{
-			"DESCRIPTION": "Gain [THP] for each card ** in discard pile. Play and ** Exhaust !S! random cards ** from your discard pile. || !A! [W]: Obtain {[W] Token+}.",
+			"DESCRIPTION": "Gain [THP] for each card ** in discard pile. Play and ** Exhaust !S! random cards ** from your discard pile. || !A! [S]: Gain !K! [Support Damage].",
 			"NAME": "Tenri Hiiragi"
 		},
 		"animator:HolyGrail":
@@ -2224,14 +2221,13 @@
 		},
 		"animator:SeriousSaitama":
 		{
-			"DESCRIPTION": "Gain X [R]. Apply ** X [Vulnerable] to ALL enemies. || If X is 2 or higher: ** Stun ALL enemies.",
-			"NAME": "Serious Saitama",
-			"UPGRADE_DESCRIPTION": "Gain X+!M! [R]. Apply ** X+!M! [Vulnerable] to ALL enemies. || If X is 2 or higher: ** Stun ALL enemies."
+			"DESCRIPTION": "Apply X+!M! [Vulnerable] to ALL ** enemies. Gain X+!M! [R]. || If X is 2 or higher: ** Stun ALL enemies.",
+			"NAME": "Serious Saitama"
 		},
 		"animator:ShikizakiKiki":
 		{
-			"DESCRIPTION": "Every 3 {Attacks} ** played: Gain 1 [INS]. || Once per turn, pay !S! [E]: ** Increase the Damage and ** [Block] of all cards in your ** draw pile by !M!.",
-			"EXTENDED_DESCRIPTION": ["Pay #b{0} [E]: Increase the [Block] and Damage of all cards in your draw pile by #b{1}. || Every #b3 #yAttacks played: Gain #b{2} [INS]"],
+			"DESCRIPTION": "Whenever you play ** an {Attack}: Gain [INS]. || Once per turn, pay !S! [E]: ** Raise Damage and [Block] of ** all cards in hand by !M!.",
+			"EXTENDED_DESCRIPTION": ["Pay #b{0} [E]: Raise Damage and [Block] of all cards in hand by #b{1}. || Whenever you play an {Attack}: Gain #b{2} [INS]."],
 			"NAME": "Shikizaki Kiki"
 		},
 		"animator:SirTouchMe":
@@ -2252,7 +2248,7 @@
 		},
 		"animator:Veldora":
 		{
-			"DESCRIPTION": "Gain !S! [B]. Evoke ** ALL orbs !M! times. || When Drawn: Channel ** 2 random orbs.",
+			"DESCRIPTION": "Gain !S! [B]. Evoke ** ALL orbs !M! times. || When Sealed: Channel ** 3 random orbs.",
 			"NAME": "Veldora"
 		},
 		"animator:Walpurgisnacht":

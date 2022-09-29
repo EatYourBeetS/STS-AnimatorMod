@@ -211,6 +211,7 @@ public class AnimatorDungeonData implements CustomSavable<AnimatorDungeonData>, 
         {
             AbstractDungeon.srcColorlessCardPool.group.removeIf(AnimatorClassicCard.class::isInstance);
             AbstractDungeon.colorlessCardPool.group.removeIf(AnimatorClassicCard.class::isInstance);
+            AbstractDungeon.srcCurseCardPool.group.removeIf(AnimatorClassicCard.class::isInstance);
             AbstractDungeon.curseCardPool.group.removeIf(AnimatorClassicCard.class::isInstance);
         }
 
@@ -218,6 +219,7 @@ public class AnimatorDungeonData implements CustomSavable<AnimatorDungeonData>, 
         {
             AbstractDungeon.srcColorlessCardPool.group.removeIf(AnimatorCard.class::isInstance);
             AbstractDungeon.colorlessCardPool.group.removeIf(AnimatorCard.class::isInstance);
+            AbstractDungeon.srcCurseCardPool.group.removeIf(AnimatorCard.class::isInstance);
             AbstractDungeon.curseCardPool.group.removeIf(AnimatorCard.class::isInstance);
 
             if (isAnimatorClassic)

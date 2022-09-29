@@ -76,7 +76,7 @@ public class AzrielPower extends AnimatorPower implements OnBlockGainedSubscribe
 
         if (p.type == PowerType.DEBUFF && !p.ID.equals(GainStrengthPower.POWER_ID) && source == owner && !target.hasPower(ArtifactPower.POWER_ID))
         {
-            GameActions.Bottom.GainRandomAffinityPower(amount, true);
+            GameActions.Bottom.GainRandomAffinityPower(amount, false);
             this.flash();
         }
     }

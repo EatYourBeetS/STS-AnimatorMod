@@ -32,6 +32,13 @@ public class Zero extends AnimatorCard
     }
 
     @Override
+    protected void OnUpgrade()
+    {
+        SetExhaust(false);
+        SetFading(true);
+    }
+
+    @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.GainIntellect(1, upgraded);

@@ -153,7 +153,7 @@ public class CardSeries
 
     public static class Affinity
     {
-        public static Map<CardSeries, List<AbstractCard>> GetCardsBySynergy(ArrayList<AbstractCard> cards)
+        public static Map<CardSeries, List<AbstractCard>> GetCardsBySeries(ArrayList<AbstractCard> cards)
         {
             return JUtils.Group(cards, card ->
             {

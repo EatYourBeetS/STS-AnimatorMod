@@ -58,6 +58,7 @@ public class NivaLada extends AnimatorCard_UltraRare implements OnAfterCardExhau
     protected void OnUpgrade()
     {
         SetHaste(true);
+        SetInnate(true);
     }
 
     @Override

@@ -20,8 +20,8 @@ public class Veldora extends AnimatorCard_UltraRare
     {
         super(DATA);
 
-        Initialize(0, 0, 2, 3);
-        SetUpgrade(0, 0, 1, 0);
+        Initialize(0, 0, 2, 4);
+        SetUpgrade(0, 0, 1, 2);
 
         SetAffinity_Red(2);
         SetAffinity_Green(2);
@@ -31,12 +31,12 @@ public class Veldora extends AnimatorCard_UltraRare
     }
 
     @Override
-    public void triggerWhenDrawn()
+    public void triggerOnAffinitySeal(boolean reshuffle)
     {
-        super.triggerWhenDrawn();
+        super.triggerOnAffinitySeal(reshuffle);
 
         GameActions.Bottom.ChannelOrb(AbstractOrb.getRandomOrb(true));
-        GameActions.Bottom.ChannelRandomOrb(1);
+        GameActions.Bottom.ChannelRandomOrb(2);
         GameActions.Bottom.Flash(this);
     }
 

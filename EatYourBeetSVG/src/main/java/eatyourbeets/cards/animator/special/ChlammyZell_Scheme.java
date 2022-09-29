@@ -32,12 +32,6 @@ public class ChlammyZell_Scheme extends AnimatorCard
     }
 
     @Override
-    protected void OnUpgrade()
-    {
-        SetRetain(true);
-    }
-
-    @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.VFX(new FlickCoinEffect(p.hb.cX, p.hb.cY, p.hb.cX, p.hb.cY + p.hb.height), 0.15f);

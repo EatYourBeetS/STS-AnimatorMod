@@ -30,7 +30,7 @@ public class ColorlessFragment extends AbstractMissingPiece
     @Override
     public boolean canSpawn()
     {
-        return super.canSpawn() && AbstractDungeon.floorNum <= 33 && player.hasRelic(eatyourbeets.relics.animator.TheMissingPiece.ID);
+        return super.canSpawn() && AbstractDungeon.floorNum <= 33 && player.hasRelic(eatyourbeets.relics.deprecated.TheMissingPiece.ID);
     }
 
     @Override
@@ -51,7 +51,7 @@ public class ColorlessFragment extends AbstractMissingPiece
         ArrayList<AbstractRelic> relics = player.relics;
         for (int i = 0; i < relics.size(); i++)
         {
-            if (relics.get(i).relicId.equals(eatyourbeets.relics.animator.TheMissingPiece.ID))
+            if (relics.get(i).relicId.equals(eatyourbeets.relics.deprecated.TheMissingPiece.ID))
             {
                 whyAreThere300ObtainMethods = true;
                 instantObtain(player, i, true);
@@ -68,7 +68,7 @@ public class ColorlessFragment extends AbstractMissingPiece
         ArrayList<AbstractRelic> relics = player.relics;
         for (int i = 0; i < relics.size(); i++)
         {
-            if (relics.get(i).relicId.equals(eatyourbeets.relics.animator.TheMissingPiece.ID))
+            if (relics.get(i).relicId.equals(eatyourbeets.relics.deprecated.TheMissingPiece.ID))
             {
                 whyAreThere300ObtainMethods = true;
                 instantObtain(player, i, true);

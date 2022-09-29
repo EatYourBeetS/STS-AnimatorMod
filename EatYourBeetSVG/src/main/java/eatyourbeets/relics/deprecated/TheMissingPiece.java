@@ -1,4 +1,4 @@
-package eatyourbeets.relics.animator;
+package eatyourbeets.relics.deprecated;
 
 public class TheMissingPiece extends AbstractMissingPiece
 {
@@ -7,7 +7,7 @@ public class TheMissingPiece extends AbstractMissingPiece
 
     public TheMissingPiece()
     {
-        super(ID, RelicTier.STARTER, LandingSound.FLAT);
+        super(ID, RelicTier.DEPRECATED, LandingSound.FLAT);
     }
 
     @Override

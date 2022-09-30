@@ -3,9 +3,11 @@ package eatyourbeets.cards.animatorClassic.series.TenseiSlime;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.actions.animatorClassic.RimuruAction;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.interfaces.subscribers.OnAfterCardPlayedSubscriber;
 import eatyourbeets.powers.CombatStats;
+import eatyourbeets.utilities.GameActions;
 
 public class Rimuru extends AnimatorClassicCard implements OnAfterCardPlayedSubscriber
 {
@@ -41,9 +43,9 @@ public class Rimuru extends AnimatorClassicCard implements OnAfterCardPlayedSubs
     @Override
     public void OnAfterCardPlayed(AbstractCard card)
     {
-//        if (card != copy && !(card instanceof Rimuru) && !card.purgeOnUse && !card.isInAutoplay)
-//        {
-//            GameActions.Top.Add(new RimuruAction(this, card));
-//        }
+        if (card != copy && !(card instanceof Rimuru) && !card.purgeOnUse && !card.isInAutoplay)
+        {
+            GameActions.Top.Add(new RimuruAction(this, card));
+        }
     }
 }

@@ -42,6 +42,11 @@ public abstract class EYBCardPopupAction
         return card != null && CanExecute(card);
     }
 
+    public void Refresh()
+    {
+
+    }
+
     protected void SetText(String name, EYBCardTooltip tooltip)
     {
         this.name = name;

@@ -56,6 +56,8 @@ public class EYBCampfireUI extends GUIElement
                 {
                     for (EYBCardPopupAction action : card.cardData.popupActions)
                     {
+                        action.Refresh();
+
                         if (action.CanExecute(card))
                         {
                             cardIDs.add(card.cardID);
@@ -72,6 +74,8 @@ public class EYBCampfireUI extends GUIElement
                 {
                     for (EYBCardPopupAction action : card.cardData.popupActions)
                     {
+                        action.Refresh();
+
                         if (action.CanExecute(card))
                         {
                             cardIDs.add(card.cardID);

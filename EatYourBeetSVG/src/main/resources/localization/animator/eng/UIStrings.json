@@ -260,7 +260,7 @@
 			
 			"This panel shows the counter for each #yAffinity. NL NL The bottom-most counter ( [A_Seal] ) shows how many #ySeals you can perform this turn. NL NL Some card effects consume #yAffinity points. Consumed points will be returned to you at the start of the next turn.",
 			
-			"Some cards will scale with the powers shown on the right of this panel (called [A_Gen] #yPowers^) at a rate of #b3:1^. NL NL For example, an #yAttack with #bx1 [F] scaling will deal #b1 additional damage every #b3 points of [F]. NL NL Similarly, a #ySkill with #bx1 [F] scaling will grant #b1 additional #yBlock every #b3 points of [F].",
+			"Some cards will scale with the powers shown on the right of this panel (called [A_Gen] #yPowers^). NL NL For example, an #yAttack with #bx3 [Force] scaling will deal #b3 additional damage every point of [Force]. NL NL Similarly, a #ySkill with #bx3 [Force] scaling will grant #b1 additional #yBlock for every point of [Force].",
 			
 			"While playing this character, most of the effects that deal damage during your turn or make you lose [HP] will let you survive with #b1 [HP]. NL NL Some common powers and mechanics have also been limited while not in endless mode (this is reflected on their tooltips)."
 		]

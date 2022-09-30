@@ -213,8 +213,16 @@ public class EYBCardPopupActions
         {
             super.Initialize(card);
 
-            GOLD_COST = GR.Common.Dungeon.GetInteger(LAST_IMPROVEMENT_PRICE, BASE_GOLD_COST);
             name = specialActions.Improve_T(GOLD_COST);
+            Refresh();
+        }
+
+        @Override
+        public void Refresh()
+        {
+            super.Refresh();
+
+            GOLD_COST = GR.Common.Dungeon.GetInteger(LAST_IMPROVEMENT_PRICE, BASE_GOLD_COST);
         }
 
         @Override

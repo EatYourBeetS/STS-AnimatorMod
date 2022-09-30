@@ -13,8 +13,8 @@
 	{
 		"DESCRIPTIONS": ["Press #pCTRL outside combat to change this effect.",
 			"Apply #b{0} less [DD] to yourself and #b{1} additional [DD] to enemies.",
-			"Apply #b{0} additional [Burning] from all sources.",
-			"Apply #b{0} additional [Poison] from all sources."
+			"Apply #b{0} additional [Burning].",
+			"Apply #b{0} additional [Poison]."
 		],
 		"FLAVOR": "Press this button and then that happens.",
 		"NAME": "Odd Device #2"
@@ -33,7 +33,7 @@
 	{
 		"DESCRIPTIONS": ["Press #pCTRL outside combat to change this effect.", 
 			"While you have #b{0} or more cards in #yExhaust pile, gain #b{1} [Block] at the end of turn.",
-			"At the start of turn, Scry #b{0}. Whenever you discard a card, gain #b{1} [INS].",
+			"At the start of turn, Scry #b{0}. When you discard a card, gain #b{1} [INS].",
 			"At the start of combat, gain #b{0} [S]. NL At the start of turn, #yMotivate #b{1} [S] cards."
 		],
 		"FLAVOR": "Press this button and then this happens.",

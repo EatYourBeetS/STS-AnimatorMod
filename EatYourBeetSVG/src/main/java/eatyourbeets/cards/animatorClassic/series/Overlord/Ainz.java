@@ -115,14 +115,14 @@ public class Ainz extends AnimatorClassicCard
             }
 
             GameActions.Bottom.SelectFromPile(name, 1, group)
-                    .SetOptions(false, false)
-                    .AddCallback(cards ->
-                    {
-                        if (!cards.isEmpty())
-                        {
-                            cards.get(0).use(player, null);
-                        }
-                    });
+            .SetOptions(false, false)
+            .AddCallback(cards ->
+            {
+                if (!cards.isEmpty())
+                {
+                    cards.get(0).use(player, null);
+                }
+            });
         }
 
         private enum AinzEffect

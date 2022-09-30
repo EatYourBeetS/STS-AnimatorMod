@@ -1,7 +1,7 @@
 package eatyourbeets.powers.animatorClassic;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import eatyourbeets.cards.animator.series.Katanagatari.HigakiRinne;
+import eatyourbeets.cards.animatorClassic.series.Katanagatari.HigakiRinne;
 import eatyourbeets.powers.AnimatorClassicPower;
 
 public class HigakiRinnePower extends AnimatorClassicPower

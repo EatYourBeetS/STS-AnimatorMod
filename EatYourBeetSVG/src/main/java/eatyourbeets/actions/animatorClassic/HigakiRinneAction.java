@@ -19,41 +19,46 @@ import eatyourbeets.actions.EYBAction;
 import eatyourbeets.actions.cardManipulation.RandomCardUpgrade;
 import eatyourbeets.cards.animatorClassic.series.Katanagatari.HigakiRinne;
 import eatyourbeets.cards.base.CardSeries;
+import eatyourbeets.effects.SFX;
 import eatyourbeets.effects.combatOnly.ShuffleEnemiesEffect;
 import eatyourbeets.effects.combatOnly.TalkEffect;
 import eatyourbeets.powers.animator.EnchantedArmorPower;
 import eatyourbeets.powers.deprecated.MarkOfPoisonPower;
-import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameEffects;
-import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.JUtils;
+import eatyourbeets.utilities.*;
 
 import java.util.ArrayList;
 
 public class HigakiRinneAction extends EYBAction
 {
-    private static final ArrayList<String> sounds = new ArrayList<>();
+    private static final RandomizedList<String> sounds = new RandomizedList<>();
     private final HigakiRinne higakiRinne;
     private int roll;
 
-    static
+    public static String GetRandomSFX()
     {
-        sounds.add("VO_AWAKENEDONE_3");
-        sounds.add("VO_GIANTHEAD_1B");
-        sounds.add("VO_GREMLINANGRY_1A");
-        sounds.add("VO_GREMLINCALM_2A");
-        sounds.add("VO_GREMLINFAT_2A");
-        sounds.add("VO_GREMLINNOB_1B");
-        sounds.add("VO_HEALER_1A");
-        sounds.add("VO_MERCENARY_1B");
-        sounds.add("VO_MERCHANT_MB");
-        sounds.add("VO_SLAVERBLUE_2A");
-        sounds.add("THUNDERCLAP");
-        sounds.add("BELL");
-        sounds.add("BELL");
-        sounds.add("BELL");
-        sounds.add("NECRONOMICON");
-        sounds.add("INTIMIDATE");
+        if (sounds.Size() < 6)
+        {
+            sounds.Add(SFX.VO_AWAKENEDONE_3);
+            sounds.Add(SFX.VO_GIANTHEAD_1B);
+            sounds.Add(SFX.VO_GREMLINANGRY_1A);
+            sounds.Add(SFX.VO_GREMLINCALM_2A);
+            sounds.Add(SFX.VO_GREMLINFAT_2A);
+            sounds.Add(SFX.VO_GREMLINNOB_1B);
+            sounds.Add(SFX.VO_HEALER_1A);
+            sounds.Add(SFX.VO_MERCENARY_1B);
+            sounds.Add(SFX.VO_MERCHANT_MB);
+            sounds.Add(SFX.VO_SLAVERBLUE_2A);
+            sounds.Add(SFX.THUNDERCLAP);
+            sounds.Add(SFX.BELL);
+            sounds.Add(SFX.ENEMY_TURN);
+            sounds.Add(SFX.DEATH_STINGER);
+            sounds.Add(SFX.BOSS_VICTORY_STINGER);
+            sounds.Add(SFX.TINGSHA);
+            sounds.Add(SFX.NECRONOMICON);
+            sounds.Add(SFX.INTIMIDATE);
+        }
+
+        return sounds.RetrieveUnseeded(true);
     }
 
     public HigakiRinneAction(HigakiRinne higakiRinne)
@@ -215,7 +220,7 @@ public class HigakiRinneAction extends EYBAction
         }
         else if (tryActivate(7)) // 118
         {
-            GameActions.Bottom.SFX(JUtils.Random(sounds));
+            GameActions.Bottom.SFX(GetRandomSFX());
         }
         else if (tryActivate(6)) // 124
         {

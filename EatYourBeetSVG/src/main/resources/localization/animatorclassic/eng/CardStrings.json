@@ -1015,6 +1015,7 @@
 		"animatorClassic:Ainz":
 		{
 			"DESCRIPTION": "At the start of turn: ** choose and execute 1 ** of 4 random {Effects}. || When Drawn: Decrease ** this card's cost by 1, then ** randomly gain [I], [F] or [A].",
+		  	"EXTENDED_DESCRIPTION": ["At the start of your turn, activate 1 of 4 random effects #b{0} time(s)"],
 			"NAME": "Ainz Ooal Gown"
 		},
 		"animatorClassic:Albedo":

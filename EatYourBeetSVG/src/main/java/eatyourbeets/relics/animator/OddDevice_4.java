@@ -1,6 +1,5 @@
 package eatyourbeets.relics.animator;
 
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import eatyourbeets.interfaces.subscribers.OnAfterCardDiscardedSubscriber;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
@@ -48,6 +47,7 @@ public class OddDevice_4 extends OddDevice implements OnAfterCardDiscardedSubscr
         if (GetEffectIndex() == 3)
         {
             CombatStats.Affinities.AddAffinitySealUses(SEAL_AMOUNT);
+            flash();
         }
     }
 
@@ -67,7 +67,7 @@ public class OddDevice_4 extends OddDevice implements OnAfterCardDiscardedSubscr
     {
         super.onPlayerEndTurn();
 
-        if (GetEffectIndex() == 0 && player.exhaustPile.size() >= EXHAUST_THRESHOLD)
+        if (GetEffectIndex() == 1 && player.exhaustPile.size() >= EXHAUST_THRESHOLD)
         {
             GameActions.Bottom.GainBlock(EXHAUST_BLOCK_AMOUNT);
             flash();
@@ -79,9 +79,10 @@ public class OddDevice_4 extends OddDevice implements OnAfterCardDiscardedSubscr
     {
         super.atTurnStart();
 
-        if (GetEffectIndex() == 1)
+        if (GetEffectIndex() == 2)
         {
             GameActions.Top.Scry(SCRY_AMOUNT);
+            flash();
         }
     }
 
@@ -90,30 +91,17 @@ public class OddDevice_4 extends OddDevice implements OnAfterCardDiscardedSubscr
     {
         super.atTurnStartPostDraw();
 
-        if (GetEffectIndex() == 2)
+        if (GetEffectIndex() == 3)
         {
-            GameActions.Delayed.SelectFromHand(name, SEAL_MOTIVATE_AMOUNT, true)
-            .SetOptions(true, false, true)
-            .SetFilter(GameUtilities::IsSealed)
-            .AddCallback(cards ->
-            {
-                for (AbstractCard c : cards)
-                {
-                    GameActions.Bottom.Motivate(c, 1);
-                }
-
-                if (cards.size() > 0)
-                {
-                    flash();
-                }
-            });
+            GameActions.Delayed.Motivate(SEAL_MOTIVATE_AMOUNT).SetFilter(GameUtilities::IsSealed);
+            flash();
         }
     }
 
     @Override
     public void OnAfterCardDiscarded()
     {
-        if (GetEffectIndex() == 1)
+        if (GetEffectIndex() == 2)
         {
             GameActions.Bottom.GainInspiration(DISCARD_INS_AMOUNT);
             flash();

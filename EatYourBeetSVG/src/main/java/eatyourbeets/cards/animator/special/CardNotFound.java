@@ -1,5 +1,6 @@
 package eatyourbeets.cards.animator.special;
 
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.colorless.uncommon.QuestionMark;
@@ -35,5 +36,14 @@ public class CardNotFound extends AnimatorCard implements Hidden
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.GainBlock(block);
+    }
+
+    @Override
+    public AbstractCard makeCopy()
+    {
+        final AbstractCard copy = super.makeCopy();
+        copy.originalName = originalName;
+        copy.name = name;
+        return copy;
     }
 }

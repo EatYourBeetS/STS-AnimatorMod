@@ -12,6 +12,7 @@ import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.JUtils;
 
+//TODO: Localization
 public class EnchantCampfireOption extends AbstractCampfireOption
 {
     private static final String LABEL_GOLD_F1 = "Enchant [{0} Gold]";
@@ -23,6 +24,11 @@ public class EnchantCampfireOption extends AbstractCampfireOption
 
     public static boolean CanAddOption()
     {
+        if (AbstractDungeon.actNum < 2)
+        {
+            return false;
+        }
+
         for (AbstractRelic r : AbstractDungeon.player.relics)
         {
             if (r instanceof EnchantableRelic && ((EnchantableRelic) r).GetEnchantmentLevel() < 2)

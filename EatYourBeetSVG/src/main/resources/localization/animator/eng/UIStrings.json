@@ -258,7 +258,7 @@
 			
 			"Once per turn, you may #yRight-Click on a card to #ySeal it. #ySealing a card #yReshuffles it, removes its #yAffinities, and adds 1 point per level of each of its #yAffinities to its corresponding #yAffinity counter NL NL For example, #ySealing a card with #yLV1 [A_Red] and #yLV2 [A_Green] will give #b1 [A_Red] point and #b2 [A_Green] points.",
 			
-			"This panel shows the counter for each #yAffinity. NL NL The bottom-most counter ( [A_Seal] ) shows how many #ySeals you can perform this turn. NL NL Some card effects consume #yAffinity points. Consumed points will be returned to you at the start of the next turn.",
+			"This panel shows the counter for each #yAffinity. NL NL The bottom-most counter ( [A_Seal] ) shows how many #ySeals you can perform this turn. NL NL Some card effects consume #yAffinity points.",
 			
 			"Some cards will scale with the powers shown on the right of this panel (called [A_Gen] #yPowers^). NL NL For example, an #yAttack with #bx3 [Force] scaling will deal #b3 additional damage every point of [Force]. NL NL Similarly, a #ySkill with #bx3 [Force] scaling will grant #b1 additional #yBlock for every point of [Force].",
 			

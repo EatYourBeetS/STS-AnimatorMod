@@ -33,7 +33,7 @@ public class DolaCouronne extends AnimatorCard
     {
         super.triggerOnExhaust();
 
-        GameActions.Bottom.Motivate();
+        GameActions.Bottom.Motivate(1);
     }
 
     @Override

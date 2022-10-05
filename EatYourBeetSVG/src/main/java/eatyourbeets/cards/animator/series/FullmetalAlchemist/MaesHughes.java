@@ -31,7 +31,7 @@ public class MaesHughes extends AnimatorCard
 
         if (CheckSpecialCondition(true))
         {
-            GameActions.Bottom.Motivate();
+            GameActions.Bottom.Motivate(1);
         }
     }
 }

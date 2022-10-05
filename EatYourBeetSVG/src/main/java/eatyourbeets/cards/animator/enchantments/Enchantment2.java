@@ -20,12 +20,7 @@ public class Enchantment2 extends Enchantment
         super(DATA, INDEX);
 
         Initialize(0, 0, 2, 1);
-    }
-
-    @Override
-    protected void OnUpgrade()
-    {
-        upgradeSecondaryValue(upgradeIndex);
+        SetUpgrade(0, 0, 0, 2);
     }
 
     @Override

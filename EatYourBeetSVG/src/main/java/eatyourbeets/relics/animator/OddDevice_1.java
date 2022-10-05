@@ -4,10 +4,12 @@ import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.InvisiblePower;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.interfaces.markers.Hidden;
 import eatyourbeets.powers.AnimatorPower;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.JUtils;
 
 public class OddDevice_1 extends OddDevice
@@ -21,14 +23,21 @@ public class OddDevice_1 extends OddDevice
     }
 
     @Override
+    protected void ActivateBattleEffect()
+    {
+        super.ActivateBattleEffect();
+
+        GameActions.Bottom.StackPower(new OddDevice_1Power(player, this, DAMAGE_MODIFIERS[counter - 1])).ShowEffect(false, true);
+    }
+
+    @Override
     protected String GetMainDescription(int effectIndex)
     {
         return FormatDescription(effectIndex, DAMAGE_MODIFIERS[effectIndex - 1]);
     }
 
-    protected float ModifyDamage(EYBAttackType attackType, float damage)
+    protected float ModifyDamage(EYBAttackType attackType, float damage, int mod)
     {
-        final int mod = DAMAGE_MODIFIERS[counter - 1];
         switch (attackType)
         {
             case Ranged: return (counter == 1) ? (damage + mod) : damage;
@@ -43,12 +52,14 @@ public class OddDevice_1 extends OddDevice
     {
         private OddDevice_1 relic;
 
-        public OddDevice_1Power(AbstractCreature owner, OddDevice_1 relic)
+        public OddDevice_1Power(AbstractCreature owner, OddDevice_1 relic, int amount)
         {
             super(owner, relic);
 
-            this.canBeZero = true;
+            this.ID += "_" + relic.GetEffectIndex();
             this.relic = relic;
+
+            Initialize(amount);
         }
 
         @Override
@@ -65,10 +76,16 @@ public class OddDevice_1 extends OddDevice
             final EYBCard c = JUtils.SafeCast(card, EYBCard.class);
             if (c != null && c.type == AbstractCard.CardType.ATTACK)
             {
-                return relic.ModifyDamage(c.attackType, damage);
+                return relic.ModifyDamage(c.attackType, damage, amount);
             }
 
             return damage;
+        }
+
+        @Override
+        public AbstractPower makeCopy()
+        {
+            return new OddDevice_1Power(owner, relic, amount);
         }
     }
 }

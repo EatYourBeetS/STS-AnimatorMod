@@ -33,7 +33,7 @@ public class Elsword extends AnimatorClassicCard
 
         if (m.hasPower(BurningPower.POWER_ID))
         {
-            GameActions.Bottom.Motivate();
+            GameActions.Bottom.Motivate(1);
         }
         else
         {

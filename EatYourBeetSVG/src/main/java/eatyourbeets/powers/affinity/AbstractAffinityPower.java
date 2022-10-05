@@ -25,8 +25,8 @@ public abstract class AbstractAffinityPower extends CommonPower
     public final Affinity affinity;
     public final String symbol;
     public int amountGainedThisTurn;
-    public int retainedTurns;
     public int minimumAmount;
+    public int boost;
     public EYBCardTooltip tooltip;
     public Hitbox hb;
 
@@ -62,7 +62,7 @@ public abstract class AbstractAffinityPower extends CommonPower
     {
         this.owner = owner;
         this.enabled = true;
-        this.retainedTurns = 0;
+        this.boost = 0;
         this.thresholdIndex = 0;
         this.minimumAmount = 0;
         this.maxAmount = MAX_AMOUNT;
@@ -72,9 +72,9 @@ public abstract class AbstractAffinityPower extends CommonPower
 
     public void RetainOnce()
     {
-        if (this.retainedTurns == 0)
+        if (this.boost == 0)
         {
-            this.retainedTurns = 1;
+            this.boost = 1;
         }
     }
 
@@ -109,7 +109,7 @@ public abstract class AbstractAffinityPower extends CommonPower
 
     public void Retain(int turns, boolean relative)
     {
-        this.retainedTurns = (relative ? (retainedTurns + turns) : turns);
+        this.boost = (relative ? (boost + turns) : turns);
     }
 
     public void Stack(int amount, boolean retain)
@@ -224,9 +224,9 @@ public abstract class AbstractAffinityPower extends CommonPower
         {
             reducePower(1);
         }
-        else if (this.retainedTurns > 0)
+        else if (this.boost > 0)
         {
-            this.retainedTurns -= 1;
+            this.boost -= 1;
         }
     }
 
@@ -245,7 +245,7 @@ public abstract class AbstractAffinityPower extends CommonPower
         if (!GR.Animator.IsSelected())
         {
             final Integer threshold = GetCurrentThreshold();
-            final Color c1 = (retainedTurns != 0 ? Colors.Green(c.a) : Colors.Blue(c.a)).cpy();
+            final Color c1 = (boost != 0 ? Colors.Green(c.a) : Colors.Blue(c.a)).cpy();
             if (threshold != null)
             {
                 final float offset_x = -24 * Settings.scale;
@@ -274,7 +274,7 @@ public abstract class AbstractAffinityPower extends CommonPower
         final float cY = hb.cY;
 
         Color amountColor;
-        if (retainedTurns != 0)
+        if (boost != 0)
         {
             RenderHelpers.DrawCentered(sb, Colors.Gold(0.7f), GR.Common.Images.Panel_Elliptical_Half_H.Texture(), cX, cY, (w / scale) + 8, (h / scale) + 8, 1, 0);
             RenderHelpers.DrawCentered(sb, Colors.Black(0.9f), GR.Common.Images.Panel_Elliptical_Half_H.Texture(), cX, cY, w / scale, h / scale, 1, 0);
@@ -286,7 +286,7 @@ public abstract class AbstractAffinityPower extends CommonPower
             amountColor = (amount > minimumAmount ? Colors.Blue(1) : Colors.Cream(minimumAmount > 0 ? 1 : 0.6f)).cpy();
         }
 
-        final Color imgColor = Colors.White((enabled && (retainedTurns + amount) > 0) ? 1 : 0.5f);
+        final Color imgColor = Colors.White((enabled && (boost + amount) > 0) ? 1 : 0.5f);
         RenderHelpers.DrawCentered(sb, imgColor, img, x + 16 * scale, cY + (3f * scale), 32, 32, 1, 0);
 
         final Integer threshold = GetCurrentThreshold();
@@ -359,6 +359,6 @@ public abstract class AbstractAffinityPower extends CommonPower
 
     protected boolean CanDecrease()
     {
-        return amount > minimumAmount && retainedTurns == 0;
+        return amount > minimumAmount && boost == 0;
     }
 }

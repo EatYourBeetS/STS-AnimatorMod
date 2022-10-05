@@ -31,7 +31,7 @@ public class Rumia extends AnimatorCard
     {
         if (info.TryActivateStarter())
         {
-            GameActions.Bottom.Motivate().SetFilter(GameUtilities::HasDarkAffinity);
+            GameActions.Bottom.Motivate(1).SetFilter(GameUtilities::HasDarkAffinity);
         }
 
         GameActions.Bottom.TriggerOrbPassive(1)

@@ -34,7 +34,7 @@ public class ReimuHakurei extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_VERTICAL);
-        GameActions.Bottom.ObtainAffinityToken(Affinity.Light, true);
+        GameActions.Bottom.ObtainAffinityToken(Affinity.Light, upgraded);
     }
 
     @Override

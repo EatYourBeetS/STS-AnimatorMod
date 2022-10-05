@@ -69,7 +69,7 @@ public class CardLibraryKeywordFilters extends GUIElement
 
             background_panel.Update();
             hasFocus = background_panel.hb.hovered;
-            background_panel.color.a = hasFocus ? 0.8f : 0.4f;
+            background_panel.color.a = hasFocus ? 0.8f : 0.6f;
         }
         else
         {

@@ -36,7 +36,7 @@ public class Archer extends AnimatorCard
     {
         if (CheckSpecialCondition(true))
         {
-            GameActions.Bottom.Motivate();
+            GameActions.Bottom.Motivate(1);
         }
 
         GameActions.Bottom.StackPower(new ArcherPower(p, magicNumber));

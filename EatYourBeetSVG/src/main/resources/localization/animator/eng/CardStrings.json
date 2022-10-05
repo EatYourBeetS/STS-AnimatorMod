@@ -1572,7 +1572,7 @@
 		},
 		"animator:Shalltear":
 		{
-			"DESCRIPTION": "Heal !M! [HP] per [Corruption]. || When Sealed: ** Convert all [L] to [D].",
+			"DESCRIPTION": "Heal !S! [HP] per [Corruption]. || When Sealed: ** Convert all [L] to [D].",
 			"NAME": "Shalltear"
 		}
 	},
@@ -1581,12 +1581,12 @@
 	{
 		"animator:CrowleyEusford":
 		{
-			"DESCRIPTION": "Boost [R] [G]. ** Recover !M! [HP]. || If you Exhausted a card ** this turn: Motivate 1.",
+			"DESCRIPTION": "Boost [R] [G]. ** Recover !M! [HP]. || If you Exhausted ** a card this turn: ** Motivate 1.",
 			"NAME": "Crowley Eusford"
 		},
 		"animator:FeridBathory":
 		{
-			"DESCRIPTION": "Gain !M! [R] [G] [D]. || For !S! turns, whenever a ** card is Exhausted: Steal !K! ** [HP] from the enemy as [THP].",
+			"DESCRIPTION": "Gain !M! [R] [G] [D]. || The next !S! times a card ** is Exhausted: Steal !K! [HP] ** from the enemy as [THP].",
 			"EXTENDED_DESCRIPTION": ["Whenever a card is #yExhausted, transfer #b{0} [HP] to the source of this power as [THP]."],
 			"NAME": "Ferid Bathory"
 		},
@@ -1857,7 +1857,7 @@
 			[
 				"Once per combat, ** take !S! [DD]: Obtain ** 1 {[W] Token+}.",
 				"Once per combat, ** take !S! [DD]: Gain ** !M! {Temp.} [M].",
-				"Once per combat, ** take !S! [DD]: Gain !M! [S] and !M! [INS]."
+				"Once per combat, ** take !S! [DD]: Gain ** !M! [S] and !M! [INS]."
 			],
 			"NAME": "Affinities"
 		},

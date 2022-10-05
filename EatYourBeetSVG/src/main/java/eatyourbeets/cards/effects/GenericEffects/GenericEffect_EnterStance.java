@@ -11,15 +11,15 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class GenericEffect_EnterStance extends GenericEffect
 {
-    public GenericEffect_EnterStance(String stance)
+    public GenericEffect_EnterStance(String stanceID)
     {
-        this.id = stance;
-        this.tooltip = EYBStance.GetStanceTooltip(stance);
+        this.id = stanceID;
+        this.tooltip = EYBStance.GetStanceTooltip(GameUtilities.GetPlayerClass(), stanceID);
     }
 
-    public GenericEffect_EnterStance(String stance, EYBCardTooltip tooltip)
+    public GenericEffect_EnterStance(String stanceID, EYBCardTooltip tooltip)
     {
-        this.id = stance;
+        this.id = stanceID;
         this.tooltip = tooltip;
     }
 

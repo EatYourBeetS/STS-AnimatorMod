@@ -34,37 +34,32 @@ public class TenshiHinanawi extends AnimatorCard
     {
         super.Refresh(enemy);
 
-        SetAttackTarget(CheckSpecialCondition(false) ? EYBCardTarget.Normal : EYBCardTarget.None);
+        SetAttackTarget(GameUtilities.HasOrb(Earth.ORB_ID) ? EYBCardTarget.Normal : EYBCardTarget.None);
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.GainBlock(block);
+        GameActions.Bottom.TriggerOrbPassive(1)
+        .SetFilter(c -> Earth.ORB_ID.equals(c.ID))
+        .AddCallback(m, (c, orbs) ->
+        {
+            if (orbs.size() > 0)
+            {
+                GameActions.Bottom.DealDamageAtEndOfTurn(player, c, magicNumber, AttackEffects.SMASH);
+            }
+        });
 
         if (CheckSpecialCondition(true))
         {
-            GameActions.Bottom.DealDamageAtEndOfTurn(p, m, magicNumber, AttackEffects.SMASH);
+            GameActions.Bottom.Draw(1);
         }
-    }
-
-    @Override
-    public void triggerOnAffinitySeal(boolean reshuffle)
-    {
-        super.triggerOnAffinitySeal(reshuffle);
-        GameActions.Bottom.Draw(1);
     }
 
     @Override
     public boolean CheckSpecialCondition(boolean tryUse)
     {
-        final boolean result = GameUtilities.HasOrb(Earth.ORB_ID);
-        if (result && tryUse)
-        {
-            GameActions.Bottom.TriggerOrbPassive(1)
-            .SetFilter(c -> Earth.ORB_ID.equals(c.ID));
-        }
-
-        return result;
+        return super.CheckSpecialConditionSemiLimited(tryUse, __ -> GameUtilities.IsSealed(this));
     }
 }

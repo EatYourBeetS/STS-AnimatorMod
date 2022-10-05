@@ -33,6 +33,7 @@ public class CowGirl extends AnimatorCard
         super.triggerOnAffinitySeal(reshuffle);
 
         GameActions.Bottom.GainTemporaryStats(secondaryValue, secondaryValue, secondaryValue);
+        GameActions.Bottom.ShowCopy(this);
     }
 
     @Override

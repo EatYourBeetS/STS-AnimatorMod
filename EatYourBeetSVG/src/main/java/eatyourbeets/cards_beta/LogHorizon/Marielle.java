@@ -52,7 +52,7 @@ public class Marielle extends AnimatorCard
         for (CardType t : map.keySet())
         {
             final CardGroup group = GameUtilities.CreateCardGroup(map.get(t));
-            GameActions.Bottom.Motivate(group)
+            GameActions.Bottom.Motivate(group, 1)
             .AddCallback(i, (index, c) ->
             {
                 final float offsetX = (Settings.WIDTH * 0.12f) + index * AbstractCard.IMG_WIDTH * 0.4f;

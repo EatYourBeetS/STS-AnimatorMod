@@ -12,6 +12,7 @@ import eatyourbeets.interfaces.markers.Hidden;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.powers.common.BurningPower;
 import eatyourbeets.powers.common.DelayedDamagePower;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.JUtils;
 
 public class OddDevice_2 extends OddDevice
@@ -25,6 +26,14 @@ public class OddDevice_2 extends OddDevice
     public OddDevice_2()
     {
         super(ID, RelicTier.UNCOMMON, LandingSound.CLINK);
+    }
+
+    @Override
+    protected void ActivateBattleEffect()
+    {
+        super.ActivateBattleEffect();
+
+        GameActions.Bottom.StackPower(new OddDevice_2Power(player, this, 1)).ShowEffect(false, true);
     }
 
     @Override
@@ -46,16 +55,20 @@ public class OddDevice_2 extends OddDevice
         throw new RuntimeException("Invalid index: " + effectIndex);
     }
 
-    public static class OddDevice_1Power extends AnimatorPower implements Hidden, InvisiblePower, OnTryApplyPowerListener
+    public static class OddDevice_2Power extends AnimatorPower implements Hidden, InvisiblePower, OnTryApplyPowerListener
     {
-        private int index;
+        private final OddDevice_2 relic;
+        private final int index;
 
-        public OddDevice_1Power(AbstractCreature owner, OddDevice_1 relic)
+        public OddDevice_2Power(AbstractCreature owner, OddDevice_2 relic, int amount)
         {
             super(owner, relic);
 
+            this.relic = relic;
             this.index = relic.GetEffectIndex();
-            this.canBeZero = true;
+            this.ID += "_" + index;
+
+            Initialize(amount);
         }
 
         @Override
@@ -71,21 +84,21 @@ public class OddDevice_2 extends OddDevice
             {
                 if (power.ID.equals(DelayedDamagePower.POWER_ID))
                 {
-                    ModifyPowerAmount(power, action, target.isPlayer ? -DD_SELF : +DD_ENEMY);
+                    ModifyPowerAmount(power, action, amount * (target.isPlayer ? -DD_SELF : +DD_ENEMY));
                 }
             }
             else if (index == 2)
             {
                 if (power.ID.equals(BurningPower.POWER_ID))
                 {
-                    ModifyPowerAmount(power, action, BURNING);
+                    ModifyPowerAmount(power, action, amount * BURNING);
                 }
             }
             else if (index == 3)
             {
                 if (power.ID.equals(PoisonPower.POWER_ID))
                 {
-                    ModifyPowerAmount(power, action, POISON);
+                    ModifyPowerAmount(power, action, amount * POISON);
                 }
             }
 
@@ -94,6 +107,7 @@ public class OddDevice_2 extends OddDevice
 
         private void ModifyPowerAmount(AbstractPower power, AbstractGameAction action, int amount)
         {
+            relic.flash();
             power.amount += amount;
 
             if (action instanceof ApplyPower || action instanceof ApplyPowerAction)
@@ -104,6 +118,12 @@ public class OddDevice_2 extends OddDevice
             {
                 JUtils.LogWarning(this, "Unknown action type: " + action.getClass().getName());
             }
+        }
+
+        @Override
+        public AbstractPower makeCopy()
+        {
+            return new OddDevice_2Power(owner, relic, amount);
         }
     }
 }

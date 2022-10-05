@@ -209,7 +209,7 @@ public class SoulGathering extends UnnamedCard
             super.ExecuteEffect();
 
             GameActions.Bottom.Draw(magicNumber);
-            GameActions.Bottom.Motivate();
+            GameActions.Bottom.Motivate(1);
         }
     }
 

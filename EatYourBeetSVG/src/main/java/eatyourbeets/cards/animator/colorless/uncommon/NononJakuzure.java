@@ -49,7 +49,7 @@ public class NononJakuzure extends AnimatorCard implements OnAffinitySealedSubsc
         GameActions.Bottom.Cycle(name, magicNumber)
         .AddCallback(() ->
         { //
-            GameActions.Top.Motivate()
+            GameActions.Top.Motivate(1)
             .MotivateZeroCost(false)
             .AddCallback(secondaryValue, this::OnMotivate);
         });
@@ -66,7 +66,7 @@ public class NononJakuzure extends AnimatorCard implements OnAffinitySealedSubsc
         }
         else if (remaining > 1)
         {
-            GameActions.Top.Motivate()
+            GameActions.Top.Motivate(1)
             .MotivateZeroCost(false)
             .AddCallback(remaining - 1, this::OnMotivate);
         }

@@ -1297,8 +1297,13 @@ public class GameUtilities
 
     public static void ChangeCardName(AbstractCard card, String newName)
     {
+        final String previousName = card.name;
         card.name = card.name.replace(card.originalName, newName);
         card.originalName = newName;
+        if (card.name.equals(previousName))
+        {
+            card.name = newName;
+        }
     }
 
     public static AbstractCard Imitate(AbstractCard card)

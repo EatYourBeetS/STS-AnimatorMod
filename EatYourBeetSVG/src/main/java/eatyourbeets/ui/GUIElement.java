@@ -12,6 +12,7 @@ public abstract class GUIElement
     public static final Color TEXT_DISABLED_COLOR = new Color(0.6f, 0.6f, 0.6f, 1f);
 
     public boolean isActive = true;
+    public AbstractPlayer.PlayerClass playerClass = null;
 
     public abstract void Update();
     public abstract void Render(SpriteBatch sb);
@@ -43,9 +44,16 @@ public abstract class GUIElement
         return this;
     }
 
-    public static AbstractPlayer.PlayerClass GetPlayerClass()
+    public GUIElement SetPlayerClass(AbstractPlayer.PlayerClass playerClass)
     {
-        return GameUtilities.GetPlayerClass();
+        this.playerClass = playerClass;
+
+        return this;
+    }
+
+    public AbstractPlayer.PlayerClass GetPlayerClass()
+    {
+        return playerClass != null ? playerClass : GameUtilities.GetPlayerClass();
     }
 
     protected static float Scale(float value)

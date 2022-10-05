@@ -102,7 +102,7 @@ public class Saitama extends AnimatorClassicCard
                 // Do Nothing / Motivate 1
                 if (upgraded)
                 {
-                    GameActions.Bottom.Motivate();
+                    GameActions.Bottom.Motivate(1);
                 }
 
                 break;

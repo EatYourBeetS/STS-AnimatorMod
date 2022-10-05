@@ -8,8 +8,8 @@ import eatyourbeets.utilities.AdvancedTexture;
 
 public abstract class ImprovedBasicCard extends AnimatorCard
 {
-    public static final int IMPROVEMENT_COST = 60;
-    public static final int IMPROVEMENT_COST_STEP = 30;
+    public static final int IMPROVEMENT_COST = 75;
+    public static final int IMPROVEMENT_COST_STEP = 25;
     public final Affinity affinity;
 
     public ImprovedBasicCard(EYBCardData data, Affinity affinity, String foregroundTexturePath)

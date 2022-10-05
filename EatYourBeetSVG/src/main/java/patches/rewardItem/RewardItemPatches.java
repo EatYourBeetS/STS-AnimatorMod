@@ -1,12 +1,12 @@
 package patches.rewardItem;
 
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.rewards.RewardItem;
 import eatyourbeets.cards.base.EYBCardTooltip;
 import eatyourbeets.relics.EYBRelic;
 import eatyourbeets.rewards.AnimatorReward;
+import eatyourbeets.utilities.JUtils;
 import javassist.CtBehavior;
 
 public class RewardItemPatches
@@ -37,17 +37,37 @@ public class RewardItemPatches
         }
     }
 
-    @SpirePatch(clz = RewardItem.class, method = "render", paramtypez = {SpriteBatch.class})
-    public static class RewardItemPatches_Render
+//    @SpirePatch(clz = RewardItem.class, method = "render", paramtypez = {SpriteBatch.class})
+//    public static class RewardItemPatches_Render
+//    {
+//        @SpirePostfixPatch
+//        public static void Postfix(RewardItem __instance, SpriteBatch sb)
+//        {
+//            if (__instance.hb.hovered && __instance.type == RewardItem.RewardType.RELIC && __instance.relic instanceof EYBRelic)
+//            {
+//                EYBCardTooltip.CanRenderTooltips(false);
+//                EYBCardTooltip.CanRenderTooltips(true);
+//                EYBCardTooltip.QueueTooltips((EYBRelic) __instance.relic);
+//            }
+//        }
+//    }
+
+    @SpirePatch(clz = RewardItem.class, method = "update", paramtypez = {})
+    public static class RewardItemPatches_Update
     {
         @SpirePostfixPatch
-        public static void Postfix(RewardItem __instance, SpriteBatch sb)
+        public static void Postfix(RewardItem __instance)
         {
-            if (__instance.hb.hovered && __instance.type == RewardItem.RewardType.RELIC && __instance.relic instanceof EYBRelic)
+            if (__instance.hb.hovered && __instance.type == RewardItem.RewardType.RELIC)
             {
-                EYBCardTooltip.CanRenderTooltips(false);
-                EYBCardTooltip.CanRenderTooltips(true);
-                EYBCardTooltip.QueueTooltips((EYBRelic) __instance.relic);
+                final EYBRelic relic = JUtils.SafeCast(__instance.relic, EYBRelic.class);
+                if (relic != null)
+                {
+                    EYBCardTooltip.CanRenderTooltips(false);
+                    EYBCardTooltip.CanRenderTooltips(true);
+                    EYBCardTooltip.QueueTooltips(relic);
+                    relic.OnRelicHovering(__instance);
+                }
             }
         }
     }

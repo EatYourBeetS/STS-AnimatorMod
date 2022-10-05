@@ -88,7 +88,7 @@ public class GuildGirl extends AnimatorCard
         {
             super.onAfterCardPlayed(usedCard);
 
-            if (GameUtilities.IsSealed(usedCard))
+            if (amount > 0 && GameUtilities.IsSealed(usedCard))
             {
                 GameActions.Bottom.Cycle(name, 1);
                 reducePower(1);

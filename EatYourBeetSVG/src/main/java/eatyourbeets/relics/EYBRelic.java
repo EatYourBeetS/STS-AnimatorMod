@@ -105,6 +105,17 @@ public abstract class EYBRelic extends CustomRelic
     }
 
     @Override
+    public void update()
+    {
+        super.update();
+
+        if (hb != null && hb.hovered)
+        {
+            OnRelicHovering(this);
+        }
+    }
+
+    @Override
     public void renderCounter(SpriteBatch sb, boolean inTopPanel)
     {
         if (this.counter >= 0)
@@ -136,6 +147,11 @@ public abstract class EYBRelic extends CustomRelic
     protected String GetCounterString()
     {
         return String.valueOf(counter);
+    }
+
+    public void OnRelicHovering(Object source)
+    {
+
     }
 
     public boolean IsEnabled()

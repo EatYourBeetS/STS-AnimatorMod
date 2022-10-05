@@ -37,7 +37,7 @@ public class AuraBellaFiora extends AnimatorCard
     {
         info.TryActivateStarter();
         GameActions.Bottom.GainBlock(block);
-        GameActions.Delayed.Motivate().SetFilter(GameUtilities::IsHighCost);
+        GameActions.Delayed.Motivate(1).SetFilter(GameUtilities::IsHighCost);
         GameActions.Bottom.DiscardFromHand(name, 1, false)
         .SetOptions(false, false, false);
     }

@@ -26,7 +26,7 @@ public abstract class AnimatorAffinityPower extends AbstractAffinityPower
     {
         this.owner = owner;
         this.enabled = true;
-        this.retainedTurns = 0;
+        this.boost = 0;
         this.thresholdIndex = 0;
         this.minimumAmount = 0;
         this.maxAmount = 5;
@@ -91,19 +91,10 @@ public abstract class AnimatorAffinityPower extends AbstractAffinityPower
         final int amount = GetThresholdLevel();
 
         Color amountColor;
-        if (retainedTurns != 0)
-        {
-            RenderHelpers.DrawCentered(sb, Colors.Gold(0.7f), GR.Common.Images.Panel_Elliptical_Half_H.Texture(), cX, cY, (w / scale) + 8, (h / scale) + 8, 1, 0);
-            RenderHelpers.DrawCentered(sb, Colors.Black(0.9f), GR.Common.Images.Panel_Elliptical_Half_H.Texture(), cX, cY, w / scale, h / scale, 1, 0);
-            amountColor = Colors.Green(1).cpy();
-        }
-        else
-        {
-            RenderHelpers.DrawCentered(sb, Colors.Black(0.6f), GR.Common.Images.Panel_Elliptical_Half_H.Texture(), cX, cY, w / scale, h / scale, 1, 0);
-            amountColor = (amount > minimumAmount ? Colors.Blue(1) : Colors.Cream(minimumAmount > 0 ? 1 : 0.6f)).cpy();
-        }
+        RenderHelpers.DrawCentered(sb, Colors.Black(0.6f), GR.Common.Images.Panel_Elliptical_Half_H.Texture(), cX, cY, w / scale, h / scale, 1, 0);
+        amountColor = (amount > minimumAmount ? Colors.Blue(1) : Colors.Cream(minimumAmount > 0 ? 1 : 0.6f)).cpy();
 
-        final Color imgColor = Colors.White((enabled && (retainedTurns + amount) > 0) ? 1 : 0.5f);
+        final Color imgColor = Colors.White((enabled && (boost + amount) > 0) ? 1 : 0.5f);
         RenderHelpers.DrawCentered(sb, imgColor, img, x + 20 * scale, cY + (3f * scale), 32, 32, 1, 0);
 
         final float textX = x + ((amount > 9 ? 56 : 50) * scale);
@@ -126,7 +117,7 @@ public abstract class AnimatorAffinityPower extends AbstractAffinityPower
         amount = Mathf.Min(maxAmount - current, amount);
         if (amount > 0)
         {
-            retainedTurns = 0;
+            boost = 0;
 
             for (int i = 0; i < amount; i++)
             {
@@ -151,7 +142,7 @@ public abstract class AnimatorAffinityPower extends AbstractAffinityPower
     public int GetUpgradeCost()
     {
         final int level = GetThresholdLevel();
-        return Mathf.Max(0, level + 3 - retainedTurns);
+        return Mathf.Max(0, level + 3 - boost);
     }
 
     @Override
@@ -172,6 +163,6 @@ public abstract class AnimatorAffinityPower extends AbstractAffinityPower
     public void atStartOfTurn()
     {
         amount = 1;
-        retainedTurns = 0;
+        boost = 0;
     }
 }

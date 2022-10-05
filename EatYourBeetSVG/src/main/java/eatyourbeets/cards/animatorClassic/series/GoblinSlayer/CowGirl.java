@@ -33,7 +33,7 @@ public class CowGirl extends AnimatorClassicCard
 
         if (CombatStats.TryActivateLimited(cardID))
         {
-            GameActions.Bottom.Motivate();
+            GameActions.Bottom.Motivate(1);
         }
     }
 

@@ -37,7 +37,7 @@ public class CrowleyEusford extends AnimatorClassicCard
 
         if (CombatStats.CardsExhaustedThisTurn().size() > 0)
         {
-            GameActions.Bottom.Motivate();
+            GameActions.Bottom.Motivate(1);
         }
     }
 }

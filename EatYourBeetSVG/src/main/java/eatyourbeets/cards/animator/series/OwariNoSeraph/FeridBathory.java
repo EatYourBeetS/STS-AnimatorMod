@@ -26,8 +26,8 @@ public class FeridBathory extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 2, 3);
-        SetUpgrade(0, 0, 2, 0);
+        Initialize(0, 0, 3, 7);
+        SetUpgrade(0, 0, 1, 2);
 
         SetAffinity_Red(2);
         SetAffinity_Green(1);
@@ -62,7 +62,7 @@ public class FeridBathory extends AnimatorCard
         {
             super(owner, source, FeridBathory.DATA);
 
-            Initialize(amount, PowerType.DEBUFF, true);
+            Initialize(amount, PowerType.DEBUFF, false);
         }
 
         @Override
@@ -98,13 +98,6 @@ public class FeridBathory extends AnimatorCard
             });
             GameActions.Bottom.GainTemporaryHP(HP_STEAL);
             flashWithoutSound();
-        }
-
-        @Override
-        public void atEndOfRound()
-        {
-            super.atEndOfRound();
-
             ReducePower(1);
         }
     }

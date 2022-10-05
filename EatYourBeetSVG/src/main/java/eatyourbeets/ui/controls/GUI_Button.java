@@ -215,13 +215,6 @@ public class GUI_Button extends GUIElement
         return this;
     }
 
-    public GUI_Button SetNonInteractableTextColor(Color color)
-    {
-        this.disabledTextColor = color == null ? textColor.cpy() : color.cpy();
-
-        return this;
-    }
-
     public GUI_Button SetColor(Color buttonColor)
     {
         this.buttonColor = buttonColor.cpy();
@@ -250,6 +243,22 @@ public class GUI_Button extends GUIElement
     public GUI_Button SetTextColor(Color textColor)
     {
         this.textColor = textColor.cpy();
+        this.disabledTextColor = textColor.cpy();
+
+        return this;
+    }
+
+    public GUI_Button SetTextColor(Color textColor, float disabledColorBlackLerp)
+    {
+        this.textColor = textColor.cpy();
+        this.disabledTextColor = Colors.Lerp(textColor, Color.BLACK, disabledColorBlackLerp);
+
+        return this;
+    }
+
+    public GUI_Button SetNonInteractableTextColor(Color color)
+    {
+        this.disabledTextColor = color == null ? textColor.cpy() : color.cpy();
 
         return this;
     }
@@ -368,16 +377,16 @@ public class GUI_Button extends GUIElement
                 if (horizontalRatio < 0.5f)
                 {
                     final float step = hb.width * horizontalRatio;
-                    FontHelper.renderFontLeft(sb, font, text, hb.x + step, hb.y + hb.height * verticalRatio, textColor);
+                    FontHelper.renderFontLeft(sb, font, text, hb.x + step, hb.y + hb.height * verticalRatio, color);
                 }
                 else if (horizontalRatio > 0.5f)
                 {
                     final float step = hb.width * (1-horizontalRatio) * 2;
-                    FontHelper.renderFontRightAligned(sb, font, text, hb.x + hb.width - step, hb.y + hb.height * verticalRatio, textColor);
+                    FontHelper.renderFontRightAligned(sb, font, text, hb.x + hb.width - step, hb.y + hb.height * verticalRatio, color);
                 }
                 else
                 {
-                    FontHelper.renderFontCentered(sb, font, text, hb.cX, hb.y + hb.height * verticalRatio, textColor);
+                    FontHelper.renderFontCentered(sb, font, text, hb.cX, hb.y + hb.height * verticalRatio, color);
                 }
                 //RenderHelpers.WriteCentered(sb, font, text, hb, color, scale);
             }

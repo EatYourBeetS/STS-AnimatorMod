@@ -39,7 +39,7 @@ public class Shiro extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.GainIntellect(1, upgraded);
-        GameActions.Bottom.Motivate();
+        GameActions.Bottom.Motivate(1);
 
         if (CheckSpecialCondition(true))
         {

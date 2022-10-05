@@ -50,7 +50,7 @@ public class MaesHughes extends AnimatorClassicCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.Draw(Math.floorDiv(p.drawPile.size(), magicNumber));
-        GameActions.Bottom.Motivate();
+        GameActions.Bottom.Motivate(1);
     }
 
     private boolean DrawRoyMustang(CardGroup group)

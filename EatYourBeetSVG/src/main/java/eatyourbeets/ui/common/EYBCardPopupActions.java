@@ -245,7 +245,7 @@ public class EYBCardPopupActions
             }
 
             Complete();
-            GameEffects.TopLevelQueue.Callback(new SelectFromPile(name, 1, group)
+            GameEffects.TopLevelQueue.Callback(new SelectFromPile(terms.Improve, 1, group)
             .HideTopPanel(true)
             .CancellableFromPlayer(true)
             .AddCallback(card, (c, cards) ->

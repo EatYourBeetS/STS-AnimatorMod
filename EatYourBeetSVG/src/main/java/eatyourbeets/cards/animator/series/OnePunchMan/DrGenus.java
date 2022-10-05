@@ -38,7 +38,7 @@ public class DrGenus extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 5, 3);
+        Initialize(0, 0, 4, 3);
 
         if ((this.effect = effect) == 0)
         {

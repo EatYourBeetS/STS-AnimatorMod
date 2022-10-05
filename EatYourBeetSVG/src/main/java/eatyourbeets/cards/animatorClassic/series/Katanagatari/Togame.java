@@ -39,7 +39,7 @@ public class Togame extends AnimatorClassicCard
 
                 if (GameUtilities.IsHindrance(cards.get(0)) && CombatStats.TryActivateSemiLimited(cardID))
                 {
-                    GameActions.Bottom.Motivate();
+                    GameActions.Bottom.Motivate(1);
                 }
             }
         });

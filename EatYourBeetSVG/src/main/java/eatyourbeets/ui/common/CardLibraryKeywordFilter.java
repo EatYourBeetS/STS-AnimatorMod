@@ -44,7 +44,7 @@ public class CardLibraryKeywordFilter extends GUIElement implements FuncT1<Boole
     {
         button.targetAlpha = container.hasFocus ? 1 : 0.05f;
         button.foreground.isActive = CustomCardLibSortHeader.Instance.filter == this;
-        button.SetInteractable(container.hasFocus).Update();
+        button.SetInteractable(container.hasFocus).SetPlayerClass(GR.Animator.PlayerClass).Update();
     }
 
     @Override

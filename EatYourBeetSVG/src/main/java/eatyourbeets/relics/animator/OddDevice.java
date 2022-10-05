@@ -1,5 +1,7 @@
 package eatyourbeets.relics.animator;
 
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import eatyourbeets.effects.SFX;
 import eatyourbeets.relics.AnimatorRelic;
 import eatyourbeets.utilities.GameUtilities;
@@ -15,9 +17,19 @@ public abstract class OddDevice extends AnimatorRelic
     }
 
     @Override
-    public void update()
+    public void OnRelicHovering(Object source)
     {
-        super.update();
+        if (InputManager.Control.IsJustPressed() && !GameUtilities.InBattle())
+        {
+            SFX.Play(SFX.UI_CLICK_1, 0.9f, 1.1f);
+            SwitchEffect();
+        }
+    }
+
+    @Override
+    public void renderWithoutAmount(SpriteBatch sb, Color c)
+    {
+        super.renderWithoutAmount(sb, c);
 
         if (hb != null && hb.hovered && InputManager.Control.IsJustPressed() && !GameUtilities.InBattle())
         {

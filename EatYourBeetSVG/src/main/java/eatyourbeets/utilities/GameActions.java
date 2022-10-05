@@ -892,43 +892,29 @@ public final class GameActions
         return Add(new ModifyAllInstances(uuid));
     }
 
-    public MotivateAction Motivate()
+    public MotivateCard Motivate(AbstractCard card, int amount)
     {
-        return Add(new MotivateAction(1));
+        return Add(new MotivateCard(card, amount));
     }
 
-    public MotivateAction Motivate(CardGroup group)
+    public MotivateCards Motivate(ArrayList<AbstractCard> cards, int amount)
     {
-        return Motivate().SetGroup(group);
+        return Add(new MotivateCards(cards, amount));
     }
 
-    public MotivateAction Motivate(AbstractCard card, int amount)
+    public MotivateCards Motivate(int cards)
     {
-        return Add(new MotivateAction(card, amount));
+        return Motivate(player.hand, cards, 1);
     }
 
-    public ArrayList<MotivateAction> Motivate(int times)
+    public MotivateCards Motivate(CardGroup group, int cards)
     {
-        ArrayList<MotivateAction> actions = new ArrayList<>();
-
-        for (int i = 0; i < times; i++)
-        {
-            actions.add(Motivate());
-        }
-
-        return actions;
+        return Motivate(group, cards, 1);
     }
 
-    public ArrayList<MotivateAction> Motivate(CardGroup group, int times)
+    public MotivateCards Motivate(CardGroup group, int cards, int amount)
     {
-        ArrayList<MotivateAction> actions = new ArrayList<>();
-
-        for (int i = 0; i < times; i++)
-        {
-            actions.add(Motivate(group));
-        }
-
-        return actions;
+        return Add(new MotivateCards(group, cards, amount));
     }
 
     public MoveCard MoveCard(AbstractCard card, CardGroup destination)

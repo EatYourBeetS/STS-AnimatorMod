@@ -112,10 +112,10 @@ public class EmirEins extends AnimatorCard
                         randomCards.Add(c);
                     }
                 }
-                else if (card instanceof EYBCard == c instanceof EYBCard)
-                {
-                    randomCards.Add(c);
-                }
+//                else if (card instanceof EYBCard == c instanceof EYBCard)
+//                {
+//                    randomCards.Add(c);
+//                }
             }
         }
 

@@ -2,6 +2,7 @@ package eatyourbeets.stances;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.MathUtils;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
@@ -13,10 +14,8 @@ import eatyourbeets.cards.base.EYBCardTooltip;
 import eatyourbeets.effects.SFX;
 import eatyourbeets.interfaces.delegates.FuncT0;
 import eatyourbeets.powers.CombatStats;
-import eatyourbeets.resources.CardTooltips;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameEffects;
-import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
 
 import java.util.HashMap;
@@ -66,9 +65,9 @@ public abstract class EYBStance extends AbstractStance
         affinityTooltips.put(NeutralStance.STANCE_ID, GR.Tooltips.NeutralStance);
     }
 
-    public static EYBCardTooltip GetStanceTooltip(String stance)
+    public static EYBCardTooltip GetStanceTooltip(AbstractPlayer.PlayerClass playerClass, String stance)
     {
-        return CardTooltips.FindByID(GameUtilities.GetPlayerClass(), stance);
+        return (playerClass == GR.Animator.PlayerClass) ? affinityTooltips.get(stance) : classicTooltips.get(stance);
     }
 
     public static AbstractStance GetStanceFromName(String name)

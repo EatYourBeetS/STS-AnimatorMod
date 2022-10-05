@@ -128,6 +128,7 @@ public class CardLibraryPatches
             {
                 result = new CardNotFound();
                 GameUtilities.ChangeCardName(result, key);
+                JUtils.LogError(CardLibrary.class, "Card not found: " + key);
             }
 
             return result;

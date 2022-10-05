@@ -33,7 +33,6 @@ import eatyourbeets.resources.animator.AnimatorImages;
 import eatyourbeets.ui.cards.CardPreview;
 import eatyourbeets.ui.common.EYBCardPopup;
 import eatyourbeets.utilities.*;
-import javafx.util.Pair;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -387,7 +386,7 @@ public abstract class EYBCard extends EYBCardBase
 
     public boolean CheckAffinities(boolean tryUse)
     {
-        final ArrayList<Pair<Affinity, Integer>> toUse = new ArrayList<>();
+        final ArrayList<TupleT2<Affinity, Integer>> toUse = new ArrayList<>();
         for (Affinity a : Affinity.All(true))
         {
             final int req = affinities.GetRequirement(a);
@@ -399,14 +398,14 @@ public abstract class EYBCard extends EYBCardBase
                 }
                 else if (tryUse)
                 {
-                    toUse.add(new Pair<>(a, req));
+                    toUse.add(new TupleT2<>(a, req));
                 }
             }
         }
 
-        for (Pair<Affinity, Integer> pair : toUse)
+        for (TupleT2<Affinity, Integer> pair : toUse)
         {
-            TryUseAffinity(pair.getKey(), pair.getValue());
+            TryUseAffinity(pair.V1, pair.V2);
         }
 
         return true;

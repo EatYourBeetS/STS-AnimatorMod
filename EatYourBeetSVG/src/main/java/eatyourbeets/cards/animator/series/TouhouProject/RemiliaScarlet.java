@@ -72,9 +72,9 @@ public class RemiliaScarlet extends AnimatorCard
         }
 
         @Override
-        public void atEndOfTurn(boolean isPlayer)
+        public void atStartOfTurnPostDraw()
         {
-            super.atEndOfTurn(isPlayer);
+            super.atStartOfTurnPostDraw();
 
             if (AgilityStance.IsActive())
             {

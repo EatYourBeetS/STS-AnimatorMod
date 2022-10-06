@@ -140,7 +140,7 @@ public abstract class EYBCardPopupAction
     {
         final AbstractPlayer p = AbstractDungeon.player;
         final int index = p.masterDeck.group.indexOf(original);
-        if (index > 0)
+        if (index >= 0)
         {
             for (AbstractRelic r : p.relics)
             {

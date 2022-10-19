@@ -68,7 +68,7 @@ public class Millim extends AnimatorCard
         GameActions.Bottom.ChannelOrb(new Dark());
         GameActions.Bottom.SelectFromPile(name, magicNumber, p.drawPile)
         .SetOptions(false, false, true)
-        .SetFilter(c -> c.costForTurn > 0)
+        .SetFilter(c -> c.cost >= 0)
         .AddCallback(cards ->
         {
             for (AbstractCard c : cards)

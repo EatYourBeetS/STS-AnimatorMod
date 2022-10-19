@@ -4,7 +4,7 @@ import com.badlogic.gdx.math.MathUtils;
 import com.esotericsoftware.spine.AnimationState;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
-import eatyourbeets.resources.animator.AnimatorResources;
+import eatyourbeets.resources.GR;
 
 public abstract class EYBMonsterData
 {
@@ -25,7 +25,7 @@ public abstract class EYBMonsterData
     public EYBMonsterData(String id)
     {
         this.id = id;
-        this.strings = AnimatorResources.GetMonsterStrings(id);
+        this.strings = GR.GetMonsterStrings(id);
     }
 
     protected void SetHB(float hb_x, float hb_y, float hb_w, float hb_h, float x, float y)

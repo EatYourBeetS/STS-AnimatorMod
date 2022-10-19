@@ -27,7 +27,7 @@ public class GenericEffect_GainOrBoost extends GenericEffect
     @Override
     public String GetText()
     {
-        final String symbol = "[" + affinityPower.symbol + "]";
+        final String symbol = "[" + ((affinityPower.GetPlayerClass() == GR.Animator.PlayerClass) ? affinity.GetTooltip().id : affinityPower.symbol) + "]";
         if (retain)
         {
             StringBuilder sb = new StringBuilder();

@@ -352,7 +352,7 @@
 	},
 	"animator:VitalityPower":
 	{
-		"DESCRIPTIONS": ["Whenever you are attacked this turn, gain #b{0} #yTemporary #HP."],
+		"DESCRIPTIONS": ["Whenever you are attacked this turn, gain #b{0} [THP]."],
 		"NAME": "Vitality"
 	},
 	"animator:YukoShionjiPower":

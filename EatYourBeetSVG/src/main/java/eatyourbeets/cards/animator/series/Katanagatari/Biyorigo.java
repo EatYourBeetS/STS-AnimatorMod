@@ -22,8 +22,8 @@ public class Biyorigo extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 3, 1, 1);
-        SetUpgrade(0, 2, 0, 1);
+        Initialize(0, 5, 1, 1);
+        SetUpgrade(0, 3, 0, 1);
 
         SetAffinity_Red(1);
         SetAffinity_Green(2);

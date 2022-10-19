@@ -9,7 +9,6 @@ import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.attributes.TempHPAttribute;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
 
 public class Mikaela extends AnimatorCard
 {
@@ -21,7 +20,7 @@ public class Mikaela extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(6, 0, 2, 6);
+        Initialize(7, 0, 4, 7);
         SetUpgrade(0, 0, 0, -2);
 
         SetAffinity_Red(1, 1, 1);
@@ -38,17 +37,11 @@ public class Mikaela extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.GainTemporaryHP(magicNumber);
+        GameActions.Bottom.TakeDamageAtEndOfTurn(secondaryValue);
         GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_DIAGONAL);
-        GameActions.Bottom.ExhaustFromPile(name, 1, p.hand, p.discardPile)
+        GameActions.Bottom.DiscardFromHand(name, 1, false)
+        .SetOptions(false, false, false);
+        GameActions.Bottom.ExhaustFromPile(name, 1, p.discardPile)
         .SetOptions(false, false);
-    }
-
-    @Override
-    public void OnLateUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
-    {
-        if (GameUtilities.IsAttacking(m.intent))
-        {
-            GameActions.Bottom.TakeDamageAtEndOfTurn(secondaryValue);
-        }
     }
 }

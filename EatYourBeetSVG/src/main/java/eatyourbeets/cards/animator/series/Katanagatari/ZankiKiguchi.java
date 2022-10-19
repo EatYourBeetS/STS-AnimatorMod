@@ -22,7 +22,7 @@ public class ZankiKiguchi extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(2, 0, 1);
+        Initialize(2, 0, 1, 7);
         SetUpgrade(0, 0, 1);
 
         SetAffinity_Red(1);
@@ -46,7 +46,7 @@ public class ZankiKiguchi extends AnimatorCard
                 {
                     GameActions.Bottom.SFX(SFX.DAMARU, 0.8f, 0.95f, 0.5f);
                     GameActions.Bottom.GainEnergy(1);
-                    GameActions.Bottom.Draw(2);
+                    GameActions.Bottom.GainInspiration(secondaryValue);
                 }
             });
         }

@@ -1,9 +1,6 @@
 package eatyourbeets.cards.animator.series.HitsugiNoChaika;
 
 import com.badlogic.gdx.graphics.Color;
-import eatyourbeets.cards.base.attributes.TempHPAttribute;
-import eatyourbeets.cards.base.modifiers.BlockModifiers;
-import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -11,6 +8,8 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.actions.special.RefreshHandLayout;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
+import eatyourbeets.cards.base.attributes.TempHPAttribute;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.effects.VFX;
 import eatyourbeets.interfaces.subscribers.OnEndOfTurnLastSubscriber;
 import eatyourbeets.powers.CombatStats;
@@ -53,7 +52,7 @@ public class Fredrika extends AnimatorCard implements OnEndOfTurnLastSubscriber
     {
         super(DATA);
 
-        Initialize(7, 2, 2, 4);
+        Initialize(7, 3, 2, 4);
         SetUpgrade(2, 2, 1);
 
         SetAffinity_Star(1);
@@ -147,11 +146,7 @@ public class Fredrika extends AnimatorCard implements OnEndOfTurnLastSubscriber
             case Cat:
             {
                 GameActions.Bottom.GainTemporaryHP(magicNumber);
-                GameActions.Bottom.SpendEnergy(999, true)
-                .AddCallback(energy ->
-                {//
-                    GameActions.Bottom.ModifyAllInstances(uuid).AddCallback(energy + 1, (amount, c) -> BlockModifiers.For(c).Add(amount));
-                });
+                CombatStats.Affinities.AddTempAffinity(Affinity.Star, 1);
                 break;
             }
 
@@ -173,6 +168,7 @@ public class Fredrika extends AnimatorCard implements OnEndOfTurnLastSubscriber
                 }
 
                 GameActions.Bottom.GainForce(SPECIAL);
+                GameActions.Bottom.GainAgility(SPECIAL);
                 GameActions.Bottom.GainMetallicize(SPECIAL);
                 break;
             }

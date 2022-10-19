@@ -21,8 +21,8 @@ public class Shion extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(16, 0, 10);
-        SetUpgrade(4, 0, 0);
+        Initialize(16, 0, 12);
+        SetUpgrade(4, 0, 2);
 
         SetAffinity_Red(2, 0, 2);
         SetAffinity_Light(1);

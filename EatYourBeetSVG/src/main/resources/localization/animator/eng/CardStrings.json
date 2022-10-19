@@ -380,7 +380,7 @@
 		},
 		"animator:Aisha":
 		{
-			"DESCRIPTION": "Trigger your first ** [Dark] to gain [B] [D]. || Deal !S! additional ** damage for each ** orb you have.",
+			"DESCRIPTION": "Trigger your first ** [Dark] to Boost [B] [D]. || Deal !S! additional ** damage for each ** orb you have.",
 			"NAME": "Aisha"
 		},
 		"animator:Ara":
@@ -443,7 +443,7 @@
 		},
 		"animator:Rena":
 		{
-			"DESCRIPTION": "Apply !M! [Vulnerable] ** to ALL enemies. || When Discarded: ** Gain 1 [G] and [~Blur].",
+			"DESCRIPTION": "Apply !M! [Vulnerable]. || When Discarded: ** Gain 1 [G] and [~Blur].",
 			"NAME": "Rena"
 		}
 	},
@@ -473,7 +473,7 @@
 		},
 		"animator:Caster":
 		{
-			"DESCRIPTION": "Steal !M! Strength. ** Gain !M! [D] and [Frail]. || When Sealed: ** Channel [Dark].",
+			"DESCRIPTION": "Steal !M! [Strength]. ** Gain !M! [D] and [Frail]. || When Sealed: ** Channel [Dark].",
 			"NAME": "Caster"
 		},
 		"animator:EmiyaKiritsugu":
@@ -543,7 +543,7 @@
 	{
 		"animator:ElricAlphonse":
 		{
-			"DESCRIPTION": "If you have less ** than !M! [B]: Gain|Boost [B]. || <LIM>. Gain 1 [S].",
+			"DESCRIPTION": "<ST>. Gain [S]. || Gain|Boost [B]. Draw 1 ** additional card ** next turn.",
 			"NAME": "Alphonse Elric"
 		},
 		"animator:ElricAlphonse_Alt":
@@ -693,7 +693,7 @@
 		},
 		"animator:TukaLunaMarceau":
 		{
-			"DESCRIPTION": "If you have no [Block]: ** <DRW>. || When Sealed: ** Gain 1 [A_Seal].",
+			"DESCRIPTION": "Gain !M! [INS]. || When Sealed: ** Gain 1 [A_Seal].",
 			"NAME": "Tuka"
 		},
 		"animator:Tyuule":
@@ -840,7 +840,7 @@
 		"animator:Fredrika":
 		{
 			"DESCRIPTION": "<ST>. Gain !K! additional ** [Block] for each enemy. || When Discarded: Return this ** to your hand, then choose a ** different form this turn.",
-			"EXTENDED_DESCRIPTION": ["Increase the [Block] of ** other forms of this ** card by [E] + 1. || Spend all [E].", "Gain !K! [R] and [Metallicize].", "Gain !S! [Counter-Attack]."],
+			"EXTENDED_DESCRIPTION": ["Gain 1 {Temp.} [M].", "Gain !K! [R] [G] and [Metallicize].", "Gain !S! [Counter-Attack]."],
 			"NAME": "Fredrika"
 		},
 		"animator:Gillette":
@@ -967,7 +967,7 @@
 		},
 		"animator:ZankiKiguchi":
 		{
-			"DESCRIPTION": "Gain !M! Temp. [Strength]. || !A! [M]: Exit your ** Stance to gain [E] ** and <DRW-2>.",
+			"DESCRIPTION": "Gain !M! Temp. [Strength]. || !A! [M]: Exit your ** Stance to gain ** 1 [E] and !S! [INS].",
 			"NAME": "Zanki Kiguchi"
 		}
 	},
@@ -1581,7 +1581,7 @@
 	{
 		"animator:CrowleyEusford":
 		{
-			"DESCRIPTION": "Boost [R] [G]. ** Recover !M! [HP]. || If you Exhausted ** a card this turn: ** Motivate 1.",
+			"DESCRIPTION": "Boost [R] [G]. ** Reduce [DD] by !M!. || If you Exhausted ** a card this turn: ** Motivate 1.",
 			"NAME": "Crowley Eusford"
 		},
 		"animator:FeridBathory":
@@ -1608,7 +1608,7 @@
 		},
 		"animator:KimizugiShiho":
 		{
-			"DESCRIPTION": "Draw 1 {Hindrance}. || When Discarded or ** Exhausted: Gain [R].",
+			"DESCRIPTION": "Draw 1 {Hindrance}. || When Discarded or ** Exhausted: Boost [R].",
 			"NAME": "Shiho Kimizugi"
 		},
 		"animator:LestKarr":
@@ -1623,7 +1623,7 @@
 		},
 		"animator:Mikaela":
 		{
-			"DESCRIPTION": "Exhaust a card in ** hand or discard pile. || If the enemy intends ** to attack: Take !S! [DD].",
+			"DESCRIPTION": "Take !S! [DD]. || Discard 1 card, then ** Exhaust a card in ** discard pile.",
 			"NAME": "Mikaela"
 		},
 		"animator:Mitsuba":
@@ -1648,8 +1648,9 @@
 		},
 		"animator:Yoichi":
 		{
-			"DESCRIPTION": "Discard 1 card. ** Gain 1 [Support Damage]. || <slm>. !A! [L]: ** Activate your [Support Damage].",
-			"NAME": "Yoichi"
+			"DESCRIPTION": "Discard 1 random ** card. Gain !M! [Support Damage]. || <slm>. !A! [L] [G]: ** Activate your [Support Damage].",
+			"NAME": "Yoichi",
+			"UPGRADE_DESCRIPTION": "Discard 1 card. ** Gain !M! [Support Damage]. || <slm>. !A! [L] [G]: ** Activate your [Support Damage]."
 		},
 		"animator:Yuuichirou":
 		{

@@ -448,7 +448,7 @@ public class SFX
         {
             throw new RuntimeException("Min can't be greater than max");
         }
-        if (key == null || pitchMin <= 0)
+        if (key == null || pitchMin <= 0 || volume <= 0)
         {
             return 0f;
         }

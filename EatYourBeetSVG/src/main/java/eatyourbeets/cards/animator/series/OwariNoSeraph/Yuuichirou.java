@@ -16,7 +16,7 @@ public class Yuuichirou extends AnimatorCard
     public static final EYBCardData DATA = Register(Yuuichirou.class)
             .SetAttack(1, CardRarity.UNCOMMON)
             .SetSeriesFromClassPackage()
-            .PostInitialize(data -> data.AddPreview(new Yuuichirou_Asuramaru(), true));
+            .PostInitialize(data -> data.AddPreview(new Yuuichirou_Asuramaru(), false));
 
     public Yuuichirou()
     {
@@ -26,8 +26,7 @@ public class Yuuichirou extends AnimatorCard
         SetUpgrade(3, 0);
 
         SetAffinity_Red(2, 0, 1);
-        SetAffinity_Green(0, 0, 2);
-        SetAffinity_Light(1);
+        SetAffinity_Green(2, 0, 2);
     }
 
     @Override
@@ -37,7 +36,7 @@ public class Yuuichirou extends AnimatorCard
 
         if (CombatStats.TryActivateLimited(cardID))
         {
-            GameActions.Bottom.MakeCardInDiscardPile(new Yuuichirou_Asuramaru()).SetUpgrade(upgraded, false);
+            GameActions.Bottom.MakeCardInDiscardPile(new Yuuichirou_Asuramaru()).SetUpgrade(false, false);
             GameActions.Bottom.SFX(SFX.ATTACK_MAGIC_FAST_2, 0.6f, 0.65f, 0.95f);
         }
     }

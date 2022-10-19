@@ -16,7 +16,7 @@ public class Miko extends AnimatorCard
         super(DATA);
 
         Initialize(0, 12, 2, 2);
-        SetUpgrade(0, 2, 1, 0);
+        SetUpgrade(0, 0, 1, 1);
 
         SetAffinity_Light(1);
         SetAffinity_Red(1);

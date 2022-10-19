@@ -23,32 +23,25 @@ public class ElricAlphonse extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 2, 3);
-        SetUpgrade(0, 1, 0);
+        Initialize(0, 2);
+        SetUpgrade(0, 1);
 
         SetAffinity_Blue(1);
         SetAffinity_Light(1);
+
+        SetAffinityRequirement(Affinity.Light, 1);
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.GainBlock(block);
+        GameActions.Bottom.GainIntellect(1, false);
+        GameActions.Bottom.DrawNextTurn(1);
 
-        if (CheckSpecialCondition(true))
-        {
-            GameActions.Bottom.GainIntellect(1, upgraded);
-        }
-
-        if (info.TryActivateLimited())
+        if (info.TryActivateStarter())
         {
             CombatStats.Affinities.AddAffinitySealUses(1);
         }
-    }
-
-    @Override
-    public boolean CheckSpecialCondition(boolean tryUse)
-    {
-        return CombatStats.Affinities.GetUsableAffinity(Affinity.Blue) < magicNumber;
     }
 }

@@ -39,7 +39,7 @@ public class KimizugiShiho extends AnimatorCard
     {
         super.triggerOnManualDiscard();
 
-        GameActions.Bottom.GainForce(1);
+        GameActions.Bottom.GainForce(1, true);
     }
 
     @Override
@@ -47,7 +47,7 @@ public class KimizugiShiho extends AnimatorCard
     {
         super.triggerOnExhaust();
 
-        GameActions.Bottom.GainForce(1);
+        GameActions.Bottom.GainForce(1, true);
     }
 
     @Override

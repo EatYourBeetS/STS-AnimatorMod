@@ -1,19 +1,4 @@
 
 {
-	"animatorClassic:FalseLifePotion":
-	{
-		"NAME": "False Life Potion",
-		"DESCRIPTIONS":
-		[
-			"Gain #b{0} #yTemporary #yHP."
-		]
-	},
-	"animatorClassic:GrowthPotion":
-	{
-		"NAME": "Exp. Potion",
-		"DESCRIPTIONS":
-		[
-			"Gain #b{0} #yForce, #yIntellect and #yAgility."
-		]
-	}
+	
 }

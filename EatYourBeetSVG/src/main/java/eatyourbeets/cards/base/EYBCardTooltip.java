@@ -503,8 +503,7 @@ public class EYBCardTooltip
             hideDescription = !StringUtils.isEmpty(id) && GR.Animator.Config.HideTipDescription(id);
         }
 
-        BitmapFont descriptionFont = card == null ? FontHelper.tipBodyFont : EYBFontHelper.CardTooltipFont;
-
+        final BitmapFont descriptionFont = card == null ? FontHelper.tipBodyFont : JUtils.GetFontOrDefault(description, EYBFontHelper.CardTooltipFont, FontHelper.tipBodyFont);
         final AbstractPlayer.PlayerClass pClass = GetPlayerClass();
         final float textHeight = RenderHelpers.GetSmartHeight(pClass, descriptionFont, description, BODY_TEXT_WIDTH, TIP_DESC_LINE_SPACING);
         final float h = (hideDescription || StringUtils.isEmpty(description)) ? (-40f * Settings.scale) : (-textHeight - 7f * Settings.scale);

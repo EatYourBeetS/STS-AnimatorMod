@@ -9,6 +9,8 @@ import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.cards.base.EYBCardAffinities;
 import eatyourbeets.cards.base.EYBCardTooltip;
+import eatyourbeets.effects.SFX;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.affinity.AnimatorAffinityPower;
 import eatyourbeets.resources.GR;
 import eatyourbeets.ui.GUIElement;
@@ -41,6 +43,7 @@ public class EYBCardAffinityRow extends GUIElement
     protected final GUI_Button button_upgrade;
     //protected final GUI_Label text_upgrade;
     protected final float offset_y;
+    protected float vfxTimer;
 
     public EYBCardAffinityRow(EYBCardAffinitySystem system, Affinity affinity, int index)
     {
@@ -102,12 +105,65 @@ public class EYBCardAffinityRow extends GUIElement
 
     public void Initialize()
     {
+        vfxTimer = 0;
         Power = JUtils.SafeCast(System.GetPower(Type), AnimatorAffinityPower.class);
 
         if (Power != null)
         {
             Power.Initialize(AbstractDungeon.player);
             Power.hb = new RelativeHitbox(System.hb, 1f, 1, 1.5f, offset_y);
+        }
+    }
+
+    public void GainAffinity(int amount, boolean temp)
+    {
+        if (Type == Affinity.Sealed)
+        {
+            vfxTimer = 0.75f;
+
+            final int remainingUses = System.GetRemainingSealUses();
+            if (remainingUses < 3)
+            {
+                amount = (Mathf.Clamp(remainingUses + amount, 0, 3));
+                System.CurrentAffinities.Set(Type, amount);
+                System.BaseAffinities.Set(Type, amount);
+            }
+
+            return;
+        }
+
+        if (vfxTimer <= 0f)
+        {
+            float volume = 0.8f;
+            for (EYBCardAffinityRow row : System.Rows)
+            {
+                if (row.Type != Affinity.Sealed)
+                {
+                    if (row.vfxTimer == 0.5f)
+                    {
+                        volume = 0;
+                        break;
+                    }
+                    else if (row.vfxTimer > 0)
+                    {
+                        volume *= 0.8f;
+                    }
+                }
+            }
+            SFX.Play(SFX.UNLOCK_PING, 2.35f, 2.55f, volume);
+        }
+
+        vfxTimer = 0.5f;
+
+        if (temp)
+        {
+            System.CurrentAffinities.Add(Type, amount);
+        }
+        else
+        {
+            amount = CombatStats.OnAffinityGained(Type, amount);
+            System.CurrentAffinities.Add(Type, amount);
+            System.BaseAffinities.Add(Type, amount);
         }
     }
 
@@ -124,7 +180,15 @@ public class EYBCardAffinityRow extends GUIElement
     {
         RefreshLevels();
 
-        image_background.SetColor(COLOR_DEFAULT);
+        if (vfxTimer > 0)
+        {
+            vfxTimer -= GR.UI.Delta();
+            image_background.SetColor(COLOR_HIGHLIGHT_STRONG);
+        }
+        else
+        {
+            image_background.SetColor(COLOR_DEFAULT);
+        }
         //image_synergy.color.a = 1f;
 
         if (Type.ID >= 0)
@@ -159,13 +223,13 @@ public class EYBCardAffinityRow extends GUIElement
         }
         else
         {
-            if (hoveredCard != null)
-            {
-                if (hoveredCard.affinities.GetLevel(Type, true) > 0)
-                {
-                    image_background.SetColor(COLOR_HIGHLIGHT_WEAK);
-                }
-            }
+//            if (hoveredCard != null && vfxTimer <= 0)
+//            {
+//                if (hoveredCard.affinities.GetLevel(Type, true) > 0)
+//                {
+//                    image_background.SetColor(COLOR_HIGHLIGHT_WEAK);
+//                }
+//            }
 
             if (button_upgrade.isActive && button_upgrade.hb.hovered && Power != null)
             {

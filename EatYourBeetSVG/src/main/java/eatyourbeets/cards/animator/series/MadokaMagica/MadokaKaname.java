@@ -52,12 +52,12 @@ public class MadokaKaname extends AnimatorCard
 
         if (CheckSpecialCondition(true))
         {
+            GameActions.Bottom.GainIntangible(secondaryValue);
             GameActions.Bottom.VFX(new BorderFlashEffect(Color.PINK, true));
             GameActions.Bottom.ExhaustFromPile(name, 999, p.drawPile, p.hand, p.discardPile)
             .ShowEffect(true, true)
             .SetOptions(true, true)
-            .SetFilter(c -> c.type == CardType.CURSE)
-            .AddCallback(cards -> GameActions.Bottom.GainIntangible(secondaryValue));
+            .SetFilter(c -> c.type == CardType.CURSE);
         }
     }
 

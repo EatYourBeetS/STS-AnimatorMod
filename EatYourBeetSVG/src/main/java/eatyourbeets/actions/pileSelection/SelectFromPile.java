@@ -204,7 +204,7 @@ public class SelectFromPile extends EYBActionWithCallback<ArrayList<AbstractCard
             }
             else
             {
-                if (amount > mergedGroup.size())
+                if (amount >= mergedGroup.size())
                 {
                     if (canPickLower)
                     {

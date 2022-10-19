@@ -29,16 +29,10 @@ public class YachiyoNanami extends AnimatorCard
         super(DATA);
 
         Initialize(0, 0, TEMP_HP_AMOUNT, DAMAGE_AMOUNT);
-        SetEthereal(true);
+        SetCostUpgrade(-1);
 
         SetAffinity_Blue(2);
         SetAffinity_Light(1);
-    }
-
-    @Override
-    protected void OnUpgrade()
-    {
-        SetEthereal(false);
     }
 
     @Override

@@ -1,11 +1,13 @@
 package eatyourbeets.utilities;
 
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.google.gson.Gson;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import eatyourbeets.interfaces.delegates.ActionT1;
 import eatyourbeets.interfaces.delegates.ActionT3;
 import eatyourbeets.interfaces.delegates.FuncT1;
+import eatyourbeets.resources.GR;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -133,6 +135,24 @@ public class JUtils
         }
 
         return res;
+    }
+
+    public static BitmapFont GetFontOrDefault(String text, BitmapFont font, BitmapFont fallback)
+    {
+        if (Settings.language == Settings.GameLanguage.ENG || GR.IsTranslationSupported(Settings.language) || IsNullOrEmpty(text))
+        {
+            return font;
+        }
+
+        for (int i = 0; i < text.length(); i++)
+        {
+            if (text.charAt(i) >= 1024)
+            {
+                return fallback;
+            }
+        }
+
+        return font;
     }
 
     public static <T, S> ArrayList<S> Select(Iterable<T> list, FuncT1<S, T> select)
@@ -370,6 +390,11 @@ public class JUtils
     public static boolean IsNullOrEmpty(List list)
     {
         return list == null || list.isEmpty();
+    }
+
+    public static boolean IsNullOrEmpty(String text)
+    {
+        return text == null || text.isEmpty();
     }
 
     public static boolean IsNullOrZero(Number number)

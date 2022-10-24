@@ -184,13 +184,7 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
 
     public void AddAffinitySealUses(int uses)
     {
-        final int remainingUses = GetRemainingSealUses();
-        if (remainingUses < 3)
-        {
-            uses = (Mathf.Clamp(remainingUses + uses, 0, 3));
-            CurrentAffinities.Set(Affinity.Sealed, uses);
-            BaseAffinities.Set(Affinity.Sealed, uses);
-        }
+        GetRow(Affinity.Sealed).GainAffinity(1, false);
     }
 
     public void AddAffinity(Affinity affinity, int amount)
@@ -208,9 +202,7 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
         }
         else
         {
-            amount = CombatStats.OnAffinityGained(affinity, amount);
-            CurrentAffinities.Add(affinity, amount);
-            BaseAffinities.Add(affinity, amount);
+            GetRow(affinity).GainAffinity(amount, false);
         }
     }
 
@@ -229,7 +221,7 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
         }
         else
         {
-            CurrentAffinities.Add(affinity, amount);
+            GetRow(affinity).GainAffinity(amount, true);
         }
     }
 

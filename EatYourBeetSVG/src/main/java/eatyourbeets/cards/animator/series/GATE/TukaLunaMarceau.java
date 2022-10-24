@@ -19,8 +19,8 @@ public class TukaLunaMarceau extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 2, 1);
-        SetUpgrade(0, 1, 0);
+        Initialize(0, 3, 1);
+        SetUpgrade(0, 0, 1);
 
         SetAffinity_Green(1);
         SetAffinity_Light(1);
@@ -43,17 +43,7 @@ public class TukaLunaMarceau extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        if (CheckSpecialCondition(true))
-        {
-            GameActions.Bottom.Draw(1);
-        }
-
         GameActions.Bottom.GainBlock(block);
-    }
-
-    @Override
-    public boolean CheckSpecialCondition(boolean tryUse)
-    {
-        return player.currentBlock <= 0;
+        GameActions.Bottom.GainInspiration(magicNumber);
     }
 }

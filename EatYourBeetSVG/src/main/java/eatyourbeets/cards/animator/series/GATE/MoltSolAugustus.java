@@ -30,7 +30,6 @@ public class MoltSolAugustus extends AnimatorCard
         super(DATA);
 
         Initialize(0, 0, 1, ARCHERS_AMOUNT);
-        SetUpgrade(0, 6);
 
         SetAffinity_Red(1);
 
@@ -38,9 +37,14 @@ public class MoltSolAugustus extends AnimatorCard
     }
 
     @Override
+    protected void OnUpgrade()
+    {
+        SetDelayed(false);
+    }
+
+    @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.StackPower(new MoltSolAugustusPower(p, 1));
     }
 

@@ -30,9 +30,9 @@ public class OddDevice_3 extends OddDevice
         if (IsEnabled() && GameUtilities.IsLowCost(c))
         {
             final int index = GetEffectIndex();
-            if ((index == 0 && c.type == AbstractCard.CardType.POWER)
-             || (index == 1 && c.type == AbstractCard.CardType.ATTACK)
-             || (index == 1 && c.type == AbstractCard.CardType.SKILL))
+            if ((index == 1 && c.type == AbstractCard.CardType.POWER)
+             || (index == 2 && c.type == AbstractCard.CardType.ATTACK)
+             || (index == 3 && c.type == AbstractCard.CardType.SKILL))
             {
                 GameActions.Bottom.PlayCopy(c, m);
                 SetEnabled(false);

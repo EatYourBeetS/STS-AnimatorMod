@@ -111,13 +111,17 @@ public abstract class AbstractAttribute
 
         largeFont = RenderHelpers.GetLargeAttributeFont(card);
 
-        final float sign = leftAlign ? -1 : +1;
-        final float icon_x = sign * (cw * 0.45f);
+        float sign = leftAlign ? -1 : +1;
+        float icon_x = sign * (cw * 0.45f);
         float text_x = sign * cw * ((suffix != null || mainText.text.length() > 2) ? 0.375f : 0.35f);
 
         if (panel != null)
         {
             RenderHelpers.DrawOnCardAuto(sb, card, panel, sign * cw * 0.33f, y, b_w, b_h);
+        }
+        else
+        {
+            sign *= 0.75f;
         }
 
         RenderHelpers.DrawOnCardAuto(sb, card, icon, icon_x, y, 48, 48);

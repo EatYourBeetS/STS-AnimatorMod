@@ -18,25 +18,19 @@ public class Yoichi extends AnimatorCard
         super(DATA);
 
         Initialize(0,0,2);
-        SetUpgrade(0,2,0);
 
         SetAffinity_Green(1);
         SetAffinity_Light(1, 1, 0);
 
+        SetAffinityRequirement(Affinity.Green, 1);
         SetAffinityRequirement(Affinity.Light, 1);
-    }
-
-    @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
-    {
-        GameActions.Bottom.GainBlock(block);
     }
 
     @Override
     public void OnLateUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DiscardFromHand(name, 1, false);
-        GameActions.Bottom.StackPower(new SupportDamagePower(p, 1))
+        GameActions.Bottom.DiscardFromHand(name, 1, !upgraded);
+        GameActions.Bottom.StackPower(new SupportDamagePower(p, magicNumber))
         .AddCallback(info, (info2, power) ->
         {
             if (CheckSpecialCondition(true))

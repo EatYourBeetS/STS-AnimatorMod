@@ -17,16 +17,16 @@ public class Gluttony extends AnimatorCard implements OnAffinityGainedSubscriber
     public static final EYBCardData DATA = Register(Gluttony.class)
             .SetSkill(2, CardRarity.UNCOMMON, EYBCardTarget.None)
             .SetSeriesFromClassPackage()
-            .ObtainableAsReward((data, deck) -> deck.size() >= (18 + (6 * data.GetTotalCopies(deck))));
+            .ObtainableAsReward((data, deck) -> deck.size() >= (14 + (8 * data.GetTotalCopies(deck))));
 
     public Gluttony()
     {
         super(DATA);
 
         Initialize(0, 0, 6, 4);
-        SetUpgrade(0, 0, 2);
+        SetUpgrade(0, 0, 3);
 
-        SetAffinity_Red(1, 1, 0);
+        SetAffinity_Red(2);
         SetAffinity_Dark(2);
 
         SetHealing(true);

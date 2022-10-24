@@ -164,7 +164,7 @@
 	},
 	"Imitate":
 	{
-		"DESCRIPTION": "#yImitating a card creates a copy of it with #yPurge, base damage and #yBlock reduced to #b1, and [E] cost reduced by #b2.",
+		"DESCRIPTION": "#yImitating a card creates a copy of it with #yPurge, base damage and [Block] reduced to #b1, and [E] cost reduced by #b2.",
 		"NAMES": ["imitate", "imitation", "imitations"],
 		"PROPER_NAME": "Imitate"
 	},
@@ -434,7 +434,7 @@
 	},
 	"~Retain":
 	{
-		"DESCRIPTION": "Not discarded at the end of turn. NL Or, if it is an [A_Gen] Power, not reduced at the start of next turn.",
+		"DESCRIPTION": "Not discarded at the end of turn.",
 		"NAMES": ["~retain"],
 		"PROPER_NAME": "Retain"
 	},

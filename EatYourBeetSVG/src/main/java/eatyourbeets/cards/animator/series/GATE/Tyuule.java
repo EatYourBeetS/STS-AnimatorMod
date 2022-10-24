@@ -26,21 +26,19 @@ public class Tyuule extends AnimatorCard implements OnCardResetListener
     {
         super(DATA);
 
-        Initialize(0, 2, 0, 2);
-        SetUpgrade(0, 1, 0, 0);
+        Initialize(0, 0, 0, 2);
+        SetCostUpgrade(-1);
 
         SetAffinity_Dark(1, 1, 0);
         SetAffinity_Green(1);
 
-        SetExhaust(true);
+        SetFading(true);
         OnReset();
     }
 
     @Override
     protected void OnUpgrade()
     {
-        SetExhaust(false);
-
         if (magicNumberString.text.endsWith("X"))
         {
             OnReset();
@@ -82,8 +80,6 @@ public class Tyuule extends AnimatorCard implements OnCardResetListener
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.GainBlock(block);
-
         for (AbstractMonster enemy : GameUtilities.GetEnemies(true))
         {
             for (AbstractPower debuff : enemy.powers)

@@ -161,7 +161,7 @@ public class EYBFontHelper
         }
 
         g.scaleForPixelHeight(p.size);
-        BitmapFont font = g.generateFont(p);
+        final BitmapFont font = g.generateFont(p);
         font.setUseIntegerPositions(!isLinearFiltering);
         font.getData().fontFile = fontFile;
         font.getData().markupEnabled = true;
@@ -180,7 +180,7 @@ public class EYBFontHelper
 
     private static BitmapFont PrepFont(BitmapFont source, float size, float borderWidth, Color borderColor, float shadowOffset, Color shadowColor)
     {
-        FreeTypeFontGenerator.FreeTypeFontParameter param = new FreeTypeFontGenerator.FreeTypeFontParameter();
+        final FreeTypeFontGenerator.FreeTypeFontParameter param = new FreeTypeFontGenerator.FreeTypeFontParameter();
         param.minFilter = Texture.TextureFilter.Linear;
         param.magFilter = Texture.TextureFilter.Linear;
         param.hinting = FreeTypeFontGenerator.Hinting.Slight;
@@ -198,9 +198,9 @@ public class EYBFontHelper
         param.incremental = true;
         param.size = Math.round(size * Settings.scale);
 
-        FreeTypeFontGenerator generator = GetGenerator(source.getData().fontFile);
+        final FreeTypeFontGenerator generator = GetGenerator(source.getData().fontFile);
         generator.scaleForPixelHeight(param.size);
-        BitmapFont font = generator.generateFont(param);
+        final BitmapFont font = generator.generateFont(param);
         font.setUseIntegerPositions(false);
         font.getData().markupEnabled = false;
         if (LocalizedStrings.break_chars != null)

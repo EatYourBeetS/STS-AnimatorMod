@@ -7,23 +7,22 @@ import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.TargetHelper;
 
 public class Rena extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Rena.class)
-            .SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.ALL)
+            .SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.Normal)
             .SetSeriesFromClassPackage();
 
     public Rena()
     {
         super(DATA);
 
-        Initialize(0, 4, 1, 1);
-        SetUpgrade(0, 2);
+        Initialize(0, 4, 2, 1);
+        SetUpgrade(0, 3);
 
-        SetAffinity_Green(1, 1, 1);
-        SetAffinity_Dark(1, 1, 1);
+        SetAffinity_Green(1, 0, 1);
+        SetAffinity_Dark(1, 0, 1);
     }
 
     @Override
@@ -39,6 +38,6 @@ public class Rena extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.GainBlock(block);
-        GameActions.Bottom.ApplyVulnerable(TargetHelper.Enemies(p), 1);
+        GameActions.Bottom.ApplyVulnerable(p, m, magicNumber);
     }
 }

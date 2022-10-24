@@ -14,7 +14,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class YunYun extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(YunYun.class).SetAttack(0, CardRarity.UNCOMMON, EYBAttackType.Elemental, EYBCardTarget.ALL);
+    public static final EYBCardData DATA = Register(YunYun.class).SetSeriesFromClassPackage().SetAttack(0, CardRarity.UNCOMMON, EYBAttackType.Elemental, EYBCardTarget.ALL);
 
     public YunYun()
     {
@@ -24,7 +24,7 @@ public class YunYun extends AnimatorClassicCard
         SetUpgrade(4, 0);
         SetScaling(1, 0, 0);
 
-        SetSeries(CardSeries.Konosuba);
+
         SetSpellcaster();
     }
 

@@ -13,7 +13,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class ChlammyZell_Scheme extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(ChlammyZell_Scheme.class).SetSkill(1, CardRarity.SPECIAL, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(ChlammyZell_Scheme.class).SetSkill(1, CardRarity.SPECIAL, EYBCardTarget.None).SetSeries(CardSeries.NoGameNoLife);
 
     public ChlammyZell_Scheme()
     {
@@ -24,7 +24,6 @@ public class ChlammyZell_Scheme extends AnimatorClassicCard
 
         SetRetain(true);
         SetExhaust(true);
-        SetSeries(CardSeries.NoGameNoLife);
     }
 
     @Override

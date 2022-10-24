@@ -28,7 +28,7 @@ import java.util.ArrayList;
 
 public class KrulTepes extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(KrulTepes.class).SetAttack(2, CardRarity.UNCOMMON);
+    public static final EYBCardData DATA = Register(KrulTepes.class).SetSeriesFromClassPackage().SetAttack(2, CardRarity.UNCOMMON);
 
     private static final AbstractRelic relicReward = new BloodVial();
 
@@ -40,7 +40,7 @@ public class KrulTepes extends AnimatorClassicCard
         SetUpgrade(4, 0, 0);
         SetScaling(0, 1, 2);
 
-        SetSeries(CardSeries.OwariNoSeraph);
+        
     }
 
     @Override

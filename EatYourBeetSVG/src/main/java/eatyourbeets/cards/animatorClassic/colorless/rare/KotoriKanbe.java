@@ -24,7 +24,7 @@ public class KotoriKanbe extends AnimatorClassicCard
 
         SetEthereal(true);
         SetExhaust(true);
-        SetSeries(CardSeries.Rewrite);
+        this.series = CardSeries.Rewrite;
     }
 
     @Override

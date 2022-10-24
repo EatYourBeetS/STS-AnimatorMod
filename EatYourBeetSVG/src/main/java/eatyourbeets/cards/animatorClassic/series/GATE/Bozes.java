@@ -12,7 +12,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class Bozes extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(Bozes.class).SetAttack(2, CardRarity.UNCOMMON);
+    public static final EYBCardData DATA = Register(Bozes.class).SetSeriesFromClassPackage().SetAttack(2, CardRarity.UNCOMMON);
 
     public Bozes()
     {
@@ -22,7 +22,7 @@ public class Bozes extends AnimatorClassicCard
         SetUpgrade(0, 0, 1);
 
         SetExhaust(true);
-        SetSeries(CardSeries.GATE);
+
     }
 
     @Override

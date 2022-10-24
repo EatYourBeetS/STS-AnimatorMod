@@ -19,7 +19,7 @@ public class Hibiki extends AnimatorClassicCard
         Initialize(2, 0, 3, 1);
         SetUpgrade(0, 0, 0, 1);
 
-        SetSeries(CardSeries.Kancolle);
+        this.series = CardSeries.Kancolle;
     }
 
     @Override

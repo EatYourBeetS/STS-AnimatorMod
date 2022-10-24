@@ -11,7 +11,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class Shuna extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(Shuna.class).SetSkill(1, CardRarity.COMMON, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(Shuna.class).SetSeriesFromClassPackage().SetSkill(1, CardRarity.COMMON, EYBCardTarget.None);
 
     public Shuna()
     {
@@ -20,7 +20,7 @@ public class Shuna extends AnimatorClassicCard
         Initialize(0, 4, 1, 2);
         SetUpgrade(0, 0, 1, 0);
 
-        SetSeries(CardSeries.TenseiSlime);
+        
     }
 
     @Override

@@ -22,7 +22,7 @@ public class Veldora extends AnimatorClassicCard_UltraRare
 
         showEvokeValue = true;
 
-        SetSeries(CardSeries.TenseiSlime);
+        this.series = CardSeries.TenseiSlime;
     }
 
     @Override

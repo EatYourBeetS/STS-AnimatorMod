@@ -10,7 +10,7 @@ import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
 
 public class Vesta extends AnimatorClassicCard implements OnStartOfTurnPostDrawSubscriber
 {
-    public static final EYBCardData DATA = Register(Vesta.class)
+    public static final EYBCardData DATA = Register(Vesta.class).SetSeriesFromClassPackage()
             .SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None)
             .SetSeriesFromClassPackage();
     static

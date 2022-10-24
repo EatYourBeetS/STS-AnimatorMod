@@ -26,7 +26,7 @@ public class MisakiNakahara extends AnimatorClassicCard
         Initialize(0, 0, 2);
 
         SetExhaust(true);
-        SetSeries(CardSeries.WelcomeToNHK);
+        this.series = CardSeries.WelcomeToNHK;
     }
 
     @Override

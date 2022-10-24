@@ -10,7 +10,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class Aqua extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(Aqua.class).SetSkill(0, CardRarity.UNCOMMON, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(Aqua.class).SetSeriesFromClassPackage().SetSkill(0, CardRarity.UNCOMMON, EYBCardTarget.None);
     static
     {
         DATA.AddPreview(new Aqua(true), true);
@@ -32,7 +32,7 @@ public class Aqua extends AnimatorClassicCard
         SetUpgrade(0, 0, 1, 0);
 
         SetHealing(true);
-        SetSeries(CardSeries.Konosuba);
+        
     }
 
     @Override

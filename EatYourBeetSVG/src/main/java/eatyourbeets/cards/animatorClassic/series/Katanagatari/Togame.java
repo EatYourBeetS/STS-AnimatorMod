@@ -13,7 +13,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Togame extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(Togame.class).SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(Togame.class).SetSeriesFromClassPackage().SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None);
 
     public Togame()
     {
@@ -22,7 +22,7 @@ public class Togame extends AnimatorClassicCard
         Initialize(0, 0, 2);
         SetUpgrade(0, 0, 1);
 
-        SetSeries(CardSeries.Katanagatari);
+
     }
 
     @Override

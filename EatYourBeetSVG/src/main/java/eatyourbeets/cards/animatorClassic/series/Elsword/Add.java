@@ -19,7 +19,7 @@ import java.util.ArrayList;
 
 public class Add extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(Add.class).SetSkill(2, CardRarity.UNCOMMON, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(Add.class).SetSeriesFromClassPackage().SetSkill(2, CardRarity.UNCOMMON, EYBCardTarget.None);
     static
     {
         DATA.AddPreview(new Crystallize(), false);
@@ -37,7 +37,7 @@ public class Add extends AnimatorClassicCard
         SetUpgrade(0, 0, 1, 0);
 
         SetExhaust(true);
-        SetSeries(CardSeries.Elsword);
+        
     }
 
     @Override

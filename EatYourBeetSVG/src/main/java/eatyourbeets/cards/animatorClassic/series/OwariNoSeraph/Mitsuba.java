@@ -11,7 +11,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class Mitsuba extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(Mitsuba.class).SetAttack(1, CardRarity.COMMON);
+    public static final EYBCardData DATA = Register(Mitsuba.class).SetSeriesFromClassPackage().SetAttack(1, CardRarity.COMMON);
 
     public Mitsuba()
     {
@@ -20,7 +20,7 @@ public class Mitsuba extends AnimatorClassicCard
         Initialize(7, 2, 2, 6);
         SetUpgrade(3, 0, 0, 0);
 
-        SetSeries(CardSeries.OwariNoSeraph);
+        
     }
 
     @Override

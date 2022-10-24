@@ -16,7 +16,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Akatsuki extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(Akatsuki.class).SetAttack(2, CardRarity.RARE, EYBAttackType.Piercing);
+    public static final EYBCardData DATA = Register(Akatsuki.class).SetSeriesFromClassPackage().SetAttack(2, CardRarity.RARE, EYBAttackType.Piercing);
 
     public Akatsuki()
     {
@@ -26,7 +26,7 @@ public class Akatsuki extends AnimatorClassicCard
         SetUpgrade(0, 0, 1);
         SetScaling(0, 1, 0);
 
-        SetSeries(CardSeries.LogHorizon);
+
     }
 
     @Override

@@ -15,7 +15,7 @@ import eatyourbeets.utilities.TargetHelper;
 
 public class Priestess extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(Priestess.class).SetSkill(1, CardRarity.COMMON);
+    public static final EYBCardData DATA = Register(Priestess.class).SetSeriesFromClassPackage().SetSkill(1, CardRarity.COMMON);
 
     public Priestess()
     {
@@ -23,7 +23,7 @@ public class Priestess extends AnimatorClassicCard
 
         Initialize(0, 0, 4, 1);
 
-        SetSeries(CardSeries.GoblinSlayer);
+        
     }
 
     @Override

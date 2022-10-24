@@ -24,7 +24,7 @@ public class MamizouFutatsuiwa extends AnimatorClassicCard
         SetUpgrade(0, 0, 3);
 
         SetExhaust(true);
-        SetSeries(CardSeries.TouhouProject);
+        this.series = CardSeries.TouhouProject;
         SetShapeshifter();
     }
 

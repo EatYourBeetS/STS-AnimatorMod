@@ -17,7 +17,7 @@ import java.util.ArrayList;
 
 public class Geryuganshoop extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(Geryuganshoop.class).SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(Geryuganshoop.class).SetSeriesFromClassPackage().SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None);
 
     public Geryuganshoop()
     {
@@ -26,7 +26,7 @@ public class Geryuganshoop extends AnimatorClassicCard
         Initialize(0, 0, 2, 2);
         SetUpgrade(0, 0, 1, 1);
 
-        SetSeries(CardSeries.OnePunchMan);
+        
     }
 
     @Override

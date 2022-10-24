@@ -14,7 +14,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class SayakaMiki extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(SayakaMiki.class).SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(SayakaMiki.class).SetSeriesFromClassPackage().SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None);
     static
     {
         DATA.AddPreview(new SayakaMiki_Oktavia(), true);
@@ -28,7 +28,7 @@ public class SayakaMiki extends AnimatorClassicCard
         Initialize(0, 0, 2);
         SetUpgrade(0, 0, 1);
 
-        SetSeries(CardSeries.MadokaMagica);
+        
     }
 
     @Override

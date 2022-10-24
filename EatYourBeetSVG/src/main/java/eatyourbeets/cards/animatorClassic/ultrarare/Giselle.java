@@ -25,7 +25,7 @@ public class Giselle extends AnimatorClassicCard_UltraRare
         SetUpgrade(8, 0, 0);
         SetScaling(0, 1, 2);
 
-        SetSeries(CardSeries.GATE);
+        this.series = CardSeries.GATE;
     }
 
     @Override

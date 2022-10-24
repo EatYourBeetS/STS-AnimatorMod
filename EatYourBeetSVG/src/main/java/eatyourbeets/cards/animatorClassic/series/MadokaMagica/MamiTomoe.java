@@ -17,7 +17,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class MamiTomoe extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(MamiTomoe.class).SetAttack(2, CardRarity.UNCOMMON, EYBAttackType.Ranged);
+    public static final EYBCardData DATA = Register(MamiTomoe.class).SetSeriesFromClassPackage().SetAttack(2, CardRarity.UNCOMMON, EYBAttackType.Ranged);
     static
     {
         DATA.AddPreview(new Curse_GriefSeed(), false);
@@ -31,7 +31,7 @@ public class MamiTomoe extends AnimatorClassicCard
         SetUpgrade(2, 0, 0, 0);
         SetScaling(1, 0, 0);
 
-        SetSeries(CardSeries.MadokaMagica);
+
     }
 
     @Override

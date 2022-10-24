@@ -11,7 +11,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Greed extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(Greed.class).SetPower(2, CardRarity.RARE).SetMaxCopies(1);
+    public static final EYBCardData DATA = Register(Greed.class).SetSeriesFromClassPackage().SetPower(2, CardRarity.RARE).SetMaxCopies(1);
     public static final int BLOCK = 7;
     public static final int TEMP_HP = 6;
     public static final int MALLEABLE = 5;
@@ -27,7 +27,7 @@ public class Greed extends AnimatorClassicCard
         Initialize(0,0, 200, 1);
         SetUpgrade(0,0, -50);
 
-        SetSeries(CardSeries.FullmetalAlchemist);
+        
     }
 
     @Override

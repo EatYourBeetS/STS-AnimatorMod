@@ -23,7 +23,7 @@ public class KanamiAlt extends AnimatorClassicCard_UltraRare implements Hidden
 
         SetScaling(0, 1, 1);
         SetMartialArtist();
-        SetSeries(CardSeries.LogHorizon);
+        this.series = CardSeries.LogHorizon;
     }
 
     @Override

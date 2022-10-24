@@ -13,7 +13,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class Millim extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(Millim.class).SetAttack(2, CardRarity.COMMON, EYBAttackType.Elemental);
+    public static final EYBCardData DATA = Register(Millim.class).SetSeriesFromClassPackage().SetAttack(2, CardRarity.COMMON, EYBAttackType.Elemental);
 
     public Millim()
     {
@@ -24,7 +24,7 @@ public class Millim extends AnimatorClassicCard
         SetScaling(1, 1, 1);
 
         SetUnique(true, true);
-        SetSeries(CardSeries.TenseiSlime);
+
     }
 
     @Override

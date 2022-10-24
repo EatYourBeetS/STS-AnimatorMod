@@ -37,7 +37,7 @@ public class Kira extends AnimatorClassicCard
 
         SetExhaust(true);
         SetEthereal(true);
-        SetSeries(CardSeries.DeathNote);
+        this.series = CardSeries.DeathNote;
     }
 
     @Override

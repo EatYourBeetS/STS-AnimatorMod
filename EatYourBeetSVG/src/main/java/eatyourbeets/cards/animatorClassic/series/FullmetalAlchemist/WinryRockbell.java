@@ -11,7 +11,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class WinryRockbell extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(WinryRockbell.class).SetPower(1, CardRarity.UNCOMMON);
+    public static final EYBCardData DATA = Register(WinryRockbell.class).SetSeriesFromClassPackage().SetPower(1, CardRarity.UNCOMMON);
 
     public WinryRockbell()
     {
@@ -20,7 +20,7 @@ public class WinryRockbell extends AnimatorClassicCard
         Initialize(0, 0, WinryRockbellPower.BLOCK_AMOUNT);
         SetUpgrade(0, 2, 0);
 
-        SetSeries(CardSeries.FullmetalAlchemist);
+        
     }
 
     @Override

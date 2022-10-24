@@ -11,7 +11,7 @@ import eatyourbeets.utilities.TargetHelper;
 
 public class Tyuule extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(Tyuule.class).SetSkill(1, CardRarity.COMMON, EYBCardTarget.ALL);
+    public static final EYBCardData DATA = Register(Tyuule.class).SetSeriesFromClassPackage().SetSkill(1, CardRarity.COMMON, EYBCardTarget.ALL);
 
 //    Not used anymore. Commented as an example on how to add custom tooltips
 //
@@ -35,7 +35,7 @@ public class Tyuule extends AnimatorClassicCard
         Initialize(0, 0, 1);
         SetUpgrade(0, 0, 2);
 
-        SetSeries(CardSeries.GATE);
+        
     }
 
     @Override

@@ -13,7 +13,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class Shizu extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(Shizu.class).SetAttack(2, CardRarity.RARE);
+    public static final EYBCardData DATA = Register(Shizu.class).SetSeriesFromClassPackage().SetAttack(2, CardRarity.RARE);
 
     public Shizu()
     {
@@ -24,7 +24,7 @@ public class Shizu extends AnimatorClassicCard
         SetScaling(0, 2, 0);
 
         SetExhaust(true);
-        SetSeries(CardSeries.TenseiSlime);
+
     }
 
     @Override

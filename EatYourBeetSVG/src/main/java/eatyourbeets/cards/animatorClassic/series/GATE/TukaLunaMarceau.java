@@ -11,7 +11,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class TukaLunaMarceau extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(TukaLunaMarceau.class).SetSkill(0, CardRarity.COMMON, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(TukaLunaMarceau.class).SetSeriesFromClassPackage().SetSkill(0, CardRarity.COMMON, EYBCardTarget.None);
 
     public TukaLunaMarceau()
     {
@@ -20,7 +20,7 @@ public class TukaLunaMarceau extends AnimatorClassicCard
         Initialize(0, 2);
         SetUpgrade(0, 2);
 
-        SetSeries(CardSeries.GATE);
+        
     }
 
     @Override

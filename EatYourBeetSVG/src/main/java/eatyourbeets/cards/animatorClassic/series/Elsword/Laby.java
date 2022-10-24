@@ -16,7 +16,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Laby extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(Laby.class).SetPower(2, CardRarity.UNCOMMON);
+    public static final EYBCardData DATA = Register(Laby.class).SetSeriesFromClassPackage().SetPower(2, CardRarity.UNCOMMON);
 
     public Laby()
     {
@@ -24,7 +24,7 @@ public class Laby extends AnimatorClassicCard
 
         Initialize(0, 0, 3, 40);
 
-        SetSeries(CardSeries.Elsword);
+
     }
 
     @Override

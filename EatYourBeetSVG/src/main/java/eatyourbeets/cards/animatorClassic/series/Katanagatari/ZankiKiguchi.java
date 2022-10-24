@@ -13,7 +13,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class ZankiKiguchi extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(ZankiKiguchi.class).SetAttack(0, CardRarity.COMMON);
+    public static final EYBCardData DATA = Register(ZankiKiguchi.class).SetSeriesFromClassPackage().SetAttack(0, CardRarity.COMMON);
 
     public ZankiKiguchi()
     {
@@ -23,7 +23,7 @@ public class ZankiKiguchi extends AnimatorClassicCard
         SetUpgrade(3, 0, 0);
         SetScaling(0, 1, 1);
 
-        SetSeries(CardSeries.Katanagatari);
+        
         SetMartialArtist();
     }
 

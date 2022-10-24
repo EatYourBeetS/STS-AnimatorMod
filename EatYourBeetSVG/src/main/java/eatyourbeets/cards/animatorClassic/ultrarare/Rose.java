@@ -15,7 +15,7 @@ public class Rose extends AnimatorClassicCard_UltraRare
         Initialize(10, 0, 2, 40);
         SetUpgrade(0, 0, 1, 0);
 
-        SetSeries(CardSeries.Elsword);
+        this.series = CardSeries.Elsword;
     }
 
     @Override

@@ -13,7 +13,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class Boros extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(Boros.class).SetPower(4, CardRarity.RARE);
+    public static final EYBCardData DATA = Register(Boros.class).SetSeriesFromClassPackage().SetPower(4, CardRarity.RARE);
 
     public Boros()
     {
@@ -23,7 +23,7 @@ public class Boros extends AnimatorClassicCard
         SetCostUpgrade(-1);
 
         SetEthereal(true);
-        SetSeries(CardSeries.OnePunchMan);
+
     }
 
     @Override

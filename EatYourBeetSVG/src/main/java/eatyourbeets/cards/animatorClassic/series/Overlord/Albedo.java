@@ -14,7 +14,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Albedo extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(Albedo.class).SetAttack(2, CardRarity.RARE);
+    public static final EYBCardData DATA = Register(Albedo.class).SetSeriesFromClassPackage().SetAttack(2, CardRarity.RARE);
 
     public Albedo()
     {
@@ -24,7 +24,7 @@ public class Albedo extends AnimatorClassicCard
         SetUpgrade(3, 0);
         SetScaling(0, 0, 1);
 
-        SetSeries(CardSeries.Overlord);
+        
     }
 
     @Override

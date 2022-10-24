@@ -27,7 +27,7 @@ public class Lelouch extends AnimatorClassicCard
         SetCostUpgrade(-1);
 
         SetExhaust(true);
-        SetSeries(CardSeries.CodeGeass);
+        this.series = CardSeries.CodeGeass;
     }
 
     @Override

@@ -22,7 +22,7 @@ public class IchigoKurosaki extends AnimatorClassicCard
         Initialize(0, 0, 0, 5);
 
         SetExhaust(true);
-        SetSeries(CardSeries.Bleach);
+        this.series = CardSeries.Bleach;
         SetMartialArtist();
     }
 

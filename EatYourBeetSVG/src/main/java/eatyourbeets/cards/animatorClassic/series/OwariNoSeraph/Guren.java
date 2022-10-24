@@ -15,7 +15,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class Guren extends AnimatorClassicCard implements OnPhaseChangedSubscriber
 {
-    public static final EYBCardData DATA = Register(Guren.class).SetSkill(3, CardRarity.RARE).SetMaxCopies(2);
+    public static final EYBCardData DATA = Register(Guren.class).SetSeriesFromClassPackage().SetSkill(3, CardRarity.RARE).SetMaxCopies(2);
 
     private boolean alreadyPlayed = false;
 
@@ -26,7 +26,7 @@ public class Guren extends AnimatorClassicCard implements OnPhaseChangedSubscrib
         Initialize(0, 0,3);
 
         SetExhaust(true);
-        SetSeries(CardSeries.OwariNoSeraph);
+
     }
 
     @Override

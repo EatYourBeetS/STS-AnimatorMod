@@ -21,7 +21,7 @@ public class Shimakaze extends AnimatorClassicCard
         Initialize(3, 3, 3);
         SetUpgrade(1, 1, 1);
 
-        SetSeries(CardSeries.Kancolle);
+        this.series = CardSeries.Kancolle;
     }
 
     @Override

@@ -15,7 +15,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class RoryMercury extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(RoryMercury.class).SetAttack(1, CardRarity.UNCOMMON, EYBAttackType.Normal, EYBCardTarget.Random);
+    public static final EYBCardData DATA = Register(RoryMercury.class).SetSeriesFromClassPackage().SetAttack(1, CardRarity.UNCOMMON, EYBAttackType.Normal, EYBCardTarget.Random);
 
     private static final CardEffectChoice choices = new CardEffectChoice();
 
@@ -27,7 +27,7 @@ public class RoryMercury extends AnimatorClassicCard
         SetUpgrade(2, 0, 0);
         SetScaling(0, 0, 1);
 
-        SetSeries(CardSeries.GATE);
+        
     }
 
     @Override

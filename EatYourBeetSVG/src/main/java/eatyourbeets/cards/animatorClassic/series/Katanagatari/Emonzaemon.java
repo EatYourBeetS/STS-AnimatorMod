@@ -20,7 +20,7 @@ import java.util.ArrayList;
 
 public class Emonzaemon extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(Emonzaemon.class).SetAttack(1, CardRarity.COMMON, EYBAttackType.Ranged);
+    public static final EYBCardData DATA = Register(Emonzaemon.class).SetSeriesFromClassPackage().SetAttack(1, CardRarity.COMMON, EYBAttackType.Ranged);
     static
     {
         DATA.AddPreview(new Emonzaemon_EntouJyuu(), true);
@@ -34,7 +34,7 @@ public class Emonzaemon extends AnimatorClassicCard
         SetUpgrade(2, 0);
         SetScaling(0, 1, 0);
 
-        SetSeries(CardSeries.Katanagatari);
+        
         SetMartialArtist();
     }
 

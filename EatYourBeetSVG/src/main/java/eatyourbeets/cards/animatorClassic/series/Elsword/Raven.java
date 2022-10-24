@@ -15,7 +15,7 @@ import eatyourbeets.utilities.RotatingList;
 
 public class Raven extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(Raven.class).SetAttack(1, CardRarity.COMMON);
+    public static final EYBCardData DATA = Register(Raven.class).SetSeriesFromClassPackage().SetAttack(1, CardRarity.COMMON);
 
     public Raven()
     {
@@ -26,7 +26,7 @@ public class Raven extends AnimatorClassicCard
         SetScaling(0, 1, 0);
 
         SetCardPreview(this::FindCards).RequireTarget(true).SetGroupType(CardGroup.CardGroupType.DRAW_PILE);
-        SetSeries(CardSeries.Elsword);
+
     }
 
     @Override

@@ -14,7 +14,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class Hakurou extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(Hakurou.class).SetAttack(2, CardRarity.COMMON);
+    public static final EYBCardData DATA = Register(Hakurou.class).SetSeriesFromClassPackage().SetAttack(2, CardRarity.COMMON);
 
     public Hakurou()
     {
@@ -24,7 +24,7 @@ public class Hakurou extends AnimatorClassicCard
         SetUpgrade(0, 0, 1, 0);
         SetScaling(0, 1, 1);
 
-        SetSeries(CardSeries.TenseiSlime);
+        
         SetMartialArtist();
     }
 

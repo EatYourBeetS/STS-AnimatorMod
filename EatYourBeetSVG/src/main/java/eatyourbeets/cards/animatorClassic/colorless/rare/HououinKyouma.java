@@ -25,7 +25,7 @@ public class HououinKyouma extends AnimatorClassicCard
         SetCostUpgrade(-1);
 
         SetPurge(true);
-        SetSeries(CardSeries.SteinsGate);
+        this.series = CardSeries.SteinsGate;
     }
 
     @Override

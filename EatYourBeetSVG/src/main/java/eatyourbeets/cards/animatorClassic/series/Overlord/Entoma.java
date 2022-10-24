@@ -18,7 +18,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Entoma extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(Entoma.class).SetAttack(1, CardRarity.COMMON);
+    public static final EYBCardData DATA = Register(Entoma.class).SetSeriesFromClassPackage().SetAttack(1, CardRarity.COMMON);
 
     public Entoma()
     {
@@ -28,7 +28,7 @@ public class Entoma extends AnimatorClassicCard
         SetUpgrade(1, 0, 0);
 
         SetUnique(true, true);
-        SetSeries(CardSeries.Overlord);
+        
     }
 
     @Override

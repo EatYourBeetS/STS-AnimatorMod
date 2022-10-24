@@ -13,7 +13,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class NagisaMomoe extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(NagisaMomoe.class).SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(NagisaMomoe.class).SetSeriesFromClassPackage().SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None);
     static
     {
         DATA.AddPreview(new NagisaMomoe_CharlotteAlt(), true);
@@ -27,7 +27,7 @@ public class NagisaMomoe extends AnimatorClassicCard
         Initialize(0, 0, 3);
 
         SetExhaust(true);
-        SetSeries(CardSeries.MadokaMagica);
+
         SetSpellcaster();
     }
 

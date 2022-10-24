@@ -14,7 +14,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class Shiro extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(Shiro.class).SetPower(4, CardRarity.RARE);
+    public static final EYBCardData DATA = Register(Shiro.class).SetSeriesFromClassPackage().SetPower(4, CardRarity.RARE);
     static
     {
         DATA.AddPreview(new Sora(), true);
@@ -27,7 +27,7 @@ public class Shiro extends AnimatorClassicCard
         Initialize(0, 0);
         SetCostUpgrade(-1);
 
-        SetSeries(CardSeries.NoGameNoLife);
+        
     }
 
     @Override

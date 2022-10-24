@@ -65,7 +65,7 @@ public abstract class AnimatorClassicCard extends EYBCard
 
         if (cardData.Series != null)
         {
-             SetSeries(cardData.Series);
+            this.series = cardData.Series;
         }
     }
 

@@ -15,7 +15,7 @@ import eatyourbeets.utilities.TargetHelper;
 
 public class MatouSakura extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(MatouSakura.class).SetSkill(2, CardRarity.UNCOMMON, EYBCardTarget.ALL);
+    public static final EYBCardData DATA = Register(MatouSakura.class).SetSeriesFromClassPackage().SetSkill(2, CardRarity.UNCOMMON, EYBCardTarget.ALL);
 
     public MatouSakura()
     {
@@ -25,7 +25,7 @@ public class MatouSakura extends AnimatorClassicCard
 
         SetEthereal(true);
         SetExhaust(true);
-        SetSeries(CardSeries.Fate);
+
         SetSpellcaster();
     }
 

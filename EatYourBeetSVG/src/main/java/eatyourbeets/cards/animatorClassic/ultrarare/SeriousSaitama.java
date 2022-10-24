@@ -19,7 +19,7 @@ public class SeriousSaitama extends AnimatorClassicCard_UltraRare
         SetUpgrade(0, 0, 1);
 
         SetPurge(true);
-        SetSeries(CardSeries.OnePunchMan);
+        this.series = CardSeries.OnePunchMan;
     }
 
     @Override

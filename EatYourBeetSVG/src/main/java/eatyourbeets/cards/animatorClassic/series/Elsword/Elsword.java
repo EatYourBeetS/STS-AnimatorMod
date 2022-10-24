@@ -13,7 +13,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class Elsword extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(Elsword.class).SetAttack(2, CardRarity.COMMON);
+    public static final EYBCardData DATA = Register(Elsword.class).SetSeriesFromClassPackage().SetAttack(2, CardRarity.COMMON);
 
     public Elsword()
     {
@@ -23,7 +23,7 @@ public class Elsword extends AnimatorClassicCard
         SetUpgrade(4,  0, 0);
         SetScaling(0, 1, 1);
 
-        SetSeries(CardSeries.Elsword);
+        
     }
 
     @Override

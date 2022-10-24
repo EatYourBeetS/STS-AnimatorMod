@@ -16,7 +16,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Berserker extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(Berserker.class).SetAttack(3, CardRarity.COMMON);
+    public static final EYBCardData DATA = Register(Berserker.class).SetSeriesFromClassPackage().SetAttack(3, CardRarity.COMMON);
 
     public Berserker()
     {
@@ -26,7 +26,7 @@ public class Berserker extends AnimatorClassicCard
         SetUpgrade(6, 0, 0, 0);
         SetScaling(0, 0, 3);
 
-        SetSeries(CardSeries.Fate);
+
     }
 
     @Override

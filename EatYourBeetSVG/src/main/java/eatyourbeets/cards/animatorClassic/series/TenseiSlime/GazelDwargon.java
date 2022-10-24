@@ -15,7 +15,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class GazelDwargon extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(GazelDwargon.class).SetPower(-1, CardRarity.UNCOMMON);
+    public static final EYBCardData DATA = Register(GazelDwargon.class).SetSeriesFromClassPackage().SetPower(-1, CardRarity.UNCOMMON);
 
     public GazelDwargon()
     {
@@ -24,7 +24,7 @@ public class GazelDwargon extends AnimatorClassicCard
         Initialize(0, 0, 4);
         SetUpgrade(0, 1, 0);
 
-        SetSeries(CardSeries.TenseiSlime);
+
     }
 
     @Override

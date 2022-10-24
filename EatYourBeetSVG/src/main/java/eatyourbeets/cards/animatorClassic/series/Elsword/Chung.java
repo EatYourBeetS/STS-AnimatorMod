@@ -12,7 +12,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class Chung extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(Chung.class).SetSkill(1, CardRarity.COMMON, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(Chung.class).SetSeriesFromClassPackage().SetSkill(1, CardRarity.COMMON, EYBCardTarget.None);
 
     public Chung()
     {
@@ -21,7 +21,7 @@ public class Chung extends AnimatorClassicCard
         Initialize(0, 11, 3);
         SetUpgrade(0, 2, -1);
 
-        SetSeries(CardSeries.Elsword);
+
     }
 
     @Override

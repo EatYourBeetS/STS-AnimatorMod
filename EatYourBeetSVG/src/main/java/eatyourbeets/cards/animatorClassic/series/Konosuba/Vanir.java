@@ -13,7 +13,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class Vanir extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(Vanir.class).SetAttack(1, CardRarity.COMMON, EYBAttackType.Elemental);
+    public static final EYBCardData DATA = Register(Vanir.class).SetSeriesFromClassPackage().SetAttack(1, CardRarity.COMMON, EYBAttackType.Elemental);
 
     public Vanir()
     {
@@ -23,7 +23,7 @@ public class Vanir extends AnimatorClassicCard
         SetUpgrade(1, 0, -1);
         SetScaling(1, 0, 0);
 
-        SetSeries(CardSeries.Konosuba);
+
         SetShapeshifter();
     }
 

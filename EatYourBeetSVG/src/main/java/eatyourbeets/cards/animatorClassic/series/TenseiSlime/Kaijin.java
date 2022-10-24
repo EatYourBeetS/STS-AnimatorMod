@@ -19,7 +19,7 @@ import eatyourbeets.utilities.RandomizedList;
 
 public class Kaijin extends AnimatorClassicCard implements OnAddToDeckListener
 {
-    public static final EYBCardData DATA = Register(Kaijin.class).SetPower(1, CardRarity.UNCOMMON);
+    public static final EYBCardData DATA = Register(Kaijin.class).SetSeriesFromClassPackage().SetPower(1, CardRarity.UNCOMMON);
 
     public Kaijin()
     {
@@ -28,7 +28,7 @@ public class Kaijin extends AnimatorClassicCard implements OnAddToDeckListener
         Initialize(0, 0, 1);
         SetCostUpgrade(-1);
 
-        SetSeries(CardSeries.TenseiSlime);
+        
     }
 
     @Override

@@ -14,7 +14,7 @@ import eatyourbeets.utilities.GameEffects;
 
 public class MaesHughes extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(MaesHughes.class).SetSkill(1, CardRarity.COMMON, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(MaesHughes.class).SetSeriesFromClassPackage().SetSkill(1, CardRarity.COMMON, EYBCardTarget.None);
 
     public MaesHughes()
     {
@@ -23,7 +23,7 @@ public class MaesHughes extends AnimatorClassicCard
         Initialize(0, 0, 6);
         SetUpgrade(0, 0, -1);
 
-        SetSeries(CardSeries.FullmetalAlchemist);
+
     }
 
     @Override

@@ -13,7 +13,7 @@ import eatyourbeets.utilities.TargetHelper;
 
 public class Gillette extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(Gillette.class).SetAttack(1, CardRarity.COMMON);
+    public static final EYBCardData DATA = Register(Gillette.class).SetSeriesFromClassPackage().SetAttack(1, CardRarity.COMMON);
 
     public Gillette()
     {
@@ -22,7 +22,7 @@ public class Gillette extends AnimatorClassicCard
         Initialize(7, 0, 1);
         SetUpgrade(3, 0, 0);
 
-        SetSeries(CardSeries.HitsugiNoChaika);
+        
     }
 
     @Override

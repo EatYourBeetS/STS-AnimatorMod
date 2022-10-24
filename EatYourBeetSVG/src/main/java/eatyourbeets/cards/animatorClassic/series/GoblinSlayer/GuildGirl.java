@@ -11,7 +11,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class GuildGirl extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(GuildGirl.class).SetPower(1, CardRarity.UNCOMMON);
+    public static final EYBCardData DATA = Register(GuildGirl.class).SetSeriesFromClassPackage().SetPower(1, CardRarity.UNCOMMON);
 
     public GuildGirl()
     {
@@ -20,7 +20,7 @@ public class GuildGirl extends AnimatorClassicCard
         Initialize(0, 0, GuildGirlPower.GOLD_GAIN);
         SetUpgrade(0, 2);
 
-        SetSeries(CardSeries.GoblinSlayer);
+        
     }
 
     @Override

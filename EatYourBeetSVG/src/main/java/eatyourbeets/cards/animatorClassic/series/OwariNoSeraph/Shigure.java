@@ -17,7 +17,7 @@ import eatyourbeets.utilities.GameEffects;
 
 public class Shigure extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(Shigure.class).SetAttack(1, CardRarity.COMMON, EYBAttackType.Piercing);
+    public static final EYBCardData DATA = Register(Shigure.class).SetSeriesFromClassPackage().SetAttack(1, CardRarity.COMMON, EYBAttackType.Piercing);
 
     public Shigure()
     {
@@ -27,7 +27,7 @@ public class Shigure extends AnimatorClassicCard
         SetUpgrade(2, 0, 1, 0);
         SetScaling(0, 1, 0);
 
-        SetSeries(CardSeries.OwariNoSeraph);
+
     }
 
     @Override

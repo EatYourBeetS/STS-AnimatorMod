@@ -20,7 +20,7 @@ public class Zero extends AnimatorClassicCard
         Initialize(0, 0, 0);
 
         SetExhaust(true);
-        SetSeries(CardSeries.GrimoireOfZero);
+        this.series = CardSeries.GrimoireOfZero;
         SetSpellcaster();
     }
 

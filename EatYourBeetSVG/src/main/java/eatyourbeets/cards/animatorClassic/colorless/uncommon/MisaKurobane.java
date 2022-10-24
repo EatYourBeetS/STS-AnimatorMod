@@ -28,7 +28,7 @@ public class MisaKurobane extends AnimatorClassicCard
 
         SetEvokeOrbCount(1);
         SetExhaust(true);
-         SetSeries(CardSeries.Charlotte);
+        this.series = CardSeries.Charlotte;
     }
 
     @Override

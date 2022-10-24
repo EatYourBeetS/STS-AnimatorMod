@@ -16,7 +16,7 @@ import eatyourbeets.utilities.JUtils;
 
 public class MadokaKaname extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(MadokaKaname.class).SetSkill(2, CardRarity.RARE, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(MadokaKaname.class).SetSeriesFromClassPackage().SetSkill(2, CardRarity.RARE, EYBCardTarget.None);
 
     private static final int HEAL_AMOUNT = 3;
 
@@ -29,7 +29,7 @@ public class MadokaKaname extends AnimatorClassicCard
         SetHealing(true);
         SetPurge(true);
 
-        SetSeries(CardSeries.MadokaMagica);
+        
     }
 
     @Override

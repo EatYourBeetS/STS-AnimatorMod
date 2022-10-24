@@ -13,7 +13,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class HousakiMinori extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(HousakiMinori.class).SetSkill(1, CardRarity.COMMON, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(HousakiMinori.class).SetSeriesFromClassPackage().SetSkill(1, CardRarity.COMMON, EYBCardTarget.None);
 
     public HousakiMinori()
     {
@@ -23,7 +23,7 @@ public class HousakiMinori extends AnimatorClassicCard
         SetUpgrade(0, 1, 0);
 
         SetCooldown(4, -1, this::OnCooldownCompleted);
-        SetSeries(CardSeries.LogHorizon);
+
     }
 
     @Override

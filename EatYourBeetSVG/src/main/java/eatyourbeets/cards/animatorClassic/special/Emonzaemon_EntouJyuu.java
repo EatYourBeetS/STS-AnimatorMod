@@ -20,7 +20,7 @@ public class Emonzaemon_EntouJyuu extends AnimatorClassicCard
         Initialize(0, 0, 2);
         SetUpgrade(0, 0, 1);
 
-        SetSeries(CardSeries.Katanagatari);
+        this.series = CardSeries.Katanagatari;
     }
 
     @Override

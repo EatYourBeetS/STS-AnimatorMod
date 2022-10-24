@@ -30,7 +30,7 @@ public class Kanami extends AnimatorClassicCard_UltraRare
         SetHaste(true);
         SetScaling(0, 1, 1);
         SetMartialArtist();
-        SetSeries(CardSeries.LogHorizon);
+        this.series = CardSeries.LogHorizon;
     }
 
     @Override

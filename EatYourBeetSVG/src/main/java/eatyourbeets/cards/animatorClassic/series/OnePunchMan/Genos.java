@@ -8,7 +8,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class Genos extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(Genos.class).SetAttack(1, CardRarity.COMMON, EYBAttackType.Ranged);
+    public static final EYBCardData DATA = Register(Genos.class).SetSeriesFromClassPackage().SetAttack(1, CardRarity.COMMON, EYBAttackType.Ranged);
 
     public Genos()
     {
@@ -17,7 +17,7 @@ public class Genos extends AnimatorClassicCard
         Initialize(14, 0, 3, 4);
         SetUpgrade(4, 0, 0, 0);
 
-        SetSeries(CardSeries.OnePunchMan);
+        
     }
 
     @Override

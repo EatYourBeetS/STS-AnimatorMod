@@ -15,7 +15,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class ElricEdward extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(ElricEdward.class).SetAttack(1, CardRarity.COMMON, EYBAttackType.Elemental);
+    public static final EYBCardData DATA = Register(ElricEdward.class).SetSeriesFromClassPackage().SetAttack(1, CardRarity.COMMON, EYBAttackType.Elemental);
 
     public ElricEdward()
     {
@@ -26,7 +26,7 @@ public class ElricEdward extends AnimatorClassicCard
         SetScaling(1, 0, 0);
 
         SetEvokeOrbCount(1);
-        SetSeries(CardSeries.FullmetalAlchemist);
+        
     }
 
     @Override

@@ -12,7 +12,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class YachiyoNanami extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(YachiyoNanami.class).SetPower(2, CardRarity.UNCOMMON);
+    public static final EYBCardData DATA = Register(YachiyoNanami.class).SetSeriesFromClassPackage().SetPower(2, CardRarity.UNCOMMON);
 
     private static final CardEffectChoice choices = new CardEffectChoice();
 
@@ -23,7 +23,7 @@ public class YachiyoNanami extends AnimatorClassicCard
         Initialize(0, 0, YachiyoNanamiPower.BLOCK_AMOUNT);
         SetEthereal(true);
 
-        SetSeries(CardSeries.MadokaMagica);
+        
         SetSpellcaster();
     }
 

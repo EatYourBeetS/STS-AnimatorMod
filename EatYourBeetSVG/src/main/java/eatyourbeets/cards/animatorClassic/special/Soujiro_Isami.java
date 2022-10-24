@@ -21,7 +21,7 @@ public class Soujiro_Isami extends AnimatorClassicCard
         SetUpgrade(2, 0, 0);
 
         SetMartialArtist();
-        SetSeries(CardSeries.LogHorizon);
+        this.series = CardSeries.LogHorizon;
     }
 
     @Override

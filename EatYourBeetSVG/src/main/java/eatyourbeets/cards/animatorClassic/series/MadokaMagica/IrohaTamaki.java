@@ -14,7 +14,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class IrohaTamaki extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(IrohaTamaki.class).SetAttack(1, CardRarity.COMMON, EYBAttackType.Elemental);
+    public static final EYBCardData DATA = Register(IrohaTamaki.class).SetSeriesFromClassPackage().SetAttack(1, CardRarity.COMMON, EYBAttackType.Elemental);
 
     public IrohaTamaki()
     {
@@ -23,7 +23,7 @@ public class IrohaTamaki extends AnimatorClassicCard
         Initialize(3, 5, 2);
         SetUpgrade(0, 2, 1);
 
-        SetSeries(CardSeries.MadokaMagica);
+        
         SetSpellcaster();
     }
 

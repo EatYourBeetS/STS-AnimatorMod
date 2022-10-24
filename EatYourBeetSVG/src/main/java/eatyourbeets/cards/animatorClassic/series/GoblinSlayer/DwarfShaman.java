@@ -15,7 +15,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class DwarfShaman extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(DwarfShaman.class).SetAttack(1, CardRarity.COMMON, EYBAttackType.Elemental);
+    public static final EYBCardData DATA = Register(DwarfShaman.class).SetSeriesFromClassPackage().SetAttack(1, CardRarity.COMMON, EYBAttackType.Elemental);
 
     public DwarfShaman()
     {
@@ -26,7 +26,7 @@ public class DwarfShaman extends AnimatorClassicCard
         SetScaling(1, 0, 1);
 
         SetEvokeOrbCount(1);
-        SetSeries(CardSeries.GoblinSlayer);
+        
         SetSpellcaster();
     }
 

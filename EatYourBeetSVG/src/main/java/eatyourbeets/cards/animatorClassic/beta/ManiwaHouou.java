@@ -20,7 +20,7 @@ public class ManiwaHouou extends AnimatorClassicCard implements Hidden
         SetUpgrade(0, 0);
 
         SetEthereal(true);
-        SetSeries(CardSeries.Katanagatari);
+        this.series = CardSeries.Katanagatari;
     }
 
     @Override

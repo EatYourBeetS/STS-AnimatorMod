@@ -15,7 +15,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class Tatsumaki extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(Tatsumaki.class).SetSkill(2, CardRarity.COMMON, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(Tatsumaki.class).SetSeriesFromClassPackage().SetSkill(2, CardRarity.COMMON, EYBCardTarget.None);
 
     public Tatsumaki()
     {
@@ -24,7 +24,7 @@ public class Tatsumaki extends AnimatorClassicCard
         Initialize(0, 0, 1);
 
         SetEvokeOrbCount(1);
-        SetSeries(CardSeries.OnePunchMan);
+        
         SetEthereal(true);
     }
 

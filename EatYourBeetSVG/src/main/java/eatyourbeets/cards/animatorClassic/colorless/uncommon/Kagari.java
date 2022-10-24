@@ -24,7 +24,7 @@ public class Kagari extends AnimatorClassicCard
         Initialize(0, 0, 3, KagariPower.EARTH_ORBS);
         SetUpgrade(0, 0, 3);
 
-        SetSeries(CardSeries.Rewrite);
+        this.series = CardSeries.Rewrite;
     }
 
     @Override

@@ -12,7 +12,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class Pride extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(Pride.class).SetSkill(2, CardRarity.UNCOMMON);
+    public static final EYBCardData DATA = Register(Pride.class).SetSeriesFromClassPackage().SetSkill(2, CardRarity.UNCOMMON);
 
     public Pride()
     {
@@ -23,7 +23,7 @@ public class Pride extends AnimatorClassicCard
 
         SetEvokeOrbCount(magicNumber);
         SetExhaust(true);
-        SetSeries(CardSeries.FullmetalAlchemist);
+
         SetShapeshifter();
     }
 

@@ -12,7 +12,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class Guy extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(Guy.class).SetSkill(0, CardRarity.COMMON, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(Guy.class).SetSeriesFromClassPackage().SetSkill(0, CardRarity.COMMON, EYBCardTarget.None);
 
     public Guy()
     {
@@ -21,7 +21,7 @@ public class Guy extends AnimatorClassicCard
         Initialize(0, 0, 1, 2);
         SetUpgrade(0, 0, 1);
 
-        SetSeries(CardSeries.HitsugiNoChaika);
+
     }
 
     @Override

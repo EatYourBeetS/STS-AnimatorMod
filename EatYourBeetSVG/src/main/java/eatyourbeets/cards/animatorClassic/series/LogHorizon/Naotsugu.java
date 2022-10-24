@@ -15,7 +15,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class Naotsugu extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(Naotsugu.class).SetAttack(3, CardRarity.COMMON, EYBAttackType.Normal);
+    public static final EYBCardData DATA = Register(Naotsugu.class).SetSeriesFromClassPackage().SetAttack(3, CardRarity.COMMON, EYBAttackType.Normal);
 
     public Naotsugu()
     {
@@ -25,7 +25,7 @@ public class Naotsugu extends AnimatorClassicCard
         SetUpgrade(3, 0);
         SetScaling(0, 0, 1);
 
-        SetSeries(CardSeries.LogHorizon);
+
     }
 
     @Override

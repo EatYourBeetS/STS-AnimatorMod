@@ -18,7 +18,7 @@ public class Soujiro_Nazuna extends AnimatorClassicCard
         Initialize(0, 0, 6, 1);
         SetUpgrade(0, 0, 1);
 
-        SetSeries(CardSeries.LogHorizon);
+        this.series = CardSeries.LogHorizon;
     }
 
     @Override

@@ -27,7 +27,7 @@ public class Urushihara extends AnimatorClassicCard implements OnStartOfTurnPost
 
         SetMultiDamage(true);
         SetEvokeOrbCount(1);
-        SetSeries(CardSeries.HatarakuMaouSama);
+        this.series = CardSeries.HatarakuMaouSama;
     }
 
     @Override

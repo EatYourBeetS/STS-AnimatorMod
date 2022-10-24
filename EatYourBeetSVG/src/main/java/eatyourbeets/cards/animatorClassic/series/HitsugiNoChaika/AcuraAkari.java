@@ -10,7 +10,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class AcuraAkari extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(AcuraAkari.class).SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(AcuraAkari.class).SetSeriesFromClassPackage().SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None);
     static
     {
         for (ThrowingKnife knife : ThrowingKnife.GetAllCards())
@@ -26,7 +26,7 @@ public class AcuraAkari extends AnimatorClassicCard
         Initialize(0, 0, 2, 2);
         SetCostUpgrade(-1);
 
-        SetSeries(CardSeries.HitsugiNoChaika);
+        
     }
 
     @Override

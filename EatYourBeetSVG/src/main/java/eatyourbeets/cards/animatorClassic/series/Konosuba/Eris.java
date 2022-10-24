@@ -13,7 +13,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Eris extends AnimatorClassicCard implements OnLosingHPSubscriber
 {
-    public static final EYBCardData DATA = Register(Eris.class).SetSkill(0, CardRarity.RARE, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(Eris.class).SetSeriesFromClassPackage().SetSkill(0, CardRarity.RARE, EYBCardTarget.None);
 
     public Eris()
     {
@@ -24,7 +24,7 @@ public class Eris extends AnimatorClassicCard implements OnLosingHPSubscriber
 
         SetExhaust(true);
         SetHealing(true);
-        SetSeries(CardSeries.Konosuba);
+
     }
 
     @Override

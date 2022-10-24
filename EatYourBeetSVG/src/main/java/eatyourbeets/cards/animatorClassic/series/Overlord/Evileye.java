@@ -15,7 +15,7 @@ import java.util.ArrayList;
 
 public class Evileye extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(Evileye.class).SetSkill(2, CardRarity.UNCOMMON, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(Evileye.class).SetSeriesFromClassPackage().SetSkill(2, CardRarity.UNCOMMON, EYBCardTarget.None);
 
     public Evileye()
     {
@@ -24,7 +24,7 @@ public class Evileye extends AnimatorClassicCard
         Initialize(0,0, 1);
         SetCostUpgrade(-1);
 
-        SetSeries(CardSeries.Overlord);
+        
         SetSpellcaster();
     }
 

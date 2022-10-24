@@ -26,7 +26,7 @@ public class Elesis extends AnimatorClassicCard implements CustomSavable<Elesis.
         Dark,
     }
 
-    public static final EYBCardData DATA = Register(Elesis.class).SetAttack(-2, CardRarity.RARE);
+    public static final EYBCardData DATA = Register(Elesis.class).SetSeriesFromClassPackage().SetAttack(-2, CardRarity.RARE);
     static
     {
         DATA.AddPreview(new Elesis(Form.Saber, false), true);
@@ -41,7 +41,7 @@ public class Elesis extends AnimatorClassicCard implements CustomSavable<Elesis.
     {
         super(DATA);
 
-        SetSeries(CardSeries.Elsword);
+
         this.upgraded = upgraded;
         ChangeForm(form);
     }

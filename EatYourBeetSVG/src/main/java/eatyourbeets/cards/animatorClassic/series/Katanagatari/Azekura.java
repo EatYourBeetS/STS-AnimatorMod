@@ -15,7 +15,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Azekura extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(Azekura.class).SetSkill(2, CardRarity.COMMON, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(Azekura.class).SetSeriesFromClassPackage().SetSkill(2, CardRarity.COMMON, EYBCardTarget.None);
 
     public Azekura()
     {
@@ -24,7 +24,7 @@ public class Azekura extends AnimatorClassicCard
         Initialize(0, 11, 3, 2);
         SetUpgrade(0, 0, -1, 0);
 
-        SetSeries(CardSeries.Katanagatari);
+        
         SetMartialArtist();
     }
 

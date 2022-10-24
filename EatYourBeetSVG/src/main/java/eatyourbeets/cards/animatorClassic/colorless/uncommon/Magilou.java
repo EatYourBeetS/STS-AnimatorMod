@@ -32,7 +32,7 @@ public class Magilou extends AnimatorClassicCard implements OnCardResetSubscribe
         SetUpgrade(0, 0, 1);
 
         SetExhaust(true);
-        SetSeries(CardSeries.TalesOfBerseria);
+        this.series = CardSeries.TalesOfBerseria;
         SetSpellcaster();
     }
 

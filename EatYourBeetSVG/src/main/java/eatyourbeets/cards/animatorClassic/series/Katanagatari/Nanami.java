@@ -6,7 +6,7 @@ import eatyourbeets.cards.base.*;
 
 public class Nanami extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(Nanami.class).SetSkill(-1, CardRarity.UNCOMMON);
+    public static final EYBCardData DATA = Register(Nanami.class).SetSeriesFromClassPackage().SetSkill(-1, CardRarity.UNCOMMON);
 
     //private TargetEffectPreview effectPreview = new TargetEffectPreview(this::ChangeEffect);
     //private NanamiEffect currentEffect = null;
@@ -20,7 +20,7 @@ public class Nanami extends AnimatorClassicCard
 
         SetAttackType(EYBAttackType.Normal);
         SetExhaust(true);
-        SetSeries(CardSeries.Katanagatari);
+
     }
 //
 //    @Override

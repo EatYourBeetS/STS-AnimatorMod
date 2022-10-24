@@ -18,7 +18,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Henrietta extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(Henrietta.class).SetPower(2, CardRarity.UNCOMMON);
+    public static final EYBCardData DATA = Register(Henrietta.class).SetSeriesFromClassPackage().SetPower(2, CardRarity.UNCOMMON);
 
     public Henrietta()
     {
@@ -27,7 +27,7 @@ public class Henrietta extends AnimatorClassicCard
         Initialize(0, 0, 1, 1);
         SetEthereal(true);
 
-        SetSeries(CardSeries.LogHorizon);
+
     }
 
     @Override

@@ -22,7 +22,7 @@ import eatyourbeets.utilities.JUtils;
 
 public class Saitama extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(Saitama.class).SetSkill(0, CardRarity.RARE, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(Saitama.class).SetSeriesFromClassPackage().SetSkill(0, CardRarity.RARE, EYBCardTarget.None);
     static
     {
         DATA.AddPreview(new Saitama(1), false);
@@ -41,7 +41,7 @@ public class Saitama extends AnimatorClassicCard
         Initialize(0, 0);
 
         SetAttackType(EYBAttackType.Normal);
-        SetSeries(CardSeries.OnePunchMan);
+        
 
         GameUtilities.ModifyCostForCombat(this, stage, false);
         this.stage = this.misc = stage;

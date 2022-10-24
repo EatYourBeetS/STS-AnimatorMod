@@ -23,7 +23,7 @@ public class Kuroyukihime extends AnimatorClassicCard
         Initialize(0, 0, 2);
         SetCostUpgrade(-1);
 
-        SetSeries(CardSeries.AccelWorld);
+        this.series = CardSeries.AccelWorld;
     }
 
     @Override

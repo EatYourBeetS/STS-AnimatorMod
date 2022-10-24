@@ -14,7 +14,7 @@ import java.util.HashSet;
 
 public class Rider extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(Rider.class).SetSkill(2, CardRarity.COMMON);
+    public static final EYBCardData DATA = Register(Rider.class).SetSeriesFromClassPackage().SetSkill(2, CardRarity.COMMON);
 
     private static final HashSet<CardTags> tagCache = new HashSet<>();
 
@@ -26,7 +26,7 @@ public class Rider extends AnimatorClassicCard
         SetUpgrade(0, 0, 1);
         SetScaling(0, 1, 0);
 
-        SetSeries(CardSeries.Fate);
+
     }
 
     @Override

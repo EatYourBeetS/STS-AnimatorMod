@@ -13,7 +13,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class LeleiLaLalena extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(LeleiLaLalena.class).SetSkill(0, CardRarity.UNCOMMON, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(LeleiLaLalena.class).SetSeriesFromClassPackage().SetSkill(0, CardRarity.UNCOMMON, EYBCardTarget.None);
 
     public LeleiLaLalena()
     {
@@ -22,7 +22,7 @@ public class LeleiLaLalena extends AnimatorClassicCard
         Initialize(0, 0, 1);
 
         SetEvokeOrbCount(1);
-        SetSeries(CardSeries.GATE);
+
         SetSpellcaster();
     }
 

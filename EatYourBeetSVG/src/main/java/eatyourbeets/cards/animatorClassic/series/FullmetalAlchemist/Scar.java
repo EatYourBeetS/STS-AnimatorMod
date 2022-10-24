@@ -10,7 +10,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class Scar extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(Scar.class).SetAttack(2, CardRarity.UNCOMMON, EYBAttackType.Elemental);
+    public static final EYBCardData DATA = Register(Scar.class).SetSeriesFromClassPackage().SetAttack(2, CardRarity.UNCOMMON, EYBAttackType.Elemental);
 
     public Scar()
     {
@@ -20,7 +20,7 @@ public class Scar extends AnimatorClassicCard
         SetUpgrade(4, 0);
         SetScaling(1, 0, 1);
 
-        SetSeries(CardSeries.FullmetalAlchemist);
+        
     }
 
     @Override

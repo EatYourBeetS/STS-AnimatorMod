@@ -13,7 +13,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class Darkness extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(Darkness.class).SetPower(1, CardRarity.UNCOMMON);
+    public static final EYBCardData DATA = Register(Darkness.class).SetSeriesFromClassPackage().SetPower(1, CardRarity.UNCOMMON);
     static
     {
         DATA.AddPreview(new Darkness_Adrenaline(), false);
@@ -26,7 +26,7 @@ public class Darkness extends AnimatorClassicCard
         Initialize(0, 2, 2);
         SetUpgrade(0, 1, 1);
 
-        SetSeries(CardSeries.Konosuba);
+        
     }
 
     @Override

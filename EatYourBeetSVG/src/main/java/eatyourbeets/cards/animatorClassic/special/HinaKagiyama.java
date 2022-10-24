@@ -23,7 +23,7 @@ public class HinaKagiyama extends AnimatorClassicCard
 
         Initialize(0, 0, HinaKagiyamaPower.CARD_DRAW_AMOUNT);
 
-        SetSeries(CardSeries.TouhouProject);
+        this.series = CardSeries.TouhouProject;
     }
 
     @Override

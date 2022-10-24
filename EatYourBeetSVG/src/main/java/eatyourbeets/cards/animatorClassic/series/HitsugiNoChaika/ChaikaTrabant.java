@@ -18,7 +18,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class ChaikaTrabant extends AnimatorClassicCard implements OnStartOfTurnPostDrawSubscriber
 {
-    public static final EYBCardData DATA = Register(ChaikaTrabant.class).SetAttack(2, CardRarity.RARE, EYBAttackType.Elemental);
+    public static final EYBCardData DATA = Register(ChaikaTrabant.class).SetSeriesFromClassPackage().SetAttack(2, CardRarity.RARE, EYBAttackType.Elemental);
 
     private AbstractMonster enemy;
 
@@ -33,7 +33,7 @@ public class ChaikaTrabant extends AnimatorClassicCard implements OnStartOfTurnP
         tags.add(GR.Enums.CardTags.IGNORE_PEN_NIB);
 
         SetSpellcaster();
-        SetSeries(CardSeries.HitsugiNoChaika);
+        
     }
 
     @Override

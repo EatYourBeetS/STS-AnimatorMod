@@ -26,7 +26,7 @@ public class TewiInaba extends AnimatorClassicCard implements Hidden // TODO:
         Initialize(0, 0, 2, 4);
         SetUpgrade(0, 0, 0, 0);
 
-        SetSeries(CardSeries.TouhouProject);
+        this.series = CardSeries.TouhouProject;
     }
 
     @Override

@@ -22,7 +22,7 @@ public class Darkness_Adrenaline extends AnimatorClassicCard
         SetUpgrade(0, 0, 0, 1);
 
         SetExhaust(true);
-        SetSeries(CardSeries.Konosuba);
+        this.series = CardSeries.Konosuba;
     }
 
     @Override

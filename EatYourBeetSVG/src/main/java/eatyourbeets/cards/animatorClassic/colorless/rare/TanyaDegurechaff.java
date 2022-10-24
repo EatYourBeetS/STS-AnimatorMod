@@ -31,7 +31,7 @@ public class TanyaDegurechaff extends AnimatorClassicCard
         SetUpgrade(2, 2);
         SetScaling(1, 1, 0);
 
-        SetSeries(CardSeries.YoujoSenki);
+        this.series = CardSeries.YoujoSenki;
     }
 
     @Override

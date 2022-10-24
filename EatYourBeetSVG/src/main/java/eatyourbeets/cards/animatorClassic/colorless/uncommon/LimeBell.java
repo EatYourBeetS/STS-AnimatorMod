@@ -21,7 +21,7 @@ public class LimeBell extends AnimatorClassicCard
         SetUpgrade(0, 4, 0);
 
         SetExhaust(true);
-        SetSeries(CardSeries.AccelWorld);
+        this.series = CardSeries.AccelWorld;
     }
 
     @Override

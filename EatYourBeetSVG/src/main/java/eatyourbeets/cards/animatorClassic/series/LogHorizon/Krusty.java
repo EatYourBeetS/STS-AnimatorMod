@@ -13,7 +13,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class Krusty extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(Krusty.class).SetAttack(2, CardRarity.RARE, EYBAttackType.Normal);
+    public static final EYBCardData DATA = Register(Krusty.class).SetSeriesFromClassPackage().SetAttack(2, CardRarity.RARE, EYBAttackType.Normal);
 
     public Krusty()
     {
@@ -23,7 +23,7 @@ public class Krusty extends AnimatorClassicCard
         SetUpgrade(1, 0, 1, 1);
 
         SetScaling(0, 0, 1);
-        SetSeries(CardSeries.LogHorizon);
+        
     }
 
     @Override

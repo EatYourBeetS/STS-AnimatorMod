@@ -34,7 +34,7 @@ public class Gilgamesh extends AnimatorClassicCard implements OnRelicObtainedSub
     private static final FieldInfo<ArrayList<StoreRelic>> _relics = JUtils.GetField("relics", ShopScreen.class);
     private static AbstractRelic lastRelicObtained = null;
 
-    public static final EYBCardData DATA = Register(Gilgamesh.class).SetAttack(2, CardRarity.RARE, EYBAttackType.Ranged);
+    public static final EYBCardData DATA = Register(Gilgamesh.class).SetSeriesFromClassPackage().SetAttack(2, CardRarity.RARE, EYBAttackType.Ranged);
 
     public Gilgamesh()
     {
@@ -44,7 +44,7 @@ public class Gilgamesh extends AnimatorClassicCard implements OnRelicObtainedSub
         SetUpgrade(1, 0);
 
         SetUnique(true, true);
-        SetSeries(CardSeries.Fate);
+
     }
 
     @Override

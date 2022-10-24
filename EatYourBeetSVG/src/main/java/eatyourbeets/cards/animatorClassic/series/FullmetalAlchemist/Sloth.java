@@ -13,7 +13,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class Sloth extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(Sloth.class).SetAttack(2, CardRarity.COMMON);
+    public static final EYBCardData DATA = Register(Sloth.class).SetSeriesFromClassPackage().SetAttack(2, CardRarity.COMMON);
 
     public Sloth()
     {
@@ -23,7 +23,7 @@ public class Sloth extends AnimatorClassicCard
         SetUpgrade(0, 0, -1, 0);
         SetScaling(0, 0, 2);
 
-        SetSeries(CardSeries.FullmetalAlchemist);
+        
     }
 
     @Override

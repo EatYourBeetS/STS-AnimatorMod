@@ -26,7 +26,7 @@ public class Cirno extends AnimatorClassicCard
         SetEthereal(true);
         SetMultiDamage(true);
 
-         SetSeries(CardSeries.TouhouProject);
+        this.series = CardSeries.TouhouProject;
     }
 
     @Override

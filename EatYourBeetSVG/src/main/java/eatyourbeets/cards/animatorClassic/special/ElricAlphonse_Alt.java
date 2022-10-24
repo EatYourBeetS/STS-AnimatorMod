@@ -20,7 +20,7 @@ public class ElricAlphonse_Alt extends AnimatorClassicCard
         Initialize(0, 2, 3, 2);
         SetUpgrade(0, 3, 0, 0);
 
-        SetSeries(CardSeries.FullmetalAlchemist);
+        this.series = CardSeries.FullmetalAlchemist;
     }
 
     @Override

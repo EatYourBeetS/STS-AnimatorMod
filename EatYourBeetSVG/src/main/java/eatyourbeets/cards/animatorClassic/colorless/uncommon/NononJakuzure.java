@@ -22,7 +22,7 @@ public class NononJakuzure extends AnimatorClassicCard implements OnSynergySubsc
         Initialize(0, 0, 2, 1);
 
         SetExhaust(true);
-         SetSeries(CardSeries.KillLaKill);
+        this.series = CardSeries.KillLaKill;
     }
 
     @Override

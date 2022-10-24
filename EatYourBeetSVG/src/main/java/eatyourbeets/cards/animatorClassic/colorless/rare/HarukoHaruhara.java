@@ -22,7 +22,7 @@ public class HarukoHaruhara extends AnimatorClassicCard
         Initialize(0, 0);
         SetCostUpgrade(-1);
 
-        SetSeries(CardSeries.FLCL);
+        this.series = CardSeries.FLCL;
     }
 
     @Override

@@ -14,7 +14,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class FielNirvalen extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(FielNirvalen.class).SetPower(1, CardRarity.UNCOMMON).SetMaxCopies(3);
+    public static final EYBCardData DATA = Register(FielNirvalen.class).SetSeriesFromClassPackage().SetPower(1, CardRarity.UNCOMMON).SetMaxCopies(3);
     public static final int SCRY_AMOUNT = 2;
 
     private static final CardEffectChoice choices = new CardEffectChoice();
@@ -26,7 +26,7 @@ public class FielNirvalen extends AnimatorClassicCard
         Initialize(0, 0, 2, 1);
         SetUpgrade(0, 0, 0, 1);
 
-        SetSeries(CardSeries.NoGameNoLife);
+        
     }
 
     @Override

@@ -24,7 +24,7 @@ public class TakanashiRikka extends AnimatorClassicCard
 
         SetEthereal(true);
         SetExhaust(true);
-        SetSeries(CardSeries.Chuunibyou);
+        this.series = CardSeries.Chuunibyou;
     }
 
     @Override

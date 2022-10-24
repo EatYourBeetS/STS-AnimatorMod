@@ -9,7 +9,7 @@ import eatyourbeets.utilities.GameEffects;
 
 public class PandorasActor extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(PandorasActor.class).SetSkill(1, CardRarity.COMMON, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(PandorasActor.class).SetSeriesFromClassPackage().SetSkill(1, CardRarity.COMMON, EYBCardTarget.None);
 
     public PandorasActor()
     {
@@ -18,7 +18,7 @@ public class PandorasActor extends AnimatorClassicCard
         Initialize(0, 4);
         SetUpgrade(0, 2);
 
-        SetSeries(CardSeries.Overlord);
+
         SetShapeshifter();
     }
 

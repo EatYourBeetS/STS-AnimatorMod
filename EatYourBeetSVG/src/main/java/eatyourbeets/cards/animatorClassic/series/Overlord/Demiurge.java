@@ -12,7 +12,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class Demiurge extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(Demiurge.class).SetSkill(0, CardRarity.COMMON, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(Demiurge.class).SetSeriesFromClassPackage().SetSkill(0, CardRarity.COMMON, EYBCardTarget.None);
 
     public Demiurge()
     {
@@ -20,7 +20,7 @@ public class Demiurge extends AnimatorClassicCard
 
         Initialize(0,0,4);
 
-        SetSeries(CardSeries.Overlord);
+
     }
 
     @Override

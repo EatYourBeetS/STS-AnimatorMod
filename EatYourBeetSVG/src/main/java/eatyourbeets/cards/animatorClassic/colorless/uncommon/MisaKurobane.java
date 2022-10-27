@@ -13,7 +13,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class MisaKurobane extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(MisaKurobane.class).SetSkill(0, CardRarity.UNCOMMON, EYBCardTarget.None).SetColor(CardColor.COLORLESS);
+    public static final EYBCardData DATA = Register(MisaKurobane.class).SetSkill(0, CardRarity.UNCOMMON, EYBCardTarget.None).SetColor(CardColor.COLORLESS).SetSeries(CardSeries.Charlotte);
     static
     {
         DATA.AddPreview(new MisaKurobane_Yusarin(), false);
@@ -28,7 +28,6 @@ public class MisaKurobane extends AnimatorClassicCard
 
         SetEvokeOrbCount(1);
         SetExhaust(true);
-        this.series = CardSeries.Charlotte;
     }
 
     @Override

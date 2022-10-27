@@ -15,7 +15,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Kagari extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(Kagari.class).SetPower(2, CardRarity.UNCOMMON).SetColor(CardColor.COLORLESS);
+    public static final EYBCardData DATA = Register(Kagari.class).SetPower(2, CardRarity.UNCOMMON).SetColor(CardColor.COLORLESS).SetSeries(CardSeries.Rewrite);
 
     public Kagari()
     {
@@ -23,8 +23,6 @@ public class Kagari extends AnimatorClassicCard
 
         Initialize(0, 0, 3, KagariPower.EARTH_ORBS);
         SetUpgrade(0, 0, 3);
-
-        this.series = CardSeries.Rewrite;
     }
 
     @Override

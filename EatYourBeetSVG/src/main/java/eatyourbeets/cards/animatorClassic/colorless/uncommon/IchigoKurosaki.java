@@ -9,7 +9,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class IchigoKurosaki extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(IchigoKurosaki.class).SetSkill(0, CardRarity.UNCOMMON, EYBCardTarget.None).SetColor(CardColor.COLORLESS);
+    public static final EYBCardData DATA = Register(IchigoKurosaki.class).SetSkill(0, CardRarity.UNCOMMON, EYBCardTarget.None).SetColor(CardColor.COLORLESS).SetSeries(CardSeries.Bleach);
     static
     {
         DATA.AddPreview(new IchigoKurosaki_Bankai(), false);
@@ -22,7 +22,6 @@ public class IchigoKurosaki extends AnimatorClassicCard
         Initialize(0, 0, 0, 5);
 
         SetExhaust(true);
-        this.series = CardSeries.Bleach;
         SetMartialArtist();
     }
 

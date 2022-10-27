@@ -1,5 +1,6 @@
 package eatyourbeets.cards.effects.NanamiEffects;
 
+import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -12,7 +13,7 @@ import eatyourbeets.utilities.GameUtilities;
 public class NanamiEffect_Defend_Debuff extends NanamiEffect
 {
     @Override
-    public void EnqueueActions(Nanami nanami, AbstractPlayer p, AbstractMonster m)
+    public void EnqueueActions(EYBCard nanami, AbstractPlayer p, AbstractMonster m)
     {
         int damage = GetDamage(nanami);
         if (damage > 0)
@@ -25,13 +26,13 @@ public class NanamiEffect_Defend_Debuff extends NanamiEffect
     }
 
     @Override
-    public String GetDescription(Nanami nanami)
+    public String GetDescription(EYBCard nanami)
     {
         return ACTIONS.Apply(GetVulnerable(nanami), GR.Tooltips.Vulnerable, true);
     }
 
     @Override
-    public int GetDamage(Nanami nanami)
+    public int GetDamage(EYBCard nanami)
     {
         if (nanami.energyOnUse > 0)
         {
@@ -43,7 +44,7 @@ public class NanamiEffect_Defend_Debuff extends NanamiEffect
         }
     }
 
-    private int GetVulnerable(Nanami nanami)
+    private int GetVulnerable(EYBCard nanami)
     {
         return nanami.energyOnUse + 1;
     }

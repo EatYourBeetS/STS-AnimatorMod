@@ -16,7 +16,7 @@ import eatyourbeets.utilities.TargetHelper;
 
 public class Lelouch extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(Lelouch.class).SetSkill(3, CardRarity.RARE, EYBCardTarget.ALL).SetColor(CardColor.COLORLESS);
+    public static final EYBCardData DATA = Register(Lelouch.class).SetSkill(3, CardRarity.RARE, EYBCardTarget.ALL).SetColor(CardColor.COLORLESS).SetSeries(CardSeries.CodeGeass);
     public static final PowerHelper GEASS = new PowerHelper(GeassPower.POWER_ID, null, (o, s, a) -> new GeassPower(o));
 
     public Lelouch()
@@ -27,7 +27,6 @@ public class Lelouch extends AnimatorClassicCard
         SetCostUpgrade(-1);
 
         SetExhaust(true);
-        this.series = CardSeries.CodeGeass;
     }
 
     @Override

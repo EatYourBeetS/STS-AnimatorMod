@@ -11,7 +11,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class LimeBell extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(LimeBell.class).SetSkill(2, CardRarity.UNCOMMON, EYBCardTarget.None).SetColor(CardColor.COLORLESS);
+    public static final EYBCardData DATA = Register(LimeBell.class).SetSkill(2, CardRarity.UNCOMMON, EYBCardTarget.None).SetColor(CardColor.COLORLESS).SetSeries(CardSeries.AccelWorld);
 
     public LimeBell()
     {
@@ -21,7 +21,6 @@ public class LimeBell extends AnimatorClassicCard
         SetUpgrade(0, 4, 0);
 
         SetExhaust(true);
-        this.series = CardSeries.AccelWorld;
     }
 
     @Override

@@ -17,7 +17,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class TanyaDegurechaff extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(TanyaDegurechaff.class).SetAttack(2, CardRarity.RARE, EYBAttackType.Ranged).SetColor(CardColor.COLORLESS);
+    public static final EYBCardData DATA = Register(TanyaDegurechaff.class).SetAttack(2, CardRarity.RARE, EYBAttackType.Ranged).SetColor(CardColor.COLORLESS).SetSeries(CardSeries.YoujoSenki);
     static
     {
         DATA.AddPreview(new TanyaDegurechaff_Type95(), false);
@@ -30,8 +30,6 @@ public class TanyaDegurechaff extends AnimatorClassicCard
         Initialize(4, 6, 1);
         SetUpgrade(2, 2);
         SetScaling(1, 1, 0);
-
-        this.series = CardSeries.YoujoSenki;
     }
 
     @Override

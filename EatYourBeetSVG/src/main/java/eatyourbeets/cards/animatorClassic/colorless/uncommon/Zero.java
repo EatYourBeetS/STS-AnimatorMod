@@ -11,7 +11,7 @@ import eatyourbeets.utilities.JUtils;
 
 public class Zero extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(Zero.class).SetSkill(0, CardRarity.UNCOMMON).SetColor(CardColor.COLORLESS);
+    public static final EYBCardData DATA = Register(Zero.class).SetSkill(0, CardRarity.UNCOMMON).SetColor(CardColor.COLORLESS).SetSeries(CardSeries.GrimoireOfZero);
 
     public Zero()
     {
@@ -20,7 +20,6 @@ public class Zero extends AnimatorClassicCard
         Initialize(0, 0, 0);
 
         SetExhaust(true);
-        this.series = CardSeries.GrimoireOfZero;
         SetSpellcaster();
     }
 

@@ -13,7 +13,7 @@ import eatyourbeets.utilities.GameActions;
 public class Kuroyukihime extends AnimatorClassicCard
 {
     public static final EYBCardData DATA = Register(Kuroyukihime.class)
-            .SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None).SetColor(CardColor.COLORLESS)
+            .SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None).SetColor(CardColor.COLORLESS).SetSeries(CardSeries.AccelWorld)
             .PostInitialize(data -> data.AddPreview(new Kuroyukihime_BlackLotus(), false));
 
     public Kuroyukihime()
@@ -22,8 +22,6 @@ public class Kuroyukihime extends AnimatorClassicCard
 
         Initialize(0, 0, 2);
         SetCostUpgrade(-1);
-
-        this.series = CardSeries.AccelWorld;
     }
 
     @Override

@@ -13,7 +13,8 @@ public class NononJakuzure extends AnimatorClassicCard implements OnSynergySubsc
 {
     public static final EYBCardData DATA = Register(NononJakuzure.class)
             .SetSkill(2, CardRarity.UNCOMMON, EYBCardTarget.None)
-            .SetColor(CardColor.COLORLESS);
+            .SetColor(CardColor.COLORLESS)
+            .SetSeries(CardSeries.KillLaKill);
 
     public NononJakuzure()
     {
@@ -22,7 +23,6 @@ public class NononJakuzure extends AnimatorClassicCard implements OnSynergySubsc
         Initialize(0, 0, 2, 1);
 
         SetExhaust(true);
-        this.series = CardSeries.KillLaKill;
     }
 
     @Override

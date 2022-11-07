@@ -27,7 +27,7 @@ public class DamageModifiers extends AbstractModifiers
     }
 
     @Override
-    protected void Apply(AbstractCard card)
+    protected void Apply()
     {
         int currentAmount = (card.baseDamage - previousAmount);
         int modifier = baseAmount;

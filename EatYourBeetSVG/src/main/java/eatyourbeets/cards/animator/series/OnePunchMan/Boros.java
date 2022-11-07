@@ -9,8 +9,6 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.effects.SFX;
-import eatyourbeets.interfaces.subscribers.OnAfterCardDrawnSubscriber;
-import eatyourbeets.interfaces.subscribers.OnCardCreatedSubscriber;
 import eatyourbeets.powers.AnimatorClickablePower;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.PowerTriggerConditionType;
@@ -22,49 +20,41 @@ import eatyourbeets.utilities.JUtils;
 public class Boros extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Boros.class)
-            .SetPower(3, CardRarity.RARE)
+            .SetPower(4, CardRarity.RARE)
             .SetSeriesFromClassPackage();
-    private static final int POWER_ENERGY_COST = 3;
-    private static final int RECOVER_HP_AMOUNT = 14;
+    private static final int POWER_DD_COST = 17;
+    private static final int POWER_ENERGY_GAIN = 2;
+    private static final int POWER_DD_MULTI = 4;
 
     public Boros()
     {
         super(DATA);
 
-        Initialize(0, 0, 2, RECOVER_HP_AMOUNT);
+        Initialize(0, 0, 4, POWER_DD_COST);
+        SetCostUpgrade(-1);
 
         SetAffinity_Red(2);
         SetAffinity_Green(1);
         SetAffinity_Dark(2);
-
-        SetEthereal(true);
-    }
-
-    @Override
-    protected void OnUpgrade()
-    {
-        SetEthereal(false);
     }
 
     @Override
     public ColoredString GetSpecialVariableString()
     {
-        return super.GetSpecialVariableString(POWER_ENERGY_COST);
+        return super.GetSpecialVariableString(POWER_ENERGY_GAIN);
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.StackPower(new BorosPower(p, magicNumber));
+        GameActions.Bottom.StackPower(new BorosPower(p, 1));
     }
 
-    public static class BorosPower extends AnimatorClickablePower implements OnAfterCardDrawnSubscriber, OnCardCreatedSubscriber
+    public static class BorosPower extends AnimatorClickablePower
     {
-        protected boolean playPowersTwice;
-
         public BorosPower(AbstractCreature owner, int amount)
         {
-            super(owner, Boros.DATA, PowerTriggerConditionType.Energy, POWER_ENERGY_COST);
+            super(owner, Boros.DATA, PowerTriggerConditionType.TakeDelayedDamage, POWER_DD_COST);
 
             this.triggerCondition.SetUses(1, false, false);
 
@@ -76,23 +66,16 @@ public class Boros extends AnimatorCard
         {
             super.onInitialApplication();
 
-            CombatStats.onAfterCardDrawn.Subscribe(this);
-            CombatStats.onCardCreated.Subscribe(this);
-        }
-
-        @Override
-        public void onRemove()
-        {
-            super.onRemove();
-
-            CombatStats.onAfterCardDrawn.Unsubscribe(this);
-            CombatStats.onCardCreated.Unsubscribe(this);
+            if (!CombatStats.CanActivateLimited(Boros.DATA.ID))
+            {
+                this.triggerCondition.SetUses(0, false, false);
+            }
         }
 
         @Override
         public String GetUpdatedDescription()
         {
-            return FormatDescription(0, triggerCondition.requiredAmount, RECOVER_HP_AMOUNT, amount);
+            return FormatDescription(0, triggerCondition.requiredAmount, POWER_ENERGY_GAIN, amount * POWER_DD_MULTI, amount);
         }
 
         @Override
@@ -103,25 +86,18 @@ public class Boros extends AnimatorCard
         }
 
         @Override
-        public void OnCardCreated(AbstractCard card, boolean startOfBattle)
-        {
-            Activate(card);
-        }
-
-        @Override
-        public void OnAfterCardDrawn(AbstractCard card)
-        {
-            Activate(card);
-        }
-
-        @Override
         public void onUseCard(AbstractCard card, UseCardAction action)
         {
             super.onUseCard(card, action);
 
-            if (playPowersTwice && (card.type == AbstractCard.CardType.POWER) && GameUtilities.CanPlayTwice(card))
+            if (card.type == AbstractCard.CardType.POWER && GameUtilities.CanPlayTwice(card))
             {
                 GameActions.Top.PlayCopy(card, JUtils.SafeCast(action.target, AbstractMonster.class));
+                if (card.costForTurn > 0)
+                {
+                    GameActions.Top.TakeDamageAtEndOfTurn(card.costForTurn * amount * POWER_DD_MULTI);
+                }
+
                 this.flashWithoutSound();
             }
         }
@@ -129,21 +105,11 @@ public class Boros extends AnimatorCard
         @Override
         public void OnUse(AbstractMonster m)
         {
-            if (CombatStats.TryActivateLimited(ID))
-            {
-                GameActions.Bottom.RecoverHP(RECOVER_HP_AMOUNT);
-                playPowersTwice = true;
-                flash();
-            }
-        }
+            super.OnUse(m);
 
-        protected void Activate(AbstractCard card)
-        {
-            if (player.hand.contains(card) && GameUtilities.IsHighCost(card))
-            {
-                GameActions.Bottom.GainBlock(amount).SetVFX(true, true);
-                flashWithoutSound();
-            }
+            GameActions.Bottom.TakeDamageAtEndOfTurn(POWER_DD_COST);
+            GameActions.Bottom.GainEnergy(POWER_ENERGY_GAIN);
+            playApplyPowerSfx();
         }
     }
 }

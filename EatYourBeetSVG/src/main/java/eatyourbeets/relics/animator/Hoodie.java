@@ -17,19 +17,11 @@ public class Hoodie extends AnimatorRelic implements OnModifyDamageFirstSubscrib
     }
 
     @Override
-    protected void ActivateBattleEffect()
+    protected void RefreshBattleEffect(boolean enabled)
     {
-        super.ActivateBattleEffect();
+        super.RefreshBattleEffect(enabled);
 
-        CombatStats.onModifyDamageFirst.Subscribe(this);
-    }
-
-    @Override
-    protected void DeactivateBattleEffect()
-    {
-        super.DeactivateBattleEffect();
-
-        CombatStats.onModifyDamageFirst.Unsubscribe(this);
+        CombatStats.onModifyDamageFirst.ToggleSubscription(this, enabled);
     }
 
     @Override

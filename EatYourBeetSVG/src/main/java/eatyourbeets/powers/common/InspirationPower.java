@@ -17,6 +17,7 @@ public class InspirationPower extends CommonClickablePower
     {
         super(owner, POWER_ID, PowerTriggerConditionType.Special, REQUIRED_AMOUNT);
 
+        this.maxAmount = 12;
         this.canBeZero = true;
         this.triggerCondition.SetCondition(v -> this.amount >= v);
         this.triggerCondition.SetPayCost(this::ReducePower);

@@ -51,7 +51,7 @@ public class SpellScroll extends AnimatorRelic
                     return;
                 }
 
-                final RandomizedList<AbstractCard> possibleCards = GameUtilities.GetCardsInCombat(GenericCondition.FromT1(c -> GameUtilities.HasAffinity(c, Affinity.Blue, false)));
+                final RandomizedList<AbstractCard> possibleCards = GameUtilities.GetCardsInCombat(GenericCondition.FromT1(c -> GameUtilities.HasAffinity(c, Affinity.Blue, false, false)));
                 for (AbstractCard c : cards)
                 {
                     if (possibleCards.Size() > 0)

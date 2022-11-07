@@ -27,7 +27,7 @@ public class BlockModifiers extends AbstractModifiers
     }
 
     @Override
-    protected void Apply(AbstractCard card)
+    protected void Apply()
     {
         int currentAmount = (card.baseBlock - previousAmount);
         int modifier = baseAmount;

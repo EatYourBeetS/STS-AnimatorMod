@@ -15,7 +15,6 @@ import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.screens.SingleCardViewPopup;
 import eatyourbeets.cards.base.CardAffinityComparator;
 import eatyourbeets.cards.base.CardSeriesComparator;
-import eatyourbeets.cards.base.EYBCardTooltip;
 import eatyourbeets.effects.card.ShowCardPileEffect;
 import eatyourbeets.interfaces.delegates.FuncT1;
 import eatyourbeets.relics.animator.PlotArmor;
@@ -34,6 +33,7 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
 {
     protected static final int MINIMUM_CARDS = 80;
     protected static final int BONUS_RELIC_THRESHOLD = 8;
+    protected static final PlotArmor plotArmor = new PlotArmor();
     protected static final Random rng = new Random();
     protected ShowCardPileEffect previewCardsEffect;
     protected int totalCardsCache = 0;
@@ -49,7 +49,7 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
     public final GUI_Button previewCards;
     public final GUI_Button confirm;
     public final GUI_Toggle toggleBeta;
-    public final GUI_Toggle togglePlotArmor;
+    //public final GUI_Toggle togglePlotArmor;
     public final GUI_TextBox selectionInfo;
     public final GUI_TextBox selectionAmount;
     public final GUI_TextBox previewCardsInfo;
@@ -82,10 +82,10 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
         .SetOnToggle(this::ToggleBetaSeries)
         .SetBackground(panelTexture, Colors.DarkGray(0.75f));
 
-        togglePlotArmor = new GUI_Toggle(new Hitbox(xPos, getY.Invoke(0.9f), buttonWidth, buttonHeight * 0.8f))
-        .SetText(buttonStrings.PlotArmor)
-        .SetTooltip(new EYBCardTooltip(buttonStrings.PlotArmor, textboxStrings.PlotArmorInfo), true)
-        .SetBackground(panelTexture, Colors.DarkGray(0.75f));
+//        togglePlotArmor = new GUI_Toggle(new Hitbox(xPos, getY.Invoke(0.9f), buttonWidth, buttonHeight * 0.8f))
+//        .SetText(buttonStrings.PlotArmor)
+//        .SetTooltip(new EYBCardTooltip(buttonStrings.PlotArmor, textboxStrings.PlotArmorInfo), true)
+//        .SetBackground(panelTexture, Colors.DarkGray(0.75f));
 
         deselectAll = CreateHexagonalButton(xPos, getY.Invoke(1.8f), buttonWidth, buttonHeight)
         .SetText(buttonStrings.DeselectAll)
@@ -152,7 +152,7 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
             ascensionEditor.Open();
             toggleBeta.isActive = false;
             bonusRelicImage.isActive = false;
-            togglePlotArmor.isActive = true;
+            //togglePlotArmor.isActive = true;
             UpdateStartingDeckText();
             GameEffects.TopLevelList.Add(new AnimatorSeriesSelectEffect(this));
         }
@@ -166,7 +166,7 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
         cardGrid.TryRender(sb);
 
         toggleBeta.TryRender(sb);
-        togglePlotArmor.Render(sb);
+        //togglePlotArmor.Render(sb);
 
         startingDeck.TryRender(sb);
         ascensionEditor.TryRender(sb);
@@ -215,7 +215,7 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
         }
 
         toggleBeta.SetToggle(GR.Animator.Config.DisplayBetaSeries.Get()).TryUpdate();
-        togglePlotArmor.Update();
+        //togglePlotArmor.Update();
 
         bonusRelicImage.TryUpdate();
 
@@ -392,10 +392,9 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
         {
             GameEffects.TopLevelQueue.SpawnRelic(new RollingCubes(), bonusRelicImage.hb.cX, bonusRelicImage.hb.cY);
         }
-        if (togglePlotArmor.toggled)
+        if (plotArmor.canSpawn())
         {
-            GameEffects.TopLevelQueue.SpawnRelic(new PlotArmor(), togglePlotArmor.hb.cX, togglePlotArmor.hb.cY);
-            GR.Common.Dungeon.SetCheating();
+            GameEffects.TopLevelQueue.SpawnRelic(plotArmor.makeCopy(), bonusRelicImage.hb.cX, bonusRelicImage.hb.cY);
         }
 
         SingleCardViewPopup.isViewingUpgrade = false;

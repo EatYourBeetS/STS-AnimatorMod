@@ -30,14 +30,11 @@ public class ApprenticeCleric extends AnimatorCard
     {
         super.triggerWhenDrawn();
 
-        if (CombatStats.TryActivateSemiLimited(cardID))
+        final int amount = CombatStats.Affinities.GetPowerAmount(Affinity.Light) * secondaryValue;
+        if (amount > 0 && CombatStats.TryActivateSemiLimited(cardID))
         {
-            final int amount = CombatStats.Affinities.GetPowerAmount(Affinity.Light) * secondaryValue;
-            if (amount > 0)
-            {
-                GameActions.Bottom.RecoverHP(amount);
-                GameActions.Bottom.Flash(this);
-            }
+            GameActions.Bottom.RecoverHP(amount);
+            GameActions.Bottom.Flash(this);
         }
     }
 
@@ -46,6 +43,7 @@ public class ApprenticeCleric extends AnimatorCard
     {
         GameActions.Bottom.DiscardFromPile(name, 1, player.drawPile)
         .ShowEffect(true, true)
+        .SetOptions(false, false)
         .SetFilter(c ->
         {
             final EYBCardAffinities a = GameUtilities.GetAffinities(c);

@@ -30,6 +30,7 @@ public abstract class EYBClickablePower extends EYBPower
     public boolean clickable;
 
     protected GameActionManager.Phase currentPhase;
+    protected boolean requiresRightClick;
     protected Hitbox hb;
 
     private EYBClickablePower(AbstractCreature owner, EYBCardData cardData, EYBRelic relic, String originalID)
@@ -135,12 +136,23 @@ public abstract class EYBClickablePower extends EYBPower
         final GameActionManager.Phase phase = AbstractDungeon.actionManager.phase;
         if (currentPhase != phase || GR.UI.Elapsed50())
         {
+            requiresRightClick = GR.Animator.Config.RightClickablePowers.Get(requiresRightClick);
             triggerCondition.Refresh(false);
             currentPhase = phase;
         }
 
         clickable = (currentPhase == GameActionManager.Phase.WAITING_ON_USER && GameUtilities.IsPlayerTurn(true)) && triggerCondition.CanUse();
         hb.update();
+
+        if (requiresRightClick && hb.clickStarted && InputHelper.justReleasedClickRight)
+        {
+            if (hb.hovered)
+            {
+                hb.clicked = true;
+            }
+
+            hb.clickStarted = false;
+        }
 
         if (hb.hovered)
         {
@@ -153,7 +165,7 @@ public abstract class EYBClickablePower extends EYBPower
 
             if (enabled && clickable)
             {
-                if (InputHelper.justClickedLeft)
+                if (requiresRightClick ? InputHelper.justClickedRight : InputHelper.justClickedLeft)
                 {
                     hb.clickStarted = true;
                     SFX.Play(SFX.UI_CLICK_1);

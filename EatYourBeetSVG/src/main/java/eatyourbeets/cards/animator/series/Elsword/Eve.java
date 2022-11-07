@@ -1,6 +1,7 @@
 package eatyourbeets.cards.animator.series.Elsword;
 
 import com.badlogic.gdx.graphics.Color;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -29,11 +30,19 @@ public class Eve extends AnimatorCard
         super(DATA);
 
         Initialize(0, 0, 5);
-        SetCostUpgrade(-1);
+        SetEthereal(true);
 
         SetAffinity_Blue(2);
         SetAffinity_Light(1);
         SetAffinity_Dark(1);
+    }
+
+    @Override
+    protected void OnUpgrade()
+    {
+        super.OnUpgrade();
+
+        SetEthereal(false);
     }
 
     @Override
@@ -68,15 +77,6 @@ public class Eve extends AnimatorCard
         }
 
         @Override
-        public void atStartOfTurnPostDraw()
-        {
-            super.atStartOfTurnPostDraw();
-
-            GameActions.Bottom.MakeCardInDrawPile(AffinityToken.GetCopy(Affinity.General, false));
-            flashWithoutSound();
-        }
-
-        @Override
         public void OnAffinitySealed(EYBCard card, boolean manual)
         {
             GameEffects.Queue.BorderFlash(Color.SKY);
@@ -90,6 +90,24 @@ public class Eve extends AnimatorCard
             });
 
             this.flash();
+        }
+
+        @Override
+        public void atStartOfTurnPostDraw()
+        {
+            super.atStartOfTurnPostDraw();
+
+            GameActions.Last.Callback(() ->
+            {
+                GameActions.Bottom.Reload(name, cards ->
+                {
+                    for (AbstractCard c : cards)
+                    {
+                        GameActions.Bottom.ObtainAffinityToken(Affinity.Star, false);
+                    }
+                });
+                flash();
+            });
         }
     }
 }

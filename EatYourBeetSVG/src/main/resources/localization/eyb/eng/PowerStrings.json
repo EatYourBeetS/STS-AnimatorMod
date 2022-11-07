@@ -63,7 +63,7 @@
 	},
 	"eyb:InvocationPower":
 	{
-		"DESCRIPTIONS": ["At the end of turn, #yRecover #b{0} [HP] and gain #b{1} charge(s). When applied, and every #b{2} charges, add a #yCrystallize to the top of your draw pile. At #b{3} charges, obtain #pSummoning #pRitual."],
+		"DESCRIPTIONS": ["At the end of turn, gain #b{0} charge(s). When applied, and every #b{1} charges, add a #yCrystallize to the top of your draw pile. At #b{2} charges, obtain #pSummoning #pRitual."],
 		"NAME": "Invocation"
 	},
 	"eyb:DeEnergizedPower":
@@ -118,7 +118,7 @@
 	},
 	"eyb:VitalityPower":
 	{
-		"DESCRIPTIONS": ["At the start of each turn, gain #b{0} [THP] (Max #b{1})."],
+		"DESCRIPTIONS": ["At the start of each turn, #yRecover #b{0} [MHP] (Max #b{1})."],
 		"NAME": "Vitality"
 	}
 }

@@ -170,13 +170,13 @@
 	},
 	"Inspiration":
 	{
-		"DESCRIPTION": "You can pay #b3 [INS] during your turn to draw #b1 card.",
+		"DESCRIPTION": "You can pay #b3 [INS] during your turn to draw #b1 card (Max #b12 stacks).",
 		"NAMES": ["inspiration"],
 		"PROPER_NAME": "Inspiration"
 	},
 	"Invocation":
 	{
-		"DESCRIPTION": "Gains #b1 charge and #yRecover #b2 [HP] each turn. When applied, and every #b3 charges, add a #yCrystallize to the top of your draw pile. At #b12 charges, obtain #pSummoning #pRitual.",
+		"DESCRIPTION": "Gains #b1 charge each turn. When applied, and every #b3 charges, add a #yCrystallize to the top of your draw pile. At #b12 charges, obtain #pSummoning #pRitual.",
 		"NAMES": ["invocation"],
 		"PROPER_NAME": "Invocation"
 	},
@@ -332,7 +332,7 @@
 	},
 	"Vitality":
 	{
-		"DESCRIPTION": "At the start of each turn, gain [THP].",
+		"DESCRIPTION": "At the start of each turn, #yRecover #b1 [MHP].",
 		"NAMES": ["vitality"],
 		"PROPER_NAME": "Vitality"
 	},

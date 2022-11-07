@@ -27,6 +27,7 @@ public class AnimatorConfig
     private static final String ASCENSION_LEVELS_KEY =  "TheAnimator-AscensionModifiers";
     private static final String CUSTOM_LOADOUTS_KEY =  "TheAnimator-Loadouts";
     private static final String CROP_CARD_PORTRAIT =  "TheAnimator-UseCroppedPortrait";
+    private static final String RIGHT_CLICKABLE_POWERS =  "TheAnimator-RightClickablePowers";
     private static final String DISPLAY_BETA_SERIES =  "TheAnimator-DisplayBetaSeries";
     private static final String HOLD_SHIFT_TO_LOCK_AFFINITIES =  "TheAnimator-HoldShiftToLockAffinities";
     private static final String FADE_CARDS_WITHOUT_SYNERGY =  "TheAnimator-FadeNonSynergicCards";
@@ -47,6 +48,7 @@ public class AnimatorConfig
     public ConfigOption_String AscensionLevels = new ConfigOption_String(ASCENSION_LEVELS_KEY, "");
     public ConfigOption_Boolean SimplifyCardUI = new ConfigOption_Boolean(HIDE_BLOCK_DAMAGE_BACKGROUND, false);
     public ConfigOption_Boolean CropCardImages = new ConfigOption_Boolean(CROP_CARD_PORTRAIT, false);
+    public ConfigOption_Boolean RightClickablePowers = new ConfigOption_Boolean(RIGHT_CLICKABLE_POWERS, false);
     public ConfigOption_Boolean DisplayBetaSeries = new ConfigOption_Boolean(DISPLAY_BETA_SERIES, true);
     public ConfigOption_Boolean HoldShiftToLockAffinities = new ConfigOption_Boolean(HOLD_SHIFT_TO_LOCK_AFFINITIES, true);
     public ConfigOption_Vector2 AffinitySystemPosition = new ConfigOption_Vector2(AFFINITY_SYSTEM_POSITION, null);
@@ -82,6 +84,7 @@ public class AnimatorConfig
             SimplifyCardUI.SetConfig(config);
             CropCardImages.SetConfig(config);
             DisplayBetaSeries.SetConfig(config);
+            RightClickablePowers.SetConfig(config);
             HoldShiftToLockAffinities.SetConfig(config);
             AffinitySystemPosition.SetConfig(config);
         }
@@ -99,10 +102,11 @@ public class AnimatorConfig
         //FadeCardsWithoutSynergy.AddToPanel(panel, misc.FadeCardsWithoutSynergy, 400, 700);
         CropCardImages.AddToPanel(panel, misc.UseCardHoveringAnimation, 400, 650);
         SimplifyCardUI.AddToPanel(panel, misc.SimplifyCardUI, 400, 600);
+        RightClickablePowers.AddToPanel(panel, misc.RightClickablePowers, 400, 550);
 
         if (GR.Animator.Data.BetaLoadouts.size() > 0)
         {
-            DisplayBetaSeries.AddToPanel(panel, misc.DisplayBetaSeries, 400, 550);
+            DisplayBetaSeries.AddToPanel(panel, misc.DisplayBetaSeries, 400, 500);
         }
         else
         {

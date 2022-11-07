@@ -24,16 +24,16 @@ public class Albedo extends AnimatorCard
         super(DATA);
 
         Initialize(16, 0, 1);
-        SetUpgrade(6, 0, 0);
+        SetUpgrade(2, 0, 0);
 
-        SetAffinity_Red(1, 1, 1);
-        SetAffinity_Dark(2, 0, 1);
+        SetAffinity_Red(2, 0, 2);
+        SetAffinity_Dark(2, 0, 2);
     }
 
     @Override
     protected void OnUpgrade()
     {
-        SetRetainOnce(true);
+        SetInnate(true);
     }
 
     @Override

@@ -37,7 +37,7 @@ public class AliceMargatroid extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.GainIntellect(1);
+        GameActions.Bottom.GainIntellect(1, true);
         GameActions.Bottom.Draw(magicNumber);
     }
 

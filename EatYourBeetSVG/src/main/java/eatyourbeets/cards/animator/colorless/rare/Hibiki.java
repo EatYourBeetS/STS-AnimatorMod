@@ -1,11 +1,11 @@
 package eatyourbeets.cards.animator.colorless.rare;
 
 import com.badlogic.gdx.graphics.Color;
-import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -23,8 +23,7 @@ public class Hibiki extends AnimatorCard
         Initialize(1, 0, 3, 1);
         SetUpgrade(0, 0, 1, 0);
 
-        SetAffinity_Star(0, 0, 1);
-        SetAffinity_Green(1);
+        SetAffinity_Green(1, 0, 1);
     }
 
     @Override

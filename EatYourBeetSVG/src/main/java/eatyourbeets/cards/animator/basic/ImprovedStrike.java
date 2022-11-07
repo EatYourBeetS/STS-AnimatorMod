@@ -33,8 +33,9 @@ public abstract class ImprovedStrike extends ImprovedBasicCard
 
     protected static EYBCardData Register(Class<? extends AnimatorCard> type)
     {
-        return AnimatorCard.Register(type).SetColor(CardColor.COLORLESS).SetAttack(1, CardRarity.BASIC)
-                .SetImagePath(GR.GetCardImage(Strike.DATA.ID + "Alt1"));
+        return AnimatorCard.Register(type)
+        .SetColor(CardColor.COLORLESS).SetAttack(1, CardRarity.BASIC)
+        .SetImagePath(GR.GetCardImage(Strike.DATA.ID + "Alt1"));
     }
 
     public ImprovedStrike(EYBCardData data, Affinity affinity)
@@ -62,7 +63,7 @@ public abstract class ImprovedStrike extends ImprovedBasicCard
 
         if (magicNumber > 0)
         {
-            GameActions.Bottom.GainAffinity(affinity, 1, upgraded);
+            GameActions.Bottom.GainAffinity(affinity, magicNumber, upgraded);
         }
     }
 }

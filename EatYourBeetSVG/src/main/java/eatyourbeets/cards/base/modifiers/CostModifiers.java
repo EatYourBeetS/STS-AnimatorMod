@@ -29,12 +29,23 @@ public class CostModifiers extends AbstractModifiers implements OnCardResetSubsc
     }
 
     @Override
+    public void CopyFrom(AbstractModifiers other, boolean copyAll)
+    {
+        if (baseAmount != other.baseAmount || previousAmount != other.previousAmount || (other.modifiers.size() > 0 && copyAll))
+        {
+            CombatStats.onCardReset.Subscribe(this);
+        }
+
+        super.CopyFrom(other, copyAll);
+    }
+
+    @Override
     public void OnCardReset(AbstractCard card)
     {
         if (this.card == card)
         {
             previousAmount = 0;
-            Apply(card);
+            Apply();
         }
     }
 
@@ -42,7 +53,7 @@ public class CostModifiers extends AbstractModifiers implements OnCardResetSubsc
     {
         if (modifiers.remove(key) != null && applyInstantly)
         {
-            Apply(card);
+            Apply();
         }
     }
 
@@ -53,7 +64,7 @@ public class CostModifiers extends AbstractModifiers implements OnCardResetSubsc
     }
 
     @Override
-    protected void Apply(AbstractCard card)
+    protected void Apply()
     {
         CombatStats.onCardReset.Subscribe(this);
 

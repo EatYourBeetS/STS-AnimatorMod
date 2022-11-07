@@ -18,7 +18,7 @@ public class ByakurenHijiri extends AnimatorCard
         super(DATA);
 
         Initialize(0, 0, 2, 6);
-        SetUpgrade(0, 0, 1, 0);
+        SetUpgrade(0, 0, 1, 2);
 
         SetAffinity_Blue(1);
         SetAffinity_Dark(1);
@@ -26,12 +26,6 @@ public class ByakurenHijiri extends AnimatorCard
         SetEthereal(true);
 
         SetAffinityRequirement(Affinity.Dark, 1);
-    }
-
-    @Override
-    protected void OnUpgrade()
-    {
-        SetEthereal(false);
     }
 
     @Override

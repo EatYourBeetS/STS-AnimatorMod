@@ -65,7 +65,8 @@ public class HataNoKokoro extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.PurgeFromPile(name, 1, p.exhaustPile)
-        .SetFilter(c -> !AbstractDungeon.actionManager.cardsPlayedThisCombat.contains(c))
+        //.SetOptions(false, false)
+        .SetFilter(this::CanSelectCard)
         .AddCallback(m, (target, cards) ->
         {
             for (AbstractCard c : cards)

@@ -84,28 +84,28 @@ public class OddDevice_2 extends OddDevice
             {
                 if (power.ID.equals(DelayedDamagePower.POWER_ID))
                 {
-                    ModifyPowerAmount(power, action, amount * (target.isPlayer ? -DD_SELF : +DD_ENEMY));
+                    return ModifyPowerAmount(power, action, amount * (target.isPlayer ? -DD_SELF : +DD_ENEMY));
                 }
             }
             else if (index == 2)
             {
                 if (power.ID.equals(BurningPower.POWER_ID))
                 {
-                    ModifyPowerAmount(power, action, amount * BURNING);
+                    return ModifyPowerAmount(power, action, amount * BURNING);
                 }
             }
             else if (index == 3)
             {
                 if (power.ID.equals(PoisonPower.POWER_ID))
                 {
-                    ModifyPowerAmount(power, action, amount * POISON);
+                    return ModifyPowerAmount(power, action, amount * POISON);
                 }
             }
 
-            return action.amount > 0;
+            return true;
         }
 
-        private void ModifyPowerAmount(AbstractPower power, AbstractGameAction action, int amount)
+        private boolean ModifyPowerAmount(AbstractPower power, AbstractGameAction action, int amount)
         {
             relic.flash();
             power.amount += amount;
@@ -118,6 +118,8 @@ public class OddDevice_2 extends OddDevice
             {
                 JUtils.LogWarning(this, "Unknown action type: " + action.getClass().getName());
             }
+
+            return action.amount > 0;
         }
 
         @Override

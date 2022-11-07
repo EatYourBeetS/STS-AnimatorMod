@@ -11,6 +11,7 @@ import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.interfaces.subscribers.OnAffinitySealedSubscriber;
 import eatyourbeets.orbs.animator.Earth;
 import eatyourbeets.powers.AnimatorClickablePower;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.PowerTriggerConditionType;
 import eatyourbeets.utilities.GameActions;
 
@@ -54,6 +55,22 @@ public class Arpeggio extends AnimatorCard
             canBeZero = true;
 
             Initialize(amount);
+        }
+
+        @Override
+        public void onInitialApplication()
+        {
+            super.onInitialApplication();
+
+            CombatStats.onAffinitySealed.Subscribe(this);
+        }
+
+        @Override
+        public void onRemove()
+        {
+            super.onRemove();
+
+            CombatStats.onAffinitySealed.Unsubscribe(this);
         }
 
         @Override

@@ -30,7 +30,7 @@ public class VitalityPower extends CommonPower
 
         if (amount > 0)
         {
-            GameActions.Bottom.GainTemporaryHP(amount);
+            GameActions.Bottom.RecoverHP(amount).Overheal(true);
             flashWithoutSound();
         }
     }

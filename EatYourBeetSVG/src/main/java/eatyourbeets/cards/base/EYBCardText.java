@@ -15,16 +15,20 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.cardTextParsing.CTContext;
 import eatyourbeets.powers.CombatStats;
+import eatyourbeets.powers.affinity.AbstractAffinityPower;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.common.CommonImages;
 import eatyourbeets.utilities.*;
 import org.apache.commons.lang3.StringUtils;
+
+import java.util.LinkedHashMap;
 
 public class EYBCardText
 {
     private static final CommonImages.Badges BADGES = GR.Common.Images.Badges;
     private static final CommonImages.CardIcons ICONS = GR.Common.Images.Icons;
     private static final ColoredString cs = new ColoredString("", Settings.CREAM_COLOR);
+    private static final LinkedHashMap<Affinity, TupleT2<Integer, Float>> affinityMap = new LinkedHashMap<>();
     private static AbstractPlayer player;
     private float badgeAlphaTargetOffset = 1f;
     private float badgeAlphaOffset = -0.2f;
@@ -211,25 +215,49 @@ public class EYBCardText
         offset_y = 0;
 
         final boolean showActualScaling = inHand && player.hoveredCard == card && (player.isDraggingCard || player.isHoveringDropZone || player.inSingleTargetMode);
-        for (Affinity affinity : Affinity.All(false))
+
+        affinityMap.clear();
+        final TupleT2<Integer, Float> starScaling = new TupleT2<>(card.affinities.GetScaling(Affinity.Star, false), 0f);
+        if (starScaling.V1 > 0)
+        {
+            affinityMap.put(Affinity.Star, starScaling);
+        }
+        for (Affinity affinity : Affinity.Basic())
         {
             int scaling = card.affinities.GetScaling(affinity, false);
-            if (scaling > 0)
+            if (showActualScaling)
             {
-                if (showActualScaling)
+                final AbstractAffinityPower power = CombatStats.Affinities.GetPower(affinity);
+                if (scaling > 0)
                 {
-                    final int amount = Mathf.CeilToInt(CombatStats.Affinities.ApplyScaling(affinity, card, 0));
-                    cs.SetColor(amount > 0 ? Colors.Green(1) : Colors.Cream(0.75f));
-                    cs.text = "+" + amount;
+                    affinityMap.put(affinity, new TupleT2<>(scaling, power.ApplyScaling(scaling)));
                 }
-                else
+                if (starScaling.V1 > 0)
                 {
-                    cs.SetColor(Colors.Cream(1));
-                    cs.text = "x" + scaling;
+                    starScaling.V2 += power.ApplyScaling(starScaling.V1);
                 }
-
-                offset_y += RenderScaling(sb, affinity.GetPowerIcon(false), cs, offset_y, Color.BLACK);//affinity.GetAlternateColor());
             }
+            else if (scaling > 0)
+            {
+                affinityMap.put(affinity, new TupleT2<>(scaling, 0f));
+            }
+        }
+
+        for (Affinity affinity : affinityMap.keySet())
+        {
+            final TupleT2<Integer, Float> scaling = affinityMap.get(affinity);
+            if (showActualScaling)
+            {
+                cs.SetColor(scaling.V2 > 0 ? Colors.Green(1) : Colors.Cream(0.75f));
+                cs.text = "+" + Mathf.CeilToInt(scaling.V2);
+            }
+            else
+            {
+                cs.SetColor(Colors.Cream(1));
+                cs.text = "x" + scaling.V1;
+            }
+
+            offset_y += RenderScaling(sb, affinity.GetPowerIcon(false), cs, offset_y, Color.BLACK);//affinity.GetAlternateColor());
         }
     }
 

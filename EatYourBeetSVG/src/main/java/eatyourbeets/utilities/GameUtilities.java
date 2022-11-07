@@ -72,8 +72,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.util.*;
 
-import static com.megacrit.cardcrawl.dungeons.AbstractDungeon.actionManager;
-import static com.megacrit.cardcrawl.dungeons.AbstractDungeon.player;
+import static com.megacrit.cardcrawl.dungeons.AbstractDungeon.*;
 
 public class GameUtilities
 {
@@ -433,39 +432,74 @@ public class GameUtilities
         return creature.hasPower(ArtifactPower.POWER_ID) || creature.hasPower(TemporaryArtifactPower.POWER_ID);
     }
 
-    public static boolean HasAffinity(AbstractCard card, Affinity affinity, boolean useStar)
+    public static boolean HasAffinity(AbstractCard card, Affinity affinity)
     {
-        return GetAffinityLevel(card, affinity, useStar) > 0;
+        return HasAffinity(card, affinity, true, false);
+    }
+
+    public static boolean HasAffinity(AbstractCard card, Affinity affinity, boolean useStar, boolean allowSeal)
+    {
+        return GetAffinityLevel(card, affinity, useStar, allowSeal) > 0;
     }
 
     public static boolean HasRedAffinity(AbstractCard card)
     {
-        return GetAffinityLevel(card, Affinity.Red, true) > 0;
+        return HasRedAffinity(card, false);
+    }
+
+    public static boolean HasRedAffinity(AbstractCard card, boolean allowSeal)
+    {
+        return HasAffinity(card, Affinity.Red, true, false);
     }
 
     public static boolean HasGreenAffinity(AbstractCard card)
     {
-        return GetAffinityLevel(card, Affinity.Green, true) > 0;
+        return HasGreenAffinity(card, false);
+    }
+
+    public static boolean HasGreenAffinity(AbstractCard card, boolean allowSeal)
+    {
+        return HasAffinity(card, Affinity.Green, true, false);
     }
 
     public static boolean HasBlueAffinity(AbstractCard card)
     {
-        return GetAffinityLevel(card, Affinity.Blue, true) > 0;
+        return HasBlueAffinity(card, false);
+    }
+
+    public static boolean HasBlueAffinity(AbstractCard card, boolean allowSeal)
+    {
+        return HasAffinity(card, Affinity.Blue, true, false);
     }
 
     public static boolean HasLightAffinity(AbstractCard card)
     {
-        return GetAffinityLevel(card, Affinity.Light, true) > 0;
+        return HasLightAffinity(card, false);
+    }
+
+    public static boolean HasLightAffinity(AbstractCard card, boolean allowSeal)
+    {
+        return HasAffinity(card, Affinity.Light, true, false);
     }
 
     public static boolean HasDarkAffinity(AbstractCard card)
     {
-        return GetAffinityLevel(card, Affinity.Dark, true) > 0;
+        return HasDarkAffinity(card, false);
+    }
+
+    public static boolean HasDarkAffinity(AbstractCard card, boolean allowSeal)
+    {
+        return HasAffinity(card, Affinity.Dark, true, false);
     }
 
     public static boolean HasMulticolorAffinity(AbstractCard card)
     {
-        return GetAffinityLevel(card, Affinity.Star, true) > 0;
+        return HasMulticolorAffinity(card, false);
+    }
+
+    public static boolean HasMulticolorAffinity(AbstractCard card, boolean allowSeal)
+    {
+        return HasAffinity(card, Affinity.Star, true, false);
     }
 
     public static boolean IsSealed(AbstractCard card)

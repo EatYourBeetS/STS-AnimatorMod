@@ -19,7 +19,7 @@ public class Yuuichirou_Asuramaru extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 6, 2);
+        Initialize(0, 0, 5, 2);
         SetUpgrade(0, 0, 2, 0);
 
         SetAffinity_Green(2);

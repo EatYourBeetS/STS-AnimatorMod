@@ -2,6 +2,7 @@ package eatyourbeets.cards.animator.series.Elsword;
 
 import basemod.abstracts.CustomSavable;
 import eatyourbeets.cards.base.*;
+import eatyourbeets.cards.base.modifiers.DamageModifiers;
 import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
@@ -33,7 +34,6 @@ public class Elesis extends AnimatorCard implements CustomSavable<Elesis.Form>
             });
 
     private Form currentForm;
-    private int bonusDamage = 0;
 
     public Elesis()
     {
@@ -61,11 +61,7 @@ public class Elesis extends AnimatorCard implements CustomSavable<Elesis.Form>
 
         if (currentForm == Form.Saber)
         {
-            GameActions.Bottom.ModifyAllInstances(uuid, c ->
-            {
-                ((Elesis)c).AddDamageBonus(magicNumber);
-                c.applyPowers();
-            });
+            GameActions.Bottom.ModifyAllInstances(uuid, c -> DamageModifiers.For(c).Add(magicNumber));
             GameActions.Bottom.Flash(this);
         }
     }
@@ -77,7 +73,7 @@ public class Elesis extends AnimatorCard implements CustomSavable<Elesis.Form>
 
         if (currentForm == Form.Saber)
         {
-            GameActions.Bottom.ModifyAllInstances(uuid, c -> ((Elesis)c).AddDamageBonus(magicNumber));
+            GameActions.Bottom.ModifyAllInstances(uuid, c -> DamageModifiers.For(c).Add(magicNumber));
         }
         else if (currentForm == Form.Pyro && CombatStats.TryActivateSemiLimited(cardID))
         {
@@ -94,12 +90,8 @@ public class Elesis extends AnimatorCard implements CustomSavable<Elesis.Form>
         {
             case Saber:
             {
-                GameActions.Bottom.SpendEnergy(999, true).AddCallback(amount ->
-                {
-                    GameActions.Bottom.GainForce(amount * 2);
-                    GameActions.Bottom.GainBlessing(amount * 2);
-                });
-                AddDamageBonus(-bonusDamage);
+                GameActions.Bottom.GainForce(secondaryValue);
+                GameActions.Bottom.GainBlessing(secondaryValue);
                 break;
             }
 
@@ -228,8 +220,9 @@ public class Elesis extends AnimatorCard implements CustomSavable<Elesis.Form>
             {
                 LoadImage("_Saber");
 
-                Initialize(4, 0, 5);
-                SetUpgrade(0, 0, 2);
+                Initialize(8, 0, 5, 3);
+                SetUpgrade(0, 0, 3, 0);
+                SetExhaust(true);
 
                 affinities.Clear();
                 SetAffinity_Red(1, 0, 3);
@@ -238,7 +231,7 @@ public class Elesis extends AnimatorCard implements CustomSavable<Elesis.Form>
 
                 this.cardText.OverrideDescription(cardData.Strings.EXTENDED_DESCRIPTION[0], true);
                 this.isCostModified = this.isCostModifiedForTurn = false;
-                this.cost = this.costForTurn = 1;
+                this.cost = this.costForTurn = 2;
 
                 break;
             }
@@ -266,7 +259,7 @@ public class Elesis extends AnimatorCard implements CustomSavable<Elesis.Form>
             {
                 LoadImage("_Dark");
 
-                Initialize(5, 0, 2);
+                Initialize(6, 0, 2);
                 SetUpgrade(3, 0, 0);
 
                 affinities.Clear();
@@ -286,12 +279,6 @@ public class Elesis extends AnimatorCard implements CustomSavable<Elesis.Form>
             upgraded = false;
             upgrade();
         }
-    }
-
-    protected void AddDamageBonus(int amount)
-    {
-        bonusDamage += amount;
-        baseDamage += amount;
     }
 
     @Override

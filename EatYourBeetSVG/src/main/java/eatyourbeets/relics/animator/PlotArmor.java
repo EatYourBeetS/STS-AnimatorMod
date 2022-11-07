@@ -1,89 +1,36 @@
 package eatyourbeets.relics.animator;
 
 import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.core.AbstractCreature;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import eatyourbeets.interfaces.subscribers.OnModifyDamageLastSubscriber;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.relics.AnimatorRelic;
-import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.InputManager;
 
-public class PlotArmor extends AnimatorRelic
+public class PlotArmor extends AnimatorRelic implements OnModifyDamageLastSubscriber
 {
     public static final String ID = CreateFullID(PlotArmor.class);
-    public static final int HP_THRESHOLD = 50;
-    public static final int BASE_DODGE_CHANCE = 10;
+    public static final int MINIMUM_ASCENSION = 7;
 
     public PlotArmor()
     {
         super(ID, RelicTier.SPECIAL, LandingSound.CLINK);
 
-        SetCounter(20);
+        SetCounter(AbstractDungeon.ascensionLevel);
         updateDescription();
+    }
+
+    @Override
+    public boolean canSpawn()
+    {
+        return super.canSpawn() && AbstractDungeon.ascensionLevel >= MINIMUM_ASCENSION;
     }
 
     @Override
     public String getUpdatedDescription()
     {
-        return FormatDescription(0, counter, HP_THRESHOLD);
-    }
-
-    @Override
-    public void update()
-    {
-        super.update();
-
-        if (hb.hovered && (!GameUtilities.InBattle() || GameUtilities.CanAcceptInput(false)) && InputManager.RightClick.IsJustPressed())
-        {
-            if (AddCounter(10) > 50)
-            {
-                SetCounter(BASE_DODGE_CHANCE);
-            }
-            updateDescription();
-        }
-    }
-
-    @Override
-    protected void ActivateBattleEffect()
-    {
-        super.ActivateBattleEffect();
-
-        this.pulse = player.isBloodied;
-    }
-
-    @Override
-    protected void DeactivateBattleEffect()
-    {
-        super.DeactivateBattleEffect();
-
-        this.pulse = false;
-    }
-
-    @Override
-    public void onBloodied()
-    {
-        super.onBloodied();
-
-        this.flash();
-        this.pulse = true;
-    }
-
-    @Override
-    public void onNotBloodied()
-    {
-        super.onNotBloodied();
-
-        this.pulse = false;
-    }
-
-    @Override
-    public int onAttackedToChangeDamage(DamageInfo info, int damageAmount)
-    {
-        if (player.isBloodied && info.type == DamageInfo.DamageType.NORMAL && damageAmount > 0 && rng.randomBoolean(counter / 100f))
-        {
-            damageAmount = 0;
-            flash();
-        }
-
-        return super.onAttackedToChangeDamage(info, damageAmount);
+        return FormatDescription(0, MINIMUM_ASCENSION);
     }
 
     @Override
@@ -91,27 +38,41 @@ public class PlotArmor extends AnimatorRelic
     {
         super.onEquip();
 
-        GR.Common.Dungeon.SetCheating();
+        SetCounter(AbstractDungeon.ascensionLevel);
     }
 
-    //    @Override
-//    public void renderCounter(SpriteBatch sb, boolean inTopPanel)
-//    {
-//        if (this.counter >= 0)
-//        {
-//            final String text = GetCounterString();
-//            final float offset_y = -(hb.height * 0.5f) - (7.0F * Settings.scale);
-//            final float offset_x = -(hb.width * 0.1f);
-//            if (inTopPanel)
-//            {
-//                FontHelper.renderFontCenteredTopAligned(sb, FontHelper.topPanelInfoFont, text,
-//                        _offsetX.Get(null) + this.currentX + offset_x, this.currentY + offset_y, Color.WHITE);
-//            }
-//            else
-//            {
-//                FontHelper.renderFontCenteredTopAligned(sb, FontHelper.topPanelInfoFont, text,
-//                        this.currentX + offset_x, this.currentY + offset_y, Color.WHITE);
-//            }
-//        }
-//    }
+    @Override
+    protected void RefreshBattleEffect(boolean enabled)
+    {
+        super.RefreshBattleEffect(enabled);
+
+        CombatStats.onModifyDamageLast.ToggleSubscription(this, enabled);
+    }
+
+    @Override
+    public int OnModifyDamageLast(AbstractCreature target, DamageInfo info, int damage)
+    {
+        if (target != player)
+        {
+            return damage;
+        }
+
+        final int hp = GameUtilities.GetHP(target, true, false);
+        final int excessDamage = 1 + damage - hp;
+        if (hp > 0 && excessDamage > 0 && counter >= excessDamage)
+        {
+            damage -= excessDamage;
+            AddCounter(-excessDamage);
+            target.decreaseMaxHealth(excessDamage);
+            flash();
+        }
+
+        if (counter <= 0)
+        {
+            SetCounter(0);
+            SetEnabled(false);
+        }
+
+        return damage;
+    }
 }

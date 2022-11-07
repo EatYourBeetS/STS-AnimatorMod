@@ -206,7 +206,8 @@
 			"If you have reached or surpassed the maximum number of copies, this card will stop appearing in card rewards and shops.",
 			"Mulligan",
 			"At the start of combat, before playing any card, you may #pRight-Click a card to shuffle it into your draw pile and draw #b1 card. Take #b1 [DD] on the first use and #b2 [DD] on the second use.",
-		  	"I cannot Seal this card."
+		  	"I cannot Seal this card.",
+			"Use Right-Click instead of Left-Click for clickable powers."
 		]
 	},
 	

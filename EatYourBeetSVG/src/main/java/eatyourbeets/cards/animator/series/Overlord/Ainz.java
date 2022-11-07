@@ -1,9 +1,9 @@
 package eatyourbeets.cards.animator.series.Overlord;
 
 import com.badlogic.gdx.graphics.Color;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
@@ -12,6 +12,7 @@ import eatyourbeets.orbs.animator.Chaos;
 import eatyourbeets.powers.AnimatorClickablePower;
 import eatyourbeets.powers.PowerTriggerConditionType;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
 public class Ainz extends AnimatorCard
 {
@@ -26,20 +27,20 @@ public class Ainz extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0);
-        SetUpgrade(0, 7);
+        Initialize(0, 0, POWER_ENERGY_COST, CHANNEL_AMOUNT);
+        SetCostUpgrade(-1);
 
         SetAffinity_Red(1);
         SetAffinity_Blue(2);
         SetAffinity_Dark(2);
-
-        SetObtainableInCombat(false);
     }
 
     @Override
-    protected String GetRawDescription(Object... args)
+    public void triggerOnAffinitySeal(boolean reshuffle)
     {
-        return super.GetRawDescription(POWER_ENERGY_COST, CHANNEL_AMOUNT);
+        super.triggerOnAffinitySeal(reshuffle);
+
+        GameActions.Bottom.Motivate(this, 1);
     }
 
     @Override
@@ -53,11 +54,6 @@ public class Ainz extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        if (block > 0)
-        {
-            GameActions.Bottom.GainBlock(block);
-        }
-
         GameActions.Bottom.StackPower(new AinzPower(p, 1));
     }
 
@@ -89,19 +85,15 @@ public class Ainz extends AnimatorCard
         }
 
         @Override
-        public void atStartOfTurnPostDraw()
+        public void onPlayCard(AbstractCard card, AbstractMonster m)
         {
-            super.atStartOfTurnPostDraw();
+            super.onPlayCard(card, m);
 
-            for (Affinity a : Affinity.Basic())
+            if (GameUtilities.IsHighCost(card))
             {
-                if (a != Affinity.Light)
-                {
-                    GameActions.Bottom.GainAffinity(a, amount, true);
-                }
+                GameActions.Bottom.GainEnergy(amount);
+                flash();
             }
-
-            this.flash();
         }
 
         @Override

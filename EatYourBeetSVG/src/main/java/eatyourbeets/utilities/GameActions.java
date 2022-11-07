@@ -844,12 +844,14 @@ public final class GameActions
 
     public ModifyAffinityLevel SealAffinities(AbstractCard card, boolean reshuffle)
     {
-        return Add(new ModifyAffinityLevel(card, null, 0, false)).Seal(true, reshuffle);
+        return (ModifyAffinityLevel)Add(new ModifyAffinityLevel(card, null, 0, false))
+                .Seal(true, reshuffle).SetDuration(0.05f, false);
     }
 
     public ModifyAffinityLevel SealAffinities(CardGroup group, int cards, boolean reshuffle)
     {
-        return Add(new ModifyAffinityLevel(group, cards, null, 0, false)).Seal(true, reshuffle);
+        return (ModifyAffinityLevel)Add(new ModifyAffinityLevel(group, cards, null, 0, false))
+                .Seal(true, reshuffle).SetDuration(0.05f, false);
     }
 
     public ModifyAffinityLevel ModifyAffinityLevel(AbstractCard card, Affinity affinity, int amount, boolean relative)

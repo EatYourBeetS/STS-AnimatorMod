@@ -172,7 +172,7 @@ public class EYBCardAffinityRow extends GUIElement
         final int level = Mathf.Clamp(cardAffinities.GetLevel(Type, true), 0, 2);
         if (level > 0)
         {
-            GameActions.Top.GainAffinity(Type, level, false);
+            GameActions.Top.GainAffinity(Type, level, false).SetDuration(0.05f, false);
         }
     }
 
@@ -193,16 +193,13 @@ public class EYBCardAffinityRow extends GUIElement
 
         if (Type.ID >= 0)
         {
-            //button_upgrade.SetColor(Testing.TryGetColor(button_upgrade.buttonColor), 0.6f);
-
-            if (button_upgrade.SetInteractable(Level >= UpgradeCost && Power.CanUpgrade()).interactable)
+            if ((button_upgrade.SetActive(Power.CanUpgrade())).isActive)
             {
-                hasUpgradableAffinities = true;
-            }
+                if (button_upgrade.SetInteractable(Level >= UpgradeCost).interactable)
+                {
+                    hasUpgradableAffinities = true;
+                }
 
-            if (button_upgrade.isActive)
-            {
-                //text_upgrade.SetText(UpgradeCost).SetColor(Power.boost > 0 ? Colors.Green(1) : Colors.Cream(1));
                 button_upgrade.SetText(UpgradeCost, false).SetTextColor(Power.boost > 0 ? Colors.Green(1) : Colors.Cream(1), 0.4f);
             }
         }

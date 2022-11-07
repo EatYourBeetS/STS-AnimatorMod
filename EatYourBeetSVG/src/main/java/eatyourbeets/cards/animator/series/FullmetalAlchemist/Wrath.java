@@ -39,7 +39,7 @@ public class Wrath extends AnimatorCard
     {
         if (CheckSpecialCondition(true))
         {
-            GameActions.Bottom.MakeCardInHand(AffinityToken.GetCopy(Affinity.Red, upgraded));
+            GameActions.Bottom.MakeCardInHand(AffinityToken.GetCopy(Affinity.Red, true));
         }
 
         GameActions.Bottom.IncreaseScaling(player.hand, player.hand.size(), Affinity.Red, 1).SetFilter(c -> c.uuid != uuid);

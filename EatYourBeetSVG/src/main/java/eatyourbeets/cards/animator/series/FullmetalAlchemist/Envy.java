@@ -20,12 +20,13 @@ public class Envy extends AnimatorCard
             .SetPower(2, CardRarity.RARE)
             .SetSeriesFromClassPackage();
     public static final int TEMP_HP_ENERGY_COST = 2;
+    public static final int HP_THRESHOLD = 20;
 
     public Envy()
     {
         super(DATA);
 
-        Initialize(0, 0, TEMP_HP_ENERGY_COST);
+        Initialize(0, 0, TEMP_HP_ENERGY_COST, HP_THRESHOLD);
 
         SetAffinity_Star(1, 1, 0);
 
@@ -116,7 +117,7 @@ public class Envy extends AnimatorCard
 
         private void UpdateVitality()
         {
-            final int newValue = GameUtilities.GetHealthPercentage(player) < 0.25f ? 2 : 1;
+            final int newValue = GameUtilities.GetHP(player, false, false) < Envy.HP_THRESHOLD ? 2 : 1;
             if (newValue != vitality)
             {
                 vitality = newValue;

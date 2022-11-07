@@ -1,12 +1,13 @@
 package eatyourbeets.cards.animator.series.OwariNoSeraph;
 
-import eatyourbeets.cards.base.CardUseInfo;
-import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.special.Yuuichirou_Asuramaru;
+import eatyourbeets.cards.animator.status.Status_Void;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.effects.SFX;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
@@ -16,7 +17,11 @@ public class Yuuichirou extends AnimatorCard
     public static final EYBCardData DATA = Register(Yuuichirou.class)
             .SetAttack(1, CardRarity.UNCOMMON)
             .SetSeriesFromClassPackage()
-            .PostInitialize(data -> data.AddPreview(new Yuuichirou_Asuramaru(), false));
+            .PostInitialize(data ->
+            {
+                data.AddPreview(new Yuuichirou_Asuramaru(), true);
+                data.AddPreview(new Status_Void(true), true);
+            });
 
     public Yuuichirou()
     {
@@ -36,7 +41,7 @@ public class Yuuichirou extends AnimatorCard
 
         if (CombatStats.TryActivateLimited(cardID))
         {
-            GameActions.Bottom.MakeCardInDiscardPile(new Yuuichirou_Asuramaru()).SetUpgrade(false, false);
+            GameActions.Bottom.MakeCardInDiscardPile(new Yuuichirou_Asuramaru()).SetUpgrade(upgraded, false);
             GameActions.Bottom.SFX(SFX.ATTACK_MAGIC_FAST_2, 0.6f, 0.65f, 0.95f);
         }
     }

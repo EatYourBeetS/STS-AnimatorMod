@@ -77,7 +77,7 @@ public class MoltSolAugustus extends AnimatorCard
         @Override
         public void OnAffinitySealed(EYBCard card, boolean manual)
         {
-            if (GameUtilities.HasRedAffinity(card))
+            if (GameUtilities.HasRedAffinity(card, true))
             {
                 CombatStats.Affinities.AddAffinitySealUses(amount);
                 GameActions.Bottom.GainInspiration(amount);

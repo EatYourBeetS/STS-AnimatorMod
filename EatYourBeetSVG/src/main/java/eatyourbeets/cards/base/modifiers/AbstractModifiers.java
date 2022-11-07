@@ -34,32 +34,32 @@ public abstract class AbstractModifiers
     public void Add(int amount)
     {
         baseAmount += amount;
-        Apply(card);
+        Apply();
     }
 
     public void Add(String key, int amount)
     {
         JUtils.IncrementMapElement(modifiers, key, amount);
-        Apply(card);
+        Apply();
     }
 
     public void Set(int amount)
     {
         baseAmount = amount;
-        Apply(card);
+        Apply();
     }
 
     public void Set(String key, int amount)
     {
         modifiers.put(key, amount);
-        Apply(card);
+        Apply();
     }
 
     public void Remove(String key)
     {
         if (modifiers.remove(key) != null)
         {
-            Apply(card);
+            Apply();
         }
     }
 
@@ -68,5 +68,5 @@ public abstract class AbstractModifiers
         return modifiers.get(key);
     }
 
-    protected abstract void Apply(AbstractCard card);
+    protected abstract void Apply();
 }

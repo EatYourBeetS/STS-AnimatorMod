@@ -69,6 +69,7 @@ public class HealCreature extends EYBActionWithCallback<TupleT2<AbstractCreature
     @Override
     protected void FirstUpdate()
     {
+        final int initialAmount = amount;
         if (target.isPlayer)
         {
             if (recover)
@@ -76,7 +77,7 @@ public class HealCreature extends EYBActionWithCallback<TupleT2<AbstractCreature
                 maxHPRecover = Math.max(maxHPRecover, CombatStats.MaxHPSinceLastTurn);
                 amount = Math.min(amount, maxHPRecover - player.currentHealth);
 
-                if (amount <= 0)
+                if (amount <= 0 && !overheal)
                 {
                     Complete(new TupleT2<>(target, 0));
                     return;
@@ -116,7 +117,7 @@ public class HealCreature extends EYBActionWithCallback<TupleT2<AbstractCreature
             target.currentHealth = maxHPRecover;
         }
 
-        final int excessDifference = amount - (target.currentHealth - previousHP);
+        final int excessDifference = (recover ? initialAmount : amount) - (target.currentHealth - previousHP);
         if (overheal && excessDifference > 0)
         {
             GameActions.Top.GainTemporaryHP(excessDifference);

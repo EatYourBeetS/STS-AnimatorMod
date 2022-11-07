@@ -29,8 +29,9 @@ public abstract class ImprovedDefend extends ImprovedBasicCard
 
     protected static EYBCardData Register(Class<? extends AnimatorCard> type)
     {
-        return AnimatorCard.Register(type).SetColor(CardColor.COLORLESS).SetSkill(1, CardRarity.BASIC, EYBCardTarget.None)
-                .SetImagePath(GR.GetCardImage(Defend.DATA.ID + "Alt1"));
+        return AnimatorCard.Register(type)
+        .SetColor(CardColor.COLORLESS).SetSkill(1, CardRarity.BASIC, EYBCardTarget.None)
+        .SetImagePath(GR.GetCardImage(Defend.DATA.ID + "Alt1"));
     }
 
     public ImprovedDefend(EYBCardData data, Affinity affinity)

@@ -87,7 +87,7 @@ public class RollingCubes extends AnimatorRelic
         fakeRewardItem.cards.clear();
         fakeRewardItem.cards.addAll(rewardItem.cards);
 
-        final ArrayList<AbstractCard> pool = GameUtilities.GetAvailableCards(GenericCondition.FromT2((a, c) -> GameUtilities.HasAffinity(c, a, true), affinity));
+        final ArrayList<AbstractCard> pool = GameUtilities.GetAvailableCards(GenericCondition.FromT2((a, c) -> GameUtilities.HasAffinity(c, a), affinity));
         final ArrayList<AbstractCard> replacement = new ArrayList<>();
         for (AbstractCard c : rewardItem.cards)
         {

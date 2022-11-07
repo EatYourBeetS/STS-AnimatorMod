@@ -14,19 +14,20 @@ import eatyourbeets.utilities.Mathf;
 
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.StringJoiner;
 
 public class TemporaryStatsPower extends CommonPower implements OnModifyDebuffSubscriber
 {
     public static final String POWER_ID = CreateFullID(TemporaryStatsPower.class);
 
-    protected final HashMap<PowerHelper, Integer> powers;
+    protected final LinkedHashMap<PowerHelper, Integer> powers;
 
     public TemporaryStatsPower(AbstractCreature owner, HashMap<PowerHelper, Integer> powers)
     {
         super(owner, POWER_ID);
 
-        this.powers = new HashMap<>(powers);
+        this.powers = new LinkedHashMap<>(powers);
 
         Initialize(-1);
     }

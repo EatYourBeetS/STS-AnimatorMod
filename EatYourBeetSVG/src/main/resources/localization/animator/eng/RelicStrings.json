@@ -191,8 +191,8 @@
 	},
 	"animator:PlotArmor":
 	{
-		"DESCRIPTIONS": ["Gain a #b{0}% chance to dodge attacks while below #b{1}% Max [HP]. NL #pRight-Click to change amount."],
-		"FLAVOR": "Being integral part of the plot protects you, but also prevents you from straying too far off the main path.",
+		"DESCRIPTIONS": ["Available from A{0}+. Starts with charges equal to your #yAscension. NL Prevents lethal damage up to the number of charges, losing charges and Max [HP] equal to the damage reduction."],
+		"FLAVOR": "And just when all hope was lost...",
 		"NAME": "Plot Armor"
 	},
 	"animator:PurgingStone":

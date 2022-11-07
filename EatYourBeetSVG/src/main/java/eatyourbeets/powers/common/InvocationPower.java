@@ -16,7 +16,6 @@ public class InvocationPower extends CommonPower
     public static final String POWER_ID = CreateFullID(InvocationPower.class);
     public static final int MAX_CHARGE = 12;
     public static final int THRESHOLD_STEP = 3;
-    public static final int RECOVER_AMOUNT = 2;
 
     protected int threshold = THRESHOLD_STEP;
     protected int charge = 0;
@@ -37,7 +36,7 @@ public class InvocationPower extends CommonPower
     @Override
     public void updateDescription()
     {
-        this.description = FormatDescription(0, RECOVER_AMOUNT, amount, THRESHOLD_STEP, MAX_CHARGE);
+        this.description = FormatDescription(0, amount, THRESHOLD_STEP, MAX_CHARGE);
     }
 
     @Override
@@ -55,8 +54,6 @@ public class InvocationPower extends CommonPower
 
         if (enabled && amount > 0)
         {
-            GameActions.Delayed.Callback(() -> GameActions.Delayed.RecoverHP(RECOVER_AMOUNT));
-
             charge = Mathf.Min(MAX_CHARGE, charge + amount);
 
             boolean playSound = false;
@@ -116,7 +113,7 @@ public class InvocationPower extends CommonPower
         {
             GameActions.Top.MakeCardInDrawPile(new Crystallize())
             .SetDestination(CardSelection.Top)
-            .ShowEffect(false);
+            .ShowEffect(true);
         }
     }
 }

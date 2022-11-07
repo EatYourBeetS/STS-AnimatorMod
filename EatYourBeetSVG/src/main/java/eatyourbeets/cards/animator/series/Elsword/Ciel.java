@@ -28,10 +28,10 @@ public class Ciel extends AnimatorCard
         super(DATA);
 
         Initialize(0, 4, 12, 2);
-        SetUpgrade(0, 2, 0, 0);
+        SetUpgrade(0, 1, 0, 0);
 
-        SetAffinity_Green(1);
-        SetAffinity_Dark(2);
+        SetAffinity_Green(1, 1, 0);
+        SetAffinity_Dark(1, 1, 0);
 
         SetAffinityRequirement(Affinity.Dark, 1);
     }

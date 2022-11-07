@@ -39,14 +39,6 @@ public class Ara extends AnimatorCard
     }
 
     @Override
-    public void triggerOnAffinitySeal(boolean reshuffle)
-    {
-        super.triggerOnAffinitySeal(reshuffle);
-
-        GameActions.Bottom.GainInspiration(magicNumber);
-    }
-
-    @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.DealDamage(this, m, AttackEffects.SPEAR).SetSoundPitch(1.1f, 1.3f);
@@ -68,7 +60,7 @@ public class Ara extends AnimatorCard
 
         if (CheckSpecialCondition(true))
         {
-            GameActions.Bottom.GainInspiration(magicNumber);
+            GameActions.Bottom.BoostAffinity(Affinity.Red);
         }
     }
 }

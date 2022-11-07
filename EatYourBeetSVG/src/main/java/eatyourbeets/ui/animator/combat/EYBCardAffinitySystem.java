@@ -184,7 +184,7 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
 
     public void AddAffinitySealUses(int uses)
     {
-        GetRow(Affinity.Sealed).GainAffinity(1, false);
+        GetRow(Affinity.Sealed).GainAffinity(uses, false);
     }
 
     public void AddAffinity(Affinity affinity, int amount)

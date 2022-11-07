@@ -10,7 +10,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Alexander extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(Alexander.class).SetAttack(1, CardRarity.COMMON, EYBAttackType.Normal, EYBCardTarget.ALL);
+    public static final EYBCardData DATA = Register(Alexander.class).SetSeriesFromClassPackage().SetAttack(1, CardRarity.COMMON, EYBAttackType.Normal, EYBCardTarget.ALL);
 
     public Alexander()
     {
@@ -21,7 +21,7 @@ public class Alexander extends AnimatorClassicCard
         SetScaling(0, 0, 1);
 
         SetMultiDamage(true);
-        SetSeries(CardSeries.Fate);
+
     }
 
     @Override

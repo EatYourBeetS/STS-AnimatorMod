@@ -17,7 +17,7 @@ import eatyourbeets.utilities.RandomizedList;
 
 public class MisakiNakahara extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(MisakiNakahara.class).SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None).SetColor(CardColor.COLORLESS);
+    public static final EYBCardData DATA = Register(MisakiNakahara.class).SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None).SetColor(CardColor.COLORLESS).SetSeries(CardSeries.WelcomeToNHK);
 
     public MisakiNakahara()
     {
@@ -26,7 +26,6 @@ public class MisakiNakahara extends AnimatorClassicCard
         Initialize(0, 0, 2);
 
         SetExhaust(true);
-        SetSeries(CardSeries.WelcomeToNHK);
     }
 
     @Override

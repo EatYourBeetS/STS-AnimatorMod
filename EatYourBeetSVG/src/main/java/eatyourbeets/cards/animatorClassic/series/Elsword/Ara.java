@@ -14,7 +14,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Ara extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(Ara.class).SetAttack(1, CardRarity.COMMON);
+    public static final EYBCardData DATA = Register(Ara.class).SetSeriesFromClassPackage().SetAttack(1, CardRarity.COMMON);
 
     public Ara()
     {
@@ -24,7 +24,7 @@ public class Ara extends AnimatorClassicCard
         SetUpgrade(2, 0);
         SetScaling(0, 1, 0);
 
-        SetSeries(CardSeries.Elsword);
+        
         SetMartialArtist();
     }
 

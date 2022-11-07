@@ -11,7 +11,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class Rimuru extends AnimatorClassicCard implements OnAfterCardPlayedSubscriber
 {
-    public static final EYBCardData DATA = Register(Rimuru.class).SetSkill(-2, CardRarity.RARE, EYBCardTarget.ALL).SetMaxCopies(2);
+    public static final EYBCardData DATA = Register(Rimuru.class).SetSeriesFromClassPackage().SetSkill(-2, CardRarity.RARE, EYBCardTarget.ALL).SetMaxCopies(2);
 
     public AbstractCard copy;
 
@@ -20,7 +20,7 @@ public class Rimuru extends AnimatorClassicCard implements OnAfterCardPlayedSubs
         super(DATA);
 
         Initialize(0, 0);
-        SetSeries(CardSeries.TenseiSlime);
+        
         SetShapeshifter();
 
         this.copy = this;

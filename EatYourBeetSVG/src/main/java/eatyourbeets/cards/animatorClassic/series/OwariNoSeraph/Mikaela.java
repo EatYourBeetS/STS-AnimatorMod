@@ -14,7 +14,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Mikaela extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(Mikaela.class).SetAttack(1, CardRarity.COMMON);
+    public static final EYBCardData DATA = Register(Mikaela.class).SetSeriesFromClassPackage().SetAttack(1, CardRarity.COMMON);
 
     public Mikaela()
     {
@@ -24,7 +24,7 @@ public class Mikaela extends AnimatorClassicCard
         SetUpgrade(2, 0, 1, 0);
         SetScaling(0, 0, 1);
 
-        SetSeries(CardSeries.OwariNoSeraph);
+
     }
 
     @Override

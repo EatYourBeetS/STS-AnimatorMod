@@ -14,7 +14,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class EmiyaShirou extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(EmiyaShirou.class).SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(EmiyaShirou.class).SetSeriesFromClassPackage().SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None);
 
     public EmiyaShirou()
     {
@@ -23,7 +23,7 @@ public class EmiyaShirou extends AnimatorClassicCard
         Initialize(0, 5, 2);
         SetUpgrade(0, 1, 1);
 
-        SetSeries(CardSeries.Fate);
+        
     }
 
     @Override

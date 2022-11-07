@@ -9,10 +9,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.IntangiblePower;
 import com.megacrit.cardcrawl.vfx.combat.ExplosionSmallEffect;
 import com.megacrit.cardcrawl.vfx.combat.LaserBeamEffect;
-import eatyourbeets.cards.base.AnimatorClassicCard_UltraRare;
-import eatyourbeets.cards.base.CardSeries;
-import eatyourbeets.cards.base.CardUseInfo;
-import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.interfaces.subscribers.OnAfterCardDiscardedSubscriber;
 import eatyourbeets.interfaces.subscribers.OnAfterCardExhaustedSubscriber;
 import eatyourbeets.powers.CombatStats;
@@ -31,7 +28,7 @@ public class NivaLada extends AnimatorClassicCard_UltraRare implements OnAfterCa
         SetUpgrade(0, 0, 0);
 
         SetCooldown(18, -2, this::OnCooldownCompleted);
-        SetSeries(CardSeries.HitsugiNoChaika);
+        this.series = CardSeries.HitsugiNoChaika;
     }
 
     @Override

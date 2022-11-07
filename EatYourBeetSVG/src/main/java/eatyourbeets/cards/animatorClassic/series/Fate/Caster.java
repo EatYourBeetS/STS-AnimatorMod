@@ -18,7 +18,7 @@ import java.util.ArrayList;
 
 public class Caster extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(Caster.class).SetSkill(1, CardRarity.UNCOMMON);
+    public static final EYBCardData DATA = Register(Caster.class).SetSeriesFromClassPackage().SetSkill(1, CardRarity.UNCOMMON);
 
     private static final CardEffectChoice choices = new CardEffectChoice();
 
@@ -30,7 +30,7 @@ public class Caster extends AnimatorClassicCard
         SetUpgrade(0, 0, 0, 1);
 
         SetEthereal(true);
-        SetSeries(CardSeries.Fate);
+
         SetSpellcaster();
     }
 

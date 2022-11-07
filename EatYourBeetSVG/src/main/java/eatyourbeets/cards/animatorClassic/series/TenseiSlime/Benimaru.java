@@ -13,7 +13,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class Benimaru extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(Benimaru.class).SetAttack(1, CardRarity.COMMON, EYBAttackType.Elemental, EYBCardTarget.Normal);
+    public static final EYBCardData DATA = Register(Benimaru.class).SetSeriesFromClassPackage().SetAttack(1, CardRarity.COMMON, EYBAttackType.Elemental, EYBCardTarget.Normal);
 
     public Benimaru()
     {
@@ -22,7 +22,7 @@ public class Benimaru extends AnimatorClassicCard
         Initialize(3, 0, 2);
         SetUpgrade(4, 0, 0);
 
-        SetSeries(CardSeries.TenseiSlime);
+
     }
 
     @Override

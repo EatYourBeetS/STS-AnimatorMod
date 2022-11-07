@@ -25,7 +25,7 @@ public class Saber_Excalibur extends AnimatorClassicCard
 
         SetRetain(true);
         SetExhaust(true);
-        SetSeries(CardSeries.Fate);
+        this.series = CardSeries.Fate;
     }
 
     @Override

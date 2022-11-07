@@ -14,7 +14,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Mitsurugi extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(Mitsurugi.class).SetAttack(0, CardRarity.COMMON);
+    public static final EYBCardData DATA = Register(Mitsurugi.class).SetSeriesFromClassPackage().SetAttack(0, CardRarity.COMMON);
 
     private final TargetEffectPreview targetEffectPreview = new TargetEffectPreview(this::OnTargetChanged);
     private boolean showDamage = true;
@@ -27,7 +27,7 @@ public class Mitsurugi extends AnimatorClassicCard
         SetUpgrade(2, 0, 0, 0);
         SetScaling(0, 0, 1);
 
-        SetSeries(CardSeries.Konosuba);
+        
     }
 
     @Override

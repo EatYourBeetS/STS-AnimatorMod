@@ -17,7 +17,7 @@ import eatyourbeets.utilities.GameEffects;
 
 public class Emilia extends AnimatorClassicCard implements OnStartOfTurnPostDrawSubscriber
 {
-    public static final EYBCardData DATA = Register(Emilia.class).SetSkill(2, CardRarity.RARE, EYBCardTarget.None).SetColor(CardColor.COLORLESS);
+    public static final EYBCardData DATA = Register(Emilia.class).SetSkill(2, CardRarity.RARE, EYBCardTarget.None).SetColor(CardColor.COLORLESS).SetSeries(CardSeries.ReZero);
 
     public Emilia()
     {
@@ -28,7 +28,6 @@ public class Emilia extends AnimatorClassicCard implements OnStartOfTurnPostDraw
 
         SetEvokeOrbCount(magicNumber);
         SetExhaust(true);
-        SetSeries(CardSeries.ReZero);
         SetSpellcaster();
     }
 

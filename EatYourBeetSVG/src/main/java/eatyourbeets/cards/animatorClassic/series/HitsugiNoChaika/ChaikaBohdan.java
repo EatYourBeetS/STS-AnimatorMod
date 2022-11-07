@@ -17,7 +17,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class ChaikaBohdan extends AnimatorClassicCard implements OnAttackSubscriber
 {
-    public static final EYBCardData DATA = Register(ChaikaBohdan.class).SetAttack(1, CardRarity.COMMON);
+    public static final EYBCardData DATA = Register(ChaikaBohdan.class).SetSeriesFromClassPackage().SetAttack(1, CardRarity.COMMON);
 
     public ChaikaBohdan()
     {
@@ -26,7 +26,7 @@ public class ChaikaBohdan extends AnimatorClassicCard implements OnAttackSubscri
         Initialize(6, 0, 3, 2);
         SetUpgrade(1, 0);
 
-        SetSeries(CardSeries.HitsugiNoChaika);
+        
     }
 
     @Override

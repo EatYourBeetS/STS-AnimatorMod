@@ -11,7 +11,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class KyokoSakura extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(KyokoSakura.class).SetAttack(1, CardRarity.COMMON, EYBAttackType.Piercing, EYBCardTarget.Random);
+    public static final EYBCardData DATA = Register(KyokoSakura.class).SetSeriesFromClassPackage().SetAttack(1, CardRarity.COMMON, EYBAttackType.Piercing, EYBCardTarget.Random);
 
     public KyokoSakura()
     {
@@ -21,7 +21,7 @@ public class KyokoSakura extends AnimatorClassicCard
         SetUpgrade(2, 0, 1);
         SetScaling(0, 0, 1);
 
-        SetSeries(CardSeries.MadokaMagica);
+        
     }
 
     @Override

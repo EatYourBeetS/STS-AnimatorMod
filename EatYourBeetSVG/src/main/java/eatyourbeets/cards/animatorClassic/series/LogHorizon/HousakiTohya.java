@@ -12,7 +12,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class HousakiTohya extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(HousakiTohya.class).SetAttack(1, CardRarity.COMMON, EYBAttackType.Normal);
+    public static final EYBCardData DATA = Register(HousakiTohya.class).SetSeriesFromClassPackage().SetAttack(1, CardRarity.COMMON, EYBAttackType.Normal);
     static
     {
         DATA.AddPreview(new HousakiMinori(), false);
@@ -27,7 +27,7 @@ public class HousakiTohya extends AnimatorClassicCard
         SetScaling(0, 1, 1);
 
         SetMartialArtist();
-        SetSeries(CardSeries.LogHorizon);
+        
     }
 
     @Override

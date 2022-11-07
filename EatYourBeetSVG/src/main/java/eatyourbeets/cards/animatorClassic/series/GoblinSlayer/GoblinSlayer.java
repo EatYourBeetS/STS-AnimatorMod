@@ -14,7 +14,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class GoblinSlayer extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(GoblinSlayer.class).SetAttack(1, CardRarity.RARE);
+    public static final EYBCardData DATA = Register(GoblinSlayer.class).SetSeriesFromClassPackage().SetAttack(1, CardRarity.RARE);
 
     public GoblinSlayer()
     {
@@ -25,7 +25,7 @@ public class GoblinSlayer extends AnimatorClassicCard
         SetScaling(1, 0, 1);
 
         SetRetain(true);
-        SetSeries(CardSeries.GoblinSlayer);
+        
     }
 
     @Override

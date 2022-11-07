@@ -14,7 +14,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class AcuraShin extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(AcuraShin.class).SetAttack(2, CardRarity.RARE, EYBAttackType.Piercing);
+    public static final EYBCardData DATA = Register(AcuraShin.class).SetSeriesFromClassPackage().SetAttack(2, CardRarity.RARE, EYBAttackType.Piercing);
 
     public AcuraShin()
     {
@@ -25,7 +25,7 @@ public class AcuraShin extends AnimatorClassicCard
         SetCostUpgrade(-1);
 
         SetMartialArtist();
-        SetSeries(CardSeries.HitsugiNoChaika);
+        
     }
 
     @Override

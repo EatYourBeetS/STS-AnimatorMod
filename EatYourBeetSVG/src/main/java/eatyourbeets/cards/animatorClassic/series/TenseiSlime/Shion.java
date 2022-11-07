@@ -14,7 +14,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class Shion extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(Shion.class).SetAttack(2, CardRarity.COMMON);
+    public static final EYBCardData DATA = Register(Shion.class).SetSeriesFromClassPackage().SetAttack(2, CardRarity.COMMON);
 
     public Shion()
     {
@@ -24,7 +24,7 @@ public class Shion extends AnimatorClassicCard
         SetUpgrade(5, 0, 0);
         SetScaling(0, 0, 1);
 
-        SetSeries(CardSeries.TenseiSlime);
+        
     }
 
     @Override

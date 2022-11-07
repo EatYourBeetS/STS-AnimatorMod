@@ -14,7 +14,7 @@ import eatyourbeets.utilities.JUtils;
 
 public class Yoichi extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(Yoichi.class).SetSkill(0, CardRarity.COMMON, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(Yoichi.class).SetSeriesFromClassPackage().SetSkill(0, CardRarity.COMMON, EYBCardTarget.None);
 
     public Yoichi()
     {
@@ -23,7 +23,7 @@ public class Yoichi extends AnimatorClassicCard
         Initialize(0,0, 2);
         SetUpgrade(0,2, 0);
 
-        SetSeries(CardSeries.OwariNoSeraph);
+        
     }
 
     @Override

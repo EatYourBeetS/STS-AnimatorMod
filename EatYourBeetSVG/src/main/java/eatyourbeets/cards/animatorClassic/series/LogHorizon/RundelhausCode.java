@@ -18,7 +18,7 @@ import java.util.HashSet;
 
 public class RundelhausCode extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(RundelhausCode.class).SetAttack(2, CardRarity.UNCOMMON, EYBAttackType.Elemental, EYBCardTarget.Normal);
+    public static final EYBCardData DATA = Register(RundelhausCode.class).SetSeriesFromClassPackage().SetAttack(2, CardRarity.UNCOMMON, EYBAttackType.Elemental, EYBCardTarget.Normal);
 
     private static final HashSet<AbstractCard> buffs = new HashSet<>();
     private static final CardEffectChoice choices = new CardEffectChoice();
@@ -31,7 +31,7 @@ public class RundelhausCode extends AnimatorClassicCard
         SetUpgrade(0, 0, 1, 0);
 
         SetScaling(1, 0, 0);
-        SetSeries(CardSeries.LogHorizon);
+
         SetSpellcaster();
     }
 

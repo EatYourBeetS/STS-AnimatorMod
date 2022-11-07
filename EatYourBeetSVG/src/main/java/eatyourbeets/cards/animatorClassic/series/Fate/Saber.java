@@ -12,7 +12,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class Saber extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(Saber.class).SetAttack(1, CardRarity.RARE);
+    public static final EYBCardData DATA = Register(Saber.class).SetSeriesFromClassPackage().SetAttack(1, CardRarity.RARE);
     static
     {
         DATA.AddPreview(new Saber_Excalibur(), false);
@@ -28,7 +28,7 @@ public class Saber extends AnimatorClassicCard
 
         SetCooldown(8, 0, this::OnCooldownCompleted);
         SetLoyal(true);
-        SetSeries(CardSeries.Fate);
+        
     }
 
     @Override

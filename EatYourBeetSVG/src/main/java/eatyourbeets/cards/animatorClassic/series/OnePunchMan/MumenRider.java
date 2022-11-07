@@ -13,7 +13,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class MumenRider extends AnimatorClassicCard implements OnStartOfTurnPostDrawSubscriber
 {
-    public static final EYBCardData DATA = Register(MumenRider.class).SetAttack(0, CardRarity.COMMON);
+    public static final EYBCardData DATA = Register(MumenRider.class).SetSeriesFromClassPackage().SetAttack(0, CardRarity.COMMON);
 
     private int turns;
 
@@ -24,7 +24,7 @@ public class MumenRider extends AnimatorClassicCard implements OnStartOfTurnPost
         Initialize(3, 0, 20);
 
         SetExhaust(true);
-        SetSeries(CardSeries.OnePunchMan);
+        
     }
 
     @Override

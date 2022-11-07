@@ -16,7 +16,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Souei extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(Souei.class).SetSkill(2, CardRarity.UNCOMMON);
+    public static final EYBCardData DATA = Register(Souei.class).SetSeriesFromClassPackage().SetSkill(2, CardRarity.UNCOMMON);
 
     public Souei()
     {
@@ -25,7 +25,7 @@ public class Souei extends AnimatorClassicCard
         Initialize(0, 0, 6);
         SetUpgrade(0, 0, 2);
 
-        SetSeries(CardSeries.TenseiSlime);
+        
         SetMartialArtist();
     }
 

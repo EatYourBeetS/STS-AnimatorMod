@@ -14,7 +14,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class DolaRiku extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(DolaRiku.class).SetSkill(1, CardRarity.COMMON, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(DolaRiku.class).SetSeriesFromClassPackage().SetSkill(1, CardRarity.COMMON, EYBCardTarget.None);
 
     public DolaRiku()
     {
@@ -23,7 +23,7 @@ public class DolaRiku extends AnimatorClassicCard
         Initialize(0, 0, 2);
         SetUpgrade(0, 0, 1);
 
-        SetSeries(CardSeries.NoGameNoLife);
+        
     }
 
     @Override

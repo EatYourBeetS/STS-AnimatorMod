@@ -12,7 +12,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class OrikoMikuni extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(OrikoMikuni.class).SetSkill(0, CardRarity.COMMON, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(OrikoMikuni.class).SetSeriesFromClassPackage().SetSkill(0, CardRarity.COMMON, EYBCardTarget.None);
 
     private static final CardEffectChoice choices = new CardEffectChoice();
 
@@ -23,7 +23,7 @@ public class OrikoMikuni extends AnimatorClassicCard
         Initialize(0, 0, 3, 4);
         SetUpgrade(0, 0, 1, 2);
 
-        SetSeries(CardSeries.MadokaMagica);
+        
         SetSpellcaster();
     }
 

@@ -8,7 +8,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class SilverFang extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(SilverFang.class).SetSkill(2, CardRarity.COMMON, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(SilverFang.class).SetSeriesFromClassPackage().SetSkill(2, CardRarity.COMMON, EYBCardTarget.None);
 
     public SilverFang()
     {
@@ -17,7 +17,7 @@ public class SilverFang extends AnimatorClassicCard
         Initialize(0, 9, 1);
         SetUpgrade(0, 3, 0);
 
-        SetSeries(CardSeries.OnePunchMan);
+        
         SetMartialArtist();
     }
 

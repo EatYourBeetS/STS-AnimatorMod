@@ -20,7 +20,7 @@ public class Magilou_Bienfu extends AnimatorClassicCard
         Initialize(0, 0);
 
         SetEthereal(true);
-        SetSeries(CardSeries.TalesOfBerseria);
+        this.series = CardSeries.TalesOfBerseria;
     }
 
     @Override

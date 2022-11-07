@@ -14,7 +14,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class CowGirl extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(CowGirl.class).SetSkill(0, CardRarity.UNCOMMON, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(CowGirl.class).SetSeriesFromClassPackage().SetSkill(0, CardRarity.UNCOMMON, EYBCardTarget.None);
 
     public CowGirl()
     {
@@ -23,7 +23,7 @@ public class CowGirl extends AnimatorClassicCard
         Initialize(0, 0);
 
         SetExhaust(true);
-        SetSeries(CardSeries.GoblinSlayer);
+        
     }
 
     @Override

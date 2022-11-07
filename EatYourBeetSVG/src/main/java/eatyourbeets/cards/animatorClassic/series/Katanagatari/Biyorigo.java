@@ -11,7 +11,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class Biyorigo extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(Biyorigo.class).SetPower(2, CardRarity.RARE);
+    public static final EYBCardData DATA = Register(Biyorigo.class).SetSeriesFromClassPackage().SetPower(2, CardRarity.RARE);
 
     public Biyorigo()
     {
@@ -20,7 +20,7 @@ public class Biyorigo extends AnimatorClassicCard
         Initialize(0, 0, 3, 1);
         SetUpgrade(0, 0, 2, 0);
 
-        SetSeries(CardSeries.Katanagatari);
+        
     }
 
     @Override

@@ -16,7 +16,7 @@ import eatyourbeets.utilities.JUtils;
 
 public class Sebas extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(Sebas.class).SetSkill(2, CardRarity.UNCOMMON, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(Sebas.class).SetSeriesFromClassPackage().SetSkill(2, CardRarity.UNCOMMON, EYBCardTarget.None);
 
     public Sebas()
     {
@@ -27,7 +27,7 @@ public class Sebas extends AnimatorClassicCard
         SetScaling(0, 1, 2);
 
         SetExhaust(true);
-        SetSeries(CardSeries.Overlord);
+
     }
 
     @Override

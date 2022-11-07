@@ -14,7 +14,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Shalltear extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(Shalltear.class).SetAttack(2, CardRarity.UNCOMMON, EYBAttackType.Elemental, EYBCardTarget.ALL);
+    public static final EYBCardData DATA = Register(Shalltear.class).SetSeriesFromClassPackage().SetAttack(2, CardRarity.UNCOMMON, EYBAttackType.Elemental, EYBCardTarget.ALL);
 
     public Shalltear()
     {
@@ -25,7 +25,7 @@ public class Shalltear extends AnimatorClassicCard
         SetScaling(1, 1, 1);
 
         SetEthereal(true);
-        SetSeries(CardSeries.Overlord);
+
     }
 
     @Override

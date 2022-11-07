@@ -14,7 +14,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Envy extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(Envy.class).SetPower(2, CardRarity.RARE);
+    public static final EYBCardData DATA = Register(Envy.class).SetSeriesFromClassPackage().SetPower(2, CardRarity.RARE);
 
     public Envy()
     {
@@ -23,7 +23,7 @@ public class Envy extends AnimatorClassicCard
         Initialize(0, 0);
 
         SetEthereal(true);
-        SetSeries(CardSeries.FullmetalAlchemist);
+        
         SetShapeshifter();
     }
 

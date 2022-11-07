@@ -22,7 +22,7 @@ public class Yuuichirou_Asuramaru extends AnimatorClassicCard
         Initialize(0, 0, 3, 2);
 
         SetExhaust(true);
-        SetSeries(CardSeries.OwariNoSeraph);
+        this.series = CardSeries.OwariNoSeraph;
     }
 
     @Override

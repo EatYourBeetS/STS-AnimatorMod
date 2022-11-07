@@ -12,7 +12,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class Gluttony extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(Gluttony.class).SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(Gluttony.class).SetSeriesFromClassPackage().SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None);
 
     public Gluttony()
     {
@@ -22,7 +22,7 @@ public class Gluttony extends AnimatorClassicCard
 
         SetHealing(true);
         SetExhaust(true);
-        SetSeries(CardSeries.FullmetalAlchemist);
+        
     }
 
     @Override

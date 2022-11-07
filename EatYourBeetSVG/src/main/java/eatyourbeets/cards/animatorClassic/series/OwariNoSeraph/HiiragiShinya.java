@@ -16,7 +16,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class HiiragiShinya extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(HiiragiShinya.class).SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(HiiragiShinya.class).SetSeriesFromClassPackage().SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None);
 
     public HiiragiShinya()
     {
@@ -25,7 +25,7 @@ public class HiiragiShinya extends AnimatorClassicCard
         Initialize(0, 4, 2);
         SetUpgrade(0, 3, 0);
 
-        SetSeries(CardSeries.OwariNoSeraph);
+        
     }
 
     @Override

@@ -17,7 +17,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class Tetora extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(Tetora.class).SetPower(0, CardRarity.UNCOMMON).SetMaxCopies(2);
+    public static final EYBCardData DATA = Register(Tetora.class).SetSeriesFromClassPackage().SetPower(0, CardRarity.UNCOMMON).SetMaxCopies(2);
 
     public Tetora()
     {
@@ -25,7 +25,7 @@ public class Tetora extends AnimatorClassicCard
 
         Initialize(0, 0, 0, 4);
 
-        SetSeries(CardSeries.LogHorizon);
+        
     }
 
     @Override

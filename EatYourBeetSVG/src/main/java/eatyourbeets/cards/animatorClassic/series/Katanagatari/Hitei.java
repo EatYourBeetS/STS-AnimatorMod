@@ -3,25 +3,18 @@ package eatyourbeets.cards.animatorClassic.series.Katanagatari;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.AbstractPower;
-import eatyourbeets.actions.animator.HiteiAction;
 import eatyourbeets.cards.base.AnimatorClassicCard;
 import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.powers.AnimatorClickablePower;
 import eatyourbeets.powers.AnimatorPower;
-import eatyourbeets.powers.PowerTriggerConditionType;
-import eatyourbeets.powers.animatorClassic.HiteiPower;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.JUtils;
 import eatyourbeets.utilities.RandomizedList;
 
 public class Hitei extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(Hitei.class).SetPower(1, CardRarity.UNCOMMON);
+    public static final EYBCardData DATA = Register(Hitei.class).SetSeriesFromClassPackage().SetPower(1, CardRarity.UNCOMMON);
 
     public Hitei()
     {
@@ -30,7 +23,7 @@ public class Hitei extends AnimatorClassicCard
         Initialize(0, 0, 2, 1);
         SetUpgrade(0, 0, 1, 0);
 
-        SetSeries(CardSeries.Katanagatari);
+        
     }
 
     @Override

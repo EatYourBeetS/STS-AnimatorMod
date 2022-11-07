@@ -19,7 +19,7 @@ import eatyourbeets.utilities.GameEffects;
 
 public class UneriGinkaku extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(UneriGinkaku.class).SetAttack(1, CardRarity.COMMON);
+    public static final EYBCardData DATA = Register(UneriGinkaku.class).SetSeriesFromClassPackage().SetAttack(1, CardRarity.COMMON);
 
     public UneriGinkaku()
     {
@@ -30,7 +30,7 @@ public class UneriGinkaku extends AnimatorClassicCard
         SetScaling(0, 3, 0);
 
         SetEthereal(true);
-        SetSeries(CardSeries.Katanagatari);
+
         SetMartialArtist();
     }
 

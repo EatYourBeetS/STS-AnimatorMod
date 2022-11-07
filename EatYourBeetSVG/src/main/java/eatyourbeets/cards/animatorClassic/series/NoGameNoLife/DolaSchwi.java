@@ -18,7 +18,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class DolaSchwi extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(DolaSchwi.class).SetAttack(1, CardRarity.COMMON, EYBAttackType.Ranged);
+    public static final EYBCardData DATA = Register(DolaSchwi.class).SetSeriesFromClassPackage().SetAttack(1, CardRarity.COMMON, EYBAttackType.Ranged);
 
     public DolaSchwi()
     {
@@ -28,7 +28,7 @@ public class DolaSchwi extends AnimatorClassicCard
         SetCostUpgrade(-1);
 
         SetCooldown(2, 0, this::OnCooldownCompleted);
-        SetSeries(CardSeries.NoGameNoLife);
+        
     }
 
     @Override

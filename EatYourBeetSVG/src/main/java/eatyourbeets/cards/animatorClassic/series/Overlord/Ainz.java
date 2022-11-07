@@ -22,7 +22,7 @@ public class Ainz extends AnimatorClassicCard
 {
     private static final AnimatorStrings.Actions ACTIONS = GR.Animator.Strings.Actions;
     private static final int CHOICES = 4;
-    public static final EYBCardData DATA = Register(Ainz.class).SetPower(7, CardRarity.RARE);
+    public static final EYBCardData DATA = Register(Ainz.class).SetSeriesFromClassPackage().SetPower(7, CardRarity.RARE);
 
     public Ainz()
     {
@@ -32,7 +32,7 @@ public class Ainz extends AnimatorClassicCard
         SetCostUpgrade(-1);
 
         SetHealing(true);
-        SetSeries(CardSeries.Overlord);
+
     }
 
     @Override

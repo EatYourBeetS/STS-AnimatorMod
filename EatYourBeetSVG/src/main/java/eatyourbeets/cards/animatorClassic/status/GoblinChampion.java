@@ -17,7 +17,7 @@ public class GoblinChampion extends AnimatorClassicCard
         Initialize(0, 0);
 
         SetEndOfTurnPlay(true);
-        SetSeries(CardSeries.GoblinSlayer);
+        this.series = CardSeries.GoblinSlayer;
     }
 
     @Override

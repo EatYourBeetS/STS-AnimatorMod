@@ -13,7 +13,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class Sora extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(Sora.class).SetSkill(2, CardRarity.RARE, EYBCardTarget.ALL);
+    public static final EYBCardData DATA = Register(Sora.class).SetSeriesFromClassPackage().SetSkill(2, CardRarity.RARE, EYBCardTarget.ALL);
     static
     {
         DATA.AddPreview(new Shiro(), true);
@@ -27,7 +27,7 @@ public class Sora extends AnimatorClassicCard
         SetUpgrade(0, 0, 1);
 
         SetMultiDamage(true);
-        SetSeries(CardSeries.NoGameNoLife);
+
     }
 
     @Override

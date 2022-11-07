@@ -19,7 +19,7 @@ public class Kuroyukihime_BlackLotus extends AnimatorClassicCard
         Initialize(7, 5, 1);
         SetUpgrade(0, 0, 1);
 
-        SetSeries(CardSeries.AccelWorld);
+        this.series = CardSeries.AccelWorld;
     }
 
     @Override

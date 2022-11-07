@@ -2,10 +2,7 @@ package eatyourbeets.cards.animatorClassic.ultrarare;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.AnimatorClassicCard_UltraRare;
-import eatyourbeets.cards.base.CardSeries;
-import eatyourbeets.cards.base.CardUseInfo;
-import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.powers.animator.AzrielPower;
 import eatyourbeets.powers.replacement.PlayerFlightPower;
 import eatyourbeets.utilities.GameActions;
@@ -21,7 +18,7 @@ public class Azriel extends AnimatorClassicCard_UltraRare
         Initialize(0, 0, 1);
 
         SetEthereal(true);
-        SetSeries(CardSeries.NoGameNoLife);
+        this.series = CardSeries.NoGameNoLife;
     }
 
     @Override

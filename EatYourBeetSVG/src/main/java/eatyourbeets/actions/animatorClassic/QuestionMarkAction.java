@@ -35,7 +35,7 @@ public class QuestionMarkAction extends EYBAction
 
         if (copy != null && index >= 0)
         {
-            copy.SetSeries(CardSeries.ANY);
+            copy.SetSeries(questionMark.copy.series);
             copy.SetShapeshifter();
             copy.triggerWhenCreated(false);
 

@@ -14,7 +14,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Cocytus extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(Cocytus.class).SetAttack(1, CardRarity.COMMON);
+    public static final EYBCardData DATA = Register(Cocytus.class).SetSeriesFromClassPackage().SetAttack(1, CardRarity.COMMON);
 
     public Cocytus()
     {
@@ -24,7 +24,7 @@ public class Cocytus extends AnimatorClassicCard
         SetUpgrade(1, 0, 1, 0);
         SetScaling(0, 0, 2);
 
-        SetSeries(CardSeries.Overlord);
+        
     }
 
     @Override

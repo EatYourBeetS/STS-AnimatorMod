@@ -13,7 +13,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Ciel extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(Ciel.class).SetSkill(2, CardRarity.COMMON);
+    public static final EYBCardData DATA = Register(Ciel.class).SetSeriesFromClassPackage().SetSkill(2, CardRarity.COMMON);
     static
     {
         DATA.AddPreview(new Lu(), true);
@@ -26,7 +26,7 @@ public class Ciel extends AnimatorClassicCard
         Initialize(0, 4, 2, 6);
         SetUpgrade(0, 0, 0, 2);
 
-        SetSeries(CardSeries.Elsword);
+        
     }
 
     @Override

@@ -12,7 +12,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class Shichika extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(Shichika.class).SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None).SetMaxCopies(2);
+    public static final EYBCardData DATA = Register(Shichika.class).SetSeriesFromClassPackage().SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None).SetMaxCopies(2);
     static
     {
         DATA.AddPreview(new Shichika_Kyotouryuu(), false);
@@ -27,7 +27,7 @@ public class Shichika extends AnimatorClassicCard
         SetScaling(0, 1, 1);
 
         SetExhaust(true);
-        SetSeries(CardSeries.Katanagatari);
+        
         SetMartialArtist();
     }
 

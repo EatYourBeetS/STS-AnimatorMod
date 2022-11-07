@@ -11,7 +11,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class Hans extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(Hans.class).SetPower(3, CardRarity.RARE);
+    public static final EYBCardData DATA = Register(Hans.class).SetSeriesFromClassPackage().SetPower(3, CardRarity.RARE);
 
     public Hans()
     {
@@ -21,7 +21,7 @@ public class Hans extends AnimatorClassicCard
         SetUpgrade(0, 0, 1, 0);
 
         SetShapeshifter();
-        SetSeries(CardSeries.Konosuba);
+        
     }
 
     @Override

@@ -20,7 +20,7 @@ public class TanyaDegurechaff_Type95 extends AnimatorClassicCard
 
         Initialize(0, 0);
 
-        SetSeries(CardSeries.YoujoSenki);
+        this.series = CardSeries.YoujoSenki;
     }
 
     @Override

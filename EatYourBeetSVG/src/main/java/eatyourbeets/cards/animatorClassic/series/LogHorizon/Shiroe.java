@@ -10,7 +10,7 @@ import eatyourbeets.utilities.GameActions;
 public class Shiroe extends AnimatorClassicCard
 {
     public static final int MINIMUM_TEAMWORK = 3;
-    public static final EYBCardData DATA = Register(Shiroe.class).SetSkill(0, CardRarity.RARE, EYBCardTarget.None).SetMaxCopies(2);
+    public static final EYBCardData DATA = Register(Shiroe.class).SetSeriesFromClassPackage().SetSkill(0, CardRarity.RARE, EYBCardTarget.None).SetMaxCopies(2);
 
     public Shiroe()
     {
@@ -21,7 +21,7 @@ public class Shiroe extends AnimatorClassicCard
 
         SetExhaust(true);
 
-        SetSeries(CardSeries.LogHorizon);
+        
     }
 
     @Override

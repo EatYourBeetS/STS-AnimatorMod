@@ -10,7 +10,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class ElricAlphonse extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(ElricAlphonse.class).SetSkill(0, CardRarity.COMMON, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(ElricAlphonse.class).SetSeriesFromClassPackage().SetSkill(0, CardRarity.COMMON, EYBCardTarget.None);
     static
     {
         DATA.AddPreview(new ElricAlphonse_Alt(), true);
@@ -24,7 +24,7 @@ public class ElricAlphonse extends AnimatorClassicCard
         SetUpgrade(0, 0, 1);
 
         SetEthereal(true);
-        SetSeries(CardSeries.FullmetalAlchemist);
+        
     }
 
 //    @Override

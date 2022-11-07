@@ -18,7 +18,7 @@ public class ShikizakiKiki extends AnimatorClassicCard_UltraRare
         SetUpgrade(0, 0, 1, 1);
 
         SetEthereal(true);
-        SetSeries(CardSeries.Katanagatari);
+        this.series = CardSeries.Katanagatari;
     }
 
     @Override

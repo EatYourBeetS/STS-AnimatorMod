@@ -11,7 +11,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class ChlammyZell extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(ChlammyZell.class).SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(ChlammyZell.class).SetSeriesFromClassPackage().SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None);
     static
     {
         DATA.AddPreview(new ChlammyZell_Scheme(), false);
@@ -24,7 +24,7 @@ public class ChlammyZell extends AnimatorClassicCard
         Initialize(0, 0, 1, 3);
         SetUpgrade(0, 0, 1, 0);
 
-        SetSeries(CardSeries.NoGameNoLife);
+        
     }
 
     @Override

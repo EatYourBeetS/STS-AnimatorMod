@@ -13,7 +13,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class TsurugaMeisai extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(TsurugaMeisai.class).SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(TsurugaMeisai.class).SetSeriesFromClassPackage().SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None);
 
     public TsurugaMeisai()
     {
@@ -22,7 +22,7 @@ public class TsurugaMeisai extends AnimatorClassicCard
         Initialize(0, 0, 2, 1);
 
         SetExhaust(true);
-        SetSeries(CardSeries.Katanagatari);
+
         SetMartialArtist();
     }
 

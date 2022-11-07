@@ -14,7 +14,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class ItamiYouji extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(ItamiYouji.class).SetAttack(2, CardRarity.RARE, EYBAttackType.Ranged);
+    public static final EYBCardData DATA = Register(ItamiYouji.class).SetSeriesFromClassPackage().SetAttack(2, CardRarity.RARE, EYBAttackType.Ranged);
 
     public ItamiYouji()
     {
@@ -23,7 +23,7 @@ public class ItamiYouji extends AnimatorClassicCard
         Initialize(3, 0, 3, 2);
         SetUpgrade(0, 0, 1);
 
-        SetSeries(CardSeries.GATE);
+        
     }
 
     @Override

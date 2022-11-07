@@ -22,7 +22,7 @@ import java.util.Map;
 
 public class Marielle extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(Marielle.class).SetSkill(2, CardRarity.UNCOMMON, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(Marielle.class).SetSeriesFromClassPackage().SetSkill(2, CardRarity.UNCOMMON, EYBCardTarget.None);
 
     public Marielle()
     {
@@ -31,7 +31,7 @@ public class Marielle extends AnimatorClassicCard
         Initialize(0, 0, 6);
         SetUpgrade(0, 0, 4);
 
-        SetSeries(CardSeries.LogHorizon);
+        
         SetSpellcaster();
     }
 

@@ -19,7 +19,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class HomuraAkemi extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(HomuraAkemi.class).SetSkill(3, CardRarity.RARE, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(HomuraAkemi.class).SetSeriesFromClassPackage().SetSkill(3, CardRarity.RARE, EYBCardTarget.None);
 
     public HomuraAkemi()
     {
@@ -29,7 +29,7 @@ public class HomuraAkemi extends AnimatorClassicCard
 
         SetExhaust(true);
         SetEthereal(true);
-        SetSeries(CardSeries.MadokaMagica);
+        
     }
 
     @Override

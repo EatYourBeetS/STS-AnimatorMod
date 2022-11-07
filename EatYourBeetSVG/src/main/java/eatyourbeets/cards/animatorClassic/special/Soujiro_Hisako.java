@@ -23,7 +23,7 @@ public class Soujiro_Hisako extends AnimatorClassicCard
         SetEthereal(true);
         SetEvokeOrbCount(1);
         SetSpellcaster();
-        SetSeries(CardSeries.LogHorizon);
+        this.series = CardSeries.LogHorizon;
     }
 
     @Override

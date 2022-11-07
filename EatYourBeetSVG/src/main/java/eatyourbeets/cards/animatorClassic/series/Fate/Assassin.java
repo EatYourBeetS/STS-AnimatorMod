@@ -22,7 +22,7 @@ public class Assassin extends AnimatorClassicCard
 {
     private static int EFFECT = 0;
 
-    public static final EYBCardData DATA = Register(Assassin.class).SetAttack(0, CardRarity.COMMON, EYBAttackType.Piercing);
+    public static final EYBCardData DATA = Register(Assassin.class).SetSeriesFromClassPackage().SetAttack(0, CardRarity.COMMON, EYBAttackType.Piercing);
     public static final int DEBUFFS_COUNT = 3;
 
     public Assassin()
@@ -35,7 +35,7 @@ public class Assassin extends AnimatorClassicCard
 
         SetRetain(true);
         SetMartialArtist();
-        SetSeries(CardSeries.Fate);
+
     }
 
     @Override

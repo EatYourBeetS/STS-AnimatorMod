@@ -13,7 +13,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class YaoHaDucy extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(YaoHaDucy.class).SetAttack(0, CardRarity.COMMON);
+    public static final EYBCardData DATA = Register(YaoHaDucy.class).SetSeriesFromClassPackage().SetAttack(0, CardRarity.COMMON);
 
     public YaoHaDucy()
     {
@@ -22,7 +22,7 @@ public class YaoHaDucy extends AnimatorClassicCard
         Initialize(2, 0, 2, 1);
         SetUpgrade(3, 0, 0, 0);
 
-        SetSeries(CardSeries.GATE);
+
     }
 
     @Override

@@ -14,7 +14,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class MetalKnight extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(MetalKnight.class).SetAttack(3, CardRarity.UNCOMMON);
+    public static final EYBCardData DATA = Register(MetalKnight.class).SetSeriesFromClassPackage().SetAttack(3, CardRarity.UNCOMMON);
 
     public MetalKnight()
     {
@@ -24,7 +24,7 @@ public class MetalKnight extends AnimatorClassicCard
         SetUpgrade(2, 0, 0);
 
         SetEvokeOrbCount(1);
-        SetSeries(CardSeries.OnePunchMan);
+
     }
 
     @Override

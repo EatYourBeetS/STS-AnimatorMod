@@ -12,7 +12,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class Yuuichirou extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(Yuuichirou.class).SetAttack(1, CardRarity.UNCOMMON);
+    public static final EYBCardData DATA = Register(Yuuichirou.class).SetSeriesFromClassPackage().SetAttack(1, CardRarity.UNCOMMON);
     static
     {
         DATA.AddPreview(new Yuuichirou_Asuramaru(), true);
@@ -26,7 +26,7 @@ public class Yuuichirou extends AnimatorClassicCard
         SetUpgrade(3, 0);
         SetScaling(0, 1, 1);
 
-        SetSeries(CardSeries.OwariNoSeraph);
+        
     }
 
     @Override

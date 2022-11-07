@@ -14,7 +14,7 @@ import eatyourbeets.utilities.RotatingList;
 
 public class Illya extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(Illya.class)
+    public static final EYBCardData DATA = Register(Illya.class).SetSeriesFromClassPackage()
             .SetSkill(1, CardRarity.UNCOMMON)
             .SetSeriesFromClassPackage()
             .PostInitialize(data -> data.AddPreview(new Berserker(), false));

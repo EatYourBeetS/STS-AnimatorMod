@@ -22,7 +22,7 @@ public class Soujiro extends AnimatorClassicCard
     private static final CardGroup cardChoices = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
     private static final CardGroup upgradedCardChoices = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
 
-    public static final EYBCardData DATA = Register(Soujiro.class).SetAttack(3, CardRarity.RARE, EYBAttackType.Normal)
+    public static final EYBCardData DATA = Register(Soujiro.class).SetSeriesFromClassPackage().SetAttack(3, CardRarity.RARE, EYBAttackType.Normal)
     .PostInitialize(data ->
     {
         AddPreviewForPool(data, new Soujiro_Isami());
@@ -46,7 +46,7 @@ public class Soujiro extends AnimatorClassicCard
         SetScaling(0,1, 1);
 
         SetMartialArtist();
-        SetSeries(CardSeries.LogHorizon);
+
     }
 
     @Override

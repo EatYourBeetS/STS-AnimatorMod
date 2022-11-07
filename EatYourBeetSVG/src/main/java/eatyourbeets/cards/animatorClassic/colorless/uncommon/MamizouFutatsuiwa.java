@@ -12,7 +12,7 @@ import eatyourbeets.utilities.RandomizedList;
 
 public class MamizouFutatsuiwa extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(MamizouFutatsuiwa.class).SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None).SetColor(CardColor.COLORLESS);
+    public static final EYBCardData DATA = Register(MamizouFutatsuiwa.class).SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None).SetColor(CardColor.COLORLESS).SetSeries(CardSeries.TouhouProject);
 
     private static final RandomizedList<AnimatorClassicCard> shapeshifterPool = new RandomizedList<>();
 
@@ -24,7 +24,6 @@ public class MamizouFutatsuiwa extends AnimatorClassicCard
         SetUpgrade(0, 0, 3);
 
         SetExhaust(true);
-        SetSeries(CardSeries.TouhouProject);
         SetShapeshifter();
     }
 

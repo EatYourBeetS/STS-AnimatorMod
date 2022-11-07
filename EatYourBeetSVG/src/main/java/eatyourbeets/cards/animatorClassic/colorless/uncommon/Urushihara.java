@@ -13,7 +13,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Urushihara extends AnimatorClassicCard implements OnStartOfTurnPostDrawSubscriber
 {
-    public static final EYBCardData DATA = Register(Urushihara.class).SetAttack(1, CardRarity.UNCOMMON, EYBAttackType.Elemental, EYBCardTarget.ALL).SetColor(CardColor.COLORLESS);
+    public static final EYBCardData DATA = Register(Urushihara.class).SetAttack(1, CardRarity.UNCOMMON, EYBAttackType.Elemental, EYBCardTarget.ALL).SetColor(CardColor.COLORLESS).SetSeries(CardSeries.HatarakuMaouSama);
 
     private int lazyCounter;
 
@@ -27,7 +27,6 @@ public class Urushihara extends AnimatorClassicCard implements OnStartOfTurnPost
 
         SetMultiDamage(true);
         SetEvokeOrbCount(1);
-        SetSeries(CardSeries.HatarakuMaouSama);
     }
 
     @Override

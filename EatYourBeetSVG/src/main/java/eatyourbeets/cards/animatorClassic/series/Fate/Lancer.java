@@ -14,7 +14,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Lancer extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(Lancer.class).SetAttack(1, CardRarity.UNCOMMON, EYBAttackType.Piercing);
+    public static final EYBCardData DATA = Register(Lancer.class).SetSeriesFromClassPackage().SetAttack(1, CardRarity.UNCOMMON, EYBAttackType.Piercing);
 
     public Lancer()
     {
@@ -24,7 +24,7 @@ public class Lancer extends AnimatorClassicCard
         SetUpgrade(3, 0, 0);
         SetScaling(0, 1, 1);
 
-        SetSeries(CardSeries.Fate);
+
         SetMartialArtist();
     }
 

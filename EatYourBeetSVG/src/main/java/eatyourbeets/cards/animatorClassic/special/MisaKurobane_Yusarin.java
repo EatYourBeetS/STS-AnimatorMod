@@ -21,7 +21,7 @@ public class MisaKurobane_Yusarin extends AnimatorClassicCard
         SetUpgrade(0, 0, 1);
 
         SetExhaust(true);
-        SetSeries(CardSeries.Charlotte);
+        this.series = CardSeries.Charlotte;
     }
 
     @Override

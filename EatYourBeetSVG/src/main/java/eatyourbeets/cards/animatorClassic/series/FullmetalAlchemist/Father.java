@@ -15,7 +15,7 @@ public class Father extends AnimatorClassicCard
     private static final AbstractRelic relic = new PhilosopherStone();
     private static final EYBCardTooltip tooltip = new EYBCardTooltip(relic.name, relic.description);
 
-    public static final EYBCardData DATA = Register(Father.class)
+    public static final EYBCardData DATA = Register(Father.class).SetSeriesFromClassPackage()
             .SetSkill(4, CardRarity.RARE, EYBCardTarget.None)
             .SetMaxCopies(1)
             .SetSeriesFromClassPackage();

@@ -12,7 +12,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class Viivi extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(Viivi.class).SetAttack(1, CardRarity.COMMON, EYBAttackType.Ranged, EYBCardTarget.Random);
+    public static final EYBCardData DATA = Register(Viivi.class).SetSeriesFromClassPackage().SetAttack(1, CardRarity.COMMON, EYBAttackType.Ranged, EYBCardTarget.Random);
     static
     {
         for (ThrowingKnife knife : ThrowingKnife.GetAllCards())
@@ -30,7 +30,7 @@ public class Viivi extends AnimatorClassicCard
         SetScaling(0, 1, 0);
 
         SetMartialArtist();
-        SetSeries(CardSeries.HitsugiNoChaika);
+
     }
 
     @Override

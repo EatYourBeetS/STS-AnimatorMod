@@ -3,10 +3,7 @@ package eatyourbeets.cards.animatorClassic.ultrarare;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.AnimatorClassicCard_UltraRare;
-import eatyourbeets.cards.base.CardSeries;
-import eatyourbeets.cards.base.CardUseInfo;
-import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.attributes.TempHPAttribute;
 import eatyourbeets.powers.CombatStats;
@@ -23,7 +20,7 @@ public class HiiragiTenri extends AnimatorClassicCard_UltraRare
         Initialize(0, 0, 20);
         SetUpgrade(0, 0, 10);
 
-        SetSeries(CardSeries.OwariNoSeraph);
+        this.series = CardSeries.OwariNoSeraph;
     }
 
     @Override

@@ -12,7 +12,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class IzunaHatsuse extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(IzunaHatsuse.class).SetSkill(0, CardRarity.UNCOMMON);
+    public static final EYBCardData DATA = Register(IzunaHatsuse.class).SetSeriesFromClassPackage().SetSkill(0, CardRarity.UNCOMMON);
     static
     {
         DATA.AddPreview(new IzunaHatsuse(true), true);
@@ -34,7 +34,7 @@ public class IzunaHatsuse extends AnimatorClassicCard
         SetUpgrade(2, 2, 2);
 
         SetTransformed(false);
-        SetSeries(CardSeries.NoGameNoLife);
+        
     }
 
     @Override

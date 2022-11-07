@@ -20,7 +20,7 @@ public class Curse_GriefSeed extends AnimatorClassicCard
         Initialize(0, 0, 1);
 
         SetEndOfTurnPlay(false);
-        SetSeries(CardSeries.MadokaMagica);
+        this.series = CardSeries.MadokaMagica;
     }
 
     @Override

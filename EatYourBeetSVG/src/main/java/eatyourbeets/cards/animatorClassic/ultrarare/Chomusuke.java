@@ -16,7 +16,7 @@ public class Chomusuke extends AnimatorClassicCard_UltraRare
 
         Initialize(0, 0);
 
-        SetSeries(CardSeries.Konosuba);
+        this.series = CardSeries.Konosuba;
     }
 
     @Override

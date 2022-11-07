@@ -33,7 +33,7 @@ public class Truth extends AnimatorClassicCard_UltraRare
         SetUpgrade(0, 0, 0);
 
         SetExhaust(true);
-        SetSeries(CardSeries.FullmetalAlchemist);
+        this.series = CardSeries.FullmetalAlchemist;
     }
 
     @Override

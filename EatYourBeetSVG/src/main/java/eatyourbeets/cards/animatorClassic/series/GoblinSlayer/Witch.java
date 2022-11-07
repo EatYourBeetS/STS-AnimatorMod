@@ -16,7 +16,7 @@ import eatyourbeets.utilities.TargetHelper;
 
 public class Witch extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(Witch.class).SetSkill(2, CardRarity.UNCOMMON, EYBCardTarget.ALL);
+    public static final EYBCardData DATA = Register(Witch.class).SetSeriesFromClassPackage().SetSkill(2, CardRarity.UNCOMMON, EYBCardTarget.ALL);
 
     public Witch()
     {
@@ -26,7 +26,7 @@ public class Witch extends AnimatorClassicCard
         SetUpgrade(0, 2, 1);
         SetScaling(1, 0, 0);
 
-        SetSeries(CardSeries.GoblinSlayer);
+
         SetSpellcaster();
     }
 

@@ -25,7 +25,7 @@ public class NagisaMomoe_CharlotteAlt extends AnimatorClassicCard
         SetUpgrade(20, 0, 0);
         SetScaling(3, 0, 6);
 
-        SetSeries(CardSeries.MadokaMagica);
+        this.series = CardSeries.MadokaMagica;
     }
 
     @Override

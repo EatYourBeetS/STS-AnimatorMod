@@ -12,7 +12,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class Shimakaze extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(Shimakaze.class).SetAttack(1, CardRarity.UNCOMMON).SetColor(CardColor.COLORLESS);
+    public static final EYBCardData DATA = Register(Shimakaze.class).SetAttack(1, CardRarity.UNCOMMON).SetColor(CardColor.COLORLESS).SetSeries(CardSeries.Kancolle);
 
     public Shimakaze()
     {
@@ -20,8 +20,6 @@ public class Shimakaze extends AnimatorClassicCard
 
         Initialize(3, 3, 3);
         SetUpgrade(1, 1, 1);
-
-        SetSeries(CardSeries.Kancolle);
     }
 
     @Override

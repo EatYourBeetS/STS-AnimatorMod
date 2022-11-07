@@ -14,7 +14,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Aisha extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(Aisha.class).SetAttack(1, CardRarity.UNCOMMON, EYBAttackType.Elemental);
+    public static final EYBCardData DATA = Register(Aisha.class).SetSeriesFromClassPackage().SetAttack(1, CardRarity.UNCOMMON, EYBAttackType.Elemental);
 
     public Aisha()
     {
@@ -24,7 +24,7 @@ public class Aisha extends AnimatorClassicCard
         SetUpgrade(0, 0, 1);
         SetScaling(1, 0, 0);
 
-        SetSeries(CardSeries.Elsword);
+
         SetSpellcaster();
     }
 

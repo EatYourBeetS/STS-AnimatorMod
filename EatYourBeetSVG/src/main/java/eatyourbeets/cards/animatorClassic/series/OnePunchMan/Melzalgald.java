@@ -15,7 +15,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Melzalgald extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(Melzalgald.class)
+    public static final EYBCardData DATA = Register(Melzalgald.class).SetSeriesFromClassPackage()
             .SetAttack(3, CardRarity.UNCOMMON)
             .PostInitialize(data ->
             {
@@ -32,7 +32,7 @@ public class Melzalgald extends AnimatorClassicCard
         SetScaling(2, 2, 2);
 
         SetExhaust(true);
-        SetSeries(CardSeries.OnePunchMan);
+
         SetShapeshifter();
     }
 

@@ -12,7 +12,7 @@ import eatyourbeets.utilities.TargetHelper;
 
 public class Archer extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(Archer.class).SetPower(1, CardRarity.UNCOMMON);
+    public static final EYBCardData DATA = Register(Archer.class).SetSeriesFromClassPackage().SetPower(1, CardRarity.UNCOMMON);
 
     public Archer()
     {
@@ -21,7 +21,7 @@ public class Archer extends AnimatorClassicCard
         Initialize(0, 0, 3);
         SetUpgrade(0, 2, 0);
 
-        SetSeries(CardSeries.Fate);
+        
     }
 
     @Override

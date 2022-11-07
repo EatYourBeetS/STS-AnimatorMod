@@ -27,7 +27,7 @@ public class HinaKagiyama_Miracle extends AnimatorClassicCard
         SetPurge(true);
         SetRetain(true);
 
-        SetSeries(CardSeries.TouhouProject);
+        this.series = CardSeries.TouhouProject;
     }
 
     @Override

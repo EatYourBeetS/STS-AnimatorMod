@@ -12,7 +12,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Chris extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(Chris.class).SetAttack(0, CardRarity.UNCOMMON);
+    public static final EYBCardData DATA = Register(Chris.class).SetSeriesFromClassPackage().SetAttack(0, CardRarity.UNCOMMON);
 
     public Chris()
     {
@@ -22,7 +22,7 @@ public class Chris extends AnimatorClassicCard
         SetUpgrade(2, 0, 2);
         SetScaling(0, 1, 0);
 
-        SetSeries(CardSeries.Konosuba);
+        
     }
 
     @Override

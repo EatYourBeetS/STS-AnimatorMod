@@ -3,6 +3,8 @@ package eatyourbeets.cards.effects.NanamiEffects;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.series.Katanagatari.Nanami;
+import eatyourbeets.cards.base.AnimatorClassicCard;
+import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.cards.base.EYBCardTooltip;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.attributes.BlockAttribute;
@@ -86,10 +88,10 @@ public abstract class NanamiEffect
         }
     }
 
-    public abstract void EnqueueActions(Nanami nanami, AbstractPlayer p, AbstractMonster m);
-    public abstract String GetDescription(Nanami nanami);
+    public abstract void EnqueueActions(EYBCard nanami, AbstractPlayer p, AbstractMonster m);
+    public abstract String GetDescription(EYBCard nanami);
 
-    public AbstractAttribute GetDamageInfo(Nanami nanami)
+    public AbstractAttribute GetDamageInfo(EYBCard nanami)
     {
         int damage = GetDamage(nanami);
         if (damage > 0)
@@ -102,7 +104,7 @@ public abstract class NanamiEffect
         return null;
     }
 
-    public AbstractAttribute GetBlockInfo(Nanami nanami)
+    public AbstractAttribute GetBlockInfo(EYBCard nanami)
     {
         int block = GetBlock(nanami);
         if (block > 0)
@@ -115,7 +117,7 @@ public abstract class NanamiEffect
         return null;
     }
 
-    public AbstractAttribute GetSpecialInfo(Nanami nanami)
+    public AbstractAttribute GetSpecialInfo(EYBCard nanami)
     {
         return null;
     }
@@ -125,28 +127,28 @@ public abstract class NanamiEffect
 
     }
 
-    protected int GetDamage(Nanami nanami)
+    protected int GetDamage(EYBCard nanami)
     {
         return 0;
     }
 
-    protected int GetBlock(Nanami nanami)
+    protected int GetBlock(EYBCard nanami)
     {
         return 0;
     }
 
-    protected int ModifyBlock(int block, Nanami nanami)
+    protected int ModifyBlock(int block, EYBCard nanami)
     {
         return block + (nanami.block - nanami.baseBlock);
     }
 
-    protected int ModifyDamage(int damage, Nanami nanami)
+    protected int ModifyDamage(int damage, EYBCard nanami)
     {
         return damage + (nanami.damage - nanami.baseDamage);
     }
 
-    protected EYBCardTooltip GetForceTooltip()
+    protected EYBCardTooltip GetForceTooltip(EYBCard nanami)
     {
-        return GR.AnimatorClassic.IsSelected() ? GR.Tooltips.Force : GR.Tooltips.Affinity_Red;
+        return nanami instanceof AnimatorClassicCard ? GR.Tooltips.Force : GR.Tooltips.Affinity_Red;
     }
 }

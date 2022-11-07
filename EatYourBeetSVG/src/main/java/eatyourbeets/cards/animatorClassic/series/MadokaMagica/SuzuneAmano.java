@@ -14,7 +14,7 @@ import eatyourbeets.utilities.JUtils;
 
 public class SuzuneAmano extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(SuzuneAmano.class).SetAttack(1, CardRarity.UNCOMMON, EYBAttackType.Elemental);
+    public static final EYBCardData DATA = Register(SuzuneAmano.class).SetSeriesFromClassPackage().SetAttack(1, CardRarity.UNCOMMON, EYBAttackType.Elemental);
 
     public SuzuneAmano()
     {
@@ -24,7 +24,7 @@ public class SuzuneAmano extends AnimatorClassicCard
         SetUpgrade(0, 0, 0, 0);
         SetScaling(1, 0, 0);
 
-        SetSeries(CardSeries.MadokaMagica);
+
     }
 
     @Override

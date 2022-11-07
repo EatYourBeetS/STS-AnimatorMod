@@ -21,7 +21,7 @@ public class MatouShinji_CommandSpell extends AnimatorClassicCard
         SetCostUpgrade(-1);
 
         SetPurge(true);
-        SetSeries(CardSeries.Fate);
+        this.series = CardSeries.Fate;
         SetSpellcaster();
     }
 

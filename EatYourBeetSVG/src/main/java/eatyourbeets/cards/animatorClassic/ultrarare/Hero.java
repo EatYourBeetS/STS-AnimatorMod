@@ -7,10 +7,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
-import eatyourbeets.cards.base.AnimatorClassicCard_UltraRare;
-import eatyourbeets.cards.base.CardSeries;
-import eatyourbeets.cards.base.CardUseInfo;
-import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
@@ -27,7 +24,7 @@ public class Hero extends AnimatorClassicCard_UltraRare
         SetUpgrade(4, 0, 0);
         SetScaling(0, 1, 1);
 
-        SetSeries(CardSeries.GoblinSlayer);
+        this.series = CardSeries.GoblinSlayer;
     }
 
     @Override

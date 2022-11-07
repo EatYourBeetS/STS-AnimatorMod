@@ -9,7 +9,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class CrowleyEusford extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(CrowleyEusford.class).SetAttack(2, CardRarity.UNCOMMON, EYBAttackType.Normal, EYBCardTarget.Random);
+    public static final EYBCardData DATA = Register(CrowleyEusford.class).SetSeriesFromClassPackage().SetAttack(2, CardRarity.UNCOMMON, EYBAttackType.Normal, EYBCardTarget.Random);
 
     public CrowleyEusford()
     {
@@ -19,7 +19,7 @@ public class CrowleyEusford extends AnimatorClassicCard
         SetUpgrade(2, 0);
         SetScaling(0, 2, 1);
 
-        SetSeries(CardSeries.OwariNoSeraph);
+        
     }
 
     @Override

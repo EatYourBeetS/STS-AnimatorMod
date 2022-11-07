@@ -5,9 +5,6 @@ import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.utility.ShakeScreenAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
-import com.megacrit.cardcrawl.cards.colorless.Madness;
-import com.megacrit.cardcrawl.cards.status.Slimed;
-import com.megacrit.cardcrawl.cards.tempCards.Shiv;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.ScreenShake;
@@ -34,7 +31,7 @@ public class HigakiRinne extends AnimatorClassicCard implements OnAddToDeckListe
 {
     private static final WeightedList<ActionT1<HigakiRinne>> drawActions = new WeightedList<>();
     private static final WeightedList<ActionT1<HigakiRinne>> exhaustActions = new WeightedList<>();
-    public static final EYBCardData DATA = Register(HigakiRinne.class)
+    public static final EYBCardData DATA = Register(HigakiRinne.class).SetSeriesFromClassPackage()
             .SetSkill(0, CardRarity.RARE, EYBCardTarget.None)
             .PostInitialize(data ->
             {
@@ -73,7 +70,7 @@ public class HigakiRinne extends AnimatorClassicCard implements OnAddToDeckListe
         SetUpgrade(0, 0, 1);
 
         SetAttackType(EYBAttackType.Normal);
-        SetSeries(CardSeries.Katanagatari);
+        
         SetShapeshifter();
     }
 

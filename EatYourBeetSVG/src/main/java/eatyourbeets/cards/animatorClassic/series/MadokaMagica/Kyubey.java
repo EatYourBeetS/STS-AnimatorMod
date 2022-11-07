@@ -13,7 +13,7 @@ import eatyourbeets.utilities.GameEffects;
 
 public class Kyubey extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(Kyubey.class).SetSkill(1, CardRarity.RARE, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(Kyubey.class).SetSeriesFromClassPackage().SetSkill(1, CardRarity.RARE, EYBCardTarget.None);
 
     public Kyubey()
     {
@@ -23,7 +23,7 @@ public class Kyubey extends AnimatorClassicCard
         SetUpgrade(0, 0, 1);
 
         SetExhaust(true);
-        SetSeries(CardSeries.MadokaMagica);
+
     }
 
     @Override

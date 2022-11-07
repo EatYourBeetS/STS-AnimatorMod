@@ -13,7 +13,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class AcuraTooru extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(AcuraTooru.class).SetAttack(2, CardRarity.UNCOMMON);
+    public static final EYBCardData DATA = Register(AcuraTooru.class).SetSeriesFromClassPackage().SetAttack(2, CardRarity.UNCOMMON);
     static
     {
         for (ThrowingKnife knife : ThrowingKnife.GetAllCards())
@@ -31,7 +31,7 @@ public class AcuraTooru extends AnimatorClassicCard
         SetScaling(0, 1, 0);
 
         SetMartialArtist();
-        SetSeries(CardSeries.HitsugiNoChaika);
+
     }
 
     @Override

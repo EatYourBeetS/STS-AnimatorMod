@@ -12,7 +12,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class Arpeggio extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(Arpeggio.class).SetPower(1, CardRarity.UNCOMMON).SetMaxCopies(2);
+    public static final EYBCardData DATA = Register(Arpeggio.class).SetSeriesFromClassPackage().SetPower(1, CardRarity.UNCOMMON).SetMaxCopies(2);
 
     public Arpeggio()
     {
@@ -21,7 +21,7 @@ public class Arpeggio extends AnimatorClassicCard
         Initialize(0, 0, 1, 2);
         SetUpgrade(0, 0, 1, 0);
 
-        SetSeries(CardSeries.GATE);
+        
         SetSpellcaster();
     }
 

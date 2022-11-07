@@ -16,7 +16,7 @@ import eatyourbeets.utilities.GameEffects;
 
 public class Lu extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(Lu.class).SetAttack(2, CardRarity.UNCOMMON, EYBAttackType.Normal).SetMaxCopies(2);
+    public static final EYBCardData DATA = Register(Lu.class).SetSeriesFromClassPackage().SetAttack(2, CardRarity.UNCOMMON, EYBAttackType.Normal).SetMaxCopies(2);
 
     public Lu()
     {
@@ -26,7 +26,7 @@ public class Lu extends AnimatorClassicCard
         SetUpgrade(0, 0, 1, 0);
         SetScaling(2, 0, 2);
 
-        SetSeries(CardSeries.Elsword);
+
     }
 
     @Override

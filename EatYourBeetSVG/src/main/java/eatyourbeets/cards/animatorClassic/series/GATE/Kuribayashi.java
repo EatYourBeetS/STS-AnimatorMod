@@ -15,7 +15,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class Kuribayashi extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(Kuribayashi.class).SetAttack(2, CardRarity.COMMON, EYBAttackType.Ranged);
+    public static final EYBCardData DATA = Register(Kuribayashi.class).SetSeriesFromClassPackage().SetAttack(2, CardRarity.COMMON, EYBAttackType.Ranged);
 
     public Kuribayashi()
     {
@@ -26,7 +26,7 @@ public class Kuribayashi extends AnimatorClassicCard
         SetScaling(0, 1, 1);
 
         SetMartialArtist();
-        SetSeries(CardSeries.GATE);
+        
     }
 
     @Override

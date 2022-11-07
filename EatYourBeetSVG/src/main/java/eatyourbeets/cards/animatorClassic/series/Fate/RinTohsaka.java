@@ -14,7 +14,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class RinTohsaka extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(RinTohsaka.class).SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(RinTohsaka.class).SetSeriesFromClassPackage().SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None);
 
     public RinTohsaka()
     {
@@ -24,7 +24,7 @@ public class RinTohsaka extends AnimatorClassicCard
         SetUpgrade(0, 1, 0, 1);
         SetScaling(1, 0, 0);
 
-        SetSeries(CardSeries.Fate);
+        
         SetSpellcaster();
     }
 

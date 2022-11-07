@@ -25,7 +25,7 @@ public class Fredrika extends AnimatorClassicCard implements OnEndOfTurnFirstSub
 
     private Form currentForm = Form.Default;
 
-    public static final EYBCardData DATA = Register(Fredrika.class).SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None).SetMaxCopies(2);
+    public static final EYBCardData DATA = Register(Fredrika.class).SetSeriesFromClassPackage().SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None).SetMaxCopies(2);
     static
     {
         DATA.AddPreview(new Fredrika(Form.Cat), true);
@@ -48,7 +48,7 @@ public class Fredrika extends AnimatorClassicCard implements OnEndOfTurnFirstSub
         SetUpgrade(2, 2, 0);
 
         SetAttackType(EYBAttackType.Normal);
-        SetSeries(CardSeries.HitsugiNoChaika);
+
         SetShapeshifter();
     }
 

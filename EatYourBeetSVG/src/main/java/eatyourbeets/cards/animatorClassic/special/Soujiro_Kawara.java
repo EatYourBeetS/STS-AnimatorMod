@@ -22,7 +22,7 @@ public class Soujiro_Kawara extends AnimatorClassicCard
         Initialize(5, 2, 3);
         SetUpgrade(2, 0, 1);
 
-        SetSeries(CardSeries.LogHorizon);
+        this.series = CardSeries.LogHorizon;
     }
 
     @Override

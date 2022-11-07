@@ -12,7 +12,7 @@ import eatyourbeets.utilities.TargetHelper;
 
 public class Shinoa extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(Shinoa.class).SetSkill(1, CardRarity.COMMON, EYBCardTarget.ALL);
+    public static final EYBCardData DATA = Register(Shinoa.class).SetSeriesFromClassPackage().SetSkill(1, CardRarity.COMMON, EYBCardTarget.ALL);
 
     public Shinoa()
     {
@@ -21,7 +21,7 @@ public class Shinoa extends AnimatorClassicCard
         Initialize(0, 6, 1);
         SetUpgrade(0, 3, 0);
 
-        SetSeries(CardSeries.OwariNoSeraph);
+        
     }
 
     @Override

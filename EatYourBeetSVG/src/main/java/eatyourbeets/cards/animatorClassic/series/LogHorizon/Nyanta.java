@@ -17,7 +17,7 @@ import eatyourbeets.utilities.TargetHelper;
 
 public class Nyanta extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(Nyanta.class).SetAttack(2, CardRarity.UNCOMMON, EYBAttackType.Piercing);
+    public static final EYBCardData DATA = Register(Nyanta.class).SetSeriesFromClassPackage().SetAttack(2, CardRarity.UNCOMMON, EYBAttackType.Piercing);
 
     public Nyanta()
     {
@@ -27,7 +27,7 @@ public class Nyanta extends AnimatorClassicCard
         SetScaling(0, 1, 0);
 
         SetRetain(true);
-        SetSeries(CardSeries.LogHorizon);
+        
     }
 
     @Override

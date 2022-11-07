@@ -10,7 +10,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class HighElfArcher extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(HighElfArcher.class).SetAttack(0, CardRarity.UNCOMMON, EYBAttackType.Ranged);
+    public static final EYBCardData DATA = Register(HighElfArcher.class).SetSeriesFromClassPackage().SetAttack(0, CardRarity.UNCOMMON, EYBAttackType.Ranged);
 
     public HighElfArcher()
     {
@@ -20,7 +20,7 @@ public class HighElfArcher extends AnimatorClassicCard
         SetUpgrade(1, 0, 1);
         SetScaling(0, 1, 0);
 
-        SetSeries(CardSeries.GoblinSlayer);
+
     }
 
     @Override

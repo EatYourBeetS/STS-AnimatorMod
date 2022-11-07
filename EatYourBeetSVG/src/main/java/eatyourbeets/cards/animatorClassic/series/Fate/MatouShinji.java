@@ -19,7 +19,7 @@ public class MatouShinji extends AnimatorClassicCard
 {
     private static final HashSet<CardType> cardTypes = new HashSet<>();
 
-    public static final EYBCardData DATA = Register(MatouShinji.class).SetSkill(1, CardRarity.COMMON, EYBCardTarget.Random);
+    public static final EYBCardData DATA = Register(MatouShinji.class).SetSeriesFromClassPackage().SetSkill(1, CardRarity.COMMON, EYBCardTarget.Random);
     static
     {
         DATA.AddPreview(new MatouShinji_CommandSpell(), false);
@@ -32,7 +32,7 @@ public class MatouShinji extends AnimatorClassicCard
         Initialize(0, 2, 4);
         SetUpgrade(0, 0, 2);
 
-        SetSeries(CardSeries.Fate);
+        
     }
 
     @Override

@@ -11,7 +11,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class IsuzuTonan extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(IsuzuTonan.class).SetSkill(1, CardRarity.COMMON, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(IsuzuTonan.class).SetSeriesFromClassPackage().SetSkill(1, CardRarity.COMMON, EYBCardTarget.None);
 
     private static final CardEffectChoice choices = new CardEffectChoice();
 
@@ -22,7 +22,7 @@ public class IsuzuTonan extends AnimatorClassicCard
         Initialize(0, 0, 1);
         SetUpgrade(0, 0, 1);
 
-        SetSeries(CardSeries.LogHorizon);
+
     }
 
     @Override

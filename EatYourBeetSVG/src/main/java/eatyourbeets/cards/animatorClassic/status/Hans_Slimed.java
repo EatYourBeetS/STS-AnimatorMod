@@ -19,7 +19,7 @@ public class Hans_Slimed extends AnimatorClassicCard
 
         cropPortrait = false;
         SetExhaust(true);
-        SetSeries(CardSeries.Konosuba);
+        this.series = CardSeries.Konosuba;
     }
 
     @Override

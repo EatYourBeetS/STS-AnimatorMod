@@ -13,7 +13,7 @@ import eatyourbeets.utilities.RandomizedList;
 
 public class HarukoHaruhara extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(HarukoHaruhara.class).SetSkill(1, CardRarity.RARE).SetColor(CardColor.COLORLESS);
+    public static final EYBCardData DATA = Register(HarukoHaruhara.class).SetSkill(1, CardRarity.RARE).SetColor(CardColor.COLORLESS).SetSeries(CardSeries.FLCL);
 
     public HarukoHaruhara()
     {
@@ -21,8 +21,6 @@ public class HarukoHaruhara extends AnimatorClassicCard
 
         Initialize(0, 0);
         SetCostUpgrade(-1);
-
-        SetSeries(CardSeries.FLCL);
     }
 
     @Override

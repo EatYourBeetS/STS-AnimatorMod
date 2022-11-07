@@ -11,7 +11,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class Kazuma extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(Kazuma.class).SetSkill(1, CardRarity.COMMON, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(Kazuma.class).SetSeriesFromClassPackage().SetSkill(1, CardRarity.COMMON, EYBCardTarget.None);
 
     public Kazuma()
     {
@@ -20,7 +20,7 @@ public class Kazuma extends AnimatorClassicCard
         Initialize(0, 6, 2);
         SetUpgrade(0, 2, 1);
 
-        SetSeries(CardSeries.Konosuba);
+        
     }
 
     @Override

@@ -27,7 +27,7 @@ public class Shichika_Kyotouryuu extends AnimatorClassicCard
 
         SetEthereal(true);
         SetExhaust(true);
-        SetSeries(CardSeries.Katanagatari);
+        this.series = CardSeries.Katanagatari;
         SetMartialArtist();
     }
 

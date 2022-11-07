@@ -2,6 +2,7 @@ package eatyourbeets.cards.effects.NanamiEffects;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.cards.animator.series.Katanagatari.Nanami;
@@ -10,7 +11,7 @@ import eatyourbeets.utilities.GameUtilities;
 public class NanamiEffect_Attack_Debuff extends NanamiEffect
 {
     @Override
-    public void EnqueueActions(Nanami nanami, AbstractPlayer p, AbstractMonster m)
+    public void EnqueueActions(EYBCard nanami, AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.GainBlock(GetBlock(nanami));
         GameActions.Bottom.ApplyWeak(p, m, GetWeak(nanami));
@@ -26,13 +27,13 @@ public class NanamiEffect_Attack_Debuff extends NanamiEffect
     }
 
     @Override
-    public String GetDescription(Nanami nanami)
+    public String GetDescription(EYBCard nanami)
     {
         return ACTIONS.Apply(GetWeak(nanami), GR.Tooltips.Weak, true);
     }
 
     @Override
-    public int GetBlock(Nanami nanami)
+    public int GetBlock(EYBCard nanami)
     {
         if (nanami.energyOnUse > 0)
         {
@@ -44,7 +45,7 @@ public class NanamiEffect_Attack_Debuff extends NanamiEffect
         }
     }
 
-    private int GetWeak(Nanami nanami)
+    private int GetWeak(EYBCard nanami)
     {
         return nanami.energyOnUse + 1;
     }

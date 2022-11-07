@@ -12,7 +12,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class DolaStephanie extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(DolaStephanie.class).SetSkill(0, CardRarity.UNCOMMON, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(DolaStephanie.class).SetSeriesFromClassPackage().SetSkill(0, CardRarity.UNCOMMON, EYBCardTarget.None);
 
     public DolaStephanie()
     {
@@ -21,7 +21,7 @@ public class DolaStephanie extends AnimatorClassicCard
         Initialize(0, 0);
 
         SetExhaust(true);
-        SetSeries(CardSeries.NoGameNoLife);
+
     }
 
     @Override

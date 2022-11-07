@@ -21,7 +21,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Kira extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(Kira.class).SetSkill(1, CardRarity.RARE).SetColor(CardColor.COLORLESS);
+    public static final EYBCardData DATA = Register(Kira.class).SetSkill(1, CardRarity.RARE).SetColor(CardColor.COLORLESS).SetSeries(CardSeries.DeathNote);
     public static final String[] DESCRIPTIONS = DATA.Strings.EXTENDED_DESCRIPTION;
 
     private int countdown;
@@ -37,7 +37,6 @@ public class Kira extends AnimatorClassicCard
 
         SetExhaust(true);
         SetEthereal(true);
-        SetSeries(CardSeries.DeathNote);
     }
 
     @Override

@@ -25,7 +25,7 @@ public class HolyGrail extends AnimatorClassicCard_UltraRare implements OnBattle
         SetInnate(true);
         SetRetain(true);
         SetExhaust(true);
-        SetSeries(CardSeries.Fate);
+        this.series = CardSeries.Fate;
     }
 
     @Override

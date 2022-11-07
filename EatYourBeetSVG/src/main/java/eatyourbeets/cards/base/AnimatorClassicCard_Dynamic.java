@@ -66,7 +66,7 @@ public class AnimatorClassicCard_Dynamic extends AnimatorClassicCard
             constructor.Invoke(this);
         }
 
-         SetSeries(builder.series);
+        this.series = builder.series;
     }
 
     @Override

@@ -14,7 +14,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class SwordMaiden extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(SwordMaiden.class).SetSkill(2, CardRarity.RARE, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(SwordMaiden.class).SetSeriesFromClassPackage().SetSkill(2, CardRarity.RARE, EYBCardTarget.None);
 
     public SwordMaiden()
     {
@@ -23,7 +23,7 @@ public class SwordMaiden extends AnimatorClassicCard
         Initialize(0, 0, 6);
 
         SetExhaust(true);
-        SetSeries(CardSeries.GoblinSlayer);
+
     }
 
     @Override

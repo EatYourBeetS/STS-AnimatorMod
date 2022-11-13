@@ -1,12 +1,12 @@
 package eatyourbeets.cards.animatorClassic.ultrarare;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.WhirlwindEffect;
 import eatyourbeets.cards.base.*;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.utilities.CardSelection;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
@@ -36,7 +36,7 @@ public class Kanami extends AnimatorClassicCard_UltraRare
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealDamageToAll(this, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL)
+        GameActions.Bottom.DealDamageToAll(this, AttackEffects.SLASH_HORIZONTAL)
         .SetVFX(false, true)
         .AddCallback(enemies ->
         {

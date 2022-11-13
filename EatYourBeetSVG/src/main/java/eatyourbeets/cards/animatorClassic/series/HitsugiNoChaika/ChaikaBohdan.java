@@ -1,15 +1,14 @@
 package eatyourbeets.cards.animatorClassic.series.HitsugiNoChaika;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorClassicCard;
-import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.modifiers.DamageModifiers;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.interfaces.subscribers.OnAttackSubscriber;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
@@ -66,7 +65,7 @@ public class ChaikaBohdan extends AnimatorClassicCard implements OnAttackSubscri
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL);
+        GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_HORIZONTAL);
         DamageModifiers.For(this).Set(0);
     }
 }

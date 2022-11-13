@@ -1,13 +1,12 @@
 package eatyourbeets.cards.animatorClassic.series.Katanagatari;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorClassicCard;
-import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
@@ -36,7 +35,7 @@ public class Konayuki extends AnimatorClassicCard
             if (force.amount >= 10 && CombatStats.TryActivateLimited(cardID))
             {
                 GameEffects.Queue.ShowCardBriefly(this.makeStatEquivalentCopy());
-                GameActions.Bottom.DealDamageToRandomEnemy(40, damageTypeForTurn, AbstractGameAction.AttackEffect.BLUNT_HEAVY)
+                GameActions.Bottom.DealDamageToRandomEnemy(40, damageTypeForTurn, AttackEffects.BLUNT_HEAVY)
                 .SetOptions(false, false, false)
                 .SetPiercing(true, false);
             }

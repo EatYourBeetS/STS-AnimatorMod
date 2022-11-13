@@ -1,15 +1,14 @@
 package eatyourbeets.cards.animatorClassic.series.LogHorizon;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.stances.NeutralStance;
 import eatyourbeets.cards.base.AnimatorClassicCard;
-import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
@@ -60,7 +59,7 @@ public class Nyanta extends AnimatorClassicCard
 
         for (int i = 0; i < magicNumber; i++)
         {
-            GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_DIAGONAL)
+            GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_DIAGONAL)
             .SetVFX(true, false);
             GameActions.Bottom.StackPower(TargetHelper.Normal(m), JUtils.Random(GameUtilities.GetCommonDebuffs()), 1)
             .ShowEffect(false, true);

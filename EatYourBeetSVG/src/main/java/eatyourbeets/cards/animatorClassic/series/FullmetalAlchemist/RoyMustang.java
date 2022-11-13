@@ -1,9 +1,9 @@
 package eatyourbeets.cards.animatorClassic.series.FullmetalAlchemist;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.orbs.animator.Fire;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
@@ -33,7 +33,7 @@ public class RoyMustang extends AnimatorClassicCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealDamageToAll(this, AbstractGameAction.AttackEffect.FIRE);
+        GameActions.Bottom.DealDamageToAll(this, AttackEffects.FIRE);
         GameActions.Bottom.ChannelOrbs(Fire::new, Math.min(p.orbs.size(), GameUtilities.GetEnemies(true).size()));
     }
 }

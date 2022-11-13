@@ -5,7 +5,6 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animatorClassic.curse.Curse_GriefSeed;
 import eatyourbeets.cards.animatorClassic.special.NagisaMomoe_CharlotteAlt;
 import eatyourbeets.cards.base.AnimatorClassicCard;
-import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;

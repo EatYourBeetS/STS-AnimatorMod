@@ -1,7 +1,6 @@
 package eatyourbeets.cards.animatorClassic.series.OwariNoSeraph;
 
 import com.badlogic.gdx.graphics.Color;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -13,9 +12,9 @@ import com.megacrit.cardcrawl.rooms.MonsterRoomBoss;
 import com.megacrit.cardcrawl.rooms.MonsterRoomElite;
 import com.megacrit.cardcrawl.vfx.combat.BiteEffect;
 import eatyourbeets.cards.base.AnimatorClassicCard;
-import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.relics.animator.ExquisiteBloodVial;
 import eatyourbeets.relics.animator.unnamedReign.AncientMedallion;
@@ -57,7 +56,7 @@ public class KrulTepes extends AnimatorClassicCard
     {
         if (m != null)
         {
-            GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE)
+            GameActions.Bottom.DealDamage(this, m, AttackEffects.NONE)
             .SetDamageEffect(e -> GameEffects.List.Add(new BiteEffect(e.hb.cX, e.hb.cY - 40f * Settings.scale, Color.SCARLET.cpy())).duration)
             .AddCallback(enemy ->
             {

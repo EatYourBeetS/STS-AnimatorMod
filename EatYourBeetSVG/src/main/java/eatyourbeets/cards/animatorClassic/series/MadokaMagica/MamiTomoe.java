@@ -1,6 +1,5 @@
 package eatyourbeets.cards.animatorClassic.series.MadokaMagica;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.utility.ShakeScreenAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.helpers.ScreenShake;
@@ -8,11 +7,11 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.MindblastEffect;
 import eatyourbeets.cards.animatorClassic.curse.Curse_GriefSeed;
 import eatyourbeets.cards.base.AnimatorClassicCard;
-import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.utilities.GameActions;
 
 public class MamiTomoe extends AnimatorClassicCard
@@ -81,7 +80,7 @@ public class MamiTomoe extends AnimatorClassicCard
         for (int i = 0; i < magicNumber; i++)
         {
             GameActions.Bottom.SFX("ATTACK_FIRE");
-            GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE);
+            GameActions.Bottom.DealDamage(this, m, AttackEffects.NONE);
         }
 
         GameActions.Bottom.Add(new ShakeScreenAction(0.5f, ScreenShake.ShakeDur.LONG, ScreenShake.ShakeIntensity.MED));

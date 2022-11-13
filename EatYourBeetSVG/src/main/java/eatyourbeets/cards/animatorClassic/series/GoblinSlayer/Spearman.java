@@ -1,6 +1,5 @@
 package eatyourbeets.cards.animatorClassic.series.GoblinSlayer;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.status.Wound;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -9,6 +8,7 @@ import com.megacrit.cardcrawl.stances.NeutralStance;
 import eatyourbeets.cards.animator.status.Status_Wound;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.effects.GenericEffects.GenericEffect_EnterStance;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.stances.AgilityStance;
 import eatyourbeets.stances.ForceStance;
@@ -40,7 +40,7 @@ public class Spearman extends AnimatorClassicCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_VERTICAL);
+        GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_VERTICAL);
         GameActions.Bottom.GainAgility(magicNumber, true);
         GameActions.Bottom.GainForce(magicNumber, true);
         GameActions.Bottom.MakeCardInDrawPile(new Wound());

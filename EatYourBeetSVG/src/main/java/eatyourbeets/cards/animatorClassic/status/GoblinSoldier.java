@@ -1,10 +1,10 @@
 package eatyourbeets.cards.animatorClassic.status;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.utilities.GameActions;
 
 public class GoblinSoldier extends AnimatorClassicCard
@@ -35,7 +35,7 @@ public class GoblinSoldier extends AnimatorClassicCard
     {
         if (this.dontTriggerOnUseCard)
         {
-            GameActions.Bottom.DealDamage(p, p, magicNumber, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL);
+            GameActions.Bottom.DealDamage(p, p, magicNumber, DamageInfo.DamageType.THORNS, AttackEffects.SLASH_HORIZONTAL);
         }
     }
 }

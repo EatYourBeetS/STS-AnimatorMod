@@ -1,14 +1,13 @@
 package eatyourbeets.cards.animatorClassic.series.GATE;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorClassicCard;
-import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.powers.animator.SupportDamagePower;
 import eatyourbeets.utilities.GameActions;
 
@@ -37,7 +36,7 @@ public class ItamiYouji extends AnimatorClassicCard
                 if (card.type == CardType.ATTACK)
                 {
                     GameActions.Bottom.SFX("ATTACK_FIRE");
-                    GameActions.Bottom.DealDamage(this, enemy, AbstractGameAction.AttackEffect.NONE);
+                    GameActions.Bottom.DealDamage(this, enemy, AttackEffects.NONE);
                 }
             }
         });

@@ -1,7 +1,6 @@
 package eatyourbeets.cards.animatorClassic.ultrarare;
 
 import com.badlogic.gdx.math.MathUtils;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -9,7 +8,11 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.IntangiblePower;
 import com.megacrit.cardcrawl.vfx.combat.ExplosionSmallEffect;
 import com.megacrit.cardcrawl.vfx.combat.LaserBeamEffect;
-import eatyourbeets.cards.base.*;
+import eatyourbeets.cards.base.AnimatorClassicCard_UltraRare;
+import eatyourbeets.cards.base.CardSeries;
+import eatyourbeets.cards.base.CardUseInfo;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.interfaces.subscribers.OnAfterCardDiscardedSubscriber;
 import eatyourbeets.interfaces.subscribers.OnAfterCardExhaustedSubscriber;
 import eatyourbeets.powers.CombatStats;
@@ -80,6 +83,6 @@ public class NivaLada extends AnimatorClassicCard_UltraRare implements OnAfterCa
         GameActions.Bottom.VFX(new ExplosionSmallEffect(m.hb.cX + MathUtils.random(-0.05f, 0.05f), m.hb.cY + MathUtils.random(-0.05f, 0.05f)), 0.1f);
         GameActions.Bottom.VFX(new ExplosionSmallEffect(m.hb.cX + MathUtils.random(-0.05f, 0.05f), m.hb.cY + MathUtils.random(-0.05f, 0.05f)), 0.1f);
         GameActions.Bottom.VFX(new ExplosionSmallEffect(m.hb.cX + MathUtils.random(-0.05f, 0.05f), m.hb.cY + MathUtils.random(-0.05f, 0.05f)), 0.1f);
-        GameActions.Bottom.DealDamage(player, m, magicNumber, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.NONE);
+        GameActions.Bottom.DealDamage(player, m, magicNumber, DamageInfo.DamageType.THORNS, AttackEffects.NONE);
     }
 }

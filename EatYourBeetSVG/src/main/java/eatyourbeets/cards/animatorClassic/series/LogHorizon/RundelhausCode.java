@@ -1,6 +1,5 @@
 package eatyourbeets.cards.animatorClassic.series.LogHorizon;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -8,6 +7,7 @@ import com.megacrit.cardcrawl.orbs.Frost;
 import com.megacrit.cardcrawl.orbs.Lightning;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.effects.GenericEffects.GenericEffect_ChannelOrb;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.orbs.animator.Fire;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.resources.GR;
@@ -38,7 +38,7 @@ public class RundelhausCode extends AnimatorClassicCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.LIGHTNING);
+        GameActions.Bottom.DealDamage(this, m, AttackEffects.LIGHTNING);
         GameActions.Bottom.GainIntellect(1);
     }
 

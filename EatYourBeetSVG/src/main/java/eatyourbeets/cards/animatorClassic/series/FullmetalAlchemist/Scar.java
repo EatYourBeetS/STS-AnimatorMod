@@ -1,9 +1,12 @@
 package eatyourbeets.cards.animatorClassic.series.FullmetalAlchemist;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.*;
+import eatyourbeets.cards.base.AnimatorClassicCard;
+import eatyourbeets.cards.base.CardUseInfo;
+import eatyourbeets.cards.base.EYBAttackType;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.effects.SFX;
 import eatyourbeets.orbs.animator.Earth;
 import eatyourbeets.utilities.GameActions;
@@ -26,7 +29,7 @@ public class Scar extends AnimatorClassicCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE)
+        GameActions.Bottom.DealDamage(this, m, AttackEffects.NONE)
         .SetDamageEffect(__ -> SFX.Play(SFX.ORB_DARK_EVOKE, 0.7f, 0.75f));
 
         GameActions.Bottom.ExhaustFromHand(name, 1, true)

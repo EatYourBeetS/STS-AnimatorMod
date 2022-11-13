@@ -1,7 +1,6 @@
 package eatyourbeets.cards.animatorClassic.special;
 
 import com.badlogic.gdx.graphics.Color;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -9,6 +8,7 @@ import com.megacrit.cardcrawl.powers.IntangiblePlayerPower;
 import com.megacrit.cardcrawl.vfx.BorderLongFlashEffect;
 import com.megacrit.cardcrawl.vfx.combat.VerticalImpactEffect;
 import eatyourbeets.cards.base.*;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -39,6 +39,6 @@ public class Saber_Excalibur extends AnimatorClassicCard
             GameActions.Bottom.VFX(new VerticalImpactEffect(m1.hb_x, m1.hb_y));
         }
 
-        GameActions.Bottom.DealDamageToAll(this, AbstractGameAction.AttackEffect.SLASH_HEAVY);
+        GameActions.Bottom.DealDamageToAll(this, AttackEffects.SLASH_HEAVY);
     }
 }

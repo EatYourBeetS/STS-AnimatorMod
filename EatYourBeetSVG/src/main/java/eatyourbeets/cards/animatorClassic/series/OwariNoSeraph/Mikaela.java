@@ -1,14 +1,13 @@
 package eatyourbeets.cards.animatorClassic.series.OwariNoSeraph;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorClassicCard;
-import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.attributes.TempHPAttribute;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -37,7 +36,7 @@ public class Mikaela extends AnimatorClassicCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.GainTemporaryHP(magicNumber);
-        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
+        GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_DIAGONAL);
         GameActions.Bottom.ExhaustFromPile(name, 1, p.discardPile)
         .SetOptions(false, false)
         .AddCallback(cards ->

@@ -1,11 +1,14 @@
 package eatyourbeets.cards.animatorClassic.series.Elsword;
 
 import com.badlogic.gdx.graphics.Color;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.*;
+import eatyourbeets.cards.base.AnimatorClassicCard;
+import eatyourbeets.cards.base.CardUseInfo;
+import eatyourbeets.cards.base.EYBAttackType;
+import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.effects.VFX;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
@@ -53,7 +56,7 @@ public class Aisha extends AnimatorClassicCard
     {
         for (int i = 0; i < magicNumber; i++)
         {
-            GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.FIRE)
+            GameActions.Bottom.DealDamage(this, m, AttackEffects.FIRE)
             .SetVFX(true, false)
             .SetDamageEffect(enemy ->
             {

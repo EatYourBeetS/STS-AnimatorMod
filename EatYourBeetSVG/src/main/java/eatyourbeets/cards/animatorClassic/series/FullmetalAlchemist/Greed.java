@@ -2,7 +2,10 @@ package eatyourbeets.cards.animatorClassic.series.FullmetalAlchemist;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.*;
+import eatyourbeets.cards.base.AnimatorClassicCard;
+import eatyourbeets.cards.base.CardEffectChoice;
+import eatyourbeets.cards.base.CardUseInfo;
+import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.effects.GenericEffects.GenericEffect_ApplyToPlayer;
 import eatyourbeets.cards.effects.GenericEffects.GenericEffect_GainBlock;
 import eatyourbeets.cards.effects.GenericEffects.GenericEffect_GainTempHP;

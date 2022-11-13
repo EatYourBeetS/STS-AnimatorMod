@@ -1,14 +1,13 @@
 package eatyourbeets.cards.animatorClassic.series.TenseiSlime;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.DieDieDieEffect;
 import eatyourbeets.cards.base.AnimatorClassicCard;
-import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.stances.ForceStance;
 import eatyourbeets.utilities.GameActions;
 
@@ -62,7 +61,7 @@ public class Hakurou extends AnimatorClassicCard
 
         for (int i = 0; i < magicNumber; i++)
         {
-            GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE);
+            GameActions.Bottom.DealDamage(this, m, AttackEffects.NONE);
         }
 
         if (info.IsSynergizing)

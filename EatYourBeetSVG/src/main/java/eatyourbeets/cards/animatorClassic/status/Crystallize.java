@@ -1,12 +1,12 @@
 package eatyourbeets.cards.animatorClassic.status;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorClassicCard;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.utilities.GameActions;
 
 public class Crystallize extends AnimatorClassicCard
@@ -28,9 +28,9 @@ public class Crystallize extends AnimatorClassicCard
         if (!this.dontTriggerOnUseCard)
         {
             GameActions.Bottom.SFX("ORB_FROST_Evoke", 0.8f, 1f);
-            GameActions.Bottom.LoseHP(secondaryValue, AbstractGameAction.AttackEffect.SLASH_VERTICAL);
+            GameActions.Bottom.LoseHP(secondaryValue, AttackEffects.SLASH_VERTICAL);
             GameActions.Bottom.GainMetallicize(magicNumber);
-            GameActions.Bottom.LoseHP(secondaryValue, AbstractGameAction.AttackEffect.SLASH_VERTICAL);
+            GameActions.Bottom.LoseHP(secondaryValue, AttackEffects.SLASH_VERTICAL);
         }
     }
 }

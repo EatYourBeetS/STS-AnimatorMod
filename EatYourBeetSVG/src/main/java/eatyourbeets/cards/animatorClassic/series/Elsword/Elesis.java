@@ -1,16 +1,15 @@
 package eatyourbeets.cards.animatorClassic.series.Elsword;
 
 import basemod.abstracts.CustomSavable;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorClassicCard;
-import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardPreview;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
@@ -96,7 +95,7 @@ public class Elesis extends AnimatorClassicCard implements CustomSavable<Elesis.
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_HEAVY);
+        GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_HEAVY);
 
         switch (currentForm)
         {
@@ -247,7 +246,7 @@ public class Elesis extends AnimatorClassicCard implements CustomSavable<Elesis.
         if (currentForm == Form.Dark && startOfBattle)
         {
             GameEffects.List.ShowCopy(this);
-            GameActions.Bottom.LoseHP(magicNumber, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
+            GameActions.Bottom.LoseHP(magicNumber, AttackEffects.SLASH_DIAGONAL);
         }
         else if (currentForm == Form.None)
         {

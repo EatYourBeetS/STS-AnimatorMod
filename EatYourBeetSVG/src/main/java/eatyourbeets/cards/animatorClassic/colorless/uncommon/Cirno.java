@@ -1,6 +1,5 @@
 package eatyourbeets.cards.animatorClassic.colorless.uncommon;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -8,6 +7,7 @@ import com.megacrit.cardcrawl.monsters.MonsterGroup;
 import com.megacrit.cardcrawl.orbs.Frost;
 import com.megacrit.cardcrawl.vfx.combat.FallingIceEffect;
 import eatyourbeets.cards.base.*;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 
@@ -50,7 +50,7 @@ public class Cirno extends AnimatorClassicCard
         });
 
         GameActions.Bottom.ChannelOrb(new Frost());
-        GameActions.Bottom.DealDamageToAll(this, AbstractGameAction.AttackEffect.SLASH_VERTICAL).SetVFX(false, true);
+        GameActions.Bottom.DealDamageToAll(this, AttackEffects.SLASH_VERTICAL).SetVFX(false, true);
     }
 }
 

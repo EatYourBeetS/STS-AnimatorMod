@@ -1,6 +1,5 @@
 package eatyourbeets.cards.animatorClassic.series.GATE;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -8,6 +7,7 @@ import com.megacrit.cardcrawl.powers.VulnerablePower;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.effects.GenericEffects.GenericEffect_EnterStance;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.stances.AgilityStance;
 import eatyourbeets.stances.ForceStance;
@@ -39,8 +39,8 @@ public class RoryMercury extends AnimatorClassicCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealDamageToRandomEnemy(this, AbstractGameAction.AttackEffect.SLASH_HEAVY).AddCallback(this::OnEnemyHit);
-        GameActions.Bottom.DealDamageToRandomEnemy(this, AbstractGameAction.AttackEffect.SLASH_HEAVY).AddCallback(this::OnEnemyHit);
+        GameActions.Bottom.DealDamageToRandomEnemy(this, AttackEffects.SLASH_HEAVY).AddCallback(this::OnEnemyHit);
+        GameActions.Bottom.DealDamageToRandomEnemy(this, AttackEffects.SLASH_HEAVY).AddCallback(this::OnEnemyHit);
 
         GameActions.Bottom.ModifyAllInstances(uuid)
         .AddCallback(c ->

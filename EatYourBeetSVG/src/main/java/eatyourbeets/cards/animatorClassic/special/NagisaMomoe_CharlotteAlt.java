@@ -1,13 +1,13 @@
 package eatyourbeets.cards.animatorClassic.special;
 
 import com.badlogic.gdx.graphics.Color;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.ArtifactPower;
 import eatyourbeets.cards.animatorClassic.curse.Curse_GriefSeed;
 import eatyourbeets.cards.base.*;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.effects.VFX;
 import eatyourbeets.monsters.EnemyIntent;
 import eatyourbeets.powers.PowerHelper;
@@ -62,7 +62,7 @@ public class NagisaMomoe_CharlotteAlt extends AnimatorClassicCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE)
+        GameActions.Bottom.DealDamage(this, m, AttackEffects.NONE)
         .SetDamageEffect(e ->
         {
             GameEffects.List.BorderFlash(Color.RED);

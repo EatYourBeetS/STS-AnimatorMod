@@ -1,7 +1,6 @@
 package eatyourbeets.cards.animatorClassic.series.Fate;
 
 import com.badlogic.gdx.graphics.Color;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -9,11 +8,11 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.AnimatedSlashEffect;
 import eatyourbeets.cards.base.AnimatorClassicCard;
-import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
@@ -81,15 +80,15 @@ public class Assassin extends AnimatorClassicCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL)
+        GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_HORIZONTAL)
         .SetDamageEffect(this::DamageEffect)
         .SetDuration(0.3f, false);
 
-        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_DIAGONAL)
+        GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_DIAGONAL)
         .SetDamageEffect(this::DamageEffect)
         .SetDuration(0.3f, false);
 
-        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_VERTICAL)
+        GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_VERTICAL)
         .SetDamageEffect(this::DamageEffect)
         .SetDuration(0.2f, false);
     }

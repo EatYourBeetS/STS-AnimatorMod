@@ -1,6 +1,5 @@
 package eatyourbeets.cards.animatorClassic.colorless.uncommon;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.status.Dazed;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -8,6 +7,7 @@ import eatyourbeets.cards.base.AnimatorClassicCard;
 import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.utilities.GameActions;
 
 public class Shimakaze extends AnimatorClassicCard
@@ -26,7 +26,7 @@ public class Shimakaze extends AnimatorClassicCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.GainBlock(block);
-        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
+        GameActions.Bottom.DealDamage(this, m, AttackEffects.BLUNT_LIGHT);
         GameActions.Bottom.Draw(magicNumber);
         GameActions.Bottom.MakeCardInDrawPile(new Dazed());
     }

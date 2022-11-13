@@ -1,10 +1,10 @@
 package eatyourbeets.cards.animatorClassic.colorless.rare;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -31,7 +31,7 @@ public class Hibiki extends AnimatorClassicCard
     {
         for (int i = 0; i < magicNumber; i++)
         {
-            GameActions.Bottom.DealDamageToRandomEnemy(this, AbstractGameAction.AttackEffect.BLUNT_LIGHT)
+            GameActions.Bottom.DealDamageToRandomEnemy(this, AttackEffects.BLUNT_LIGHT)
             .SetOptions(true, false);
         }
 

@@ -30,19 +30,11 @@ public class Eve extends AnimatorCard
         super(DATA);
 
         Initialize(0, 0, 5);
-        SetEthereal(true);
+        SetUpgrade(0, 0, 2);
 
         SetAffinity_Blue(2);
         SetAffinity_Light(1);
         SetAffinity_Dark(1);
-    }
-
-    @Override
-    protected void OnUpgrade()
-    {
-        super.OnUpgrade();
-
-        SetEthereal(false);
     }
 
     @Override
@@ -97,17 +89,20 @@ public class Eve extends AnimatorCard
         {
             super.atStartOfTurnPostDraw();
 
-            GameActions.Last.Callback(() ->
+            if (CombatStats.TryActivateLimited(Eve.DATA.ID))
             {
-                GameActions.Bottom.Reload(name, cards ->
+                GameActions.Last.Callback(() ->
                 {
-                    for (AbstractCard c : cards)
+                    GameActions.Bottom.Reload(name, cards ->
                     {
-                        GameActions.Bottom.ObtainAffinityToken(Affinity.Star, false);
-                    }
+                        for (AbstractCard c : cards)
+                        {
+                            GameActions.Bottom.ObtainAffinityToken(Affinity.Star, false);
+                        }
+                    });
+                    flash();
                 });
-                flash();
-            });
+            }
         }
     }
 }

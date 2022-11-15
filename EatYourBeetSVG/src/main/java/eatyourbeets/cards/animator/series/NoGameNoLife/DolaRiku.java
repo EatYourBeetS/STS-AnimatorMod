@@ -42,7 +42,7 @@ public class DolaRiku extends AnimatorCard
     {
         super.Refresh(enemy);
 
-        cardPreview = CheckSpecialCondition(true) ? discardPilePreview : drawPilePreview;
+        cardPreview = CheckSpecialCondition(false) ? discardPilePreview : drawPilePreview;
     }
 
     @Override

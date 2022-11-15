@@ -23,8 +23,8 @@ public class Lelouch extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 3);
-        SetCostUpgrade(-1);
+        Initialize(0, 0, 4);
+        SetUpgrade(0, 0, -1);
 
         SetAffinity_Blue(2);
         SetAffinity_Dark(2);

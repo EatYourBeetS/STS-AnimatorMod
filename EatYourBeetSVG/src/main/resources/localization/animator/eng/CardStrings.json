@@ -84,6 +84,12 @@
 
 	"COLORLESS:RARE":
 	{
+		"animator:GiftBox":
+		{
+			"DESCRIPTION": "<LIM>. Gain !S! [Gold]. || Discard all cards. ** Add !M! random card(s) ** to your hand.",
+			"NAME": "Gift Box",
+			"UPGRADE_DESCRIPTION": "<LIM>. Gain !S! [Gold]. || Discard all cards. ** Add !M! random Upgraded ** card(s) to your hand."	
+		},
 		"animator:Emilia":
 		{
 			"DESCRIPTION": "Channel !M! [Frost]. || At the start of next ** turn: Channel 1 [Lightning] for ** each [Frost] you have.",
@@ -416,7 +422,7 @@
 		},
 		"animator:Eve":
 		{
-			"DESCRIPTION": "At the start of turn, ** Reload: Obtain 1 {[M] Token}. || Whenever you Seal a ** card: Deal !M! damage ** to a random enemy.",
+			"DESCRIPTION": "<LIM>. At the start of turn, ** Reload: Obtain 1 {[M] Token}. || Whenever you Seal a ** card: Deal !M! damage ** to a random enemy.",
 			"EXTENDED_DESCRIPTION": ["At the start of turn, #yReload: Obtain #b1 [M] #yToken. ** Whenever you #ySeal a card: Deal #b{0} damage to a random enemy."],
 			"NAME": "Eve"
 		},
@@ -2006,11 +2012,6 @@
 		{
 			"DESCRIPTION": "Card not found. ** Please report this ** to the mod author.",
 			"NAME": "Card not found"
-		},
-		"animator:GiftBox":
-		{
-			"DESCRIPTION": "Discard all cards. ** Add !M! random card(s) ** to your hand. || When Exhausted: Add ** !S! random cards ** to your draw pile.",
-			"NAME": "Gift Box"
 		},
 		"animator:Azami":
 		{

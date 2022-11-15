@@ -24,7 +24,7 @@ public class PlotArmor extends AnimatorRelic implements OnModifyDamageLastSubscr
     @Override
     public boolean canSpawn()
     {
-        return super.canSpawn() && AbstractDungeon.ascensionLevel >= MINIMUM_ASCENSION;
+        return super.canSpawn() && GameUtilities.GetActualAscensionLevel() >= MINIMUM_ASCENSION;
     }
 
     @Override
@@ -38,7 +38,7 @@ public class PlotArmor extends AnimatorRelic implements OnModifyDamageLastSubscr
     {
         super.onEquip();
 
-        SetCounter(AbstractDungeon.ascensionLevel);
+        SetCounter(GameUtilities.GetActualAscensionLevel());
     }
 
     @Override

@@ -117,6 +117,12 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
 
     public boolean TryUseAffinity(Affinity affinity, int amount)
     {
+        if (Settings.isDebug)
+        {
+            JUtils.LogInfo(this, "TryUseAffinity(" + affinity.Name + ", " + amount + ")");
+            JUtils.LogInfo(this, JUtils.JoinStrings("\n", Thread.currentThread().getStackTrace()));
+        }
+
         if (affinity == Affinity.Star)
         {
             for (Affinity a : Affinity.Basic())
@@ -150,6 +156,12 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
 
     public int UseAffinity(Affinity affinity, int amount)
     {
+        if (Settings.isDebug)
+        {
+            JUtils.LogInfo(this, "UseAffinity(" + affinity.Name + ", " + amount + ")");
+            JUtils.LogInfo(this, JUtils.JoinStrings("\n", Thread.currentThread().getStackTrace()));
+        }
+
         int totalUsed = 0;
         if (affinity == Affinity.Star)
         {
@@ -189,16 +201,20 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
 
     public void AddAffinity(Affinity affinity, int amount)
     {
-        if (affinity == Affinity.Star || affinity == Affinity.General)
+        if (amount < 0)
+        {
+            throw new RuntimeException("Can't add negative amount.");
+        }
+        else if (affinity == Affinity.Sealed)
+        {
+            throw new RuntimeException("Do not use AddAffinity() for Affinity.Sealed, use AddAffinitySealUses() instead.");
+        }
+        else if (affinity == Affinity.Star || affinity == Affinity.General)
         {
             for (Affinity a : Affinity.Basic())
             {
                 AddAffinity(a, amount);
             }
-        }
-        else if (affinity == Affinity.Sealed)
-        {
-            throw new RuntimeException("Do not use AddAffinity() for Affinity.Sealed, use AddAffinitySealUses() instead.");
         }
         else
         {
@@ -208,7 +224,11 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
 
     public void AddTempAffinity(Affinity affinity, int amount)
     {
-        if (affinity == Affinity.Star || affinity == Affinity.General)
+        if (amount < 0)
+        {
+            throw new RuntimeException("Can't add negative amount.");
+        }
+        else if (affinity == Affinity.Star || affinity == Affinity.General)
         {
             for (Affinity a : Affinity.Basic())
             {

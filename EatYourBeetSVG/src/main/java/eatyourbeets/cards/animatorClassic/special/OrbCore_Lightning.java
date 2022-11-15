@@ -1,6 +1,5 @@
 package eatyourbeets.cards.animatorClassic.special;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -11,6 +10,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Lightning;
 import com.megacrit.cardcrawl.vfx.combat.LightningEffect;
 import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.GameActions;
 
@@ -59,7 +59,7 @@ public class OrbCore_Lightning extends OrbCore
                 {
                     GameActions.Bottom.VFX(new LightningEffect(enemy.drawX, enemy.drawY));
                     GameActions.Bottom.Add(new DamageAction(enemy, new DamageInfo(p, multiDamage[i], DamageInfo.DamageType.THORNS),
-                            AbstractGameAction.AttackEffect.NONE, true));
+                            AttackEffects.NONE, true));
                 }
             }
         }

@@ -1,10 +1,10 @@
 package eatyourbeets.cards.animatorClassic.colorless.uncommon;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Dark;
 import eatyourbeets.cards.base.*;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
@@ -59,7 +59,7 @@ public class Urushihara extends AnimatorClassicCard implements OnStartOfTurnPost
 
             GameEffects.Queue.ShowCardBriefly(this);
 
-            GameActions.Bottom.DealDamageToAll(this, AbstractGameAction.AttackEffect.FIRE);
+            GameActions.Bottom.DealDamageToAll(this, AttackEffects.FIRE);
             GameUtilities.RemoveDamagePowers();
 
             CombatStats.onStartOfTurnPostDraw.Unsubscribe(this);

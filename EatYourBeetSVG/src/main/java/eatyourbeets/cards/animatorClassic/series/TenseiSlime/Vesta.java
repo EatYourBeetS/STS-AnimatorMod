@@ -10,7 +10,6 @@ import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.effects.VestaElixirEffects.AnimatorClassicVestaElixirEffects;
 import eatyourbeets.cards.effects.VestaElixirEffects.VestaElixirEffect;
 import eatyourbeets.cards.effects.VestaElixirEffects.VestaElixirEffect_CompleteFaster;
-import eatyourbeets.cards.effects.VestaElixirEffects.VestaElixirEffects;
 import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;

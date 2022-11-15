@@ -1,15 +1,11 @@
 package eatyourbeets.cards.animatorClassic.colorless.rare;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animatorClassic.special.TanyaDegurechaff_Type95;
-import eatyourbeets.cards.base.AnimatorClassicCard;
-import eatyourbeets.cards.base.CardSeries;
-import eatyourbeets.cards.base.CardUseInfo;
-import eatyourbeets.cards.base.EYBAttackType;
-import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
@@ -58,7 +54,7 @@ public class TanyaDegurechaff extends AnimatorClassicCard
             for (int i = 0; i < (cards.size() + baseMagicNumber); i++)
             {
                 GameActions.Bottom.SFX("ATTACK_FIRE");
-                GameActions.Bottom.DealDamage(this, enemy, AbstractGameAction.AttackEffect.NONE);
+                GameActions.Bottom.DealDamage(this, enemy, AttackEffects.NONE);
             }
         });
     }

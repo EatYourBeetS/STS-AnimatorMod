@@ -1,7 +1,6 @@
 package eatyourbeets.cards.animatorClassic.special;
 
 import com.badlogic.gdx.graphics.Color;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.utility.ShakeScreenAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.helpers.ScreenShake;
@@ -11,6 +10,7 @@ import com.megacrit.cardcrawl.vfx.combat.MindblastEffect;
 import eatyourbeets.actions.animator.CreateRandomCurses;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.utilities.GameActions;
 
 public class SayakaMiki_Oktavia extends AnimatorClassicCard
@@ -59,7 +59,7 @@ public class SayakaMiki_Oktavia extends AnimatorClassicCard
 
                 for (int i = 0; i < player.hand.getCardsOfType(CardType.CURSE).size(); i++)
                 {
-                    GameActions.Bottom.DealDamageToAll(this, AbstractGameAction.AttackEffect.NONE)
+                    GameActions.Bottom.DealDamageToAll(this, AttackEffects.NONE)
                     .SetVFX(false, true);
                 }
             });

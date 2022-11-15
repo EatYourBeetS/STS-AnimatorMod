@@ -1,7 +1,6 @@
 package eatyourbeets.cards.animatorClassic.series.Fate;
 
 import com.badlogic.gdx.graphics.Color;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -15,11 +14,11 @@ import com.megacrit.cardcrawl.vfx.combat.CleaveEffect;
 import com.megacrit.cardcrawl.vfx.combat.IronWaveEffect;
 import com.megacrit.cardcrawl.vfx.combat.WhirlwindEffect;
 import eatyourbeets.cards.base.AnimatorClassicCard;
-import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.interfaces.subscribers.OnRelicObtainedSubscriber;
 import eatyourbeets.relics.animator.unnamedReign.UnnamedReignRelic;
 import eatyourbeets.utilities.FieldInfo;
@@ -102,7 +101,7 @@ public class Gilgamesh extends AnimatorClassicCard implements OnRelicObtainedSub
             {
                 GameActions.Bottom.SFX("ATTACK_HEAVY");
                 GameActions.Bottom.VFX(new IronWaveEffect(p.hb.cX, p.hb.cY, m.hb.cX), 0.1f);
-                GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE);
+                GameActions.Bottom.DealDamage(this, m, AttackEffects.NONE);
                 GameActions.Bottom.VFX(new CleaveEffect());
             }
         }
@@ -110,7 +109,7 @@ public class Gilgamesh extends AnimatorClassicCard implements OnRelicObtainedSub
         {
             for (int i = 0; i < magicNumber; i++)
             {
-                GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_VERTICAL);
+                GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_VERTICAL);
             }
         }
     }

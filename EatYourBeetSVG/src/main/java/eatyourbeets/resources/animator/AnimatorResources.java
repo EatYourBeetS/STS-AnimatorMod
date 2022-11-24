@@ -75,18 +75,8 @@ public class AnimatorResources extends AbstractResources
         LoadCustomStrings(OrbStrings.class);
         LoadCustomStrings(CharacterStrings.class);
 
-        String json = GetFallbackFile("CardStrings.json").readString(StandardCharsets.UTF_8.name());
-        LoadGroupedCardStrings(ProcessJson(json, true));
-
-        if (testFolder.isDirectory() || IsTranslationSupported(Settings.language))
-        {
-            FileHandle file = GetFile(Settings.language, "CardStrings.json");
-            if (file.exists())
-            {
-                String json2 = file.readString(StandardCharsets.UTF_8.name());
-                LoadGroupedCardStrings(ProcessJson(json2, false));
-            }
-        }
+        LoadCardStrings(CARD_FILE);
+        LoadCardStrings(CARD_FILE_BETA);
 
         String jsonString = new String(Gdx.files.internal("Animator-CardMetadata.json").readBytes());
         CardData = new Gson().fromJson(jsonString, new TypeToken<Map<String, EYBCardMetadata>>(){}.getType());

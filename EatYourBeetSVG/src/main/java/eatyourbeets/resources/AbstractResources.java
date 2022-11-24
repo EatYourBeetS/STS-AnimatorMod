@@ -24,6 +24,10 @@ implements EditCharactersSubscriber, EditCardsSubscriber, EditKeywordsSubscriber
            EditRelicsSubscriber, EditStringsSubscriber, PostInitializeSubscriber,
            AddAudioSubscriber
 {
+    public static final String CARD_FILE = "CardStrings.json";
+    public static final String CARD_FILE_BETA = "CardStringsBeta.json";
+    public static final String KEYWORDS_FILE = "KeywordStrings.json";
+
     public final String Prefix;
     public final AbstractCard.CardColor CardColor;
     public final AbstractPlayer.PlayerClass PlayerClass;
@@ -171,13 +175,29 @@ implements EditCharactersSubscriber, EditCardsSubscriber, EditKeywordsSubscriber
         }
     }
 
+    protected void LoadCardStrings(String cardFile)
+    {
+        String json = GetFallbackFile(cardFile).readString(StandardCharsets.UTF_8.name());
+        LoadGroupedCardStrings(ProcessJson(json, true));
+
+        if (testFolder.isDirectory() || IsTranslationSupported(Settings.language))
+        {
+            FileHandle file = GetFile(Settings.language, cardFile);
+            if (file.exists())
+            {
+                String json2 = file.readString(StandardCharsets.UTF_8.name());
+                LoadGroupedCardStrings(ProcessJson(json2, false));
+            }
+        }
+    }
+
     protected void LoadKeywords(AbstractPlayer.PlayerClass requiredClass)
     {
-        super.LoadKeywords(GetFallbackFile("KeywordStrings.json"), requiredClass);
+        super.LoadKeywords(GetFallbackFile(KEYWORDS_FILE), requiredClass);
 
         if (IsBetaTranslation() || IsTranslationSupported(Settings.language))
         {
-            super.LoadKeywords(GetFile(Settings.language, "KeywordStrings.json"), requiredClass);
+            super.LoadKeywords(GetFile(Settings.language, KEYWORDS_FILE), requiredClass);
         }
     }
 

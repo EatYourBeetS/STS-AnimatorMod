@@ -116,7 +116,7 @@ public class Elesis extends AnimatorCard implements CustomSavable<Elesis.Form>
     @Override
     public AbstractCard makeStatEquivalentCopy()
     {
-        return currentForm == Form.None ? makeCopy() : super.makeStatEquivalentCopy();
+        return currentForm == Form.None ? new Elesis(Form.None, upgraded) : super.makeStatEquivalentCopy();
     }
 
     @Override

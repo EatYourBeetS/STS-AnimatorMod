@@ -449,7 +449,7 @@ public class GameUtilities
 
     public static boolean HasRedAffinity(AbstractCard card, boolean allowSeal)
     {
-        return HasAffinity(card, Affinity.Red, true, false);
+        return HasAffinity(card, Affinity.Red, true, allowSeal);
     }
 
     public static boolean HasGreenAffinity(AbstractCard card)
@@ -459,7 +459,7 @@ public class GameUtilities
 
     public static boolean HasGreenAffinity(AbstractCard card, boolean allowSeal)
     {
-        return HasAffinity(card, Affinity.Green, true, false);
+        return HasAffinity(card, Affinity.Green, true, allowSeal);
     }
 
     public static boolean HasBlueAffinity(AbstractCard card)
@@ -469,7 +469,7 @@ public class GameUtilities
 
     public static boolean HasBlueAffinity(AbstractCard card, boolean allowSeal)
     {
-        return HasAffinity(card, Affinity.Blue, true, false);
+        return HasAffinity(card, Affinity.Blue, true, allowSeal);
     }
 
     public static boolean HasLightAffinity(AbstractCard card)
@@ -479,7 +479,7 @@ public class GameUtilities
 
     public static boolean HasLightAffinity(AbstractCard card, boolean allowSeal)
     {
-        return HasAffinity(card, Affinity.Light, true, false);
+        return HasAffinity(card, Affinity.Light, true, allowSeal);
     }
 
     public static boolean HasDarkAffinity(AbstractCard card)
@@ -489,7 +489,7 @@ public class GameUtilities
 
     public static boolean HasDarkAffinity(AbstractCard card, boolean allowSeal)
     {
-        return HasAffinity(card, Affinity.Dark, true, false);
+        return HasAffinity(card, Affinity.Dark, true, allowSeal);
     }
 
     public static boolean HasMulticolorAffinity(AbstractCard card)
@@ -499,7 +499,7 @@ public class GameUtilities
 
     public static boolean HasMulticolorAffinity(AbstractCard card, boolean allowSeal)
     {
-        return HasAffinity(card, Affinity.Star, true, false);
+        return HasAffinity(card, Affinity.Star, true, allowSeal);
     }
 
     public static boolean IsSealed(AbstractCard card)

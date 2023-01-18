@@ -177,8 +177,12 @@ implements EditCharactersSubscriber, EditCardsSubscriber, EditKeywordsSubscriber
 
     protected void LoadCardStrings(String cardFile)
     {
-        String json = GetFallbackFile(cardFile).readString(StandardCharsets.UTF_8.name());
-        LoadGroupedCardStrings(ProcessJson(json, true));
+        FileHandle fallback = GetFallbackFile(cardFile);
+        if (fallback.exists())
+        {
+            String json = GetFallbackFile(cardFile).readString(StandardCharsets.UTF_8.name());
+            LoadGroupedCardStrings(ProcessJson(json, true));
+        }
 
         if (testFolder.isDirectory() || IsTranslationSupported(Settings.language))
         {

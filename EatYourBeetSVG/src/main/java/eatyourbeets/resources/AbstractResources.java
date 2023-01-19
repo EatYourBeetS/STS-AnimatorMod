@@ -25,7 +25,6 @@ implements EditCharactersSubscriber, EditCardsSubscriber, EditKeywordsSubscriber
            AddAudioSubscriber
 {
     public static final String CARD_FILE = "CardStrings.json";
-    public static final String CARD_FILE_BETA = "CardStringsBeta.json";
     public static final String KEYWORDS_FILE = "KeywordStrings.json";
 
     public final String Prefix;

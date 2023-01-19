@@ -66,6 +66,14 @@ public class CardSeries
     public final static CardSeries GuiltyCrown = Add(49, "GuiltyCrown");
     public final static CardSeries GakkouGurashi = Add(50, "GakkouGurashi");
     public final static CardSeries GenshinImpact = Add(51, "GenshinImpact");
+    public final static CardSeries Durarara = Add(52, "Durarara");
+    public final static CardSeries CowboyBebop = Add(53, "CowboyBebop");
+    public final static CardSeries GhostInTheShell = Add(54, "GhostInTheShell");
+    public final static CardSeries GurrenLagann = Add(55, "GurrenLagann");
+    public final static CardSeries Gundam = Add(56, "Gundam");
+    public final static CardSeries Evangelion = Add(57, "Evangelion");
+    public final static CardSeries Lupin = Add(58, "Lupin");
+    public final static CardSeries DrStone = Add(59, "DrStone");
 
     private static AbstractCard currentSynergy = null;
     private static EYBCard lastCardPlayed = null;
@@ -95,7 +103,7 @@ public class CardSeries
         }
     }
 
-    private static CardSeries Add(int id, String name)
+    public static CardSeries Add(int id, String name)
     {
         final CardSeries s = new CardSeries(id, name);
         if (id > 0)

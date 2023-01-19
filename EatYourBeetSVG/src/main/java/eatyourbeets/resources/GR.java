@@ -44,11 +44,14 @@ public class GR
 {
     // TODO: Set to false
     public static final boolean TEST_MODE = false;
+    public static final String CARD_PREFIX = "eatyourbeets.cards.";
+    public static final String RELIC_PREFIX = "eatyourbeets.relics.";
+    public static final String POWER_PREFIX = "eatyourbeets.powers.";
 
     protected static final Logger logger = JUtils.GetLogger(GR.class);
-    protected static final ArrayList<String> cardClassNames = JUtils.GetClassNamesFromJarFile("eatyourbeets.cards.");
-    protected static final ArrayList<String> relicClassNames = JUtils.GetClassNamesFromJarFile("eatyourbeets.relics.");
-    protected static final ArrayList<String> powerClassNames = JUtils.GetClassNamesFromJarFile("eatyourbeets.powers.");
+    protected static final ArrayList<String> cardClassNames = JUtils.GetClassNamesFromJarFile(CARD_PREFIX);
+    protected static final ArrayList<String> relicClassNames = JUtils.GetClassNamesFromJarFile(RELIC_PREFIX);
+    protected static final ArrayList<String> powerClassNames = JUtils.GetClassNamesFromJarFile(POWER_PREFIX);
     protected static final HashMap<String, Texture> textures = new HashMap<>();
 
     public static EYBCardLibrary CardLibrary = new EYBCardLibrary();
@@ -237,7 +240,7 @@ public class GR
 
     protected void LoadCustomRelics(String character, AbstractCard.CardColor cardColor)
     {
-        final String prefix = "eatyourbeets.relics." + character;
+        final String prefix = RELIC_PREFIX + character;
 
         for (String s : relicClassNames)
         {
@@ -282,8 +285,13 @@ public class GR
 
     protected void LoadCustomCards(String character)
     {
-        final String prefix = "eatyourbeets.cards." + character;
-        for (String s : cardClassNames)
+        LoadCustomCards(character, cardClassNames);
+    }
+
+    protected void LoadCustomCards(String character, ArrayList<String> classNames)
+    {
+        final String prefix = CARD_PREFIX + character;
+        for (String s : classNames)
         {
             if (s.startsWith(prefix))
             {
@@ -335,7 +343,7 @@ public class GR
 
     protected void LoadCustomPowers(String character)
     {
-        final String prefix = "eatyourbeets.cards." + character;
+        final String prefix = CARD_PREFIX + character;
 
         for (String s : cardClassNames)
         {

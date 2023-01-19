@@ -76,7 +76,6 @@ public class AnimatorResources extends AbstractResources
         LoadCustomStrings(CharacterStrings.class);
 
         LoadCardStrings(CARD_FILE);
-        LoadCardStrings(CARD_FILE_BETA);
 
         String jsonString = new String(Gdx.files.internal("Animator-CardMetadata.json").readBytes());
         CardData = new Gson().fromJson(jsonString, new TypeToken<Map<String, EYBCardMetadata>>(){}.getType());

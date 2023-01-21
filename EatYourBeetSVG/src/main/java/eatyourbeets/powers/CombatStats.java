@@ -1053,7 +1053,7 @@ public class CombatStats extends EYBPower implements InvisiblePower
     {
         super.wasHPLost(info, damageAmount);
 
-        if (onLosingHP.Count() > 0)
+        if (onLoseHP.Count() > 0)
         {
             for (OnLoseHPSubscriber s : onLoseHP.GetSubscribers())
             {

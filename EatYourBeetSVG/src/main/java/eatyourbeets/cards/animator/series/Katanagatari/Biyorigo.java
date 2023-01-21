@@ -52,7 +52,7 @@ public class Biyorigo extends AnimatorCard
         @Override
         public String GetUpdatedDescription()
         {
-            return FormatDescription(0, triggerCondition.uses, amount, MAX_METALLICIZE);
+            return FormatDescription(0, amount, MAX_METALLICIZE);
         }
 
         @Override

@@ -55,7 +55,7 @@ public class MamiTomoe_Candeloro extends AnimatorCard implements OnLoseHPSubscri
         {
             SetExhaust(false);
             SetPurge(true, true);
-            GameActions.Top.MoveCard(this, player.exhaustPile, player.hand).ShowEffect(true, true);
+            GameActions.Top.MoveCard(this, player.hand).ShowEffect(true, true);
         }
     }
 

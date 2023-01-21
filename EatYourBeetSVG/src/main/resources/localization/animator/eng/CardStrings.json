@@ -897,7 +897,7 @@
 		"animator:Biyorigo":
 		{
 			"DESCRIPTION": "Sealing [R] cards ** also grants !M! [Metallicize]. || Once|Twice per combat, ** pay [E]: Gain [Artifact].",
-			"EXTENDED_DESCRIPTION": ["Pay #b{0} [E] to gain #b1 #yTemporary [Artifact]. || #ySealing [R] cards also grants #b{1} [Metallicize] (Max #b{2}^ per Seal)."],
+			"EXTENDED_DESCRIPTION": ["Pay [E] to gain [Artifact]. || #ySealing [R] cards also grants #b{0} [Metallicize] (Max #b{1}^ per Seal)."],
 			"NAME": "Biyorigo"
 		},
 		"animator:Emonzaemon":

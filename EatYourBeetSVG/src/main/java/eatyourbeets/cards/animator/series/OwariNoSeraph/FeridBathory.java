@@ -27,7 +27,7 @@ public class FeridBathory extends AnimatorCard
         super(DATA);
 
         Initialize(0, 0, 3, 7);
-        SetUpgrade(0, 0, 1, 2);
+        SetUpgrade(0, 0, 1, 3);
 
         SetAffinity_Red(2);
         SetAffinity_Green(1);

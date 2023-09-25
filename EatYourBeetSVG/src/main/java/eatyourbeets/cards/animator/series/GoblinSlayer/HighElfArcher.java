@@ -9,7 +9,6 @@ import eatyourbeets.effects.SFX;
 import eatyourbeets.effects.VFX;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
-import eatyourbeets.utilities.GameUtilities;
 
 public class HighElfArcher extends AnimatorCard
 {
@@ -36,10 +35,10 @@ public class HighElfArcher extends AnimatorCard
         GameActions.Bottom.DealDamage(this, m, AttackEffects.NONE)
         .SetDamageEffect(c -> GameEffects.List.Add(VFX.ThrowDagger(c.hb, 0.15f).SetColor(Color.TAN)).duration * 0.5f);
 
-        if (!GameUtilities.HasArtifact(m))
-        {
+//        if (!GameUtilities.HasArtifact(m))
+//        {
             GameActions.Bottom.ApplyLockOn(player, m, magicNumber);
-        }
+//        }
 
         if (CheckSpecialCondition(true))
         {

@@ -54,7 +54,7 @@ public class MetalKnight extends AnimatorCard
     {
         public MetalKnightPower(AbstractCreature owner, int amount)
         {
-            super(owner, MetalKnight.DATA, PowerTriggerConditionType.Energy, 1);
+            super(owner, MetalKnight.DATA, PowerTriggerConditionType.Affinity_Blue, 1);
 
             triggerCondition.SetUses(amount, false, true);
 

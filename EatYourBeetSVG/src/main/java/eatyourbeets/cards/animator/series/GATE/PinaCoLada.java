@@ -23,7 +23,7 @@ public class PinaCoLada extends AnimatorCard
         SetCostUpgrade(-1);
 
         SetAffinity_Light(2);
-        SetAffinityRequirement(Affinity.Light, 3);
+        SetAffinityRequirement(Affinity.Light, 2);
     }
 
     @Override

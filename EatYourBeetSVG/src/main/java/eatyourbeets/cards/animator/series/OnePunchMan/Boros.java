@@ -24,7 +24,7 @@ public class Boros extends AnimatorCard
             .SetSeriesFromClassPackage();
     private static final int POWER_DD_COST = 17;
     private static final int POWER_ENERGY_GAIN = 2;
-    private static final int POWER_DD_MULTI = 4;
+    private static final int POWER_DD_MULTI = 3;
 
     public Boros()
     {

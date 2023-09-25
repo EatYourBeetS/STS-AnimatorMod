@@ -23,7 +23,7 @@ public class Hans extends AnimatorCard
             .PostInitialize(data -> data.AddPreview(GetClassCard(Slimed.ID), true));
     public static final int SLIMED_AMOUNT = 3;
     public static final int POISON_AMOUNT = 2;
-    public static final int RECOVER_AMOUNT = 3;
+    public static final int RECOVER_AMOUNT = 2;
 
     public Hans()
     {
@@ -69,7 +69,7 @@ public class Hans extends AnimatorCard
 
             if (card.type == CardType.STATUS)
             {
-                GameActions.Bottom.RecoverHP(RECOVER_AMOUNT);
+                GameActions.Bottom.RecoverHP(RECOVER_AMOUNT).Overheal(true);
                 flash();
             }
         }

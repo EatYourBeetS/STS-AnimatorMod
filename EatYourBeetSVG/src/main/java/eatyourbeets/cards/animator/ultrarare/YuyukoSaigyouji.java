@@ -29,7 +29,7 @@ public class YuyukoSaigyouji extends AnimatorCard_UltraRare
     {
         super(DATA);
 
-        Initialize(0, 0, 34, 10);
+        Initialize(0, 0, 34, 15);
         SetUpgrade(0, 0, 6, 0);
 
         SetAffinity_Blue(2);

@@ -27,12 +27,19 @@ public class ShikizakiKiki extends AnimatorCard_UltraRare
     {
         super(DATA);
 
-        Initialize(0, 0, 1, POWER_ENERGY_COST);
-        SetUpgrade(0, 0, 1);
+        Initialize(0, 0, 2, POWER_ENERGY_COST);
 
         SetAffinity_Red(1);
         SetAffinity_Blue(1);
         SetAffinity_Dark(1);
+    }
+
+    @Override
+    protected void OnUpgrade()
+    {
+        super.OnUpgrade();
+
+        SetRetainOnce(true);
     }
 
     @Override

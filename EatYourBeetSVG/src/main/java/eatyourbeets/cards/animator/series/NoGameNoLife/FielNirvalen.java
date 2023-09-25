@@ -19,7 +19,7 @@ public class FielNirvalen extends AnimatorCard
     public static final EYBCardData DATA = Register(FielNirvalen.class)
             .SetPower(1, CardRarity.UNCOMMON)
             .SetSeriesFromClassPackage()
-            .PostInitialize(data -> data.AddPreviews(AffinityToken.GetCards(), true));
+            .PostInitialize(data -> data.AddPreviews(AffinityToken.GetCards(), false));
 
     private static final CardEffectChoice choices = new CardEffectChoice();
 
@@ -28,7 +28,7 @@ public class FielNirvalen extends AnimatorCard
         super(DATA);
 
         Initialize(0, 0, 0, 2);
-        SetUpgrade(0, 0, 0, 0);
+        SetUpgrade(0, 0, 0, 1);
 
         SetAffinity_Blue(1);
         SetAffinity_Light(1);
@@ -44,7 +44,7 @@ public class FielNirvalen extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.Add(AffinityToken.SelectTokenAction(name, upgraded, false, 1))
+        GameActions.Bottom.Add(AffinityToken.SelectTokenAction(name, false, false, 1))
         .AddCallback(cards ->
         {
             for (AbstractCard c : cards)

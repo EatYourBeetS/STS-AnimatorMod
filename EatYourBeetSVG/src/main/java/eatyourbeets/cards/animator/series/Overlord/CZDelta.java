@@ -16,7 +16,7 @@ public class CZDelta extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(CZDelta.class)
             .SetAttack(0, CardRarity.COMMON, EYBAttackType.Ranged, EYBCardTarget.Random)
-            .SetMaxCopies(4)
+            .SetMaxCopies(5)
             .SetSeriesFromClassPackage()
             .ModifyRewards((data, rewards) ->
             {

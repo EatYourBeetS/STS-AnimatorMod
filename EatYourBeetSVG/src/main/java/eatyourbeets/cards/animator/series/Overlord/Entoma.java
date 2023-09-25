@@ -27,7 +27,7 @@ public class Entoma extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(4, 0, 2);
+        Initialize(6, 0, 2);
         SetUpgrade(0, 0, 2);
 
         SetAffinity_Dark(2, 0, 1);

@@ -444,7 +444,7 @@
 		},
 		"animator:Raven":
 		{
-			"DESCRIPTION": "If the enemy is ** attacking: Apply 1 [Weak]. ** Else: Gain 2 [Vigor]. || !A! [G] [R]: Gain [E].",
+			"DESCRIPTION": "If the enemy is ** attacking: Apply 1 [Weak]. ** Else: Apply 1 [Vulnerable]. || !A! [G] [R]: Gain [E].",
 			"NAME": "Raven"
 		},
 		"animator:Rena":
@@ -651,7 +651,7 @@
 		},
 		"animator:ItamiYouji":
 		{
-			"DESCRIPTION": "Attack 1 additional time ** for each card played ** this turn (max 10). || !A! [M]: Gain !S! [Support Damage].",
+			"DESCRIPTION": "Attack 1 additional time ** for each card played ** this turn (max 10). || !A! [M]: Gain [Support Damage] on hit.",
 			"NAME": "Itami Youji"
 		},
 		"animator:Kuribayashi":
@@ -749,7 +749,7 @@
 		},
 		"animator:HighElfArcher":
 		{
-			"DESCRIPTION": "If the enemy has ** no [Artifact]: Apply !M! [~Lock-On]. || !A! [G]: Deal [DD] equal ** to damage dealt.",
+			"DESCRIPTION": "Apply !M! [~Lock-On]. || !A! [G]: Deal [DD] equal ** to damage dealt.",
 			"NAME": "High Elf Archer"
 		},
 		"animator:LizardPriest":
@@ -1017,8 +1017,8 @@
 		},
 		"animator:Hans":
 		{
-			"DESCRIPTION": "Add !S! {Slimed}{+} to your ** draw pile. At the end of ** each turn: Apply !M! [Poison] to ** !M! random enemies. || Whenever you play a ** {Status}: Recover !S! [HP].",
-			"EXTENDED_DESCRIPTION": ["At the end of turn, apply #b{0} [Poison] to #b{1} random enemies. Whenever you play a #yStatus, #yRecover #b{2} [HP]."],
+			"DESCRIPTION": "Add !S! {Slimed}{+} to your ** draw pile. At the end of ** each turn: Apply !M! [Poison] to ** !M! random enemies. || Whenever you play a ** {Status}: Recover !S! [MHP].",
+			"EXTENDED_DESCRIPTION": ["At the end of turn, apply #b{0} [Poison] to #b{1} random enemies. Whenever you play a #yStatus, #yRecover #b{2} [MHP]."],
 			"NAME": "Hans"
 		},
 		"animator:Kazuma":
@@ -1460,7 +1460,7 @@
 		},
 		"animator:MetalKnight":
 		{
-			"DESCRIPTION": "Gain !M! [Metallicize], then reduce ** this by 1 for all copies. || Once this combat, ** pay [E]: Channel 1 [Plasma].",
+			"DESCRIPTION": "Gain !M! [Metallicize], then reduce ** this by 1 for all copies. || Once this combat, ** pay [B]: Channel 1 [Plasma].",
 			"EXTENDED_DESCRIPTION": ["Pay [E]: Channel #b1 [Plasma]."],
 			"NAME": "Metal Knight"
 		},
@@ -1762,7 +1762,7 @@
 		},
 		"animator:AyaShameimaru":
 		{
-			"DESCRIPTION": "Gain !S! [~Blur]. ** <DRW-M>. || This turn, pay 1 [E]: ** Enter <AS>.",
+			"DESCRIPTION": "Gain !S! [~Blur]. ** <DRW-M>. || This turn, pay 1 [G]: ** Enter <AS>.",
 			"EXTENDED_DESCRIPTION": ["Pay 1 [E]: Enter [G] #yStance."],
 			"NAME": "Aya Shameimaru"
 		},

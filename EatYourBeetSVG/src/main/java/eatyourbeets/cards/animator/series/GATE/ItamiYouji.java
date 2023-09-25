@@ -49,14 +49,16 @@ public class ItamiYouji extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
+        boolean gainSupportDamage = CheckSpecialCondition(true);
+
         for (int i = 0; i < magicNumber; i++)
         {
             GameActions.Bottom.DealDamage(this, m, AttackEffects.GUNSHOT).SetSoundPitch(1.3f, 1.5f);
-        }
 
-        if (CheckSpecialCondition(true))
-        {
-            GameActions.Bottom.StackPower(new SupportDamagePower(p, secondaryValue));
+            if (gainSupportDamage)
+            {
+                GameActions.Bottom.StackPower(new SupportDamagePower(p, secondaryValue));
+            }
         }
     }
 }

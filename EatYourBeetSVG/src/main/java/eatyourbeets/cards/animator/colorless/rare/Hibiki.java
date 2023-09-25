@@ -20,7 +20,7 @@ public class Hibiki extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(1, 0, 3, 1);
+        Initialize(2, 0, 3, 1);
         SetUpgrade(0, 0, 1, 0);
 
         SetAffinity_Green(1, 0, 1);

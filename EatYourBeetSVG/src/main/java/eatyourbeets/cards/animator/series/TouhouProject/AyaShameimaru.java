@@ -43,7 +43,7 @@ public class AyaShameimaru extends AnimatorCard
     {
         public AyaShameimaruPower(AbstractCreature owner)
         {
-            super(owner, AyaShameimaru.DATA, PowerTriggerConditionType.Energy, 1);
+            super(owner, AyaShameimaru.DATA, PowerTriggerConditionType.Affinity_Green, 1);
 
             this.triggerCondition.SetUses(1, false, false);
 

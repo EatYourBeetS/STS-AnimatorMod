@@ -24,8 +24,8 @@ public class NagisaMomoe_CharlotteAlt extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(13, 0, 4);
-        SetUpgrade(2, 0);
+        Initialize(15, 0, 4);
+        SetUpgrade(4, 0);
 
         SetAffinity_Dark(2, 0, 1);
         SetAffinity_Red(1, 1, 0);

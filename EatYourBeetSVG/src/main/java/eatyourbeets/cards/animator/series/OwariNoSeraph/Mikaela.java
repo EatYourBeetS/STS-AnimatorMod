@@ -20,7 +20,7 @@ public class Mikaela extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(7, 0, 4, 7);
+        Initialize(7, 0, 4, 6);
         SetUpgrade(0, 0, 0, -2);
 
         SetAffinity_Red(1, 1, 1);

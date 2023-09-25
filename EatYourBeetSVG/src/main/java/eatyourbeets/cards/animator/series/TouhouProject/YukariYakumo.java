@@ -9,6 +9,8 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
+import eatyourbeets.cards.base.attributes.AbstractAttribute;
+import eatyourbeets.cards.base.attributes.TempHPAttribute;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.powers.PowerHelper;
 import eatyourbeets.utilities.GameActions;
@@ -27,7 +29,7 @@ public class YukariYakumo extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0);
+        Initialize(0, 0, 4);
 
         SetAffinity_Light(2);
         SetAffinity_Dark(2);
@@ -37,8 +39,15 @@ public class YukariYakumo extends AnimatorCard
     }
 
     @Override
+    public AbstractAttribute GetSpecialInfo()
+    {
+        return TempHPAttribute.Instance.SetCard(this, true);
+    }
+
+    @Override
     public void OnLateUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
+        GameActions.Bottom.GainTemporaryHP(magicNumber);
         GameActions.Delayed.Callback(() ->
         {
             final ArrayList<AbstractPower> debuffs = new ArrayList<>();

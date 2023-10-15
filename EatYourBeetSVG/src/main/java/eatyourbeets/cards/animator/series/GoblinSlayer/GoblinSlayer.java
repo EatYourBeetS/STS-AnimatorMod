@@ -1,6 +1,5 @@
 package eatyourbeets.cards.animator.series.GoblinSlayer;
 
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.actions.animator.CreateRandomGoblins;
@@ -11,12 +10,9 @@ import eatyourbeets.cards.animator.status.GoblinSoldier;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.modifiers.DamageModifiers;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
-
-import java.util.ArrayList;
 
 public class GoblinSlayer extends AnimatorCard
 {
@@ -35,13 +31,12 @@ public class GoblinSlayer extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(3, 4, 0, 3);
-        SetUpgrade(1, 3, 0, 0);
+        Initialize(4, 6, 0, 1);
+        SetUpgrade(0, 1, 0, 1);
 
         SetAffinity_Red(1);
         SetAffinity_Blue(1);
         SetAffinity_Green(1);
-        SetAffinity_Star(0, 0, 1);
 
         SetRetain(true);
     }
@@ -72,6 +67,12 @@ public class GoblinSlayer extends AnimatorCard
     }
 
     @Override
+    protected float GetInitialDamage()
+    {
+        return super.GetInitialDamage() + (player.exhaustPile.size() * secondaryValue);
+    }
+
+    @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.GainBlock(block);
@@ -79,22 +80,20 @@ public class GoblinSlayer extends AnimatorCard
 
         GameActions.Bottom.MoveCards(p.hand, p.exhaustPile)
         .SetFilter(c -> c.type == CardType.STATUS)
-        .ShowEffect(true, true, 0.25f)
-        .AddCallback(this::IncreaseDamage);
+        .ShowEffect(true, true, 0.25f);
 
         GameActions.Bottom.MoveCards(p.discardPile, p.exhaustPile)
         .SetFilter(c -> c.type == CardType.STATUS)
-        .ShowEffect(true, true, 0.12f)
-        .AddCallback(this::IncreaseDamage);
+        .ShowEffect(true, true, 0.12f);
     }
 
-    protected void IncreaseDamage(ArrayList<AbstractCard> cards)
-    {
-        final int bonus = cards.size() * secondaryValue;
-        if (bonus > 0)
-        {
-            GameActions.Bottom.ModifyAllCopies(cardID)
-            .AddCallback(bonus, (mod, c) -> DamageModifiers.For(c).Add(mod));
-        }
-    }
+//    protected void IncreaseDamage(ArrayList<AbstractCard> cards)
+//    {
+//        final int bonus = cards.size() * secondaryValue;
+//        if (bonus > 0)
+//        {
+//            GameActions.Bottom.ModifyAllCopies(cardID)
+//            .AddCallback(bonus, (mod, c) -> DamageModifiers.For(c).Add(mod));
+//        }
+//    }
 }

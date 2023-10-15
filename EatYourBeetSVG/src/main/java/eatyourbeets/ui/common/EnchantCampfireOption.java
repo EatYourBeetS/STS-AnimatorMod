@@ -15,6 +15,7 @@ import eatyourbeets.utilities.JUtils;
 //TODO: Localization
 public class EnchantCampfireOption extends AbstractCampfireOption
 {
+    private static final Integer ENCHANT_GOLD_PRICE = 70;
     private static final String LABEL_GOLD_F1 = "Enchant [{0} Gold]";
     private static final String LABEL_MAX = "Enchant [Max Level]";
 
@@ -59,7 +60,7 @@ public class EnchantCampfireOption extends AbstractCampfireOption
     public void Refresh()
     {
         this.usable = false;
-        this.goldCost = 80;
+        this.goldCost = ENCHANT_GOLD_PRICE;
 
         for (AbstractRelic r : AbstractDungeon.player.relics)
         {
@@ -67,7 +68,7 @@ public class EnchantCampfireOption extends AbstractCampfireOption
             if (er != null && er.GetEnchantmentLevel() < 2)
             {
                 relic = er;
-                goldCost += (er.GetEnchantmentLevel() * 80);
+                goldCost += (er.GetEnchantmentLevel() * ENCHANT_GOLD_PRICE);
                 break;
             }
         }

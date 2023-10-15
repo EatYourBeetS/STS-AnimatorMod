@@ -26,7 +26,7 @@ public class Loadout_Katanagatari extends AnimatorLoadout
         AddStarterCard(Togame.DATA, 8);
         AddStarterCard(Nanami.DATA, 12);
         AddStarterCard(ManiwaKyouken.DATA, 8);
-        AddStarterCard(Shichika.DATA, 15);
+        AddStarterCard(Shichika.DATA, 14);
 
         AddStarterCard(HigakiRinne.DATA, 20);
     }

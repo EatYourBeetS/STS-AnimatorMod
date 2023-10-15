@@ -30,7 +30,7 @@ public class Loadout_OwariNoSeraph extends AnimatorLoadout
         AddStarterCard(GoshiNorito.DATA, 8);
         AddStarterCard(FeridBathory.DATA, 12);
 
-        AddStarterCard(KrulTepes.DATA, 24);
+        AddStarterCard(KrulTepes.DATA, 22);
         AddStarterCard(Guren.DATA, 24);
 
         AddStarterCard(Status_Wound.DATA, -5);

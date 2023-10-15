@@ -2,7 +2,6 @@ package eatyourbeets.cards.animator.enchantments;
 
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.actions.player.EndPlayerTurn;
 import eatyourbeets.cards.base.CardEffectChoice;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.effects.GenericEffects.GenericEffect_EnterStance;
@@ -66,6 +65,6 @@ public class Enchantment1 extends Enchantment
             }
         }
 
-        GameActions.Bottom.Add(new EndPlayerTurn());
+        //GameActions.Bottom.Add(new EndPlayerTurn());
     }
 }

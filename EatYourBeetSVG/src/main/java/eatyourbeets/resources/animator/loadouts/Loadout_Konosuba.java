@@ -25,7 +25,7 @@ public class Loadout_Konosuba extends AnimatorLoadout
         AddStarterCard(Kazuma.DATA, 7);
         AddStarterCard(Verdia.DATA, 8);
         AddStarterCard(Vanir.DATA, 8);
-        AddStarterCard(Sylvia.DATA, 8);
+        AddStarterCard(Sylvia.DATA, 6);
 
         AddStarterCard(YunYun.DATA, 9);
         AddStarterCard(Chris.DATA, 6);

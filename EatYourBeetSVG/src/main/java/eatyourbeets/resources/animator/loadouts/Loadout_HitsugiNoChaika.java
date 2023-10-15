@@ -21,7 +21,7 @@ public class Loadout_HitsugiNoChaika extends AnimatorLoadout
     {
         AddStarterCard(MattheusCallaway.DATA, 6);
         AddStarterCard(ZitaBrusasco.DATA, 6);
-        AddStarterCard(Viivi.DATA, 9);
+        AddStarterCard(Viivi.DATA, 8);
         AddStarterCard(Gillette.DATA, 6);
         AddStarterCard(Nikolay.DATA, 7);
         AddStarterCard(ChaikaBohdan.DATA, 10);

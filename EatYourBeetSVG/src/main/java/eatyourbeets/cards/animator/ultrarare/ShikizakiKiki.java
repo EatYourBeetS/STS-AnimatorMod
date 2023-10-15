@@ -20,14 +20,15 @@ public class ShikizakiKiki extends AnimatorCard_UltraRare
             .SetPower(2, CardRarity.SPECIAL)
             .SetColor(CardColor.COLORLESS)
             .SetSeries(CardSeries.Katanagatari);
-    public static final int POWER_ENERGY_COST = 2;
+    public static final int POWER_ENERGY_COST = 1;
+    public static final int POWER_USES_PER_TURN = 2;
     public static final int BLOCK_DAMAGE_BONUS = 2;
 
     public ShikizakiKiki()
     {
         super(DATA);
 
-        Initialize(0, 0, 2, POWER_ENERGY_COST);
+        Initialize(0, 0, 1, POWER_ENERGY_COST);
 
         SetAffinity_Red(1);
         SetAffinity_Blue(1);
@@ -55,7 +56,7 @@ public class ShikizakiKiki extends AnimatorCard_UltraRare
         {
             super(owner, ShikizakiKiki.DATA, PowerTriggerConditionType.Energy, POWER_ENERGY_COST);
 
-            triggerCondition.SetUses(1, true, false);
+            triggerCondition.SetUses(POWER_USES_PER_TURN, true, false);
 
             Initialize(amount);
         }

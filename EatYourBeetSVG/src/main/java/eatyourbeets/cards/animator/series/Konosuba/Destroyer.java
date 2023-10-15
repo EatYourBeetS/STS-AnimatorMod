@@ -23,7 +23,7 @@ public class Destroyer extends AnimatorCard
     public static final EYBCardData DATA = Register(Destroyer.class)
             .SetPower(3, CardRarity.RARE)
             .SetSeriesFromClassPackage();
-    public static final int BURNING_AMOUNT = 1;
+    public static final int BURNING_AMOUNT = 2;
     public static final int BASE_DAMAGE = 14;
 
     public Destroyer()

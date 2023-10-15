@@ -34,16 +34,22 @@ public class DolaStephanie extends AnimatorCard
 
         SetAffinityRequirement(Affinity.Sealed, 1);
 
+        SetExhaust(true);
+    }
+
+    @Override
+    protected void OnUpgrade()
+    {
+        super.OnUpgrade();
+
+        SetExhaust(false);
         SetFading(true);
     }
 
     @Override
     public void OnLateUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        if (upgraded)
-        {
-            GameActions.Bottom.Draw(1);
-        }
+        GameActions.Bottom.Draw(1);
 
         GameActions.Bottom.SelectFromHand(name, 1, false)
         .SetMessage(GR.Common.Strings.HandSelection.MoveToDrawPile)

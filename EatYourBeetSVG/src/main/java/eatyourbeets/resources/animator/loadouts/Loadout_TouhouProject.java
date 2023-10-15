@@ -25,9 +25,9 @@ public class Loadout_TouhouProject extends AnimatorLoadout
 
         AddStarterCard(YoumuKonpaku.DATA, 13);
         //AddStarterCard(AyaShameimaru.DATA, 15);
-        AddStarterCard(SanaeKochiya.DATA, 9);
+        AddStarterCard(SanaeKochiya.DATA, 7);
         AddStarterCard(AliceMargatroid.DATA, 9);
-        AddStarterCard(SakuyaIzayoi.DATA, 14);
+        AddStarterCard(SakuyaIzayoi.DATA, 12);
 
         AddStarterCard(YukariYakumo.DATA, 20);
         AddStarterCard(HataNoKokoro.DATA, 20);

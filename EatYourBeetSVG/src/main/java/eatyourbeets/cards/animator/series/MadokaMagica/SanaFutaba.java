@@ -18,7 +18,6 @@ public class SanaFutaba extends AnimatorCard
             .SetSkill(0, CardRarity.COMMON, EYBCardTarget.None)
             .SetMaxCopies(2)
             .SetSeriesFromClassPackage();
-    public static final int BLOCK_INCREASE = 1;
 
     public SanaFutaba()
     {
@@ -35,12 +34,6 @@ public class SanaFutaba extends AnimatorCard
     }
 
     @Override
-    public ColoredString GetSpecialVariableString()
-    {
-        return super.GetSpecialVariableString(BLOCK_INCREASE);
-    }
-
-    @Override
     public void triggerOnExhaust()
     {
         super.triggerOnExhaust();
@@ -52,7 +45,7 @@ public class SanaFutaba extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.SelectFromPile(name, magicNumber, p.drawPile)
+        GameActions.Bottom.SelectFromPile(name, 1, p.drawPile)
         .SetOptions(CardSelection.Top, true)
         .SetFilter(SanaFutaba::Filter)
         .AddCallback(cards ->
@@ -63,7 +56,7 @@ public class SanaFutaba extends AnimatorCard
                 for (int i = 0; i < max; i++)
                 {
                     final AbstractCard c = cards.get(i);
-                    BlockModifiers.For(c).Add(cardID, BLOCK_INCREASE);
+                    BlockModifiers.For(c).Add(cardID, magicNumber);
                     GameEffects.List.ShowCopy(c, Settings.WIDTH * 0.25f + (i * AbstractCard.IMG_WIDTH * 0.6f), Settings.HEIGHT * 0.4f);
                 }
 

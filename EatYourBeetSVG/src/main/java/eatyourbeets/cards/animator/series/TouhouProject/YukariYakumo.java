@@ -66,7 +66,7 @@ public class YukariYakumo extends AnimatorCard
                 for (AbstractPower debuff : debuffs)
                 {
                     final boolean level1 = rng.randomBoolean();
-                    final int amount = (upgraded ? 1 : 0) + (level1 ? 2 : 1);
+                    final int amount = (upgraded ? 2 : 1) + (level1 ? 2 : 1);
                     final PowerHelper toApply = GameUtilities.GetRandomElement(GameUtilities.GetCommonDebuffs(level1 ? 1 : 2));
                     GameActions.Bottom.StackPower(TargetHelper.Enemies(player), toApply, amount)
                     .ShowEffect(true, true);

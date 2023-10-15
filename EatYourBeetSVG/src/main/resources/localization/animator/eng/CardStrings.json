@@ -444,7 +444,7 @@
 		},
 		"animator:Raven":
 		{
-			"DESCRIPTION": "If the enemy is ** attacking: Apply 1 [Weak]. ** Else: Apply 1 [Vulnerable]. || !A! [G] [R]: Gain [E].",
+			"DESCRIPTION": "If the enemy is ** attacking: Apply !M! [Weak]. ** Else: Apply !S! [Vulnerable]. || !A! [G] [R]: Gain [E].",
 			"NAME": "Raven"
 		},
 		"animator:Rena":
@@ -704,7 +704,7 @@
 		},
 		"animator:Tyuule":
 		{
-			"DESCRIPTION": "Increase the ** {Common Debuffs} of ** each enemy by 1. || X [G]: Apply !M! [Poison].",
+			"DESCRIPTION": "Increase the ** {Common Debuffs} of ** each enemy by 1. || !A! [G]: gain 1 [Noxious Fumes].",
 			"NAME": "Tyuule"
 		},
 		"animator:YaoHaDucy":
@@ -733,7 +733,7 @@
 		},
 		"animator:GoblinSlayer":
 		{
-			"DESCRIPTION": "Exhaust every Status ** in hand and discard pile. ** For each, give {Goblin Slayer} ** +!S! damage this combat. || {WARNING}: Goblins.",
+			"DESCRIPTION": "Deal !S! additional damage ** per card in Exhaust pile. ** Exhaust every Status in ** hand and discard pile. || {WARNING}: Goblins.",
 			"NAME": "Goblin Slayer"
 		},
 		"animator:GuildGirl":
@@ -1264,8 +1264,7 @@
 		},
 		"animator:SanaFutaba":
 		{
-			"DESCRIPTION": "Increase the [Block] of ** the next {Skill} with [Block] ** in your draw pile by !K!. || When Exhausted: Gain ** !S! [Block] for each enemy.",
-			"UPGRADE_DESCRIPTION": "Increase the [Block] of ** the next !M! {Skills} with [Block] ** in your draw pile by !K!. || When Exhausted: Gain ** !S! [Block] for each enemy.",
+			"DESCRIPTION": "Increase the [Block] of ** the next {Skill} with [Block] ** in your draw pile by !M!. || When Exhausted: Gain ** !S! [Block] for each enemy.",
 			"NAME": "Sana Futaba"
 		},
 		"animator:SayakaMiki":
@@ -1327,9 +1326,8 @@
 		},
 		"animator:DolaStephanie":
 		{
-			"DESCRIPTION": "Reshuffle 1 card. || !A! [S]: Obtain an ** {[W] Token} based on ** that card's Affinities.",
-			"NAME": "Stephanie",
-			"UPGRADE_DESCRIPTION": "<DRW>. ** <DESCRIPTION>"
+			"DESCRIPTION": "<DRW>. ** Reshuffle 1 card. || !A! [S]: Obtain an ** {[W] Token} based on ** that card's Affinities.",
+			"NAME": "Stephanie"
 		},
 		"animator:EmirEins":
 		{
@@ -1848,12 +1846,12 @@
 	{
 		"animator:Enchantment1":
 		{
-			"DESCRIPTION": "Once per combat, ** pay !S! [E]: Choose and ** Enter any Stance, ** then end your turn.",
+			"DESCRIPTION": "Once per combat, ** pay !S! [E]: Choose and ** Enter any Stance.",
 			"EXTENDED_DESCRIPTION":
 			[
-				"Once per combat, pay ** !S! [E]: Enter <FS>, ** then end your turn.",
-				"Once per combat, pay ** !S! [E]: Enter <AS>, ** then end your turn.",
-				"Once per combat, pay ** !S! [E]: Enter <IS>, ** then end your turn."
+				"Once per combat, pay ** !S! [E]: Enter <FS>.",
+				"Once per combat, pay ** !S! [E]: Enter <AS>.",
+				"Once per combat, pay ** !S! [E]: Enter <IS>."
 			],
 			"NAME": "Stances"
 		},
@@ -2228,7 +2226,7 @@
 		},
 		"animator:ShikizakiKiki":
 		{
-			"DESCRIPTION": "Whenever you play ** an {Attack}: Gain [INS]. || Once per turn, pay !S! [E]: ** Raise Damage and [Block] of ** all cards in hand by !M!.",
+			"DESCRIPTION": "Whenever you play ** an {Attack}: Gain [INS]. || Twice per turn, pay !S! [E]: ** Raise Damage and [Block] of ** all cards in hand by !M!.",
 			"EXTENDED_DESCRIPTION": ["Pay #b{0} [E]: Raise Damage and [Block] of all cards in hand by #b{1}. || Whenever you play an {Attack}: Gain #b{2} [INS]."],
 			"NAME": "Shikizaki Kiki"
 		},

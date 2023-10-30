@@ -20,12 +20,21 @@ public class OrikoMikuni extends AnimatorCard
         super(DATA);
 
         Initialize(0, 0, 3, 3);
-        SetUpgrade(0, 0, 0, -1);
+        SetUpgrade(0, 0, 0, 0);
 
         SetAffinity_Light(1);
         SetAffinity_Dark(1);
 
         SetExhaust(true);
+    }
+
+    @Override
+    protected void OnUpgrade()
+    {
+        super.OnUpgrade();
+
+        SetExhaust(false);
+        SetFading(true);
     }
 
     @Override

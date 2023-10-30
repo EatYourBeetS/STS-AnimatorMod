@@ -795,7 +795,7 @@
 		},
 		"animator:AcuraShin":
 		{
-			"DESCRIPTION": "All {0-Cost} {Attacks} deal ** !M! additional damage. || Twice per combat, discard ** 1 card: Gain !S! {Temp}. [Envenom].",
+			"DESCRIPTION": "All {0-Cost} {Attacks} deal ** !M! additional damage. || Once per turn, discard ** 1 card: Gain !S! {Temp}. [Envenom].",
 			"EXTENDED_DESCRIPTION": ["Discard #b1 card: Gain #b{0} temporary #yEnvenom. || All #y0-Cost #yAttacks deal #b{1} additional damage."],
 			"NAME": "Shin"
 		},
@@ -1652,9 +1652,8 @@
 		},
 		"animator:Yoichi":
 		{
-			"DESCRIPTION": "Discard 1 random ** card. Gain !M! [Support Damage]. || <slm>. !A! [L] [G]: ** Activate your [Support Damage].",
-			"NAME": "Yoichi",
-			"UPGRADE_DESCRIPTION": "Discard 1 card. ** Gain !M! [Support Damage]. || <slm>. !A! [L] [G]: ** Activate your [Support Damage]."
+			"DESCRIPTION": "Discard 1 card. ** Gain !M! [Support Damage]. || <slm>. !A! [L] [G]: ** Activate your [Support Damage].",
+			"NAME": "Yoichi"
 		},
 		"animator:Yuuichirou":
 		{

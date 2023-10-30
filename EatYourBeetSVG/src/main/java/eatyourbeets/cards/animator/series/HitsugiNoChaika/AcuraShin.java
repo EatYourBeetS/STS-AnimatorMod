@@ -26,7 +26,7 @@ public class AcuraShin extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0,0, 2, ENVENOM_AMOUNT);
+        Initialize(0,0, 1, ENVENOM_AMOUNT);
 
         SetAffinity_Green(1);
         SetAffinity_Dark(1);
@@ -50,7 +50,7 @@ public class AcuraShin extends AnimatorCard
         {
             super(owner, AcuraShin.DATA, PowerTriggerConditionType.Discard, 1);
 
-            triggerCondition.SetUses(2, false, true);
+            triggerCondition.SetUses(1, true, false);
 
             Initialize(amount);
         }

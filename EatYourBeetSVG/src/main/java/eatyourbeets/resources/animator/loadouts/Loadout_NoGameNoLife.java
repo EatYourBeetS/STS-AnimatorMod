@@ -20,7 +20,7 @@ public class Loadout_NoGameNoLife extends AnimatorLoadout
         AddStarterCard(Miko.DATA, 8);
         AddStarterCard(IzunaHatsuse.DATA, 5);
         AddStarterCard(DolaRiku.DATA, 6);
-        AddStarterCard(DolaCouronne.DATA, 6);
+        AddStarterCard(DolaCouronne.DATA, 5);
 
         AddStarterCard(Tet.DATA, 10);
         AddStarterCard(Jibril.DATA, 11);

@@ -21,7 +21,7 @@ public class Loadout_FullmetalAlchemist extends AnimatorLoadout
         AddStarterCard(ElricEdward.DATA, 5);
         AddStarterCard(ElricAlphonse.DATA, 4);
         AddStarterCard(Sloth.DATA, 12);
-        AddStarterCard(Lust.DATA, 6);
+        AddStarterCard(Lust.DATA, 5);
 
         AddStarterCard(Pride.DATA, 10);
         AddStarterCard(RoyMustang.DATA, 12);

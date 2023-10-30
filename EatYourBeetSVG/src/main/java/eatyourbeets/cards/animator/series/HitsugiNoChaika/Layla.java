@@ -31,7 +31,7 @@ public class Layla extends AnimatorCard
         SetAffinity_Blue(1, 0, 1);
         SetAffinity_Dark(2, 0, 1);
 
-        SetAffinityRequirement(Affinity.Blue, 2);
+        SetAffinityRequirement(Affinity.Blue, 1);
     }
 
     @Override

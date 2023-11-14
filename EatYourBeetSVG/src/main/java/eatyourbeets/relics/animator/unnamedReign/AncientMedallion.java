@@ -11,10 +11,7 @@ import eatyourbeets.interfaces.listeners.OnEquipUnnamedReignRelicListener;
 import eatyourbeets.interfaces.subscribers.OnRelicObtainedSubscriber;
 import eatyourbeets.relics.AnimatorRelic;
 import eatyourbeets.resources.GR;
-import eatyourbeets.utilities.GameEffects;
-import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.JUtils;
-import eatyourbeets.utilities.RandomizedList;
+import eatyourbeets.utilities.*;
 
 public class AncientMedallion extends AnimatorRelic implements OnEquipUnnamedReignRelicListener, OnRelicObtainedSubscriber
 {
@@ -137,7 +134,7 @@ public class AncientMedallion extends AnimatorRelic implements OnEquipUnnamedRei
     {
         super.atBattleStart();
 
-        player.heal(GetHealAmount() * counter, true);
+        GameActions.Bottom.Heal(GetHealAmount() * counter);
         flash();
     }
 

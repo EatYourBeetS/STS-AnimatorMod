@@ -1,5 +1,6 @@
 package eatyourbeets.cards.animator.series.OwariNoSeraph;
 
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -8,17 +9,20 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.effects.vfx.megacritCopy.HemokinesisEffect2;
 import eatyourbeets.interfaces.subscribers.OnAfterCardExhaustedSubscriber;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.powers.CombatStats;
-import eatyourbeets.utilities.*;
+import eatyourbeets.utilities.ColoredString;
+import eatyourbeets.utilities.Colors;
+import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameEffects;
 
 public class FeridBathory extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(FeridBathory.class)
-            .SetSkill(2, CardRarity.UNCOMMON)
+            .SetPower(2, CardRarity.UNCOMMON)
+            .SetMaxCopies(1)
             .SetSeriesFromClassPackage();
     public static final int HP_STEAL = 2;
 
@@ -26,14 +30,22 @@ public class FeridBathory extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 3, 7);
-        SetUpgrade(0, 0, 1, 3);
+        Initialize(0, 0, 2);
+        SetUpgrade(0, 0, 1);
 
         SetAffinity_Red(2);
         SetAffinity_Green(1);
         SetAffinity_Dark(2);
 
         SetExhaust(true);
+    }
+
+    @Override
+    protected void OnUpgrade()
+    {
+        super.OnUpgrade();
+
+        SetRetainOnce(true);
     }
 
     @Override
@@ -53,7 +65,7 @@ public class FeridBathory extends AnimatorCard
     @Override
     public void OnLateUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.DelayedTop.StackPower(p, new FeridBathoryPower(m, p, secondaryValue));
+        GameActions.DelayedTop.StackPower(p, new FeridBathoryPower(m, p, HP_STEAL));
     }
 
     public static class FeridBathoryPower extends AnimatorPower implements OnAfterCardExhaustedSubscriber
@@ -84,21 +96,10 @@ public class FeridBathory extends AnimatorCard
         @Override
         public void OnAfterCardExhausted(AbstractCard card)
         {
-            if (GameUtilities.IsDeadOrEscaped(owner))
-            {
-                CombatStats.onAfterCardExhausted.Unsubscribe(this);
-                return;
-            }
-
-            GameActions.Bottom.DealDamage(source, owner, HP_STEAL, DamageInfo.DamageType.HP_LOSS, AttackEffects.NONE)
-            .SetDamageEffect(enemy ->
-            {
-                GameEffects.List.Add(new HemokinesisEffect2(enemy.hb.cX, enemy.hb.cY, source.hb.cX, source.hb.cY));
-                return 0f;
-            });
-            GameActions.Bottom.GainTemporaryHP(HP_STEAL);
+            GameActions.Bottom.DealDamageToRandomEnemy(amount, DamageInfo.DamageType.HP_LOSS, AbstractGameAction.AttackEffect.NONE)
+            .SetDamageEffect(enemy -> GameEffects.List.Add(new HemokinesisEffect2(enemy.hb.cX, enemy.hb.cY, owner.hb.cX, owner.hb.cY)).duration);
+            GameActions.Bottom.GainTemporaryHP(amount);
             flashWithoutSound();
-            ReducePower(1);
         }
     }
 }

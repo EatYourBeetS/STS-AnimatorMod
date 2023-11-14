@@ -1590,8 +1590,8 @@
 		},
 		"animator:FeridBathory":
 		{
-			"DESCRIPTION": "Gain !M! [R] [G] [D]. || The next !S! times a card ** is Exhausted: Steal !K! [HP] ** from the enemy as [THP].",
-			"EXTENDED_DESCRIPTION": ["Whenever a card is #yExhausted, transfer #b{0} [HP] to the source of this power as [THP]."],
+			"DESCRIPTION": "Gain !M! [R] [G] [D]. || Whenever a card is ** Exhausted: Steal !M! [HP] from ** a random enemy as [THP].",
+			"EXTENDED_DESCRIPTION": ["Whenever a card is #yExhausted, steal #b{0} [HP] from a random enemy as [THP]."],
 			"NAME": "Ferid Bathory"
 		},
 		"animator:Guren":

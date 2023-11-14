@@ -23,14 +23,22 @@ public class SanaFutaba extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 1, 2);
-        SetUpgrade(0, 0, 1, 1);
+        Initialize(0, 0, 1, 3);
+        SetUpgrade(0, 0, 1, 0);
 
         SetAffinity_Green(1);
 
         SetEthereal(true);
 
         SetCardPreview(SanaFutaba::Filter);
+    }
+
+    @Override
+    protected void OnUpgrade()
+    {
+        super.OnUpgrade();
+
+        SetHaste(true);
     }
 
     @Override

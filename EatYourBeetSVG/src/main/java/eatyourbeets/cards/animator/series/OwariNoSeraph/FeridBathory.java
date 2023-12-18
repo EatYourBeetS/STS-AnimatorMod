@@ -13,8 +13,6 @@ import eatyourbeets.effects.vfx.megacritCopy.HemokinesisEffect2;
 import eatyourbeets.interfaces.subscribers.OnAfterCardExhaustedSubscriber;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.powers.CombatStats;
-import eatyourbeets.utilities.ColoredString;
-import eatyourbeets.utilities.Colors;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 
@@ -30,14 +28,12 @@ public class FeridBathory extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 2);
+        Initialize(0, 0, 2, HP_STEAL);
         SetUpgrade(0, 0, 1);
 
         SetAffinity_Red(2);
         SetAffinity_Green(1);
         SetAffinity_Dark(2);
-
-        SetExhaust(true);
     }
 
     @Override
@@ -49,23 +45,12 @@ public class FeridBathory extends AnimatorCard
     }
 
     @Override
-    public ColoredString GetSpecialVariableString()
-    {
-        return new ColoredString(HP_STEAL, Colors.Cream(1));
-    }
-
-    @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.GainForce(magicNumber);
         GameActions.Bottom.GainAgility(magicNumber);
         GameActions.Bottom.GainCorruption(magicNumber);
-    }
-
-    @Override
-    public void OnLateUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
-    {
-        GameActions.DelayedTop.StackPower(p, new FeridBathoryPower(m, p, HP_STEAL));
+        GameActions.Bottom.StackPower(new FeridBathoryPower(p, p, secondaryValue));
     }
 
     public static class FeridBathoryPower extends AnimatorPower implements OnAfterCardExhaustedSubscriber

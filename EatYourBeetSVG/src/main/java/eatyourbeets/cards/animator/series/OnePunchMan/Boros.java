@@ -30,7 +30,7 @@ public class Boros extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 4, POWER_DD_COST);
+        Initialize(0, 0, POWER_DD_MULTI, POWER_DD_COST);
         SetCostUpgrade(-1);
 
         SetAffinity_Red(2);

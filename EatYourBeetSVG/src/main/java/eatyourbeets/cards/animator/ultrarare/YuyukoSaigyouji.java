@@ -35,6 +35,7 @@ public class YuyukoSaigyouji extends AnimatorCard_UltraRare
         SetAffinity_Blue(2);
         SetAffinity_Dark(2);
 
+        SetHaste(true);
         SetInnate(true);
     }
 

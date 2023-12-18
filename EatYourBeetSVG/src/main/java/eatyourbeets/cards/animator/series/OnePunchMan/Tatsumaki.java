@@ -43,7 +43,7 @@ public class Tatsumaki extends AnimatorCard
     {
         public TatsumakiPower(AbstractCreature owner)
         {
-            super(owner, Tatsumaki.DATA, PowerTriggerConditionType.Energy, 1);
+            super(owner, Tatsumaki.DATA, PowerTriggerConditionType.Affinity_Blue, 2);
 
             this.triggerCondition.SetUses(1, false, false);
 

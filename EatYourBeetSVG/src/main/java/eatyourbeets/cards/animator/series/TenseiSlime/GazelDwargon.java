@@ -21,7 +21,7 @@ public class GazelDwargon extends AnimatorCard
         super(DATA);
 
         Initialize(0, 0, 4);
-        SetUpgrade(0, 1, 0);
+        SetUpgrade(0, 3, 0);
 
         SetAffinity_Red(1);
     }
@@ -30,11 +30,7 @@ public class GazelDwargon extends AnimatorCard
     public AbstractAttribute GetBlockInfo()
     {
         final AbstractAttribute result = super.GetBlockInfo();
-        if (upgraded)
-        {
-            result.mainText.SetText("X+" + result.mainText.text);
-        }
-
+        result.mainText.SetText("X+" + result.mainText.text);
         return result;
     }
 
@@ -48,9 +44,6 @@ public class GazelDwargon extends AnimatorCard
             GameActions.Bottom.StackPower(new GazelDwargonPower(p, stacks * magicNumber));
         }
 
-        if (upgraded)
-        {
-            GameActions.Bottom.GainBlock(stacks + block);
-        }
+        GameActions.Bottom.GainBlock(stacks + block);
     }
 }

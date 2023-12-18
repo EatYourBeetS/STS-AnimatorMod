@@ -34,7 +34,7 @@ public class MadokaKaname extends AnimatorCard
         SetAffinity_Blue(1);
         SetAffinity_Light(2);
 
-        SetAffinityRequirement(Affinity.Light, 6);
+        SetAffinityRequirement(Affinity.Light, 5);
     }
 
     @Override

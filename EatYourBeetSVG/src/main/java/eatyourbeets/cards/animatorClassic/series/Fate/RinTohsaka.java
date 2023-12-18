@@ -23,7 +23,6 @@ public class RinTohsaka extends AnimatorClassicCard
         SetUpgrade(0, 1, 0, 1);
         SetScaling(1, 0, 0);
 
-        
         SetSpellcaster();
     }
 

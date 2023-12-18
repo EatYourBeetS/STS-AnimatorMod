@@ -1497,7 +1497,7 @@
 		},
 		"animator:Tatsumaki":
 		{
-			"DESCRIPTION": "Channel 1 [Aether]. ** Gain !M! {Temp.} [Focus]. || This turn, pay 1 [E]: ** Enter <IS>.",
+			"DESCRIPTION": "Channel 1 [Aether]. ** Gain !M! {Temp.} [Focus]. || This turn, pay 2 [B]: ** Enter <IS>.",
 			"EXTENDED_DESCRIPTION": ["Pay 1 [E]: Enter [B] #yStance."],
 			"NAME": "Tatsumaki"
 		}
@@ -1590,7 +1590,7 @@
 		},
 		"animator:FeridBathory":
 		{
-			"DESCRIPTION": "Gain !M! [R] [G] [D]. || Whenever a card is ** Exhausted: Steal !M! [HP] from ** a random enemy as [THP].",
+			"DESCRIPTION": "Gain !M! [R] [G] [D]. || Whenever a card is ** Exhausted: Steal !S! [HP] from ** a random enemy as [THP].",
 			"EXTENDED_DESCRIPTION": ["Whenever a card is #yExhausted, steal #b{0} [HP] from a random enemy as [THP]."],
 			"NAME": "Ferid Bathory"
 		},

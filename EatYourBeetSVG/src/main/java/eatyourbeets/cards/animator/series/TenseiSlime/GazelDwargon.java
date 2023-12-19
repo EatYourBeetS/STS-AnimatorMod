@@ -6,6 +6,7 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
+import eatyourbeets.cards.base.attributes.BlockAttribute;
 import eatyourbeets.powers.animator.GazelDwargonPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
@@ -29,8 +30,16 @@ public class GazelDwargon extends AnimatorCard
     @Override
     public AbstractAttribute GetBlockInfo()
     {
-        final AbstractAttribute result = super.GetBlockInfo();
-        result.mainText.SetText("X+" + result.mainText.text);
+        final AbstractAttribute result = BlockAttribute.Instance.SetCard(this);
+        if (baseBlock > 0)
+        {
+            result.mainText.SetText("X+" + result.mainText.text);
+        }
+        else
+        {
+            result.mainText.SetText("X");
+        }
+
         return result;
     }
 

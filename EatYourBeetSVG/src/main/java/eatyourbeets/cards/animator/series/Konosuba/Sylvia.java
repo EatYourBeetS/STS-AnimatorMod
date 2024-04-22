@@ -27,8 +27,8 @@ public class Sylvia extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 5, 2, 3);
-        SetUpgrade(0, 3, 0, 0);
+        Initialize(0, 6, 2, 3);
+        SetUpgrade(0, 2, 0, 0);
 
         SetAffinity_Red(1);
         SetAffinity_Dark(1);

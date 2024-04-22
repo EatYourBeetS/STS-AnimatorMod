@@ -30,7 +30,7 @@ public class DolaSchwi extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(2, 0, 1);
+        Initialize(3, 0, 1);
         SetUpgrade(0, 0, 1);
 
         SetAffinity_Green(1);

@@ -20,7 +20,7 @@ public class Hitei extends AnimatorCard
             .SetSeriesFromClassPackage()
             .ObtainableAsReward((data, deck) -> deck.size() > 15);
     public static final int POWER_ACTIVATION_COST = 4;
-    public static final int EXHAUST_SELECTION_SIZE = 2;
+    public static final int EXHAUST_SELECTION_SIZE = 3;
     public static final int CARD_DRAW = 1;
 
     public Hitei()
@@ -28,9 +28,17 @@ public class Hitei extends AnimatorCard
         super(DATA);
 
         Initialize(0, 0, EXHAUST_SELECTION_SIZE, POWER_ACTIVATION_COST);
-        SetCostUpgrade(-1);
+        SetDelayed(true);
 
         SetAffinity_Dark(1);
+    }
+
+    @Override
+    protected void OnUpgrade()
+    {
+        super.OnUpgrade();
+
+        SetDelayed(false);
     }
 
     @Override

@@ -1459,7 +1459,7 @@
 		"animator:MetalKnight":
 		{
 			"DESCRIPTION": "Gain !M! [Metallicize], then reduce ** this by 1 for all copies. || Once this combat, ** pay [B]: Channel 1 [Plasma].",
-			"EXTENDED_DESCRIPTION": ["Pay [E]: Channel #b1 [Plasma]."],
+			"EXTENDED_DESCRIPTION": ["Pay [B]: Channel #b1 [Plasma]."],
 			"NAME": "Metal Knight"
 		},
 		"animator:MetalBat":
@@ -1498,7 +1498,7 @@
 		"animator:Tatsumaki":
 		{
 			"DESCRIPTION": "Channel 1 [Aether]. ** Gain !M! {Temp.} [Focus]. || This turn, pay 2 [B]: ** Enter <IS>.",
-			"EXTENDED_DESCRIPTION": ["Pay 1 [E]: Enter [B] #yStance."],
+			"EXTENDED_DESCRIPTION": ["Pay 2 [B]: Enter [B] #yStance."],
 			"NAME": "Tatsumaki"
 		}
 	},
